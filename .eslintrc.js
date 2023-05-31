@@ -66,7 +66,7 @@ module.exports = {
         endOfLine: "auto",
         orderedImports: true,
         parser: "typescript",
-        printWidth: 140,
+        printWidth: 120,
         semi: true,
         singleQuote: true,
         tabWidth: 2,
