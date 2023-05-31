@@ -7,3 +7,9 @@
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+/**/*.tsbuildinfo
+.next
+
+# mac
+.DS_Store
