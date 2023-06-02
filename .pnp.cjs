@@ -2202,6 +2202,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/multer", [\
+        ["npm:1.4.7", {\
+          "packageLocation": "./.yarn/cache/@types-multer-npm-1.4.7-df3819be8e-680cb0710a.zip/node_modules/@types/multer/",\
+          "packageDependencies": [\
+            ["@types/multer", "npm:1.4.7"],\
+            ["@types/express", "npm:4.17.17"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/node", [\
         ["npm:18.16.16", {\
           "packageLocation": "./.yarn/cache/@types-node-npm-18.16.16-8a41330dc3-0efad726dd.zip/node_modules/@types/node/",\
@@ -9566,6 +9576,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@nestjs/testing", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:9.4.2"],\
             ["@types/express", "npm:4.17.17"],\
             ["@types/jest", "npm:29.5.0"],\
+            ["@types/multer", "npm:1.4.7"],\
             ["@types/node", "npm:18.16.16"],\
             ["@types/supertest", "npm:2.0.12"],\
             ["@typescript-eslint/eslint-plugin", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
