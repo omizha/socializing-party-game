@@ -2,12 +2,17 @@ import { createRoot } from 'react-dom/client';
 import App from './page/@/App';
 import QueryClientProvider from '@/library/react-query/QueryClientProvider';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Backoffice from './page/@backoffice';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
+  {
+    path: "/backoffice",
+    element: <Backoffice />
+  }
 ]);
 
 const selected = document.getElementById('root');
