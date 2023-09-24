@@ -11396,6 +11396,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.8.8"],\
             ["reflect-metadata", "npm:0.1.13"],\
             ["rxjs", "npm:7.8.1"],\
+            ["socket.io", "npm:4.7.2"],\
             ["source-map-support", "npm:0.5.21"],\
             ["supertest", "npm:6.3.3"],\
             ["ts-jest", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:29.0.5"],\
