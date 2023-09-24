@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import App from './page/App';
-import QueryClientProvider from './library/react-query/QueryClientProvider';
+import QueryClientProvider from '@/library/react-query/QueryClientProvider';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
