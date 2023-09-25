@@ -1,4 +1,4 @@
-import { socket } from '../../../library/socket-io/socket';
+import { socket } from '../../../library/socket-io';
 
 export function ConnectionManager() {
   function connect() {
@@ -11,8 +11,8 @@ export function ConnectionManager() {
 
   return (
     <>
-      <button onClick={ connect }>Connect</button>
-      <button onClick={ disconnect }>Disconnect</button>
+      <button onClick={connect}>Connect</button>
+      <button onClick={disconnect}>Disconnect</button>
     </>
   );
 }

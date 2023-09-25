@@ -1,21 +1,27 @@
-import { SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
+import { OnGatewayDisconnect, SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
-import { WebsocketServerGateway } from './websocket-server/websocket-server/websocket-server.gateway';
+import { WebsocketServerGateway } from './websocket-server/websocket-server.gateway';
 
 @WebSocketGateway(3001, {
   cors: {
     origin: '*',
   },
 })
-export class AppGateway {
+export class AppGateway implements OnGatewayDisconnect {
   constructor(private readonly websocketServerGateway: WebsocketServerGateway) {}
+
+  async handleDisconnect(client: Socket): Promise<void> {
+    const sockets = await this.websocketServerGateway.server.fetchSockets();
+    const datas = sockets.map((socket) => socket.data);
+
+    this.websocketServerGateway.server.emit('currentUserList', datas);
+  }
 
   @SubscribeMessage('message')
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleMessage(client: Socket, payload: any): string {
     console.debug(payload);
-    client.emit('foo', payload);
-    this.websocketServerGateway.server.emit('foo', `전체발송${payload}`);
+    this.websocketServerGateway.server.emit('foo', `${client.data.nickname} : ${payload}`);
     return 'Hello World!';
   }
 
@@ -32,6 +38,7 @@ export class AppGateway {
   async setNickname(client: Socket, payload: any): Promise<string> {
     console.debug('setNickname', payload);
     client.data.nickname = payload;
+    client.join(payload);
 
     const sockets = await this.websocketServerGateway.server.fetchSockets();
 
@@ -40,6 +47,22 @@ export class AppGateway {
     });
 
     console.log(nicknames);
+
+    return 'Hello World!';
+  }
+
+  @SubscribeMessage('setUserProfile')
+  async setUserProfile(client: Socket, payload: { nickname: string; profilePictureUrl: string }): Promise<string> {
+    console.debug('setUserProfile', payload);
+
+    client.data.nickname = payload.nickname;
+    client.data.profilePictureUrl = payload.profilePictureUrl;
+    client.join(payload.nickname);
+
+    const sockets = await this.websocketServerGateway.server.fetchSockets();
+    const datas = sockets.map((socket) => socket.data);
+
+    this.websocketServerGateway.server.emit('currentUserList', datas);
 
     return 'Hello World!';
   }
