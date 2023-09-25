@@ -8615,6 +8615,7 @@ __metadata:
     prettier: ^2.6.1
     reflect-metadata: ^0.1.13
     rxjs: ^7.2.0
+    shared~type: "workspace:*"
     socket.io: ^4.7.2
     source-map-support: ^0.5.20
     supertest: ^6.1.3
