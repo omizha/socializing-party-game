@@ -3,13 +3,18 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import QueryClientProvider from './library/react-query/QueryClientProvider';
 import Backoffice from './page/@backoffice';
 import App from './page/@';
-import useSocketConnected from './hook/(socketIo)/useSocketConnected';
-import useSocketDisonnected from './hook/(socketIo)/useSocketDisconnected';
+import useOnConnected from './hook/socket/useOnConnected';
+import useOnDisonnected from './hook/socket/useOnDisconnected';
+import Users from './page/@users';
 
 const router = createBrowserRouter([
   {
     element: <App />,
     path: '/',
+  },
+  {
+    element: <Users />,
+    path: '/users',
   },
   {
     element: <Backoffice />,
@@ -18,8 +23,8 @@ const router = createBrowserRouter([
 ]);
 
 const Global: React.FC = () => {
-  useSocketConnected({});
-  useSocketDisonnected({});
+  useOnConnected({});
+  useOnDisonnected({});
 
   return (
     <QueryClientProvider>

@@ -1,6 +1,7 @@
 import { OnGatewayDisconnect, SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
-import { WebsocketServerGateway } from './websocket-server/websocket-server.gateway';
+import { SocketGateway } from './socket/socket.gateway';
+import { AppService } from './app.service';
 
 @WebSocketGateway(3001, {
   cors: {
@@ -8,7 +9,7 @@ import { WebsocketServerGateway } from './websocket-server/websocket-server.gate
   },
 })
 export class AppGateway implements OnGatewayDisconnect {
-  constructor(private readonly websocketServerGateway: WebsocketServerGateway) {}
+  constructor(private readonly websocketServerGateway: SocketGateway, private readonly appService: AppService) {}
 
   async handleDisconnect(client: Socket): Promise<void> {
     const sockets = await this.websocketServerGateway.server.fetchSockets();
@@ -52,18 +53,20 @@ export class AppGateway implements OnGatewayDisconnect {
   }
 
   @SubscribeMessage('setUserProfile')
-  async setUserProfile(client: Socket, payload: { nickname: string; profilePictureUrl: string }): Promise<string> {
+  async setUserProfile(client: Socket, payload: { nickname: string; profilePictureUrl: string }): Promise<boolean> {
     console.debug('setUserProfile', payload);
 
     client.data.nickname = payload.nickname;
     client.data.profilePictureUrl = payload.profilePictureUrl;
     client.join(payload.nickname);
 
-    const sockets = await this.websocketServerGateway.server.fetchSockets();
-    const datas = sockets.map((socket) => socket.data);
+    const userProfiles = await this.appService.fetchCurrentUserList();
+    return this.appService.emitCurrentUserList(userProfiles);
+  }
 
-    this.websocketServerGateway.server.emit('currentUserList', datas);
-
-    return 'Hello World!';
+  @SubscribeMessage('currentUserList')
+  async currentUserList(): Promise<boolean> {
+    const userProfiles = await this.appService.fetchCurrentUserList();
+    return this.appService.emitCurrentUserList(userProfiles);
   }
 }

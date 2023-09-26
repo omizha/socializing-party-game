@@ -12,7 +12,7 @@ import { Server, Socket } from 'socket.io';
     origin: '*',
   },
 })
-export class WebsocketServerGateway implements OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit {
+export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit {
   @WebSocketServer()
   server: Server;
 

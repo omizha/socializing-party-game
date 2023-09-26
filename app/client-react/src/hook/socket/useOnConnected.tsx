@@ -7,7 +7,7 @@ interface Props {
   onConnect?: () => void;
 }
 
-const useSocketConnected = ({ onConnect }: Props) => {
+const useOnConnected = ({ onConnect }: Props) => {
   const onConnectCallback = useAtomCallback(
     useCallback(
       (get, set) => {
@@ -26,4 +26,4 @@ const useSocketConnected = ({ onConnect }: Props) => {
   }, [onConnectCallback]);
 };
 
-export default useSocketConnected;
+export default useOnConnected;

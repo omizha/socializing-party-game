@@ -8,7 +8,7 @@ interface Props {
   onCallback?: () => void;
 }
 
-const useSocketCurrentUserList = ({ onCallback }: Props) => {
+const useOnCurrentUserList = ({ onCallback }: Props) => {
   const callback = useAtomCallback<void, [UserProfile[]]>(
     useCallback(
       (get, set, userProfiles) => {
@@ -32,4 +32,4 @@ const useSocketCurrentUserList = ({ onCallback }: Props) => {
   }, [callback]);
 };
 
-export default useSocketCurrentUserList;
+export default useOnCurrentUserList;

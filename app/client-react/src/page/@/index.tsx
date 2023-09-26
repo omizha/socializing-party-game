@@ -1,18 +1,36 @@
 import { useAtomValue } from 'jotai';
 import styled from '@emotion/styled';
-import { UserStore, SocketIoStore } from '../../store';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserStore } from '../../store';
+import { useEmitUserProfile } from '../../hook/socket';
 
 export default function App() {
   const nickname = useAtomValue(UserStore.nickname);
-  const isConnected = useAtomValue(SocketIoStore.isConnected);
+
+  const naviage = useNavigate();
+  const { emitUserProfile } = useEmitUserProfile();
+
+  const onClick = useAtomCallback(
+    useCallback(
+      (get, set) => {
+        set(UserStore.nickname, nickname);
+        emitUserProfile({ nickname });
+        naviage('/users');
+      },
+      [emitUserProfile, naviage, nickname],
+    ),
+  );
 
   return (
     <Container>
-      <ProfilePictureButton>
+      {/* <ProfilePictureButton>
         <ProfilePicture src="/default-avatar.png" alt="기본 프로필사진" />
-      </ProfilePictureButton>
+      </ProfilePictureButton> */}
+      {/* <input type="file" accept="image/*" /> */}
       <NicknameInput type="text" placeholder="닉네임" />
-      <ProfileSaveButton>입장</ProfileSaveButton>
+      <ProfileSaveButton onClick={onClick}>입장</ProfileSaveButton>
       {/* <CommandContainer>
         <ProfileSetter />
       </CommandContainer>

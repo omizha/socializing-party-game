@@ -4,7 +4,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppGateway } from './app.gateway';
-import { WebsocketServerModule } from './websocket-server/websocket-server.module';
+import { SocketModule } from './socket/socket.module';
 
 @Module({
   controllers: [AppController],
@@ -12,7 +12,7 @@ import { WebsocketServerModule } from './websocket-server/websocket-server.modul
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'public'),
     }),
-    WebsocketServerModule,
+    SocketModule,
   ],
   providers: [AppService, AppGateway],
 })
