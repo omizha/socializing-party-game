@@ -1,9 +1,6 @@
 import { useAtomValue } from 'jotai';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { UserStore, SocketIoStore } from '../../store';
-import CurrentUserList from './component/CurrentUserList';
-import ProfileSetter from './component/ProfileSetter';
 
 export default function App() {
   const nickname = useAtomValue(UserStore.nickname);
@@ -11,7 +8,12 @@ export default function App() {
 
   return (
     <Container>
-      <CommandContainer>
+      <ProfilePictureButton>
+        <ProfilePicture src="/default-avatar.png" alt="기본 프로필사진" />
+      </ProfilePictureButton>
+      <NicknameInput type="text" placeholder="닉네임" />
+      <ProfileSaveButton>입장</ProfileSaveButton>
+      {/* <CommandContainer>
         <ProfileSetter />
       </CommandContainer>
       <hr />
@@ -23,7 +25,7 @@ export default function App() {
       >
         현재 닉네임 : {nickname}
       </div>
-      <CurrentUserList />
+      <CurrentUserList /> */}
     </Container>
   );
 }
@@ -31,8 +33,41 @@ export default function App() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
+
+  box-sizing: border-box;
+  padding: 20px;
+`;
+
+const ProfilePictureButton = styled.button`
+  width: 200px;
+  height: 200px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+`;
+
+const ProfilePicture = styled.img`
+  overflow: hidden;
+  border-radius: 50%;
+`;
+
+const NicknameInput = styled.input`
+  width: 200px;
+  height: 30px;
+  margin-bottom: 15px;
+`;
+
+const ProfileSaveButton = styled.button`
+  width: 100%;
+  height: 30px;
 `;
 
 const CommandContainer = styled.div`
