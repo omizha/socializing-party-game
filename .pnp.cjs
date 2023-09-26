@@ -2179,6 +2179,45 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@nestjs/serve-static", [\
+        ["npm:4.0.0", {\
+          "packageLocation": "./.yarn/cache/@nestjs-serve-static-npm-4.0.0-fddc9b35d3-e3ee40453a.zip/node_modules/@nestjs/serve-static/",\
+          "packageDependencies": [\
+            ["@nestjs/serve-static", "npm:4.0.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:4.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/@nestjs-serve-static-virtual-8879358997/0/cache/@nestjs-serve-static-npm-4.0.0-fddc9b35d3-e3ee40453a.zip/node_modules/@nestjs/serve-static/",\
+          "packageDependencies": [\
+            ["@nestjs/serve-static", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:4.0.0"],\
+            ["@fastify/static", null],\
+            ["@nestjs/common", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:10.2.6"],\
+            ["@nestjs/core", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:10.2.6"],\
+            ["@types/express", "npm:4.17.17"],\
+            ["@types/fastify", null],\
+            ["@types/fastify__static", null],\
+            ["@types/nestjs__common", null],\
+            ["@types/nestjs__core", null],\
+            ["express", null],\
+            ["fastify", null],\
+            ["path-to-regexp", "npm:0.2.5"]\
+          ],\
+          "packagePeers": [\
+            "@fastify/static",\
+            "@nestjs/common",\
+            "@nestjs/core",\
+            "@types/express",\
+            "@types/fastify",\
+            "@types/fastify__static",\
+            "@types/nestjs__common",\
+            "@types/nestjs__core",\
+            "express",\
+            "fastify"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@nestjs/testing", [\
         ["npm:10.2.6", {\
           "packageLocation": "./.yarn/cache/@nestjs-testing-npm-10.2.6-237f3bd829-9b1004ef15.zip/node_modules/@nestjs/testing/",\
@@ -10363,6 +10402,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
+        ["npm:0.2.5", {\
+          "packageLocation": "./.yarn/cache/path-to-regexp-npm-0.2.5-5af8f2ef58-44adcbd847.zip/node_modules/path-to-regexp/",\
+          "packageDependencies": [\
+            ["path-to-regexp", "npm:0.2.5"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["npm:3.2.0", {\
           "packageLocation": "./.yarn/cache/path-to-regexp-npm-3.2.0-daf7bbd038-c3d35cda3b.zip/node_modules/path-to-regexp/",\
           "packageDependencies": [\
@@ -11205,6 +11251,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@nestjs/platform-express", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:10.2.6"],\
             ["@nestjs/platform-socket.io", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:10.2.6"],\
             ["@nestjs/schematics", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:10.0.2"],\
+            ["@nestjs/serve-static", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:4.0.0"],\
             ["@nestjs/testing", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:10.2.6"],\
             ["@nestjs/websockets", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:10.2.6"],\
             ["@types/express", "npm:4.17.17"],\
