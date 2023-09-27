@@ -4890,6 +4890,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["localforage", "npm:1.10.0"],\
             ["match-sorter", "npm:6.3.1"],\
             ["prettier", "npm:2.8.8"],\
+            ["qrcode.react", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:3.1.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:18.2.0"],\
             ["react-router-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:6.16.0"],\
@@ -10625,6 +10626,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/pure-rand-npm-6.0.2-5d375bc0a6-79de33876a.zip/node_modules/pure-rand/",\
           "packageDependencies": [\
             ["pure-rand", "npm:6.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["qrcode.react", [\
+        ["npm:3.1.0", {\
+          "packageLocation": "./.yarn/cache/qrcode.react-npm-3.1.0-068f53fc24-94a2942ecf.zip/node_modules/qrcode.react/",\
+          "packageDependencies": [\
+            ["qrcode.react", "npm:3.1.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:3.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/qrcode.react-virtual-e0d015bb12/0/cache/qrcode.react-npm-3.1.0-068f53fc24-94a2942ecf.zip/node_modules/qrcode.react/",\
+          "packageDependencies": [\
+            ["qrcode.react", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:3.1.0"],\
+            ["@types/react", "npm:18.2.22"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
