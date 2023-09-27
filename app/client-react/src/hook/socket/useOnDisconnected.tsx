@@ -7,7 +7,7 @@ interface Props {
   onDisconnect?: () => void;
 }
 
-const useOnDisonnected = ({ onDisconnect }: Props) => {
+const useOnDisconnect = ({ onDisconnect }: Props) => {
   const onDisconnectCallback = useAtomCallback(
     useCallback(
       (get, set) => {
@@ -26,4 +26,4 @@ const useOnDisonnected = ({ onDisconnect }: Props) => {
   }, [onDisconnectCallback]);
 };
 
-export default useOnDisonnected;
+export default useOnDisconnect;

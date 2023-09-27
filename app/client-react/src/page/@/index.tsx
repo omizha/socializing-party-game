@@ -1,7 +1,7 @@
 import { useAtomValue } from 'jotai';
 import styled from '@emotion/styled';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserStore } from '../../store';
 import { useEmitUserProfile } from '../../hook/socket';
@@ -9,13 +9,19 @@ import { useEmitUserProfile } from '../../hook/socket';
 export default function App() {
   const nickname = useAtomValue(UserStore.nickname);
 
+  const nicknameInputRef = useRef<HTMLInputElement>(null);
+
   const naviage = useNavigate();
   const { emitUserProfile } = useEmitUserProfile();
 
   const onClick = useAtomCallback(
     useCallback(
       (get, set) => {
-        set(UserStore.nickname, nickname);
+        if (!nicknameInputRef.current?.value) {
+          return;
+        }
+
+        set(UserStore.nickname, nicknameInputRef.current.value);
         emitUserProfile({ nickname });
         naviage('/users');
       },
@@ -29,7 +35,7 @@ export default function App() {
         <ProfilePicture src="/default-avatar.png" alt="기본 프로필사진" />
       </ProfilePictureButton> */}
       {/* <input type="file" accept="image/*" /> */}
-      <NicknameInput type="text" placeholder="닉네임" />
+      <NicknameInput type="text" placeholder="닉네임" ref={nicknameInputRef} />
       <ProfileSaveButton onClick={onClick}>입장</ProfileSaveButton>
       {/* <CommandContainer>
         <ProfileSetter />

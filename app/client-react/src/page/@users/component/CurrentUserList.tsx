@@ -1,20 +1,10 @@
 import styled from '@emotion/styled';
 import { useAtomValue } from 'jotai';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SocketIoStore } from '../../../store';
-import useOnCurrentUserList from '../../../hook/socket/useOnCurrentUserList';
-import { Socket } from '../../../hook';
 
 const CurrentUserList = () => {
-  useOnCurrentUserList({});
-
   const userList = useAtomValue(SocketIoStore.userList);
-
-  const { requestUserList } = Socket.useRequestUserList();
-
-  useEffect(() => {
-    requestUserList();
-  }, [requestUserList]);
 
   return (
     <Container>
