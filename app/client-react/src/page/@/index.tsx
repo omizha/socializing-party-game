@@ -4,15 +4,19 @@ import { useAtomCallback } from 'jotai/utils';
 import { useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserStore } from '../../store';
-import { useEmitUserProfile } from '../../hook/socket';
+import { Query, Socket } from '../../hook';
+import { serverApiUrl } from '../../config/baseUrl';
 
 export default function App() {
+  const profilePictureUrl = useAtomValue(UserStore.profilePictureUrl);
   const nickname = useAtomValue(UserStore.nickname);
 
+  const profilePictureFileInputRef = useRef<HTMLInputElement>(null);
   const nicknameInputRef = useRef<HTMLInputElement>(null);
 
   const naviage = useNavigate();
-  const { emitUserProfile } = useEmitUserProfile();
+  const { emitUserProfile } = Socket.useEmitUserProfile();
+  const { mutateAsync, isLoading } = Query.useUploadAvatar();
 
   const onClick = useAtomCallback(
     useCallback(
@@ -29,27 +33,52 @@ export default function App() {
     ),
   );
 
+  const onChangeProfilePictureFile = useAtomCallback(
+    useCallback(
+      async (get, set, event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files?.[0]) {
+          return;
+        }
+        const formData = new FormData();
+        formData.append('file', event.target.files?.[0]);
+
+        try {
+          const { file } = await mutateAsync(formData);
+          set(UserStore.profilePictureUrl, `${serverApiUrl}/avatar/${file.filename}`);
+        } catch {
+          set(UserStore.profilePictureUrl, '/default-avatar.png');
+        }
+
+        // const reader = new FileReader();
+        // reader.onload = () => {
+        //   if (reader.readyState === 2) {
+        //     set(UserStore.profilePictureUrl, reader.result as string);
+        //   }
+        // };
+        // reader.readAsDataURL(event.target.files?.[0] as Blob);
+      },
+      [mutateAsync],
+    ),
+  );
+
   return (
     <Container>
-      {/* <ProfilePictureButton>
-        <ProfilePicture src="/default-avatar.png" alt="기본 프로필사진" />
-      </ProfilePictureButton> */}
-      {/* <input type="file" accept="image/*" /> */}
+      <ProfilePictureFileInput
+        type="file"
+        accept="image/*"
+        onChange={onChangeProfilePictureFile}
+        ref={profilePictureFileInputRef}
+      />
+      <ProfilePictureButton
+        onClick={() => {
+          profilePictureFileInputRef.current?.click();
+        }}
+        disabled={isLoading}
+      >
+        <ProfilePicture src={profilePictureUrl} alt="프로필사진" />
+      </ProfilePictureButton>
       <NicknameInput type="text" placeholder="닉네임" ref={nicknameInputRef} />
       <ProfileSaveButton onClick={onClick}>입장</ProfileSaveButton>
-      {/* <CommandContainer>
-        <ProfileSetter />
-      </CommandContainer>
-      <hr />
-      <div>연결 상태 : {`${isConnected}`}</div>
-      <div
-        css={css`
-          height: 30px;
-        `}
-      >
-        현재 닉네임 : {nickname}
-      </div>
-      <CurrentUserList /> */}
     </Container>
   );
 }
@@ -64,6 +93,10 @@ const Container = styled.div`
 
   box-sizing: border-box;
   padding: 20px;
+`;
+
+const ProfilePictureFileInput = styled.input`
+  display: none;
 `;
 
 const ProfilePictureButton = styled.button`
@@ -91,12 +124,5 @@ const NicknameInput = styled.input`
 
 const ProfileSaveButton = styled.button`
   width: 100%;
-  height: 30px;
-`;
-
-const CommandContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   height: 30px;
 `;

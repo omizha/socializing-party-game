@@ -10,8 +10,8 @@ const CurrentUserList = () => {
     <Container>
       {userList.map((userProfile) => {
         return (
-          <div key={userProfile.nickname}>
-            <img src={userProfile.profilePictureUrl} alt="profile" />
+          <div key={`${userProfile.nickname}_${userProfile.profilePictureUrl}`}>
+            <AvatarImage src={userProfile.profilePictureUrl} alt="profile" />
             <div>{userProfile.nickname}</div>
           </div>
         );
@@ -28,6 +28,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
+`;
+
+const AvatarImage = styled.img`
+  width: 100px;
+  height: 100px;
 `;
 
 export default CurrentUserList;
