@@ -8,7 +8,7 @@ import { Query, Socket } from '../../hook';
 import { serverApiUrl } from '../../config/baseUrl';
 import UserInitializer from '../../component/UserInitializer';
 
-export default function App() {
+export default function Wait() {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const profilePictureUrl = useAtomValue(UserStore.profilePictureUrl);
@@ -30,7 +30,7 @@ export default function App() {
 
         set(UserStore.nickname, nicknameInputRef.current.value);
         emitUserProfile({ nickname });
-        naviage('/wait');
+        naviage('/users');
       },
       [emitUserProfile, naviage, nickname],
     ),
@@ -67,30 +67,7 @@ export default function App() {
   return (
     <Container>
       <UserInitializer />
-      <ProfilePictureFileInput
-        type="file"
-        accept="image/*"
-        onChange={onChangeProfilePictureFile}
-        ref={profilePictureFileInputRef}
-      />
-      <ProfilePictureButton
-        onClick={() => {
-          profilePictureFileInputRef.current?.click();
-        }}
-      >
-        <ProfilePicture src={profilePictureUrl} alt="프로필사진" />
-      </ProfilePictureButton>
-      <NicknameInput
-        type="text"
-        placeholder="닉네임"
-        onChange={(e) => {
-          setIsDisabled(!e.target.value);
-        }}
-        ref={nicknameInputRef}
-      />
-      <ProfileSaveButton disabled={isDisabled} onClick={onClick}>
-        입장
-      </ProfileSaveButton>
+      <>ㄱㄷ</>
     </Container>
   );
 }

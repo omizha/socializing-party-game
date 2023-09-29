@@ -4,5 +4,7 @@ export type UserProfile = {
 };
 
 export type ReturnUploadAvatar = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   file: Express.Multer.File;
-}
+};
