@@ -2,24 +2,19 @@ import { useAtomValue } from 'jotai';
 import styled from '@emotion/styled';
 import { useAtomCallback } from 'jotai/utils';
 import { useCallback, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UserStore } from '../../store';
-import { Query, Socket } from '../../hook';
-import { serverApiUrl } from '../../config/baseUrl';
-import UserInitializer from '../../component/UserInitializer';
+import { UserStore } from '../../../store';
+import { Query, Socket } from '../../../hook';
+import { serverApiUrl } from '../../../config/baseUrl';
 
-export default function Wait() {
+const ProfileSetter = () => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const profilePictureUrl = useAtomValue(UserStore.profilePictureUrl);
-  const nickname = useAtomValue(UserStore.nickname);
-
   const profilePictureFileInputRef = useRef<HTMLInputElement>(null);
   const nicknameInputRef = useRef<HTMLInputElement>(null);
 
-  const naviage = useNavigate();
   const { emitUserProfile } = Socket.useEmitUserProfile();
-  const { mutateAsync } = Query.useUploadAvatar();
+  const { mutateAsync: UploadAvatar } = Query.useUploadAvatar();
 
   const onClick = useAtomCallback(
     useCallback(
@@ -28,11 +23,12 @@ export default function Wait() {
           return;
         }
 
-        set(UserStore.nickname, nicknameInputRef.current.value);
-        emitUserProfile({ nickname });
-        naviage('/users');
+        const nickname = nicknameInputRef.current.value;
+        set(UserStore.nickname, nickname);
+
+        emitUserProfile({ nickname, profilePictureUrl });
       },
-      [emitUserProfile, naviage, nickname],
+      [emitUserProfile, profilePictureUrl],
     ),
   );
 
@@ -46,43 +42,45 @@ export default function Wait() {
         formData.append('file', event.target.files?.[0]);
 
         try {
-          const { file } = await mutateAsync(formData);
+          const { file } = await UploadAvatar(formData);
           set(UserStore.profilePictureUrl, `${serverApiUrl}/avatar/${file.filename}`);
         } catch {
           set(UserStore.profilePictureUrl, '/default-avatar.png');
         }
-
-        // const reader = new FileReader();
-        // reader.onload = () => {
-        //   if (reader.readyState === 2) {
-        //     set(UserStore.profilePictureUrl, reader.result as string);
-        //   }
-        // };
-        // reader.readAsDataURL(event.target.files?.[0] as Blob);
       },
-      [mutateAsync],
+      [UploadAvatar],
     ),
   );
 
   return (
-    <Container>
-      <UserInitializer />
-      <>ㄱㄷ</>
-    </Container>
+    <>
+      <ProfilePictureFileInput
+        type="file"
+        accept="image/*"
+        onChange={onChangeProfilePictureFile}
+        ref={profilePictureFileInputRef}
+      />
+      <ProfilePictureButton
+        onClick={() => {
+          profilePictureFileInputRef.current?.click();
+        }}
+      >
+        <ProfilePicture src={profilePictureUrl} alt="프로필사진" />
+      </ProfilePictureButton>
+      <NicknameInput
+        type="text"
+        placeholder="닉네임"
+        onChange={(e) => {
+          setIsDisabled(!e.target.value);
+        }}
+        ref={nicknameInputRef}
+      />
+      <ProfileSaveButton disabled={isDisabled} onClick={onClick}>
+        프로필 적용
+      </ProfileSaveButton>
+    </>
   );
-}
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-
-  box-sizing: border-box;
-  padding: 20px;
-`;
+};
 
 const ProfilePictureFileInput = styled.input`
   display: none;
@@ -115,3 +113,5 @@ const ProfileSaveButton = styled.button`
   width: 100%;
   height: 30px;
 `;
+
+export default ProfileSetter;

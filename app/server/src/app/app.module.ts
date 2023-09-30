@@ -19,6 +19,7 @@ import { GameModule } from './game/game.module';
       inject: [ConfigService],
       useFactory: (configsService: ConfigService) => {
         return {
+          ignoreUndefined: true,
           uri: configsService.get<string>('MONGO_URI'),
         };
       },

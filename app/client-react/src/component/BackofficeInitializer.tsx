@@ -1,14 +1,17 @@
 import { useAtomValue } from 'jotai';
 import { useEffect } from 'react';
-import { Socket } from '../hook';
-import { SocketIoStore, UserStore } from '../store';
+import { Query, Socket } from '../hook';
+import { SocketStore, UserStore } from '../store';
 
 const BackofficeInitializer = () => {
-  Socket.useOnConnected({});
-  Socket.useOnDisconnected({});
+  // Socket.useOnConnected({});
+  // Socket.useOnDisconnected({});
   Socket.useOnCurrentUserList({});
 
-  const isConnected = useAtomValue(SocketIoStore.isConnected);
+  Query.useGame();
+  Query.useUsers();
+
+  const isConnected = useAtomValue(SocketStore.isConnected);
   const nickname = useAtomValue(UserStore.nickname);
   const profilePictureUrl = useAtomValue(UserStore.profilePictureUrl);
 

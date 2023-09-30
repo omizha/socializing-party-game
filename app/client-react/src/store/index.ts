@@ -1,2 +1,3 @@
+export * as GameStore from './GameStore';
 export * as UserStore from './UserStore';
-export * as SocketIoStore from './SocketIoStore';
+export * as SocketStore from './SocketStore';

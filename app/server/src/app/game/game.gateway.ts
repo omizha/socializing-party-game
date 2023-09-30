@@ -1,6 +1,6 @@
 import { OnGatewayDisconnect, OnGatewayInit, SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
-import { UserProfile } from 'shared~type';
+import { UserSchema } from 'shared~type';
 import { GameService } from './game.service';
 import { UserService } from './user/user.service';
 
@@ -19,7 +19,8 @@ export class GameGateway implements OnGatewayDisconnect, OnGatewayInit {
       this.gameService.get(),
     ]);
 
-    if (game.process === 'CROWDING') {
+    // 게임이 시작되었을 때는 유저를 그대로 보존한다.
+    if (game.gamePhase === 'CROWDING') {
       users.forEach(({ nickname }) => {
         this.userService.removeUser(nickname);
       });
@@ -31,16 +32,12 @@ export class GameGateway implements OnGatewayDisconnect, OnGatewayInit {
   async handleDisconnect(client: Socket): Promise<void> {
     const [game, userProfiles] = await Promise.all([this.gameService.get(), this.gameService.fetchCurrentUserList()]);
 
-    if (game.process === 'CROWDING' && client.data.nickname) {
-      this.userService.removeUser(client.data.nickname);
-    }
-
     this.gameService.emitCurrentUserList(userProfiles);
   }
 
   @SubscribeMessage('setUserProfile')
-  async setUserProfile(client: Socket, payload: UserProfile): Promise<boolean> {
-    console.debug('setUserProfile', payload);
+  async setUserProfile(client: Socket, payload: UserSchema): Promise<boolean> {
+    console.debug('setUserProfile', client.id, payload);
 
     const prevNickname = client.data.nickname;
     if (prevNickname && prevNickname !== payload.nickname) {
@@ -49,13 +46,11 @@ export class GameGateway implements OnGatewayDisconnect, OnGatewayInit {
     }
 
     client.data.nickname = payload.nickname;
-    client.data.profilePictureUrl = payload.profilePictureUrl;
 
     if (payload.nickname) {
       client.join(payload.nickname);
-      const game = await this.gameService.get();
       this.userService.setUser({
-        isEntry: game.process === 'CROWDING',
+        isEntry: true,
         nickname: payload.nickname,
         profilePictureUrl: payload.profilePictureUrl,
       });

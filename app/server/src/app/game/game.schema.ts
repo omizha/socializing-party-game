@@ -1,10 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-
-const Process = {
-  CROWDING: 'CROWDING',
-} as const;
-export type Process = (typeof Process)[keyof typeof Process];
+import { GamePhase } from 'shared~type';
 
 @Schema()
 export class Game {
@@ -12,7 +8,7 @@ export class Game {
   unique: boolean;
 
   @Prop()
-  process: Process = 'CROWDING';
+  gamePhase: GamePhase = 'CROWDING';
 
   constructor() {
     this.unique = true;
@@ -21,4 +17,4 @@ export class Game {
 
 export type GameDocument = HydratedDocument<Game>;
 
-export const GameSchema = SchemaFactory.createForClass(Game);
+export const gameSchema = SchemaFactory.createForClass(Game);

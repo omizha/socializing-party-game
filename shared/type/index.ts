@@ -1,3 +1,6 @@
+export type * as Request from './Request';
+export type * as Response from './Response';
+
 export type UserSchema = {
   nickname: string;
   profilePictureUrl: string;
@@ -17,6 +20,3 @@ export type GameSchema = {
   unique: boolean;
   gamePhase: GamePhase;
 };
-
-export * as Request from './Request';
-export * as Response from './Response';

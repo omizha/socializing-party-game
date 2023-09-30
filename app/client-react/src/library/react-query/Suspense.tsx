@@ -7,11 +7,7 @@ const FailBack = () => {
 };
 
 const Suspense = ({ children }: React.SuspenseProps) => {
-  return (
-    <React.Suspense fallback={<FailBack />}>
-      {children}
-    </React.Suspense>
-  );
+  return <React.Suspense fallback={<FailBack />}>{children}</React.Suspense>;
 };
 
 export default Suspense;

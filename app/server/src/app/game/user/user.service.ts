@@ -19,17 +19,20 @@ export class UserService {
   }
 
   async setUser(user: User): Promise<UserDocument> {
-    const foundUser = await this.getUser(user.nickname);
-    if (!foundUser) {
-      return (await this.userModel.create(user)).save();
+    console.debug('setUser ~ user:', user);
+    try {
+      return await this.userModel.findOneAndUpdate({ nickname: user.nickname }, user, { upsert: true });
+    } catch (e) {
+      console.error('setUser', e);
+      throw new Error(e);
     }
-
-    return foundUser.updateOne(user);
   }
 
-  async removeUser(nickname: string): Promise<void> {
+  // eslint-disable-next-line consistent-return
+  async removeUser(nickname: string): Promise<ReturnType<Model<User>['deleteMany']>> {
+    console.debug('removeUser ~ nickname:', nickname);
     try {
-      await this.userModel.deleteOne({ nickname });
+      return this.userModel.deleteMany({ nickname });
     } catch (e) {
       console.error(e);
     }

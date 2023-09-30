@@ -1,17 +1,21 @@
 import { useCallback, useEffect } from 'react';
 import { useAtomCallback } from 'jotai/utils';
 import { socket } from '../../library/socket-io';
-import { SocketIoStore } from '../../store';
+import { SocketStore } from '../../store';
 
 interface Props {
   onConnect?: () => void;
 }
 
+/**
+ * @deprecated 작동 안됨
+ */
 const useOnConnected = ({ onConnect }: Props) => {
   const onConnectCallback = useAtomCallback(
     useCallback(
       (get, set) => {
-        set(SocketIoStore.isConnected, true);
+        console.log('connected');
+        set(SocketStore.isConnected, true);
         onConnect?.();
       },
       [onConnect],
