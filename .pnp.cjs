@@ -3955,6 +3955,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
+        ["npm:8.10.0", {\
+          "packageLocation": "./.yarn/cache/acorn-npm-8.10.0-2230c9e83e-538ba38af0.zip/node_modules/acorn/",\
+          "packageDependencies": [\
+            ["acorn", "npm:8.10.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["npm:8.8.2", {\
           "packageLocation": "./.yarn/cache/acorn-npm-8.8.2-9d518fd7d3-f790b99a1b.zip/node_modules/acorn/",\
           "packageDependencies": [\
@@ -5049,7 +5056,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["socket.io-client", "npm:4.7.2"],\
             ["sort-by", "npm:1.2.0"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"],\
-            ["vite", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.4.9"]\
+            ["vite", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.4.9"],\
+            ["vite-plugin-commonjs", "npm:0.9.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -9546,6 +9554,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@jridgewell/sourcemap-codec", "npm:1.4.15"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:0.30.4", {\
+          "packageLocation": "./.yarn/cache/magic-string-npm-0.30.4-734ca04726-bef57c926d.zip/node_modules/magic-string/",\
+          "packageDependencies": [\
+            ["magic-string", "npm:0.30.4"],\
+            ["@jridgewell/sourcemap-codec", "npm:1.4.15"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["make-dir", [\
@@ -12905,6 +12921,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "stylus",\
             "sugarss",\
             "terser"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["vite-plugin-commonjs", [\
+        ["npm:0.9.0", {\
+          "packageLocation": "./.yarn/cache/vite-plugin-commonjs-npm-0.9.0-c48119ee2c-c061c4ceeb.zip/node_modules/vite-plugin-commonjs/",\
+          "packageDependencies": [\
+            ["vite-plugin-commonjs", "npm:0.9.0"],\
+            ["acorn", "npm:8.10.0"],\
+            ["fast-glob", "npm:3.2.12"],\
+            ["magic-string", "npm:0.30.4"],\
+            ["vite-plugin-dynamic-import", "npm:1.5.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["vite-plugin-dynamic-import", [\
+        ["npm:1.5.0", {\
+          "packageLocation": "./.yarn/cache/vite-plugin-dynamic-import-npm-1.5.0-670bb8f074-68efd897da.zip/node_modules/vite-plugin-dynamic-import/",\
+          "packageDependencies": [\
+            ["vite-plugin-dynamic-import", "npm:1.5.0"],\
+            ["acorn", "npm:8.10.0"],\
+            ["es-module-lexer", "npm:1.2.1"],\
+            ["fast-glob", "npm:3.2.12"],\
+            ["magic-string", "npm:0.30.4"]\
           ],\
           "linkType": "HARD"\
         }]\
