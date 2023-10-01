@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-import { Request, UserSchema } from 'shared~type';
+import { Request, Response } from 'shared~type';
 
 const useUpdateGame = () => {
-  const { mutateAsync } = useMutation<UserSchema[], unknown, Request.UpdateGame>(['useUpdateGame'], async (game) => {
+  const { mutateAsync } = useMutation<Response.Game, unknown, Request.UpdateGame>(['useUpdateGame'], async (game) => {
     const response = await fetch('http://localhost:3000/game', {
       body: JSON.stringify(game),
       headers: {
