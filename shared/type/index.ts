@@ -14,9 +14,30 @@ const GamePhase = {
 } as const;
 export type GamePhase = (typeof GamePhase)[keyof typeof GamePhase];
 
-export type QuizPhase = 'intro' | 'quiz' | 'result' | 'end';
-
 export type GameSchema = {
   unique: boolean;
   gamePhase: GamePhase;
+};
+
+export type QuizOffsetByPhase = {
+  answer: string;
+  /**
+   * 출제 시간
+   */
+  examTime: Date;
+};
+
+export type QuizRecordByPhase = {
+  answer: string;
+  isCorrect: boolean;
+  recordTime: Date;
+  score: number;
+};
+
+type Nickname = string;
+export type QuizSchema = {
+  isAnswerTime: boolean;
+  currentPhaseIdx: number;
+  offsetByPhase: Array<Date>;
+  recordByPhase: Array<Map<Nickname, QuizRecordByPhase>>;
 };

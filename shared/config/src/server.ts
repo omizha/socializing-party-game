@@ -1,6 +1,5 @@
 export const gameInfo = 'server-gameInfo';
 
-/**
- * @deprecated
- */
-export const gamePhase = 'server-gamePhase';
+export const quizStartAnswer = 'server-quizStartAnswer';
+
+export const quizStopAnswer = 'server-quizStopAnswer';
