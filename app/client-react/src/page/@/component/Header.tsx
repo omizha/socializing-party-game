@@ -52,16 +52,19 @@ const Container = styled.nav`
 
 const LeftIconWrap = styled.div`
   display: flex;
+  align-items: center;
   height: 100%;
 `;
 
 const TitleWrap = styled.div`
   display: flex;
+  align-items: center;
   height: 100%;
 `;
 
 const RightIconWrap = styled.div`
   display: flex;
+  align-items: center;
   height: 100%;
 `;
 
