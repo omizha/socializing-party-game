@@ -13,9 +13,14 @@ export class QuizService {
     private readonly socketGateway: SocketGateway,
   ) {}
 
-  async createQuiz(): Promise<Quiz> {
-    const quiz = await this.quizModel.create(new Quiz());
-    return quiz;
+  async createQuiz(): Promise<QuizDocument> {
+    try {
+      const quiz = await this.quizModel.create(new Quiz());
+      return quiz;
+    } catch (e) {
+      console.error('createQuiz:', e);
+      throw new Error(e);
+    }
   }
 
   async getQuiz(id: string): Promise<QuizDocument> {
@@ -28,38 +33,52 @@ export class QuizService {
     const session = await this.quizModel.startSession();
     await session.withTransaction(async () => {
       quiz = await this.quizModel.findById(id);
-      await quiz.updateOne({
-        $set: {
-          [`offsetByPhase.${quiz.currentPhaseIdx}`]: offsetByPhase,
-          isAnswerTime: true,
+      await quiz.updateOne(
+        {
+          $set: {
+            [`offsetByPhase.${quiz.currentPhaseIdx}`]: offsetByPhase,
+            [`recordByPhase.${quiz.currentPhaseIdx}`]: {},
+            isAnswerTime: true,
+          },
         },
-      });
+        {
+          returnDocument: 'after',
+        },
+      );
     });
     await session.endSession();
-    this.emitStartAnswer(quiz);
     return quiz;
   }
 
   async recordAnswer(id: string, phaseIdx: number, nickname: string, recordByPhase: QuizRecordByPhase): Promise<Quiz> {
-    return this.quizModel.findByIdAndUpdate(id, {
-      $set: {
-        [`recordByPhase.${phaseIdx}.${nickname}`]: recordByPhase,
+    return this.quizModel.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          [`recordByPhase.${phaseIdx}.${nickname}`]: recordByPhase,
+        },
       },
-    });
+      {
+        returnDocument: 'after',
+      },
+    );
   }
 
   async stopAndnextPhase(id: string): Promise<Quiz> {
-    const quiz = await this.quizModel.findByIdAndUpdate(id, {
-      $inc: {
-        currentPhaseIdx: 1,
+    const quiz = await this.quizModel.findByIdAndUpdate(
+      id,
+      {
+        $inc: {
+          currentPhaseIdx: 1,
+        },
+        $set: {
+          isAnswerTime: false,
+        },
       },
-      $set: {
-        isAnswerTime: false,
+      {
+        returnDocument: 'after',
       },
-    });
-
-    this.emitStopAnswer(quiz);
-
+    );
     return quiz;
   }
 

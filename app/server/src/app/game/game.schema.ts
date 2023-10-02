@@ -1,17 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
-import { GamePhase } from 'shared~type';
+import { HydratedDocument, Schema as MongooseSchema, Types } from 'mongoose';
+import { GamePhase, GameSchema } from 'shared~type';
 
 @Schema()
-export class Game {
+export class Game implements GameSchema {
   @Prop()
   unique: boolean;
 
   @Prop()
-  gamePhase: GamePhase = 'CROWDING';
+  gamePhase: GamePhase;
+
+  @Prop({ ref: 'Quiz', type: MongooseSchema.Types.ObjectId })
+  quizId?: Types.ObjectId;
 
   constructor() {
     this.unique = true;
+    this.gamePhase = 'CROWDING';
   }
 }
 

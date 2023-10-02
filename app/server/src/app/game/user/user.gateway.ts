@@ -1,4 +1,8 @@
 import { WebSocketGateway } from '@nestjs/websockets';
 
-@WebSocketGateway()
+@WebSocketGateway(3001, {
+  cors: {
+    origin: '*',
+  },
+})
 export class UserGateway {}

@@ -4,8 +4,8 @@ import ProfileSetter from './ProfileSetter';
 import Waiting from './Waiting';
 import { GameStore, SocketStore, UserStore } from '../../../store';
 import AccessDenided from './AccessDenided';
-import QuizSelectAnswer from './QuizSelectAnswer';
 import Header from './Header';
+import Quiz from './Quiz';
 
 const Phase = () => {
   const gamePhase = useAtomValue(GameStore.gamePhase);
@@ -30,10 +30,10 @@ const Phase = () => {
       value={gamePhase}
       caseBy={{
         CROWDING: isEntry ? <Waiting HeaderComponent={<Header hasQuitButton />} /> : <ProfileSetter />,
-        QUIZ: <QuizSelectAnswer />,
-        WAITING: <Waiting />,
+        QUIZ: <Quiz />,
+        WAITING: <Waiting HeaderComponent={<Header title={nickname} />} />,
       }}
-      defaultComponent={<Waiting />}
+      defaultComponent={<Waiting HeaderComponent={<Header title={nickname} />} />}
     />
   );
 };

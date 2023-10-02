@@ -21,7 +21,10 @@ export class UserService {
   async setUser(user: User): Promise<UserDocument> {
     console.debug('setUser ~ user:', user);
     try {
-      return await this.userModel.findOneAndUpdate({ nickname: user.nickname }, user, { upsert: true });
+      return await this.userModel.findOneAndUpdate({ nickname: user.nickname }, user, {
+        returnDocument: 'after',
+        upsert: true,
+      });
     } catch (e) {
       console.error('setUser', e);
       throw new Error(e);

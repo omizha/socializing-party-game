@@ -1,3 +1,5 @@
+import { Types } from 'mongoose';
+
 export type * as Request from './Request';
 export type * as Response from './Response';
 
@@ -17,6 +19,7 @@ export type GamePhase = (typeof GamePhase)[keyof typeof GamePhase];
 export type GameSchema = {
   unique: boolean;
   gamePhase: GamePhase;
+  quizId?: Types.ObjectId | null;
 };
 
 export type QuizOffsetByPhase = {
@@ -24,13 +27,13 @@ export type QuizOffsetByPhase = {
   /**
    * 출제 시간
    */
-  examTime: Date;
+  examTime: number;
 };
 
 export type QuizRecordByPhase = {
   answer: string;
   isCorrect: boolean;
-  recordTime: Date;
+  recordTime: number;
   score: number;
 };
 
@@ -38,6 +41,6 @@ type Nickname = string;
 export type QuizSchema = {
   isAnswerTime: boolean;
   currentPhaseIdx: number;
-  offsetByPhase: Array<Date>;
-  recordByPhase: Array<Map<Nickname, QuizRecordByPhase>>;
+  offsetByPhase: Array<QuizOffsetByPhase>;
+  recordByPhase: Array<Record<Nickname, QuizRecordByPhase>>;
 };

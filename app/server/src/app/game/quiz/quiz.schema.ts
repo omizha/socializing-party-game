@@ -1,4 +1,4 @@
-import { QuizRecordByPhase, QuizSchema } from 'shared~type';
+import { QuizOffsetByPhase, QuizRecordByPhase, QuizSchema } from 'shared~type';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 
@@ -11,16 +11,16 @@ export class Quiz implements QuizSchema {
   currentPhaseIdx: number;
 
   @Prop()
-  offsetByPhase: Types.Array<Date>;
+  offsetByPhase: Types.Array<QuizOffsetByPhase>;
 
   @Prop()
-  recordByPhase: Types.Array<Types.Map<QuizRecordByPhase>>;
+  recordByPhase: Types.Array<Record<string, QuizRecordByPhase>>;
 
   constructor() {
     this.isAnswerTime = false;
     this.currentPhaseIdx = 0;
-    this.offsetByPhase = new Types.Array<Date>();
-    this.recordByPhase = new Types.Array<Types.Map<QuizRecordByPhase>>();
+    this.offsetByPhase = new Types.Array<QuizOffsetByPhase>();
+    this.recordByPhase = new Types.Array<Record<string, QuizRecordByPhase>>();
   }
 }
 

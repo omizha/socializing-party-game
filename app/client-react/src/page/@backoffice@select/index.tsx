@@ -1,12 +1,17 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import BackofficeInitializer from '../../component/BackofficeInitializer';
+import { Query } from '../../hook';
 
 export default function Select() {
   const navigate = useNavigate();
 
+  const { mutateAsync: setGameQuiz } = Query.useSetGameQuiz();
+
   const onClickQuiz = () => {
-    navigate('/backoffice/quiz');
+    setGameQuiz().then(() => {
+      navigate('/backoffice/quiz');
+    });
   };
 
   return (
