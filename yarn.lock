@@ -8972,6 +8972,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: ^1.1.2
     eslint-plugin-testing-library: ^5.1.0
     eslint-plugin-unused-imports: ^2.0.0
+    mongoose: ^7.5.3
     prettier: ^2.6.1
     typescript: ^5.1.3
   languageName: unknown

@@ -11616,6 +11616,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-sort-keys-fix", "npm:1.1.2"],\
             ["eslint-plugin-testing-library", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.11.0"],\
             ["eslint-plugin-unused-imports", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:2.0.0"],\
+            ["mongoose", "npm:7.5.3"],\
             ["prettier", "npm:2.8.8"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"]\
           ],\
