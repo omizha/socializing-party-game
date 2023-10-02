@@ -3592,6 +3592,7 @@ __metadata:
     "@tanstack/react-query": ^4.35.3
     "@tanstack/react-query-devtools": ^4.35.3
     "@toss/react": ^1.5.0
+    "@toss/utils": ^1.4.4
     "@types/node": ^18.5.5
     "@types/react": ^18.2.15
     "@types/react-dom": ^18.2.7
