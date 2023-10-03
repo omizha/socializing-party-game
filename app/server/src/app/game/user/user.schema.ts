@@ -1,6 +1,6 @@
 import { UserSchema } from 'shared~type';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
 
 @Schema()
 export class User implements UserSchema {
@@ -10,6 +10,12 @@ export class User implements UserSchema {
   @Prop()
   profilePictureUrl: string;
 
+  @Prop({ type: MongooseSchema.Types.String })
+  team: 'L' | 'R';
+
+  /**
+   * @deprecated
+   */
   @Prop()
   isEntry: boolean;
 

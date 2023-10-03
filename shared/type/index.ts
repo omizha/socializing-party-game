@@ -6,6 +6,10 @@ export type * as Response from './Response';
 export type UserSchema = {
   nickname: string;
   profilePictureUrl: string;
+  team: 'L' | 'R';
+  /**
+   * @deprecated
+   */
   isEntry: boolean;
 };
 
@@ -37,8 +41,14 @@ export type QuizRecordByPhase = {
   score: number;
 };
 
+export type QuizParticipant = {
+  nickname: string;
+};
+
 type Nickname = string;
 export type QuizSchema = {
+  isCrowdingTime: boolean;
+  participant: Array<QuizParticipant>;
   isAnswerTime: boolean;
   currentPhaseIdx: number;
   offsetByPhase: Array<QuizOffsetByPhase>;

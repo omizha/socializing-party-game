@@ -41,13 +41,13 @@ export class UserService {
     }
   }
 
-  async inOutUser(nickname: string, isEntry: boolean): Promise<UserDocument> {
-    const user = await this.getUser(nickname);
-    if (!user) {
-      return this.setUser({ isEntry, nickname, profilePictureUrl: '/default-avatar.png' });
-    }
+  // async inOutUser(nickname: string, isEntry: boolean): Promise<UserDocument> {
+  //   const user = await this.getUser(nickname);
+  //   if (!user) {
+  //     return this.setUser({ isEntry, nickname, team, profilePictureUrl: '/default-avatar.png' });
+  //   }
 
-    user.isEntry = isEntry;
-    return user.save();
-  }
+  //   user.isEntry = isEntry;
+  //   return user.save();
+  // }
 }
