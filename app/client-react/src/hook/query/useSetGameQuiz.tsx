@@ -1,6 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
+import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { GameSchema } from 'shared~type';
+import { GameStore } from '../../store';
 
 const useSetGameQuiz = () => {
   const { mutateAsync, isSuccess, data } = useMutation<GameSchema>(['useSetGameQuiz'], async () => {
@@ -11,21 +13,15 @@ const useSetGameQuiz = () => {
     return response.json();
   });
 
-  // const setQuizId = useSetAtom(QuizStore.id);
-  // const setIsAnswerTime = useSetAtom(QuizStore.isAnswerTime);
-  // const setCurrentPhaseIdx = useSetAtom(QuizStore.currentPhaseIdx);
-  // const setOffsetByPhase = useSetAtom(QuizStore.offsetByPhase);
-  // const setRecordByPhase = useSetAtom(QuizStore.recordByPhase);
+  const setQuizId = useSetAtom(GameStore.quizId);
+  const setPhase = useSetAtom(GameStore.gamePhase);
 
   useEffect(() => {
     if (isSuccess && data) {
-      // setQuizId(data.id);
-      // setIsAnswerTime(data.isAnswerTime);
-      // setCurrentPhaseIdx(data.currentPhaseIdx);
-      // setOffsetByPhase(data.offsetByPhase);
-      // setRecordByPhase(data.recordByPhase);
+      setQuizId(`${data.quizId}`);
+      setPhase(data.gamePhase);
     }
-  }, [data, isSuccess]);
+  }, [data, isSuccess, setPhase, setQuizId]);
 
   return { mutateAsync };
 };
