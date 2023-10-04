@@ -39,7 +39,7 @@ export class UserService {
   async removeUser(nickname: string): Promise<ReturnType<Model<User>['deleteMany']>> {
     console.debug('removeUser ~ nickname:', nickname);
     try {
-      return this.userModel.deleteMany({ nickname });
+      return this.userModel.deleteOne({ nickname });
     } catch (e) {
       console.error(e);
     }

@@ -41,7 +41,7 @@ export class GameGateway implements OnGatewayDisconnect, OnGatewayInit {
 
     const prevNickname = client.data.nickname;
     if (prevNickname && prevNickname !== payload.nickname) {
-      this.userService.removeUser(client.data.nickname);
+      await this.userService.removeUser(client.data.nickname);
       client.leave(client.data.nickname);
     }
 

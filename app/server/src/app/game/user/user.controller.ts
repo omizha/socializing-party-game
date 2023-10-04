@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
-import { Model } from 'mongoose';
 import { UserService } from './user.service';
 import { User } from './user.schema';
 
@@ -19,8 +18,11 @@ export class UserController {
   }
 
   @Delete()
-  removeUser(@Query('nickname') nickname: string): Promise<ReturnType<Model<User>['deleteMany']>> {
-    return this.userService.removeUser(nickname);
+  async removeUser(@Query('nickname') nickname: string): Promise<{ result: boolean }> {
+    await this.userService.removeUser(nickname);
+    const userList = await this.userService.fetchCurrentUserList();
+    const result = this.userService.emitCurrentUserList(userList);
+    return { result };
   }
 
   // @Get()
