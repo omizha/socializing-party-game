@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useAtomCallback } from 'jotai/utils';
 import { UserSchema } from 'shared~type';
+import { server } from 'shared~config';
 import { socket } from '../../library/socket-io';
 import { SocketStore } from '../../store';
 
@@ -25,9 +26,9 @@ const useOnCurrentUserList = ({ onCallback }: Props) => {
   );
 
   useEffect(() => {
-    socket.on('currentUserList', callback);
+    socket.on(server.currentUserList, callback);
     return () => {
-      socket.off('currentUserList', callback);
+      socket.off(server.currentUserList, callback);
     };
   }, [callback]);
 };

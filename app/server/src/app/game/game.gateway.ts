@@ -15,7 +15,7 @@ export class GameGateway implements OnGatewayDisconnect, OnGatewayInit {
   async afterInit(): Promise<void> {
     const [users, userProfiles, game] = await Promise.all([
       this.userService.getUsers(),
-      this.gameService.fetchCurrentUserList(),
+      this.userService.fetchCurrentUserList(),
       this.gameService.get(),
     ]);
 
@@ -26,13 +26,13 @@ export class GameGateway implements OnGatewayDisconnect, OnGatewayInit {
       });
     }
 
-    this.gameService.emitCurrentUserList(userProfiles);
+    this.userService.emitCurrentUserList(userProfiles);
   }
 
   async handleDisconnect(client: Socket): Promise<void> {
-    const [game, userProfiles] = await Promise.all([this.gameService.get(), this.gameService.fetchCurrentUserList()]);
+    const [game, userProfiles] = await Promise.all([this.gameService.get(), this.userService.fetchCurrentUserList()]);
 
-    this.gameService.emitCurrentUserList(userProfiles);
+    this.userService.emitCurrentUserList(userProfiles);
   }
 
   @SubscribeMessage('setUserProfile')
@@ -53,10 +53,11 @@ export class GameGateway implements OnGatewayDisconnect, OnGatewayInit {
         isEntry: true,
         nickname: payload.nickname,
         profilePictureUrl: payload.profilePictureUrl,
+        team: Math.random() > 0.5 ? 'L' : 'R',
       });
     }
 
-    const userProfiles = await this.gameService.fetchCurrentUserList();
-    return this.gameService.emitCurrentUserList(userProfiles);
+    const userProfiles = await this.userService.fetchCurrentUserList();
+    return this.userService.emitCurrentUserList(userProfiles);
   }
 }

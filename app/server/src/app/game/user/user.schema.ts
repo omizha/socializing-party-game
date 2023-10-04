@@ -22,6 +22,7 @@ export class User implements UserSchema {
   constructor(nickname: string) {
     this.nickname = nickname;
     this.profilePictureUrl = '/default-avatar.png';
+    this.team = Math.random() > 0.5 ? 'L' : 'R';
     this.isEntry = false;
   }
 }

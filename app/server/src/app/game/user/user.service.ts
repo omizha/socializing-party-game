@@ -1,13 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { UserSchema } from 'shared~type';
+import { server } from 'shared~config';
 import { User, UserDocument } from './user.schema';
+import { SocketGateway } from '../../socket/socket.gateway';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User.name)
     private readonly userModel: Model<User>,
+    private readonly socketGateway: SocketGateway,
   ) {}
 
   getUsers(): Promise<UserDocument[]> {
@@ -50,4 +54,15 @@ export class UserService {
   //   user.isEntry = isEntry;
   //   return user.save();
   // }
+
+  async fetchCurrentUserList(): Promise<UserSchema[]> {
+    // const sockets = await this.socketGateway.server.fetchSockets();
+    // const datas = sockets.map((socket) => socket.data.nickname).filter((v) => !!v);
+
+    return this.getUsers();
+  }
+
+  emitCurrentUserList(userProfiles: UserSchema[]): boolean {
+    return this.socketGateway.server.emit(server.currentUserList, userProfiles);
+  }
 }

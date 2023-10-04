@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Request, UserSchema } from 'shared~type';
+import { Request } from 'shared~type';
 import { server } from 'shared~config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -53,17 +53,6 @@ export class GameService {
   async setGameQuiz(): Promise<Game> {
     const quiz = await this.quizService.createQuiz();
     return this.updateGame({ gamePhase: 'QUIZ', quizId: quiz.id });
-  }
-
-  async fetchCurrentUserList(): Promise<UserSchema[]> {
-    // const sockets = await this.socketGateway.server.fetchSockets();
-    // const datas = sockets.map((socket) => socket.data.nickname).filter((v) => !!v);
-
-    return this.userService.getUsers();
-  }
-
-  emitCurrentUserList(userProfiles: UserSchema[]): boolean {
-    return this.socketGateway.server.emit('currentUserList', userProfiles);
   }
 
   emitGameInfo(game: Game): boolean {
