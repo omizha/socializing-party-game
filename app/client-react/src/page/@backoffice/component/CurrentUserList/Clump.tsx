@@ -2,18 +2,28 @@ import * as THREE from 'three';
 import { Sphere, useTexture } from '@react-three/drei';
 import { useSphere } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
+import { useMemo } from 'react';
 
 const { randFloatSpread } = THREE.MathUtils;
 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
-const baubleMaterial = new THREE.MeshStandardMaterial({ color: 'white', envMapIntensity: 1, roughness: 0 });
 
 interface Props {
-  mat?: THREE.Matrix4;
-  vec?: THREE.Vector3;
+  textureUrl?: string;
 }
 
-function Clump({ mat = new THREE.Matrix4(), vec = new THREE.Vector3() }: Props) {
-  const texture = useTexture('/default-avatar.png');
+function Clump({ textureUrl = '/default-avatar.png' }: Props) {
+  const vec = useMemo(() => new THREE.Vector3(), []);
+  const baubleMaterial = useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: 'white',
+        envMapIntensity: 1,
+        roughness: 0,
+      }),
+    [],
+  );
+
+  const texture = useTexture(textureUrl);
   const [ref, api] = useSphere<
     THREE.Mesh<
       THREE.BufferGeometry<THREE.NormalBufferAttributes>,
@@ -32,18 +42,9 @@ function Clump({ mat = new THREE.Matrix4(), vec = new THREE.Vector3() }: Props) 
 
     // Normalize the position and multiply by a negative force.
     // This is enough to drive it towards the center-point.
-    api.applyForce(vec.setFromMatrixPosition(ref.current.matrix).normalize().multiplyScalar(0).toArray(), [0, 0, 0]);
+    api.applyForce(vec.setFromMatrixPosition(ref.current.matrix).normalize().multiplyScalar(-40).toArray(), [0, 0, 0]);
   });
-  return (
-    <Sphere
-      ref={ref}
-      castShadow
-      receiveShadow
-      geometry={sphereGeometry}
-      material={baubleMaterial}
-      material-map={texture}
-    />
-  );
+  return <Sphere ref={ref} geometry={sphereGeometry} material={baubleMaterial} material-map={texture} />;
 }
 
 export default Clump;

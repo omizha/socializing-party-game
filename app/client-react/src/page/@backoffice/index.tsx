@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Suspense } from 'react';
 import CurrentUserList from './component/CurrentUserList';
 import LeftPanel from './component/LeftPanel';
 import BackofficeInitializer from '../../component/BackofficeInitializer';
@@ -8,7 +9,9 @@ export default function Users() {
     <Container>
       <BackofficeInitializer />
       <LeftPanel />
-      <CurrentUserList />
+      <Suspense fallback={<></>}>
+        <CurrentUserList />
+      </Suspense>
     </Container>
   );
 }
