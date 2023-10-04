@@ -1,24 +1,10 @@
 import styled from '@emotion/styled';
 import { useAtomValue } from 'jotai';
 import { QRCodeSVG } from 'qrcode.react';
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SocketStore } from '../../../store';
-import { Query } from '../../../hook';
 
 const LeftPanel = () => {
   const userList = useAtomValue(SocketStore.userList);
-
-  const navigate = useNavigate();
-  const { mutateAsync } = Query.useUpdateGame();
-
-  const onStartGame = useCallback(() => {
-    mutateAsync({
-      gamePhase: 'WAITING',
-    }).then(() => {
-      navigate('/backoffice/select');
-    });
-  }, [mutateAsync, navigate]);
 
   return (
     <Container>
@@ -29,15 +15,28 @@ const LeftPanel = () => {
         </QRCodeWrapper>
       </QRCodeContainer>
       <UserListWrapper>
-        {userList.map((user) => (
-          <ProfileContainer key={user.nickname}>
-            <Avatar src={user.profilePictureUrl} alt={`${user.nickname}님의 프로필 사진`} />
-            <div>{user.nickname}</div>
-          </ProfileContainer>
-        ))}
+        <TeamWrapper>
+          {userList
+            .filter((v) => v.team === 'L')
+            .map((user) => (
+              <ProfileContainer key={user.nickname}>
+                <Avatar src={user.profilePictureUrl} alt={`${user.nickname}님의 프로필 사진`} />
+                <div>{user.nickname}</div>
+              </ProfileContainer>
+            ))}
+        </TeamWrapper>
+        <TeamWrapper>
+          {userList
+            .filter((v) => v.team === 'R')
+            .map((user) => (
+              <ProfileContainer key={user.nickname}>
+                <Avatar src={user.profilePictureUrl} alt={`${user.nickname}님의 프로필 사진`} />
+                <div>{user.nickname}</div>
+              </ProfileContainer>
+            ))}
+        </TeamWrapper>
       </UserListWrapper>
-      {/* <>{userList.length}명 참가 완료</> */}
-      {/* <button onClick={onStartGame}>게임 시작</button> */}
+      <>{userList.length}명 참가 완료</>
     </Container>
   );
 };
@@ -98,6 +97,10 @@ const QRCodeWrapper = styled.div`
   box-sizing: border-box;
   padding: 20px;
   border: 10px solid #777777;
+`;
+
+const TeamWrapper = styled.div`
+  flex: 1;
 `;
 
 const ProfileContainer = styled.div`
