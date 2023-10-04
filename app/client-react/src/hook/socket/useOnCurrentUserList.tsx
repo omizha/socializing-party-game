@@ -13,12 +13,7 @@ const useOnCurrentUserList = ({ onCallback }: Props) => {
   const callback = useAtomCallback<void, [UserSchema[]]>(
     useCallback(
       (get, set, userProfiles) => {
-        const profiles = [] as UserSchema[];
-        for (const userProfile of userProfiles) {
-          if (!profiles.some((v) => v.nickname === userProfile.nickname)) profiles.push(userProfile);
-        }
-
-        set(SocketStore.userList, profiles);
+        set(SocketStore.userList, userProfiles);
         onCallback?.();
       },
       [onCallback],
