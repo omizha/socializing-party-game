@@ -1,7 +1,17 @@
 import styled from '@emotion/styled';
 import { useAtomValue } from 'jotai';
 import { QRCodeSVG } from 'qrcode.react';
+import { UserSchema } from 'shared~type';
 import { SocketStore } from '../../../store';
+
+const User = ({ user }: { user: UserSchema }) => {
+  return (
+    <ProfileContainer key={user.nickname}>
+      <Avatar src={user.profilePictureUrl} alt={`${user.nickname}님의 프로필 사진`} />
+      <div>{user.nickname}</div>
+    </ProfileContainer>
+  );
+};
 
 const LeftPanel = () => {
   const userList = useAtomValue(SocketStore.userList);
@@ -19,20 +29,14 @@ const LeftPanel = () => {
           {userList
             .filter((v) => v.team === 'L')
             .map((user) => (
-              <ProfileContainer key={user.nickname}>
-                <Avatar src={user.profilePictureUrl} alt={`${user.nickname}님의 프로필 사진`} />
-                <div>{user.nickname}</div>
-              </ProfileContainer>
+              <User key={user.nickname} user={user} />
             ))}
         </TeamWrapper>
         <TeamWrapper>
           {userList
             .filter((v) => v.team === 'R')
             .map((user) => (
-              <ProfileContainer key={user.nickname}>
-                <Avatar src={user.profilePictureUrl} alt={`${user.nickname}님의 프로필 사진`} />
-                <div>{user.nickname}</div>
-              </ProfileContainer>
+              <User key={user.nickname} user={user} />
             ))}
         </TeamWrapper>
       </UserListWrapper>
