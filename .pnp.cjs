@@ -3989,6 +3989,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@toss/date", [\
+        ["npm:1.1.7", {\
+          "packageLocation": "./.yarn/cache/@toss-date-npm-1.1.7-e5a6722d00-788cb02876.zip/node_modules/@toss/date/",\
+          "packageDependencies": [\
+            ["@toss/date", "npm:1.1.7"],\
+            ["date-fns", "npm:2.30.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@toss/react", [\
         ["npm:1.5.0", {\
           "packageLocation": "./.yarn/cache/@toss-react-npm-1.5.0-4b626bb937-487e69032a.zip/node_modules/@toss/react/",\
@@ -14218,6 +14228,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@nestjs/serve-static", "virtual:365faac7c4af84a7bebdbfa998cc40b96d0d6cfff2d67e187614912af5305735ea179cd98b68c22e87a37867e4ec820e2f894825b59acf14bc0e784af57ed81d#npm:4.0.0"],\
             ["@nestjs/testing", "virtual:365faac7c4af84a7bebdbfa998cc40b96d0d6cfff2d67e187614912af5305735ea179cd98b68c22e87a37867e4ec820e2f894825b59acf14bc0e784af57ed81d#npm:10.2.6"],\
             ["@nestjs/websockets", "virtual:365faac7c4af84a7bebdbfa998cc40b96d0d6cfff2d67e187614912af5305735ea179cd98b68c22e87a37867e4ec820e2f894825b59acf14bc0e784af57ed81d#npm:10.2.6"],\
+            ["@toss/date", "npm:1.1.7"],\
             ["@types/express", "npm:4.17.17"],\
             ["@types/jest", "npm:29.5.0"],\
             ["@types/multer", "npm:1.4.7"],\
