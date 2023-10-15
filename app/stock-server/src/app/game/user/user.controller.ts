@@ -20,18 +20,6 @@ export class UserController {
   @Delete()
   async removeUser(@Query('nickname') nickname: string): Promise<{ result: boolean }> {
     await this.userService.removeUser(nickname);
-    const userList = await this.userService.fetchCurrentUserList();
-    const result = this.userService.emitCurrentUserList(userList);
-    return { result };
+    return { result: true };
   }
-
-  // @Get()
-  // getUserProfile(@Query('nickname') nickname: string): Promise<UserEntity> {
-  //   return this.userService.getUserProfile(nickname);
-  // }
-
-  // @Post()
-  // setUserProfile(@Body() body: UserEntity): Promise<UserEntity> {
-  //   return this.userService.setUserProfile(body);
-  // }
 }

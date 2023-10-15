@@ -2,9 +2,7 @@ import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import QueryClientProvider from './library/react-query/QueryClientProvider';
 import App from './page/@';
-import Users from './page/@backoffice';
-import Select from './page/@backoffice@select';
-import Quiz from './page/@backoffice@quiz';
+import Stock from './page/@backoffice';
 
 const router = createBrowserRouter([
   {
@@ -12,16 +10,8 @@ const router = createBrowserRouter([
     path: '/',
   },
   {
-    element: <Users />,
+    element: <Stock />,
     path: '/backoffice',
-  },
-  {
-    element: <Select />,
-    path: '/backoffice/select',
-  },
-  {
-    element: <Quiz />,
-    path: '/backoffice/quiz',
   },
 ]);
 

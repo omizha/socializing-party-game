@@ -1,13 +1,11 @@
 import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
-import { Request, Response } from 'shared~type';
+import { Request, Response } from 'shared~type-stock';
 import { Game } from './game.schema';
 import { GameService } from './game.service';
-import { QuizService } from './quiz/quiz.service';
-import { Quiz } from './quiz/quiz.schema';
 
 @Controller('game')
 export class GameController {
-  constructor(private readonly gameService: GameService, private readonly quizService: QuizService) {}
+  constructor(private readonly gameService: GameService) {}
 
   @Get()
   getGame(): Promise<Game> {
@@ -19,13 +17,18 @@ export class GameController {
     return this.gameService.updateGame(body);
   }
 
-  @Get('quiz')
-  getGameQuiz(): Promise<{ game: Game; quiz: Quiz }> {
-    return this.gameService.getGameQuiz();
+  @Post('/stock/init')
+  initStock(): Promise<Response.Game> {
+    return this.gameService.initStock();
   }
 
-  @Post('quiz')
-  setGameQuiz(): Promise<Response.Game> {
-    return this.gameService.setGameQuiz();
+  @Post('/stock/buy')
+  buyStock(@Body() body: Request.BuyStock): Promise<Game> {
+    return this.gameService.buyStock(body);
+  }
+
+  @Post('/stock/sell')
+  sellStock(@Body() body: Request.SellStock): Promise<Game> {
+    return this.gameService.sellStock(body);
   }
 }

@@ -7,7 +7,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppGateway } from './app.gateway';
-import { SocketModule } from './socket/socket.module';
 import { GameModule } from './game/game.module';
 
 @Module({
@@ -28,7 +27,6 @@ import { GameModule } from './game/game.module';
       rootPath: join(__dirname, '..', '..', 'public'),
     }),
     MulterModule.register(),
-    SocketModule,
     GameModule,
   ],
   providers: [AppService, AppGateway],

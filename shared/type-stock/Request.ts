@@ -2,18 +2,14 @@ import type { GameSchema } from '.';
 
 export type UpdateGame = Partial<Omit<GameSchema, 'unique'>>;
 
-export type QuizAnswerTime = {
-  answer: string;
-  quizId: string;
-};
-
-export type QuizAnswerStop = {
-  quizId: string;
-};
-
-export type QuizSubmit = {
-  quizId: string;
-  answer: string;
+export type BuyStock = {
   nickname: string;
-  phaseIdx: number;
+  company: string;
+  amount: number;
+};
+
+export type SellStock = {
+  nickname: string;
+  company: string;
+  amount: number;
 };

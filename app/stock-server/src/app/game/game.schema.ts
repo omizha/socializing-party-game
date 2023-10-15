@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Schema as MongooseSchema, Types } from 'mongoose';
-import { GamePhase, GameSchema } from 'shared~type';
+import { HydratedDocument, SchemaTypes } from 'mongoose';
+import { CompanyInfo, GamePhase, GameSchema } from 'shared~type-stock';
 
 @Schema()
 export class Game implements GameSchema {
@@ -10,8 +10,14 @@ export class Game implements GameSchema {
   @Prop()
   gamePhase: GamePhase;
 
-  @Prop({ ref: 'Quiz', type: MongooseSchema.Types.ObjectId })
-  quizId?: Types.ObjectId;
+  @Prop()
+  startedTime?: Date;
+
+  @Prop({ type: SchemaTypes.Map })
+  companies?: Record<string, CompanyInfo[]>;
+
+  @Prop({ type: SchemaTypes.Map })
+  remainingStocks?: Record<string, number>;
 
   constructor() {
     this.unique = true;

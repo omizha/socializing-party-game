@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import { Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { elementId } from 'shared~config';
-import UserInitializer from '../../component/UserInitializer';
 import Waiting from './component/Waiting';
 import Phase from './component/Phase';
 
@@ -22,10 +20,7 @@ export default function App() {
         resetKeys={[resetKey]}
       >
         <Suspense fallback={<Waiting />}>
-          <UserInitializer>
-            <Phase />
-            <div id={elementId.profilePortal} />
-          </UserInitializer>
+          <Phase />
         </Suspense>
       </ErrorBoundary>
     </Container>

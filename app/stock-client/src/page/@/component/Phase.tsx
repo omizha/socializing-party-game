@@ -2,24 +2,19 @@ import { SwitchCase } from '@toss/react';
 import { useAtomValue } from 'jotai';
 import ProfileSetter from './ProfileSetter';
 import Waiting from './Waiting';
-import { GameStore, SocketStore, UserStore } from '../../../store';
-import AccessDenided from './AccessDenided';
+import { UserStore } from '../../../store';
 import Header from './Header';
-import Quiz from './Quiz';
+import { Query } from '../../../hook';
+import AccessDenided from './AccessDenided';
 
 const Phase = () => {
-  const gamePhase = useAtomValue(GameStore.gamePhase);
-  console.debug('🚀 ~ file: Phase.tsx:12 ~ Phase ~ gamePhase:', gamePhase);
+  const { data: game } = Query.useGame();
+  const { data: users } = Query.useUsers();
+  const gamePhase = game?.gamePhase ?? 'WAITING';
 
   const nickname = useAtomValue(UserStore.nickname);
-  const users = useAtomValue(SocketStore.userList);
-  console.debug('🚀 ~ file: Phase.tsx:14 ~ Phase ~ users:', users);
-  const isEntry = users?.find((user) => user.nickname === nickname)?.isEntry ?? false;
-  console.debug('🚀 ~ file: Phase.tsx:16 ~ Phase ~ isEntry:', isEntry);
 
-  if (!nickname) {
-    return <ProfileSetter />;
-  }
+  const isEntry = users?.some((user) => user.nickname === nickname);
 
   if (!isEntry && gamePhase !== 'CROWDING') {
     return <AccessDenided />;
@@ -29,8 +24,7 @@ const Phase = () => {
     <SwitchCase
       value={gamePhase}
       caseBy={{
-        CROWDING: isEntry ? <Waiting HeaderComponent={<Header hasQuitButton />} /> : <ProfileSetter />,
-        QUIZ: <Quiz />,
+        CROWDING: isEntry ? <Waiting HeaderComponent={<Header title={nickname} hasQuitButton />} /> : <ProfileSetter />,
         WAITING: <Waiting HeaderComponent={<Header title={nickname} />} />,
       }}
       defaultComponent={<Waiting HeaderComponent={<Header title={nickname} />} />}

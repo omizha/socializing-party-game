@@ -1,6 +1,6 @@
-import { UserSchema } from 'shared~type';
+import { UserSchema } from 'shared~type-stock';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
+import { HydratedDocument, SchemaTypes } from 'mongoose';
 
 @Schema()
 export class User implements UserSchema {
@@ -8,22 +8,15 @@ export class User implements UserSchema {
   nickname: string;
 
   @Prop()
-  profilePictureUrl: string;
+  money: number;
 
-  @Prop({ type: MongooseSchema.Types.String })
-  team: 'L' | 'R';
-
-  /**
-   * @deprecated
-   */
-  @Prop()
-  isEntry: boolean;
+  @Prop({ type: SchemaTypes.Map })
+  inventory: Record<string, number>;
 
   constructor(nickname: string) {
     this.nickname = nickname;
-    this.profilePictureUrl = '/default-avatar.png';
-    this.team = Math.random() > 0.5 ? 'L' : 'R';
-    this.isEntry = false;
+    this.money = 1000000;
+    this.inventory = {};
   }
 }
 
