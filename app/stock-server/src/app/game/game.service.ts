@@ -107,7 +107,9 @@ export class GameService {
     const result = this.findOneAndUpdate({
       $set: {
         companies: newCompanies,
+        gamePhase: 'PLAYING',
         remainingStocks,
+        startedTime: new Date(),
       },
     });
     return result;

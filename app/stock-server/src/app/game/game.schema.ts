@@ -11,7 +11,7 @@ export class Game implements GameSchema {
   gamePhase: GamePhase;
 
   @Prop()
-  startedTime?: Date;
+  startedTime: Date;
 
   @Prop({ type: SchemaTypes.Map })
   companies?: Record<string, CompanyInfo[]>;
@@ -22,6 +22,7 @@ export class Game implements GameSchema {
   constructor() {
     this.unique = true;
     this.gamePhase = 'CROWDING';
+    this.startedTime = new Date();
   }
 }
 
