@@ -1,25 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
-import { useSetAtom } from 'jotai';
-import { useEffect } from 'react';
-import { Response } from 'shared~type';
-import { GameStore } from '../../store';
+import { Response } from 'shared~type-stock';
 
 const useGame = () => {
-  const { data, isSuccess } = useQuery<Response.Game>(['game'], async () => {
-    const response = await fetch('http://localhost:3000/game', {
-      method: 'GET',
-    });
+  const { data } = useQuery<Response.Game>(
+    ['game'],
+    async () => {
+      const response = await fetch('http://localhost:3000/game', {
+        method: 'GET',
+      });
 
-    return response.json();
-  });
+      return response.json();
+    },
+    {
+      refetchInterval: 1000,
+    },
+  );
 
-  const setGamePhase = useSetAtom(GameStore.gamePhase);
+  if (!data) {
+    return { data: undefined };
+  }
 
-  useEffect(() => {
-    if (isSuccess && data) {
-      setGamePhase(data.gamePhase);
-    }
-  }, [data, isSuccess, setGamePhase]);
+  data.startedTime = new Date(data.startedTime);
 
   return { data };
 };

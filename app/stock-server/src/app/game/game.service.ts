@@ -52,6 +52,26 @@ export class GameService {
     return result;
   }
 
+  async resetGame(): Promise<Game> {
+    let game: Game;
+
+    const session = await this.connection.startSession();
+    await session.withTransaction(async () => {
+      game = await this.findOneAndUpdate({
+        $set: {
+          companies: {},
+          gamePhase: 'CROWDING',
+          remainingStocks: {},
+          startedTime: new Date(),
+        },
+      });
+      // await this.userService.removeAllUser();
+    });
+    session.endSession();
+
+    return game;
+  }
+
   async initStock(): Promise<Game> {
     const players = await this.userService.getUsers();
 
@@ -64,7 +84,7 @@ export class GameService {
       companyPriceChange[i] = [...stock.getRandomCompanyNames(Math.ceil(players.length / 3))];
     }
 
-    Object.keys(stock.getRandomCompanyNames()).forEach((key) => {
+    stock.getRandomCompanyNames().forEach((key) => {
       const company = key as stock.CompanyNames;
       // 1:00 ~ 1:45
       for (let i = 0; i < 10; i++) {
@@ -87,7 +107,7 @@ export class GameService {
             const infoPlayerIdx = randomPlayers.pop();
             if (infoPlayerIdx !== undefined) {
               const partnerPlayerIdx = infoPlayerIdx === players.length - 1 ? 0 : infoPlayerIdx + 1;
-              info.push(players[infoPlayerIdx], players[partnerPlayerIdx]);
+              info.push(players[infoPlayerIdx].nickname, players[partnerPlayerIdx].nickname);
             }
           }
 

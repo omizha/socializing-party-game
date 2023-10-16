@@ -5,21 +5,25 @@ import prependZero from '../../service/prependZero';
 import Table from './component/Table';
 import { POV } from '../../type';
 import { Query } from '../../hook';
+import UserList from './component/UserList';
 
 // playerLength / 3
 // 29 - 10
 // 30 - 10
 export default function Stock() {
-  const [pov, setPov] = useState<POV>('player');
+  const { mutateAsync: mutateUpdateGame } = Query.useUpdateGame();
+  const { mutateAsync: mutateInitStock } = Query.useInitStock();
+  const { mutateAsync: mutateResetGame } = Query.useResetGame();
+  const { data: users } = Query.useUsers();
+  const { data: game } = Query.useGame();
+  console.debug('🚀 ~ file: index.tsx:17 ~ Stock ~ game:', game);
 
-  const [startedTime, setStartedTime] = useState<Date>(new Date());
+  const startedTime = game?.startedTime ?? new Date();
+
+  const [pov, setPov] = useState<POV>('player');
 
   // 경과된 시간
   const [elapsedTime, setElapsedTime] = useState<Date>(new Date(new Date().getTime() - startedTime.getTime()));
-
-  const { data: users } = Query.useUsers();
-
-  const { mutateAsync: mutateRemoveUser } = Query.useRemoveUser();
 
   useInterval(
     () => {
@@ -32,28 +36,23 @@ export default function Stock() {
 
   return (
     <Container>
-      <table>
-        <thead>
-          <tr>
-            <td>
-              <div>참가자 {users?.length}명</div>
-            </td>
-            {users?.map((user) => (
-              <td key={user.nickname}>
-                <button
-                  onClick={() => {
-                    mutateRemoveUser(user.nickname);
-                  }}
-                >
-                  {user.nickname}
-                </button>
-              </td>
-            ))}
-          </tr>
-        </thead>
-      </table>
+      <UserList />
       <Table elapsedTime={elapsedTime} pov={pov} />
       <hr />
+      <button
+        onClick={() => {
+          mutateResetGame();
+        }}
+      >
+        게임 초기화
+      </button>
+      <button
+        onClick={() => {
+          mutateInitStock();
+        }}
+      >
+        주식 초기화
+      </button>
       <button
         onClick={() => {
           setPov(pov === 'host' ? 'player' : 'host');
@@ -73,18 +72,28 @@ export default function Stock() {
       </div>
       <button
         onClick={() => {
-          setStartedTime((prev) => new Date(prev.getTime() - 60 * 1000));
+          mutateUpdateGame({
+            startedTime: new Date(startedTime.getTime() - 60 * 1000),
+          });
         }}
       >
         1분 과거로
       </button>
       <button
         onClick={() => {
-          setStartedTime((prev) => new Date(prev.getTime() - 10 * 1000));
+          mutateUpdateGame({
+            startedTime: new Date(startedTime.getTime() - 10 * 1000),
+          });
         }}
       >
         10초 과거로
       </button>
+      <hr />
+      <div>
+        {users.map((user) => {
+          return <input type="radio" value={user.nickname} name={user.nickname} key={user.nickname} />;
+        })}
+      </div>
     </Container>
   );
 }

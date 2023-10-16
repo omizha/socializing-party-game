@@ -8,13 +8,19 @@ export class GameController {
   constructor(private readonly gameService: GameService) {}
 
   @Get()
-  getGame(): Promise<Game> {
-    return this.gameService.get();
+  async getGame(): Promise<Game> {
+    const game = await this.gameService.get();
+    return game;
   }
 
   @Patch()
   updateGame(@Body() body: Request.UpdateGame): Promise<Response.Game> {
     return this.gameService.updateGame(body);
+  }
+
+  @Post('/reset')
+  resetGame(): Promise<Response.Game> {
+    return this.gameService.resetGame();
   }
 
   @Post('/stock/init')

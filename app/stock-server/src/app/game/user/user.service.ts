@@ -46,13 +46,25 @@ export class UserService {
     }
   }
 
-  // eslint-disable-next-line consistent-return
-  async removeUser(nickname: string): Promise<ReturnType<Model<User>['deleteMany']>> {
+  async removeUser(nickname: string): Promise<ReturnType<Model<User>['deleteMany']> | undefined> {
     console.debug('removeUser ~ nickname:', nickname);
     try {
       return this.userModel.deleteOne({ nickname });
     } catch (e) {
       console.error(e);
     }
+
+    return undefined;
+  }
+
+  async removeAllUser(): Promise<ReturnType<Model<User>['deleteMany']> | undefined> {
+    console.debug('removeAllUser');
+    try {
+      return this.userModel.deleteMany();
+    } catch (e) {
+      console.error(e);
+    }
+
+    return undefined;
   }
 }

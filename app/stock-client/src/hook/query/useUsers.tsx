@@ -16,7 +16,7 @@ const useUsers = () => {
     },
   );
 
-  return { data };
+  return { data: data ?? [] };
 };
 
 export default useUsers;

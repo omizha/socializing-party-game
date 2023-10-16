@@ -19,7 +19,11 @@ export class UserController {
 
   @Delete()
   async removeUser(@Query('nickname') nickname: string): Promise<{ result: boolean }> {
-    await this.userService.removeUser(nickname);
-    return { result: true };
+    return { result: !!(await this.userService.removeUser(nickname)) };
+  }
+
+  @Delete('/all')
+  async removeAllUser(): Promise<{ result: boolean }> {
+    return { result: !!(await this.userService.removeAllUser()) };
   }
 }

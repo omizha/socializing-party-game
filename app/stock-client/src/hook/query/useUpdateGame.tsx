@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { Request, Response } from 'shared~type';
+import { Request, Response } from 'shared~type-stock';
 
 const useUpdateGame = () => {
   const { mutateAsync } = useMutation<Response.Game, unknown, Request.UpdateGame>(['useUpdateGame'], async (game) => {

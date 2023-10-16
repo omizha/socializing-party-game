@@ -23,6 +23,6 @@ export type GameSchema = {
   unique: boolean;
   gamePhase: GamePhase;
   startedTime: Date;
-  companies?: Record<string, CompanyInfo[]>;
-  remainingStocks?: Record<string, number>;
+  companies: Record<string, CompanyInfo[]>;
+  remainingStocks: Record<string, number>;
 };
