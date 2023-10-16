@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.17",
     "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.86.3",
     "@react-three/fiber": "^8.14.4",
