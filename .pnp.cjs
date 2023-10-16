@@ -2431,7 +2431,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/nestjs__core", null],\
             ["@types/reflect-metadata", null],\
             ["@types/rxjs", null],\
-            ["mongoose", "npm:7.5.3"],\
+            ["mongoose", "npm:7.6.2"],\
             ["reflect-metadata", "npm:0.1.13"],\
             ["rxjs", "npm:7.8.1"]\
           ],\
@@ -11920,6 +11920,46 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
+        ["npm:5.9.0", {\
+          "packageLocation": "./.yarn/cache/mongodb-npm-5.9.0-e0f7c8bf46-5fb828d650.zip/node_modules/mongodb/",\
+          "packageDependencies": [\
+            ["mongodb", "npm:5.9.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:59275b9d685089a13774ea1fc4e5af98bd9b7195962385078f66c750e236cc8ae8f8bcf7d4734a151a4a32a9884bbe8627fc145d74ac0f8dda02b91c3159ac55#npm:5.9.0", {\
+          "packageLocation": "./.yarn/__virtual__/mongodb-virtual-35f9284905/0/cache/mongodb-npm-5.9.0-e0f7c8bf46-5fb828d650.zip/node_modules/mongodb/",\
+          "packageDependencies": [\
+            ["mongodb", "virtual:59275b9d685089a13774ea1fc4e5af98bd9b7195962385078f66c750e236cc8ae8f8bcf7d4734a151a4a32a9884bbe8627fc145d74ac0f8dda02b91c3159ac55#npm:5.9.0"],\
+            ["@aws-sdk/credential-providers", null],\
+            ["@mongodb-js/saslprep", "npm:1.1.0"],\
+            ["@mongodb-js/zstd", null],\
+            ["@types/aws-sdk__credential-providers", null],\
+            ["@types/kerberos", null],\
+            ["@types/mongodb-client-encryption", null],\
+            ["@types/mongodb-js__zstd", null],\
+            ["@types/snappy", null],\
+            ["bson", "npm:5.5.0"],\
+            ["kerberos", null],\
+            ["mongodb-client-encryption", null],\
+            ["mongodb-connection-string-url", "npm:2.6.0"],\
+            ["snappy", null],\
+            ["socks", "npm:2.7.1"]\
+          ],\
+          "packagePeers": [\
+            "@aws-sdk/credential-providers",\
+            "@mongodb-js/zstd",\
+            "@types/aws-sdk__credential-providers",\
+            "@types/kerberos",\
+            "@types/mongodb-client-encryption",\
+            "@types/mongodb-js__zstd",\
+            "@types/snappy",\
+            "kerberos",\
+            "mongodb-client-encryption",\
+            "snappy"\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["virtual:b89169bdb1987ec7d8689e925fd80692844d1adc3979914cfaa98e197c5b9823461efa6ff1a6de4e6adb0c14637b50dc8d59b1092e058a8bd8458636dbf0efa5#npm:5.8.1", {\
           "packageLocation": "./.yarn/__virtual__/mongodb-virtual-58497d4784/0/cache/mongodb-npm-5.8.1-d655990b24-da8fc05952.zip/node_modules/mongodb/",\
           "packageDependencies": [\
@@ -11973,6 +12013,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bson", "npm:5.5.0"],\
             ["kareem", "npm:2.5.1"],\
             ["mongodb", "virtual:b89169bdb1987ec7d8689e925fd80692844d1adc3979914cfaa98e197c5b9823461efa6ff1a6de4e6adb0c14637b50dc8d59b1092e058a8bd8458636dbf0efa5#npm:5.8.1"],\
+            ["mpath", "npm:0.9.0"],\
+            ["mquery", "npm:5.0.0"],\
+            ["ms", "npm:2.1.3"],\
+            ["sift", "npm:16.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:7.6.2", {\
+          "packageLocation": "./.yarn/cache/mongoose-npm-7.6.2-59275b9d68-685f436c3f.zip/node_modules/mongoose/",\
+          "packageDependencies": [\
+            ["mongoose", "npm:7.6.2"],\
+            ["bson", "npm:5.5.0"],\
+            ["kareem", "npm:2.5.1"],\
+            ["mongodb", "virtual:59275b9d685089a13774ea1fc4e5af98bd9b7195962385078f66c750e236cc8ae8f8bcf7d4734a151a4a32a9884bbe8627fc145d74ac0f8dda02b91c3159ac55#npm:5.9.0"],\
             ["mpath", "npm:0.9.0"],\
             ["mquery", "npm:5.0.0"],\
             ["ms", "npm:2.1.3"],\
@@ -14348,7 +14402,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-unused-imports", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:2.0.0"],\
             ["express", "npm:4.18.2"],\
             ["jest", "virtual:e013669161a03566465149fe2c0dc3fd50130a5eb3171832654371969c217ed69884542ac16d3220768a40e0ba2069e5f695451f061ffd07bf7bb9e454d2afc2#npm:29.5.0"],\
-            ["mongoose", "npm:7.5.3"],\
+            ["mongoose", "npm:7.6.2"],\
             ["prettier", "npm:2.8.8"],\
             ["reflect-metadata", "npm:0.1.13"],\
             ["rxjs", "npm:7.8.1"],\
