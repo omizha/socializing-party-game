@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, UpdateQuery } from 'mongoose';
+import mongoose, { Model, UpdateQuery } from 'mongoose';
 import { User, UserDocument } from './user.schema';
 
 @Injectable()
@@ -29,8 +29,8 @@ export class UserService {
     return this.userModel.find();
   }
 
-  getUser(nickname: string): Promise<UserDocument> {
-    return this.userModel.findOne({ nickname });
+  getUser(nickname: string, options?: mongoose.QueryOptions<User>): Promise<UserDocument> {
+    return this.userModel.findOne({ nickname }, null, options);
   }
 
   async setUser(user: User): Promise<UserDocument> {

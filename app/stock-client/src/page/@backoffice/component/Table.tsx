@@ -58,8 +58,8 @@ const Table = ({ elapsedTime, pov }: Props) => {
                   if (elapsedTime.getMinutes() >= idx * 5 || pov === 'host') {
                     return (
                       <React.Fragment key={company}>
-                        <Td>{등락}</Td>
-                        <Td key={company}>{companies[company as stock.CompanyNames][idx]?.가격}</Td>
+                        <Td>{commaizeNumber(등락)}</Td>
+                        <Td key={company}>{commaizeNumber(companies[company as stock.CompanyNames][idx]?.가격)}</Td>
                         <Td>{pov === 'host' ? 정보 : '.'}</Td>
                       </React.Fragment>
                     );

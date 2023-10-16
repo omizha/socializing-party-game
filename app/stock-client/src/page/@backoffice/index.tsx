@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import { useInterval } from '@toss/react';
+import { RadioGroup } from '@headlessui/react';
+import { css } from '@emotion/react';
+import { objectKeys } from '@toss/utils';
+import { getDateDistance } from '@toss/date';
+import { getRandomCompanyNames } from 'shared~config/dist/stock';
 import prependZero from '../../service/prependZero';
 import Table from './component/Table';
 import { POV } from '../../type';
@@ -14,12 +19,18 @@ export default function Stock() {
   const { mutateAsync: mutateUpdateGame } = Query.useUpdateGame();
   const { mutateAsync: mutateInitStock } = Query.useInitStock();
   const { mutateAsync: mutateResetGame } = Query.useResetGame();
+  const { mutateAsync: mutateBuyStock } = Query.useBuyStock();
+  const { mutateAsync: mutateSellStock } = Query.useSellStock();
   const { data: users } = Query.useUsers();
   const { data: game } = Query.useGame();
-  console.debug('🚀 ~ file: index.tsx:17 ~ Stock ~ game:', game);
 
+  const companies = game?.companies ?? {};
+  const companyNames = objectKeys(companies).length > 0 ? objectKeys(companies) : getRandomCompanyNames();
   const startedTime = game?.startedTime ?? new Date();
+  const currentPriceIdx = Math.floor(getDateDistance(startedTime, new Date()).minutes / 5);
 
+  const [selectedCompany, setSelectedCompany] = useState<string>(companyNames[0]);
+  const [selectedUser, setSelectedUser] = useState<string>(users?.[0]?.nickname ?? '');
   const [pov, setPov] = useState<POV>('player');
 
   // 경과된 시간
@@ -89,11 +100,70 @@ export default function Stock() {
         10초 과거로
       </button>
       <hr />
-      <div>
-        {users.map((user) => {
-          return <input type="radio" value={user.nickname} name={user.nickname} key={user.nickname} />;
-        })}
-      </div>
+      <RadioGroup
+        value={selectedUser}
+        onChange={(value) => {
+          setSelectedUser(value);
+        }}
+      >
+        <RadioGroup.Label>유저 선택</RadioGroup.Label>
+        <div
+          css={css`
+            display: flex;
+            gap: 8px;
+          `}
+        >
+          {users.map((user) => (
+            <RadioGroup.Option key={user.nickname} value={user.nickname}>
+              {({ checked }) => <span style={{ color: checked ? 'red' : 'black' }}>{user.nickname}</span>}
+            </RadioGroup.Option>
+          ))}
+        </div>
+      </RadioGroup>
+      <RadioGroup
+        value={selectedCompany}
+        onChange={(value) => {
+          setSelectedCompany(value);
+        }}
+      >
+        <RadioGroup.Label>회사 선택</RadioGroup.Label>
+        <div
+          css={css`
+            display: flex;
+            gap: 8px;
+          `}
+        >
+          {companyNames.map((company) => (
+            <RadioGroup.Option key={company} value={company}>
+              {({ checked }) => <span style={{ color: checked ? 'red' : 'black' }}>{company}</span>}
+            </RadioGroup.Option>
+          ))}
+        </div>
+      </RadioGroup>
+      <button
+        onClick={() => {
+          mutateBuyStock({
+            amount: 1,
+            company: selectedCompany,
+            nickname: selectedUser,
+            unitPrice: game?.companies[selectedCompany][currentPriceIdx].가격 ?? -1,
+          });
+        }}
+      >
+        매수
+      </button>
+      <button
+        onClick={() => {
+          mutateSellStock({
+            amount: 1,
+            company: selectedCompany,
+            nickname: selectedUser,
+            unitPrice: game?.companies[selectedCompany][currentPriceIdx].가격 ?? -1,
+          });
+        }}
+      >
+        매도
+      </button>
     </Container>
   );
 }

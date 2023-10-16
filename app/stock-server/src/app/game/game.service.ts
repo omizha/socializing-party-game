@@ -31,12 +31,12 @@ export class GameService {
     return game;
   }
 
-  async get(): Promise<GameDocument> {
+  async get(options?: mongoose.QueryOptions<Game>): Promise<GameDocument> {
     let game: GameDocument;
 
     const session = await this.gameModel.startSession();
     await session.withTransaction(async () => {
-      game = await this.gameModel.findOne({ unique: true });
+      game = await this.gameModel.findOne({ unique: true }, null, options);
       if (!game) {
         game = await this.gameModel.create(new Game());
       }
@@ -94,13 +94,13 @@ export class GameService {
 
         if (i === 0) {
           newCompanies[company][0] = {
-            가격: 1000,
+            가격: 100000,
             정보: [],
           };
         } else {
           const isChange = companyPriceChange[i].some((v) => v === key);
           const prevPrice = newCompanies[company][i - 1].가격;
-          const price = isChange ? prevPrice + (Math.floor(Math.random() * 20) - 10) * 100 : prevPrice;
+          const price = isChange ? prevPrice + (Math.floor(Math.random() * 20000) - 10000) * 10 : prevPrice;
           const info = [];
 
           if (isChange) {
@@ -136,94 +136,107 @@ export class GameService {
   }
 
   async buyStock(body: Request.BuyStock): Promise<Game> {
-    const { nickname, company, amount } = body;
+    const { nickname, company, amount, unitPrice } = body;
+    console.debug('buyStock', { amount, company, nickname, unitPrice });
     let result: Game;
 
     const session = await this.connection.startSession();
     await session.withTransaction(async () => {
-      const game = await this.get();
-      const user = await this.userService.getUser(nickname);
+      const game = await this.get({ session });
+      const user = await this.userService.getUser(nickname, { session });
 
       if (!user) {
         throw new Error('user not found');
       }
 
-      const companyInfo = game.companies?.[company];
+      const companies = game.companies as unknown as Map<string, CompanyInfo[]>;
+      const remainingStocks = game.remainingStocks as unknown as Map<string, number>;
+
+      const companyInfo = companies.get(company);
       if (!companyInfo) {
         throw new Error('company not found');
       }
 
-      if (game.remainingStocks?.[company] < amount) {
+      if (remainingStocks?.get(company) < amount) {
         throw new Error('not enough stocks');
       }
 
       // 5분 단위로 가격이 변함
-      const idx = Math.floor(getDateDistance(new Date(), game.startedTime).minutes / 5);
+      const idx = Math.floor(getDateDistance(game.startedTime, new Date()).minutes / 5);
       const companyPrice = companyInfo[idx].가격;
       const totalPrice = companyPrice * amount;
       if (user.money < totalPrice) {
         throw new Error('not enough money');
       }
-
-      const { inventory } = user;
-      if (!inventory[company]) {
-        inventory[company] = 0;
+      if (companyPrice !== unitPrice) {
+        throw new Error('invalid price');
       }
-      inventory[company] += amount;
 
-      game.remainingStocks[company] -= amount;
+      const inventory = user.inventory as unknown as Map<string, number>;
+      const companyCount = inventory.get(company) || 0;
+      inventory.set(company, companyCount + amount);
 
-      await this.userService.setUser(user);
-      result = await this.findOneAndUpdate({
-        $set: {
-          companies: {
-            ...game.companies,
-            [company]: companyInfo,
-          },
-        },
+      const remainingCompanyStock = remainingStocks.get(company);
+      remainingStocks.set(company, remainingCompanyStock - amount);
+
+      user.money -= totalPrice;
+
+      await user.save({
+        session,
+      });
+      result = await game.save({
+        session,
       });
     });
-    session.endSession();
+    await session.endSession();
 
     return result;
   }
 
   async sellStock(body: Request.SellStock): Promise<Game> {
-    const { nickname, company, amount } = body;
+    const { nickname, company, amount, unitPrice } = body;
     let result: Game;
 
     const session = await this.connection.startSession();
     await session.withTransaction(async () => {
-      const game = await this.get();
-      const user = await this.userService.getUser(nickname);
+      const game = await this.get({ session });
+      const user = await this.userService.getUser(nickname, { session });
 
       if (!user) {
         throw new Error('user not found');
       }
 
-      const companyInfo = game.companies?.[company];
+      const companies = game.companies as unknown as Map<string, CompanyInfo[]>;
+      const remainingStocks = game.remainingStocks as unknown as Map<string, number>;
+      const companyInfo = companies.get(company);
+      const remainingCompanyStock = remainingStocks.get(company);
+
       if (!companyInfo) {
         throw new Error('company not found');
       }
 
-      const { inventory } = user;
-      if (!inventory[company] || inventory[company] < amount) {
+      const inventory = user.inventory as unknown as Map<string, number>;
+      if (!inventory.get(company) || inventory.get(company) < amount) {
         throw new Error('not enough stocks');
       }
 
-      const idx = Math.floor(getDateDistance(new Date(), game.startedTime).minutes / 5);
+      const idx = Math.floor(getDateDistance(game.startedTime, new Date()).minutes / 5);
       const companyPrice = companyInfo[idx].가격;
       const totalPrice = companyPrice * amount;
 
-      inventory[company] -= amount;
+      if (companyPrice !== unitPrice) {
+        throw new Error('invalid price');
+      }
+
+      inventory.set(company, inventory.get(company) - amount);
       user.money += totalPrice;
 
-      game.remainingStocks[company] += amount;
+      remainingStocks.set(company, remainingCompanyStock + amount);
 
-      await user.save();
-      result = await game.save();
+      await user.save({ session });
+      result = await game.save({ session });
     });
-    session.endSession();
+    await session.endSession();
 
     return result;
   }
@@ -233,7 +246,7 @@ export class GameService {
 
     const session = await this.connection.startSession();
     await session.withTransaction(async () => {
-      const game = await this.get();
+      const game = await this.get(session);
       const user = await this.userService.getUser(nickname);
 
       if (!user) {
