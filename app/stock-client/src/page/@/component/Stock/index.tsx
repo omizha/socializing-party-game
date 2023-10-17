@@ -5,6 +5,8 @@ import { SwitchCase } from '@toss/react';
 import BottomNav from './BottomNav';
 import Header from '../Header';
 import Home from './Home';
+import Buy from './Buy';
+import Sell from './Sell';
 
 const Stock = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,8 +19,8 @@ const Stock = () => {
           <SwitchCase
             value={searchParams.get('page') ?? '홈'}
             caseBy={{
-              사기: <div>사기</div>,
-              팔기: <div>팔기</div>,
+              사기: <Buy />,
+              팔기: <Sell />,
               홈: <Home />,
             }}
             defaultComponent={<Home />}

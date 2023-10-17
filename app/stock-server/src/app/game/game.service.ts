@@ -121,7 +121,7 @@ export class GameService {
 
     const remainingStocks = {};
     Object.keys(newCompanies).forEach((company) => {
-      remainingStocks[company] = players.length - 1;
+      remainingStocks[company] = players.length * 2 - 1;
     });
 
     const result = this.findOneAndUpdate({
@@ -144,6 +144,7 @@ export class GameService {
     await session.withTransaction(async () => {
       const game = await this.get({ session });
       const user = await this.userService.getUser(nickname, { session });
+      const players = await this.userService.getUsers({ session });
 
       if (!user) {
         throw new Error('user not found');
@@ -174,6 +175,11 @@ export class GameService {
 
       const inventory = user.inventory as unknown as Map<string, number>;
       const companyCount = inventory.get(company) || 0;
+
+      if (companyCount + amount > players.length - 1) {
+        throw new Error('too many stocks');
+      }
+
       inventory.set(company, companyCount + amount);
 
       const remainingCompanyStock = remainingStocks.get(company);

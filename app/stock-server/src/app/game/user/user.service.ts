@@ -25,8 +25,8 @@ export class UserService {
     return user;
   }
 
-  getUsers(): Promise<UserDocument[]> {
-    return this.userModel.find();
+  getUsers(options?: mongoose.QueryOptions<User>): Promise<UserDocument[]> {
+    return this.userModel.find(null, null, options);
   }
 
   getUser(nickname: string, options?: mongoose.QueryOptions<User>): Promise<UserDocument> {
