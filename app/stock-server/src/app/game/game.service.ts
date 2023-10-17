@@ -100,7 +100,7 @@ export class GameService {
         } else {
           const isChange = companyPriceChange[i].some((v) => v === key);
           const prevPrice = newCompanies[company][i - 1].가격;
-          const price = isChange ? prevPrice + (Math.floor(Math.random() * 20000) - 10000) * 10 : prevPrice;
+          const price = isChange ? prevPrice + (Math.floor(Math.random() * 1000) - 500) * 100 : prevPrice;
           const info = [];
 
           if (isChange) {
