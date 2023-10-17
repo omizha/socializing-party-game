@@ -8,7 +8,7 @@ import { Query } from '../../hook';
 
 export default function Users() {
   const navigate = useNavigate();
-  const { mutateAsync } = Query.useUpdateGame();
+  const { mutateAsync } = Query.Game.useUpdateGame();
 
   const onStartGame = useCallback(() => {
     mutateAsync({

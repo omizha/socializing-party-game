@@ -27,7 +27,7 @@ export default function Quiz() {
   const [phase, setPhase] = useState<'intro' | 'quiz' | 'result'>('quiz');
   const [visibleProblem2, setVisibleProblem2] = useState<boolean>(false);
 
-  const { data: game } = Query.useGame();
+  const { data: game } = Query.Game.useGame();
   console.debug('🚀 ~ file: index.tsx:22 ~ Quiz ~ game:', game);
   const { emitQuizAnswerTime } = Socket.useEmitQuizAnswerTime();
   const { emitQuizAnswerStop } = Socket.useEmitQuizAnswerStop();

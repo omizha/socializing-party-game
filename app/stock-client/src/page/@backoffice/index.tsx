@@ -16,13 +16,13 @@ import UserList from './component/UserList';
 // 29 - 10
 // 30 - 10
 export default function Stock() {
-  const { mutateAsync: mutateUpdateGame } = Query.useUpdateGame();
-  const { mutateAsync: mutateInitStock } = Query.useInitStock();
-  const { mutateAsync: mutateResetGame } = Query.useResetGame();
-  const { mutateAsync: mutateBuyStock } = Query.useBuyStock();
-  const { mutateAsync: mutateSellStock } = Query.useSellStock();
-  const { data: users } = Query.useUsers();
-  const { data: game } = Query.useGame();
+  const { mutateAsync: mutateUpdateGame } = Query.Game.useUpdateGame();
+  const { mutateAsync: mutateInitStock } = Query.Game.useInitStock();
+  const { mutateAsync: mutateResetGame } = Query.Game.useResetGame();
+  const { mutateAsync: mutateBuyStock } = Query.Game.useBuyStock();
+  const { mutateAsync: mutateSellStock } = Query.Game.useSellStock();
+  const { data: users } = Query.useUserList();
+  const { data: game } = Query.Game.useGame();
 
   const companies = game?.companies ?? {};
   const companyNames = objectKeys(companies).length > 0 ? objectKeys(companies) : getRandomCompanyNames();

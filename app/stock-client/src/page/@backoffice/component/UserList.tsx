@@ -5,7 +5,7 @@ import { Query } from '../../../hook';
 interface UserListProps {}
 
 const UserList: React.FC<UserListProps> = ({}) => {
-  const { data: users } = Query.useUsers();
+  const { data: users } = Query.useUserList();
 
   const { mutateAsync: mutateRemoveUser } = Query.useRemoveUser();
   const { mutateAsync: mutateSetUser } = Query.useSetUser();

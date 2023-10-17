@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { UserSchema } from 'shared~type-stock';
 
-const useUsers = () => {
+const useUserList = () => {
   const { data, isSuccess } = useQuery<UserSchema[]>(
-    ['useUsers'],
+    ['useUserList'],
     async () => {
       const response = await fetch('http://localhost:3000/game/user', {
         method: 'GET',
@@ -19,4 +19,4 @@ const useUsers = () => {
   return { data: data ?? [] };
 };
 
-export default useUsers;
+export default useUserList;

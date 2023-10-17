@@ -1,4 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
+import { getDateDistance } from '@toss/date';
+import { objectEntries } from '@toss/utils';
 import { Response } from 'shared~type-stock';
 
 const useGame = () => {
@@ -22,7 +24,13 @@ const useGame = () => {
 
   data.startedTime = new Date(data.startedTime);
 
-  return { data };
+  const timeIdx = Math.floor(getDateDistance(data.startedTime, new Date()).minutes / 5);
+  const companiesPrice = objectEntries(data.companies).reduce((source, [company, companyInfos]) => {
+    source[company] = companyInfos[timeIdx].가격;
+    return source;
+  }, {} as Record<string, number>);
+
+  return { companiesPrice, data };
 };
 
 export default useGame;

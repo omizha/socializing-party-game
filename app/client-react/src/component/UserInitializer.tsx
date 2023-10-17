@@ -13,7 +13,7 @@ const UserInitializer = ({ children }: Props) => {
   Socket.useOnGame({});
   Socket.useOnCurrentUserList({});
 
-  Query.useGame();
+  Query.Game.useGame();
   Query.useUsers();
 
   const nickname = useAtomValue(UserStore.nickname);

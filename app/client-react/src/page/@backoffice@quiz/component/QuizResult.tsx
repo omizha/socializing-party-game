@@ -47,7 +47,7 @@ const QuizResult = ({ onExamNewProblem }: Props) => {
     setWrongUser(wrongUser);
   }, [answer, currentPhaseIdx, recordByPhase]);
 
-  const { mutateAsync: updateGame } = Query.useUpdateGame();
+  const { mutateAsync: updateGame } = Query.Game.useUpdateGame();
   const navigate = useNavigate();
   useEffect(() => {
     const callback = (ev: KeyboardEvent) => {

@@ -12,8 +12,8 @@ interface Props {
 }
 
 const Table = ({ elapsedTime, pov }: Props) => {
-  const { data: game } = Query.useGame();
-  const { data: users } = Query.useUsers();
+  const { data: game } = Query.Game.useGame();
+  const { data: users } = Query.useUserList();
 
   if (!game?.companies) {
     return <></>;

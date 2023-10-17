@@ -6,10 +6,11 @@ import { UserStore } from '../../../store';
 import Header from './Header';
 import { Query } from '../../../hook';
 import AccessDenided from './AccessDenided';
+import Stock from './Stock';
 
 const Phase = () => {
-  const { data: game } = Query.useGame();
-  const { data: users } = Query.useUsers();
+  const { data: game } = Query.Game.useGame();
+  const { data: users } = Query.useUserList();
   const gamePhase = game?.gamePhase ?? 'WAITING';
 
   const nickname = useAtomValue(UserStore.nickname);
@@ -21,14 +22,21 @@ const Phase = () => {
   }
 
   return (
-    <SwitchCase
-      value={gamePhase}
-      caseBy={{
-        CROWDING: isEntry ? <Waiting HeaderComponent={<Header title={nickname} hasQuitButton />} /> : <ProfileSetter />,
-        WAITING: <Waiting HeaderComponent={<Header title={nickname} />} />,
-      }}
-      defaultComponent={<Waiting HeaderComponent={<Header title={nickname} />} />}
-    />
+    <>
+      <SwitchCase
+        value={gamePhase}
+        caseBy={{
+          CROWDING: isEntry ? (
+            <Waiting HeaderComponent={<Header title={nickname} hasQuitButton />} />
+          ) : (
+            <ProfileSetter />
+          ),
+          PLAYING: <Stock />,
+          WAITING: <Waiting HeaderComponent={<Header title={nickname} />} />,
+        }}
+        defaultComponent={<Waiting HeaderComponent={<Header title={nickname} />} />}
+      />
+    </>
   );
 };
 

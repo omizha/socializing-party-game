@@ -8,7 +8,7 @@ const BackofficeInitializer = () => {
   // Socket.useOnDisconnected({});
   Socket.useOnCurrentUserList({});
 
-  Query.useGame();
+  Query.Game.useGame();
   Query.useUsers();
 
   const isConnected = useAtomValue(SocketStore.isConnected);
