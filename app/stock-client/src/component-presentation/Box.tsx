@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 interface BoxProps {
   title?: string;
   value: string;
+  valueColor?: CSSProperties['color'];
   rightComponent?: React.ReactNode;
 }
 
-const Box: React.FC<BoxProps> = ({ title, value, rightComponent }) => {
+const Box: React.FC<BoxProps> = ({ title, value, valueColor, rightComponent }) => {
   return (
     <Container>
       <div>
         {title && <ContainerTitle>{title}</ContainerTitle>}
-        <ContainerBolder>{value}</ContainerBolder>
+        <ContainerBolder
+          css={css`
+            color: ${valueColor};
+          `}
+        >
+          {value}
+        </ContainerBolder>
       </div>
       {rightComponent}
     </Container>
