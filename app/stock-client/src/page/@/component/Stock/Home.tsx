@@ -41,6 +41,13 @@ const Home = () => {
   return (
     <>
       <Box
+        title="진행 시간"
+        value={`${prependZero(getDateDistance(game.startedTime, new Date()).minutes, 2)}:${prependZero(
+          getDateDistance(game.startedTime, new Date()).seconds,
+          2,
+        )}`}
+      />
+      <Box
         title="잔액"
         value={`${commaizeNumber(user.money)}원`}
         rightComponent={<>{users.sort((a, b) => b.money - a.money).findIndex((v) => v.nickname === nickname) + 1}위</>}
@@ -59,13 +66,6 @@ const Home = () => {
         title="모두 팔고 난 뒤의 순이익"
         value={`${getProfitRatio(user.money + allSellPrice)}%`}
         rightComponent={<>{allProfitDesc.findIndex((v) => v.nickname === nickname) + 1}위</>}
-      />
-      <Box
-        title="진행 시간"
-        value={`${prependZero(getDateDistance(game.startedTime, new Date()).minutes, 2)}:${prependZero(
-          getDateDistance(game.startedTime, new Date()).seconds,
-          2,
-        )}`}
       />
     </>
   );
