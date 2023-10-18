@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CompanyInfo, Request } from 'shared~type-stock';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model, UpdateQuery } from 'mongoose';
@@ -147,7 +147,7 @@ export class GameService {
       const players = await this.userService.getUsers({ session });
 
       if (!user) {
-        throw new Error('user not found');
+        throw new HttpException('유저 정보를 불러올 수 없습니다', HttpStatus.CONFLICT);
       }
 
       const companies = game.companies as unknown as Map<string, CompanyInfo[]>;
@@ -155,11 +155,11 @@ export class GameService {
 
       const companyInfo = companies.get(company);
       if (!companyInfo) {
-        throw new Error('company not found');
+        throw new HttpException('회사를 찾을 수 없습니다', HttpStatus.CONFLICT);
       }
 
       if (remainingStocks?.get(company) < amount) {
-        throw new Error('not enough stocks');
+        throw new HttpException('시장에 주식이 없습니다', HttpStatus.CONFLICT);
       }
 
       // 5분 단위로 가격이 변함
@@ -167,17 +167,17 @@ export class GameService {
       const companyPrice = companyInfo[idx].가격;
       const totalPrice = companyPrice * amount;
       if (user.money < totalPrice) {
-        throw new Error('not enough money');
+        throw new HttpException('돈이 부족합니다', HttpStatus.CONFLICT);
       }
       if (companyPrice !== unitPrice) {
-        throw new Error('invalid price');
+        throw new HttpException('주가가 변동되었습니다. 다시 시도해주세요', HttpStatus.CONFLICT);
       }
 
       const inventory = user.inventory as unknown as Map<string, number>;
       const companyCount = inventory.get(company) || 0;
 
       if (companyCount + amount > players.length - 1) {
-        throw new Error('too many stocks');
+        throw new HttpException('주식 보유 한도 초과', HttpStatus.CONFLICT);
       }
 
       inventory.set(company, companyCount + amount);
@@ -210,7 +210,7 @@ export class GameService {
       const user = await this.userService.getUser(nickname, { session });
 
       if (!user) {
-        throw new Error('user not found');
+        throw new HttpException('유저 정보를 불러올 수 없습니다', HttpStatus.CONFLICT);
       }
 
       const companies = game.companies as unknown as Map<string, CompanyInfo[]>;
@@ -219,12 +219,12 @@ export class GameService {
       const remainingCompanyStock = remainingStocks.get(company);
 
       if (!companyInfo) {
-        throw new Error('company not found');
+        throw new HttpException('회사 정보를 불러올 수 없습니다', HttpStatus.CONFLICT);
       }
 
       const inventory = user.inventory as unknown as Map<string, number>;
       if (!inventory.get(company) || inventory.get(company) < amount) {
-        throw new Error('not enough stocks');
+        throw new HttpException('주식을 보유하고 있지 않습니다', HttpStatus.CONFLICT);
       }
 
       const idx = Math.floor(getDateDistance(game.startedTime, new Date()).minutes / 5);
@@ -232,7 +232,7 @@ export class GameService {
       const totalPrice = companyPrice * amount;
 
       if (companyPrice !== unitPrice) {
-        throw new Error('invalid price');
+        throw new HttpException('주가가 변동되었습니다. 다시 시도해주세요', HttpStatus.CONFLICT);
       }
 
       inventory.set(company, inventory.get(company) - amount);
