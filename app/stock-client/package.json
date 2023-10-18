@@ -22,6 +22,7 @@
     "@toss/date": "^1.1.7",
     "@toss/react": "^1.5.0",
     "@toss/utils": "^1.4.4",
+    "antd": "^5.10.1",
     "jotai": "^2.4.2",
     "leva": "^0.9.35",
     "localforage": "^1.10.0",
