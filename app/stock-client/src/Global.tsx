@@ -1,5 +1,6 @@
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
 import QueryClientProvider from './library/react-query/QueryClientProvider';
 import App from './page/@';
 import Stock from './page/@backoffice';
@@ -18,7 +19,15 @@ const router = createBrowserRouter([
 const Global: React.FC = () => {
   return (
     <QueryClientProvider devtoolEnabled>
-      <RouterProvider router={router} />
+      <ConfigProvider
+        message={{
+          style: {
+            marginTop: '12px',
+          },
+        }}
+      >
+        <RouterProvider router={router} />
+      </ConfigProvider>
     </QueryClientProvider>
   );
 };
