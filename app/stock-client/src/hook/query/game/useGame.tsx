@@ -36,7 +36,7 @@ const useGame = () => {
     return source;
   }, {} as Record<string, number>);
 
-  return { companiesPrice, data };
+  return { companiesPrice, data, timeIdx };
 };
 
 export default useGame;

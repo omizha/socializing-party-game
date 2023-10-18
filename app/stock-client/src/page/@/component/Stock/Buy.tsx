@@ -9,7 +9,7 @@ import { UserStore } from '../../../../store';
 const Buy = () => {
   const nickname = useAtomValue(UserStore.nickname);
 
-  const { data: game, companiesPrice } = Query.Game.useGame();
+  const { data: game, companiesPrice, timeIdx } = Query.Game.useGame();
   const { mutateAsync: buyStock } = Query.Game.useBuyStock();
 
   if (!game) {
@@ -19,6 +19,8 @@ const Buy = () => {
   const onClickBuy = (company: string) => {
     buyStock({ amount: 1, company, nickname, unitPrice: companiesPrice[company] });
   };
+
+  const isDisabled = timeIdx === undefined || timeIdx >= 9;
 
   return (
     <>
@@ -31,7 +33,7 @@ const Buy = () => {
             rightComponent={
               <Button
                 icon={<ShoppingCartOutlined />}
-                disabled={count === 0}
+                disabled={count === 0 || isDisabled}
                 onClick={() => {
                   onClickBuy(company);
                 }}
