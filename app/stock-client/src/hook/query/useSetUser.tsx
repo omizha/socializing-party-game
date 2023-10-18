@@ -1,11 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
 import { UserSchema } from 'shared~type-stock';
+import { serverApiUrl } from '../../config/baseUrl';
 
 const useSetUser = () => {
   const { mutateAsync } = useMutation<UserSchema[], unknown, UserSchema>(
     ['game', 'setUser'],
     async (user: UserSchema) => {
-      const response = await fetch('http://localhost:3000/game/user', {
+      const response = await fetch(`${serverApiUrl}/game/user`, {
         body: JSON.stringify(user),
         headers: {
           'Content-Type': 'application/json',

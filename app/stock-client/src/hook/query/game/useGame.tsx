@@ -2,12 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import { getDateDistance } from '@toss/date';
 import { objectEntries } from '@toss/utils';
 import { Response } from 'shared~type-stock';
+import { serverApiUrl } from '../../../config/baseUrl';
 
 const useGame = () => {
   const { data } = useQuery<Response.Game>(
     ['game'],
     async () => {
-      const response = await fetch('http://localhost:3000/game', {
+      const response = await fetch(`${serverApiUrl}/game`, {
         method: 'GET',
       });
 

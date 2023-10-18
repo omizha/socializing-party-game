@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { Response } from 'shared~type';
+import { serverApiUrl } from '../../../config/baseUrl';
 
 const useUpdateGame = () => {
   const { mutateAsync } = useMutation<Response.Game>(['useInitStock'], async () => {
-    const response = await fetch('http://localhost:3000/game/stock/init', {
+    const response = await fetch(`${serverApiUrl}/game/stock/init`, {
       headers: {
         'Content-Type': 'application/json',
       },
