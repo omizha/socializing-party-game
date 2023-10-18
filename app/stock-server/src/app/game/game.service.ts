@@ -186,6 +186,7 @@ export class GameService {
       remainingStocks.set(company, remainingCompanyStock - amount);
 
       user.money -= totalPrice;
+      user.lastActivityTime = new Date();
 
       await user.save({
         session,
@@ -236,6 +237,7 @@ export class GameService {
 
       inventory.set(company, inventory.get(company) - amount);
       user.money += totalPrice;
+      user.lastActivityTime = new Date();
 
       remainingStocks.set(company, remainingCompanyStock + amount);
 

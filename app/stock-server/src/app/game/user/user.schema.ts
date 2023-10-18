@@ -13,10 +13,14 @@ export class User implements UserSchema {
   @Prop({ type: SchemaTypes.Map })
   inventory: Record<string, number>;
 
+  @Prop({ type: SchemaTypes.Date })
+  lastActivityTime: Date;
+
   constructor(nickname: string) {
     this.nickname = nickname;
     this.money = 1000000;
     this.inventory = {};
+    this.lastActivityTime = new Date();
   }
 }
 

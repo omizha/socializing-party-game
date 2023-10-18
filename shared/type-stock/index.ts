@@ -5,6 +5,7 @@ export type UserSchema = {
   nickname: string;
   money: number;
   inventory: Record<string, number>;
+  lastActivityTime: Date;
 };
 
 const GamePhase = {
