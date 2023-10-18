@@ -52,6 +52,33 @@ export default function Stock() {
       <hr />
       <button
         onClick={() => {
+          mutateUpdateGame({
+            gamePhase: 'CROWDING',
+          });
+        }}
+      >
+        CRAWDING
+      </button>
+      <button
+        onClick={() => {
+          mutateUpdateGame({
+            gamePhase: 'WAITING',
+          });
+        }}
+      >
+        WAITING
+      </button>
+      <button
+        onClick={() => {
+          mutateUpdateGame({
+            gamePhase: 'PLAYING',
+          });
+        }}
+      >
+        PLAYING
+      </button>
+      <button
+        onClick={() => {
           mutateResetGame();
         }}
       >

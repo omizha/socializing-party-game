@@ -1,6 +1,8 @@
 import React from 'react';
 import { objectEntries } from '@toss/utils';
 import { useAtomValue } from 'jotai';
+import { Button } from 'antd';
+import { DollarOutlined } from '@ant-design/icons';
 import Box from '../../../../component-presentation/Box';
 import { UserStore } from '../../../../store';
 import { Query } from '../../../../hook';
@@ -25,16 +27,18 @@ const Sell = () => {
       {objectEntries(user.inventory).map(([company, count]) => (
         <Box
           key={company}
-          title={`${count}장 소지중`}
+          title={`${count}주 가지고 있음`}
           value={company}
           rightComponent={
-            <button
+            <Button
+              icon={<DollarOutlined />}
+              disabled={count === 0}
               onClick={() => {
                 onClickSell(company);
               }}
             >
               팔기
-            </button>
+            </Button>
           }
         />
       ))}

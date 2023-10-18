@@ -1,5 +1,7 @@
 import { objectEntries } from '@toss/utils';
 import { useAtomValue } from 'jotai';
+import { Button } from 'antd';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 import Box from '../../../../component-presentation/Box';
 import { Query } from '../../../../hook';
 import { UserStore } from '../../../../store';
@@ -24,16 +26,18 @@ const Buy = () => {
         return (
           <Box
             key={company}
-            title={`${count}장 남음`}
+            title={`${count}주 남음`}
             value={company}
             rightComponent={
-              <button
+              <Button
+                icon={<ShoppingCartOutlined />}
+                disabled={count === 0}
                 onClick={() => {
                   onClickBuy(company);
                 }}
               >
                 사기
-              </button>
+              </Button>
             }
           />
         );
