@@ -1,11 +1,12 @@
 import React from 'react';
 import { useAtomValue } from 'jotai';
-import { commaizeNumber } from '@toss/utils';
+import { commaizeNumber, objectEntries } from '@toss/utils';
 import { getDateDistance } from '@toss/date';
 import { Query } from '../../../../hook';
 import { UserStore } from '../../../../store';
 import Box from '../../../../component-presentation/Box';
 import prependZero from '../../../../service/prependZero';
+import { down as colorDown, up as colorUp } from '../../../../config/color';
 
 const Home = () => {
   const nickname = useAtomValue(UserStore.nickname);
@@ -38,8 +39,23 @@ const Home = () => {
     })
     .sort((a, b) => b.profit - a.profit);
 
+  const myInfos = objectEntries(game.companies).reduce((reducer, [company, companyInfos]) => {
+    companyInfos.forEach((companyInfo, idx) => {
+      if (companyInfos[idx].정보.some((name) => name === nickname)) {
+        reducer.push({
+          company,
+          price: companyInfo.가격 - companyInfos[idx - 1].가격,
+          timeIdx: idx,
+        });
+      }
+    });
+
+    return reducer;
+  }, [] as Array<{ company: string; timeIdx: number; price: number }>);
+
   return (
     <>
+      <h3>홈</h3>
       <Box
         title="진행 시간"
         value={`${prependZero(getDateDistance(game.startedTime, new Date()).minutes, 2)}:${prependZero(
@@ -67,6 +83,19 @@ const Home = () => {
         value={`${getProfitRatio(user.money + allSellPrice)}%`}
         rightComponent={<>{allProfitDesc.findIndex((v) => v.nickname === nickname) + 1}위</>}
       />
+      <hr />
+      <h3>내가 가진 정보</h3>
+      {myInfos.map(({ company, price, timeIdx }) => {
+        return (
+          <Box
+            key={`${company}_${timeIdx}`}
+            title={`${company}`}
+            value={`${price >= 0 ? '▲' : '▼'}${commaizeNumber(Math.abs(price))}`}
+            valueColor={price >= 0 ? colorUp : colorDown}
+            rightComponent={<>00:{prependZero(timeIdx * 5, 2)}</>}
+          />
+        );
+      })}
     </>
   );
 };
