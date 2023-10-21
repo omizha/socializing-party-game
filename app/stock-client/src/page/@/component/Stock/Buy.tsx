@@ -10,7 +10,7 @@ const Buy = () => {
   const nickname = useAtomValue(UserStore.nickname);
 
   const { data: game, companiesPrice, timeIdx } = Query.Game.useGame();
-  const { mutateAsync: buyStock } = Query.Game.useBuyStock();
+  const { mutateAsync: buyStock, isLoading } = Query.Game.useBuyStock();
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -51,6 +51,7 @@ const Buy = () => {
               <Button
                 icon={<ShoppingCartOutlined />}
                 disabled={count === 0 || isDisabled}
+                loading={isLoading}
                 onClick={() => {
                   onClickBuy(company);
                 }}

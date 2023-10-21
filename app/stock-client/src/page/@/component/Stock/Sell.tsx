@@ -10,9 +10,9 @@ import { Query } from '../../../../hook';
 const Sell = () => {
   const nickname = useAtomValue(UserStore.nickname);
 
-  const { data: game, companiesPrice } = Query.Game.useGame();
+  const { data: game, companiesPrice, timeIdx } = Query.Game.useGame();
   const { user } = Query.useUser(nickname);
-  const { mutateAsync: sellStock } = Query.Game.useSellStock();
+  const { mutateAsync: sellStock, isLoading } = Query.Game.useSellStock();
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -38,6 +38,8 @@ const Sell = () => {
       });
   };
 
+  const isDisabled = timeIdx === undefined || timeIdx >= 9;
+
   return (
     <>
       {contextHolder}
@@ -49,7 +51,8 @@ const Sell = () => {
           rightComponent={
             <Button
               icon={<DollarOutlined />}
-              disabled={count === 0}
+              disabled={count === 0 || isDisabled}
+              loading={isLoading}
               onClick={() => {
                 onClickSell(company);
               }}

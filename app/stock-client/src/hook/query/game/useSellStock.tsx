@@ -5,7 +5,7 @@ import { serverApiUrl } from '../../../config/baseUrl';
 import handleResponse from '../../../service/handleResponse';
 
 const useSellStock = () => {
-  const { mutateAsync } = useMutation<Response.Game, unknown, Request.SellStock>(
+  const { mutateAsync, isLoading } = useMutation<Response.Game, unknown, Request.SellStock>(
     ['useSellStock'],
     async (data) => {
       const response = await fetch(`${serverApiUrl}/game/stock/sell`, {
@@ -23,7 +23,7 @@ const useSellStock = () => {
     },
   );
 
-  return { mutateAsync };
+  return { isLoading, mutateAsync };
 };
 
 export default useSellStock;

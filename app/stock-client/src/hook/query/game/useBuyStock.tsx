@@ -5,7 +5,7 @@ import { serverApiUrl } from '../../../config/baseUrl';
 import handleResponse from '../../../service/handleResponse';
 
 const useBuyStock = () => {
-  const { mutateAsync, error } = useMutation<Response.Game, unknown, Request.BuyStock>(
+  const { mutateAsync, isLoading } = useMutation<Response.Game, unknown, Request.BuyStock>(
     ['useBuyStock'],
     async (data) => {
       const response = await fetch(`${serverApiUrl}/game/stock/buy`, {
@@ -22,9 +22,8 @@ const useBuyStock = () => {
       useErrorBoundary: false,
     },
   );
-  console.debug('🚀 ~ file: useBuyStock.tsx:9 ~ useBuyStock ~ error:', error);
 
-  return { mutateAsync };
+  return { isLoading, mutateAsync };
 };
 
 export default useBuyStock;
