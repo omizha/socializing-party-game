@@ -26,12 +26,22 @@
         height: 100%;
 
         color: white;
-        text-shadow: 2px 2px #8461f8;
+        /* text-shadow: 2px 2px #8461f8; */
       }
 
       html {
         background: url(/background.jpg) no-repeat center center;
-        background-size: cover;
+        background-size: 200vw 200vh;
+      }
+
+      html,
+      body {
+        position: fixed;
+        overflow: hidden;
+      }
+
+      #root {
+        overflow-y: scroll;
       }
     </style>
   </head>
