@@ -19,12 +19,20 @@ export class Game implements GameSchema {
   @Prop({ type: SchemaTypes.Map })
   remainingStocks: Record<string, number>;
 
+  @Prop()
+  isVisibleRank: boolean;
+
+  @Prop()
+  isTransaction: boolean;
+
   constructor() {
     this.unique = true;
     this.gamePhase = 'CROWDING';
     this.startedTime = new Date();
     this.remainingStocks = {};
     this.companies = {};
+    this.isVisibleRank = false;
+    this.isTransaction = false;
   }
 }
 

@@ -38,7 +38,7 @@ const Sell = () => {
       });
   };
 
-  const isDisabled = timeIdx === undefined || timeIdx >= 9;
+  const isDisabled = timeIdx === undefined || timeIdx >= 9 || !game.isTransaction;
 
   return (
     <>

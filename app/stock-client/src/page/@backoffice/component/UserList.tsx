@@ -16,7 +16,12 @@ const UserList: React.FC<UserListProps> = ({}) => {
         placeholder="초기화할 유저 닉네임"
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
-            mutateSetUser({ inventory: {}, money: 1000000, nickname: event.currentTarget.value });
+            mutateSetUser({
+              inventory: {},
+              lastActivityTime: new Date(),
+              money: 1000000,
+              nickname: event.currentTarget.value,
+            });
           }
         }}
       />

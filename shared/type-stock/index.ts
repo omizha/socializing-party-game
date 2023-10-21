@@ -26,4 +26,6 @@ export type GameSchema = {
   startedTime: Date;
   companies: Record<string, CompanyInfo[]>;
   remainingStocks: Record<string, number>;
+  isVisibleRank: boolean;
+  isTransaction: boolean;
 };

@@ -21,6 +21,7 @@ export default function Stock() {
   const { mutateAsync: mutateResetGame } = Query.Game.useResetGame();
   const { mutateAsync: mutateBuyStock } = Query.Game.useBuyStock();
   const { mutateAsync: mutateSellStock } = Query.Game.useSellStock();
+  const { mutateAsync: mutateFinishStock } = Query.Game.useFinishStock();
   const { data: users } = Query.useUserList();
   const { data: game } = Query.Game.useGame();
 
@@ -90,6 +91,32 @@ export default function Stock() {
         }}
       >
         주식 초기화
+      </button>
+      <button
+        onClick={() => {
+          mutateUpdateGame({
+            isTransaction: true,
+            startedTime: new Date(),
+          });
+        }}
+      >
+        주식 거래 활성화
+      </button>
+      <button
+        onClick={() => {
+          mutateFinishStock();
+        }}
+      >
+        주식 종료 및 정상
+      </button>
+      <button
+        onClick={() => {
+          mutateUpdateGame({
+            isTransaction: !game?.isTransaction,
+          });
+        }}
+      >
+        주식 토글 (현재상태:{game?.isTransaction ? 'true' : 'false'})
       </button>
       <button
         onClick={() => {

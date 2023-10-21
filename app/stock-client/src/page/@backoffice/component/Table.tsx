@@ -100,7 +100,7 @@ const Table = ({ elapsedTime, pov }: Props) => {
               <tr key={user.nickname}>
                 <Td>{user.nickname}</Td>
                 {companyNames.map((company) => {
-                  return <Td key={company}>{user.inventory[company] ?? ''}</Td>;
+                  return <Td key={company}>{user.inventory[company] || ''}</Td>;
                 })}
               </tr>
             );

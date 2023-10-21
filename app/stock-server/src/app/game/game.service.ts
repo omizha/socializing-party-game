@@ -128,6 +128,8 @@ export class GameService {
       $set: {
         companies: newCompanies,
         gamePhase: 'PLAYING',
+        isTransaction: false,
+        isVisibleRank: false,
         remainingStocks,
         startedTime: new Date(),
       },
@@ -145,6 +147,10 @@ export class GameService {
       const game = await this.get({ session });
       const user = await this.userService.getUser(nickname, { session });
       const players = await this.userService.getUsers({ session });
+
+      if (!game.isTransaction) {
+        throw new HttpException('지금은 거래할 수 없습니다', HttpStatus.CONFLICT);
+      }
 
       if (!user) {
         throw new HttpException('유저 정보를 불러올 수 없습니다', HttpStatus.CONFLICT);
@@ -218,6 +224,10 @@ export class GameService {
         throw new HttpException('유저 정보를 불러올 수 없습니다', HttpStatus.CONFLICT);
       }
 
+      if (!game.isTransaction) {
+        throw new HttpException('지금은 거래할 수 없습니다', HttpStatus.CONFLICT);
+      }
+
       const { minutes, seconds } = getDateDistance(user.lastActivityTime, new Date());
       if (minutes === 0 && seconds < 10) {
         throw new HttpException('10초에 한 번만 거래할 수 있습니다', HttpStatus.CONFLICT);
@@ -259,37 +269,39 @@ export class GameService {
     return result;
   }
 
-  async sellAllStock(nickname: string): Promise<Game> {
+  async allUserSellStock(): Promise<Game> {
     let result: Game;
 
     const session = await this.connection.startSession();
     await session.withTransaction(async () => {
       const game = await this.get(session);
-      const user = await this.userService.getUser(nickname);
+      const users = await this.userService.getUsers(session);
 
-      if (!user) {
-        throw new Error('user not found');
+      if (!users) {
+        throw new Error('users not found');
       }
 
-      const { inventory } = user;
-      const { companies } = game;
-      const { remainingStocks } = game;
+      for await (const user of users) {
+        const inventory = user.inventory as unknown as Map<string, number>;
+        const companies = game.companies as unknown as Map<string, CompanyInfo[]>;
+        const remainingStocks = game.remainingStocks as unknown as Map<string, number>;
 
-      Object.keys(inventory).forEach((company) => {
-        const amount = inventory[company];
-        const idx = Math.floor(getDateDistance(new Date(), game.startedTime).minutes / 5);
-        const companyPrice = companies?.[company]?.[idx]?.가격;
-        const totalPrice = companyPrice * amount;
+        inventory.forEach((amount, company) => {
+          const idx = Math.floor(getDateDistance(new Date(), game.startedTime).minutes / 5);
+          const companyPrice = companies.get(company)[idx]?.가격;
+          const totalPrice = companyPrice * amount;
 
-        user.money += totalPrice;
-        remainingStocks[company] += amount;
-        inventory[company] = 0;
-      });
+          user.money += totalPrice;
+          remainingStocks.set(company, remainingStocks.get(company) + amount);
+          inventory.set(company, 0);
+        });
 
-      await user.save();
-      result = await game.save();
+        await user.save({ session });
+      }
+
+      result = await game.save({ session });
     });
-    session.endSession();
+    await session.endSession();
 
     return result;
   }

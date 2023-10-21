@@ -37,4 +37,10 @@ export class GameController {
   sellStock(@Body() body: Request.SellStock): Promise<Game> {
     return this.gameService.sellStock(body);
   }
+
+  @Post('/stock/finish')
+  async stockFinish(): Promise<Game> {
+    await this.gameService.updateGame({ isTransaction: false });
+    return this.gameService.allUserSellStock();
+  }
 }
