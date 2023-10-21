@@ -150,6 +150,11 @@ export class GameService {
         throw new HttpException('유저 정보를 불러올 수 없습니다', HttpStatus.CONFLICT);
       }
 
+      const { minutes, seconds } = getDateDistance(user.lastActivityTime, new Date());
+      if (minutes === 0 && seconds < 10) {
+        throw new HttpException('10초에 한 번만 거래할 수 있습니다', HttpStatus.CONFLICT);
+      }
+
       const companies = game.companies as unknown as Map<string, CompanyInfo[]>;
       const remainingStocks = game.remainingStocks as unknown as Map<string, number>;
 
@@ -211,6 +216,11 @@ export class GameService {
 
       if (!user) {
         throw new HttpException('유저 정보를 불러올 수 없습니다', HttpStatus.CONFLICT);
+      }
+
+      const { minutes, seconds } = getDateDistance(user.lastActivityTime, new Date());
+      if (minutes === 0 && seconds < 10) {
+        throw new HttpException('10초에 한 번만 거래할 수 있습니다', HttpStatus.CONFLICT);
       }
 
       const companies = game.companies as unknown as Map<string, CompanyInfo[]>;

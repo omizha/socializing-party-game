@@ -11,7 +11,7 @@ const Sell = () => {
   const nickname = useAtomValue(UserStore.nickname);
 
   const { data: game, companiesPrice, timeIdx } = Query.Game.useGame();
-  const { user } = Query.useUser(nickname);
+  const { user, isFreezed } = Query.useUser(nickname);
   const { mutateAsync: sellStock, isLoading } = Query.Game.useSellStock();
 
   const [messageApi, contextHolder] = message.useMessage();
@@ -52,7 +52,7 @@ const Sell = () => {
             <Button
               icon={<DollarOutlined />}
               disabled={count === 0 || isDisabled}
-              loading={isLoading}
+              loading={isLoading || isFreezed}
               onClick={() => {
                 onClickSell(company);
               }}

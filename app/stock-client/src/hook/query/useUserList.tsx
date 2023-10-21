@@ -17,6 +17,14 @@ const useUserList = () => {
     },
   );
 
+  if (!data) {
+    return { data: [] };
+  }
+
+  data.forEach((v) => {
+    v.lastActivityTime = new Date(v.lastActivityTime);
+  });
+
   return { data: data ?? [] };
 };
 
