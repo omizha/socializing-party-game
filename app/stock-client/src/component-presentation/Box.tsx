@@ -33,10 +33,10 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #ffffff;
+  background-color: #000084;
+  box-shadow: 5px 5px #000000;
   box-sizing: border-box;
   padding: 12px;
-  border-radius: 8px;
   overflow: hidden;
 
   margin-bottom: 12px;

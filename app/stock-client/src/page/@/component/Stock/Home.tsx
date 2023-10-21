@@ -2,6 +2,7 @@ import React from 'react';
 import { useAtomValue } from 'jotai';
 import { commaizeNumber, objectEntries } from '@toss/utils';
 import { getDateDistance } from '@toss/date';
+import styled from '@emotion/styled';
 import { Query } from '../../../../hook';
 import { UserStore } from '../../../../store';
 import Box from '../../../../component-presentation/Box';
@@ -55,7 +56,7 @@ const Home = () => {
 
   return (
     <>
-      <h3>홈</h3>
+      <H3>홈</H3>
       <Box
         title="진행 시간"
         value={`${prependZero(getDateDistance(game.startedTime, new Date()).minutes, 2)}:${prependZero(
@@ -83,8 +84,8 @@ const Home = () => {
         value={`${getProfitRatio(user.money + allSellPrice)}%`}
         rightComponent={<>{allProfitDesc.findIndex((v) => v.nickname === nickname) + 1}위</>}
       />
-      <hr />
-      <h3>내가 가진 정보</h3>
+      <br />
+      <H3>내가 가진 정보</H3>
       {myInfos.map(({ company, price, timeIdx }) => {
         return (
           <Box
@@ -99,5 +100,9 @@ const Home = () => {
     </>
   );
 };
+
+const H3 = styled.h3`
+  text-shadow: 2px 2px #8461f8;
+`;
 
 export default Home;

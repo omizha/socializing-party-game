@@ -59,7 +59,7 @@ const Stock = () => {
         <div
           css={css`
             padding: 0 16px;
-            background-color: #ffffff;
+            background-color: #bbb;
           `}
         >
           <Tabs
@@ -68,8 +68,10 @@ const Stock = () => {
             items={items}
             onChange={onClickTab}
             tabBarStyle={{
+              color: '#bbb',
               margin: '0 0 0 0',
             }}
+            type="card"
           />
         </div>
         <ContentContainer>

@@ -4,6 +4,7 @@ import { ConfigProvider } from 'antd';
 import QueryClientProvider from './library/react-query/QueryClientProvider';
 import App from './page/@';
 import Stock from './page/@backoffice';
+import Screen from './page/@screen';
 
 const router = createBrowserRouter([
   {
@@ -14,15 +15,25 @@ const router = createBrowserRouter([
     element: <Stock />,
     path: '/backoffice',
   },
+  {
+    element: <Screen />,
+    path: '/screen',
+  },
 ]);
 
 const Global: React.FC = () => {
   return (
     <QueryClientProvider devtoolEnabled>
       <ConfigProvider
-        message={{
-          style: {
-            marginTop: '12px',
+        theme={{
+          components: {
+            Tabs: {
+              cardBg: '#BBB',
+              inkBarColor: '#FFFF44',
+            },
+          },
+          token: {
+            fontFamily: 'DungGeunMo',
           },
         }}
       >
