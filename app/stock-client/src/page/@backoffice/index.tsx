@@ -120,6 +120,15 @@ export default function Stock() {
       </button>
       <button
         onClick={() => {
+          mutateUpdateGame({
+            isVisibleRank: !game?.isVisibleRank,
+          });
+        }}
+      >
+        순위 공개 토글 (현재상태:{game?.isVisibleRank ? 'true' : 'false'})
+      </button>
+      <button
+        onClick={() => {
           setPov(pov === 'host' ? 'player' : 'host');
         }}
       >

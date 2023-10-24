@@ -67,22 +67,34 @@ const Home = () => {
       <Box
         title="잔액"
         value={`${commaizeNumber(user.money)}원`}
-        rightComponent={<>{users.sort((a, b) => b.money - a.money).findIndex((v) => v.nickname === nickname) + 1}위</>}
+        rightComponent={
+          game.isVisibleRank ? (
+            <>{users.sort((a, b) => b.money - a.money).findIndex((v) => v.nickname === nickname) + 1}위</>
+          ) : (
+            <></>
+          )
+        }
       />
       <Box
         title="주식 가치"
         value={`${commaizeNumber(allSellPrice)}원`}
-        rightComponent={<>{allUserSellPriceDesc().findIndex((v) => v.nickname === nickname) + 1}위</>}
+        rightComponent={
+          game.isVisibleRank ? <>{allUserSellPriceDesc().findIndex((v) => v.nickname === nickname) + 1}위</> : <></>
+        }
       />
       <Box
         title="모두 팔고 난 뒤의 금액"
         value={`${commaizeNumber(user.money + allSellPrice)}원`}
-        rightComponent={<>{allProfitDesc.findIndex((v) => v.nickname === nickname) + 1}위</>}
+        rightComponent={
+          game.isVisibleRank ? <>{allProfitDesc.findIndex((v) => v.nickname === nickname) + 1}위</> : <></>
+        }
       />
       <Box
         title="모두 팔고 난 뒤의 순이익"
         value={`${getProfitRatio(user.money + allSellPrice)}%`}
-        rightComponent={<>{allProfitDesc.findIndex((v) => v.nickname === nickname) + 1}위</>}
+        rightComponent={
+          game.isVisibleRank ? <>{allProfitDesc.findIndex((v) => v.nickname === nickname) + 1}위</> : <></>
+        }
       />
       <br />
       <H3>내가 가진 정보</H3>

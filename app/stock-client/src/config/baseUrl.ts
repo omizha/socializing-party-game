@@ -1,1 +1,1 @@
-export const serverApiUrl = 'http://192.168.50.241:3000';
+export const serverApiUrl = `http://${window.location.hostname}:3000`;

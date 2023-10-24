@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 
 const Global: React.FC = () => {
   return (
-    <QueryClientProvider devtoolEnabled>
+    <QueryClientProvider>
       <ConfigProvider
         theme={{
           components: {
