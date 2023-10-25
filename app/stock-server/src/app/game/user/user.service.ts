@@ -67,4 +67,17 @@ export class UserService {
 
     return undefined;
   }
+
+  async initializeUsers(options?: mongoose.QueryOptions<User>): Promise<void> {
+    console.debug('initializeUsers');
+    try {
+      await this.userModel.updateMany(
+        null,
+        { $set: { inventory: {}, lastActivityTime: new Date(), money: 1000000 } },
+        options,
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }

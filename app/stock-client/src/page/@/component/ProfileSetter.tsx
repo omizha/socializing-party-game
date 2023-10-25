@@ -21,7 +21,7 @@ const ProfileSetter = () => {
         const nickname = nicknameInputRef.current.value;
         set(UserStore.nickname, nickname);
 
-        await mutateAsync({ inventory: {}, money: 1000000, nickname });
+        await mutateAsync({ inventory: {}, lastActivityTime: new Date(), money: 1000000, nickname });
       },
       [mutateAsync],
     ),
