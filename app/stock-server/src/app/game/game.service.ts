@@ -61,13 +61,15 @@ export class GameService {
         $set: {
           companies: {},
           gamePhase: 'CROWDING',
+          isTransaction: false,
+          isVisibleRank: false,
           remainingStocks: {},
           startedTime: new Date(),
         },
       });
-      // await this.userService.removeAllUser();
+      await this.userService.initializeUsers({ session });
     });
-    session.endSession();
+    await session.endSession();
 
     return game;
   }
@@ -100,7 +102,8 @@ export class GameService {
         } else {
           const isChange = companyPriceChange[i].some((v) => v === key);
           const prevPrice = newCompanies[company][i - 1].가격;
-          const price = isChange ? prevPrice + (Math.floor(Math.random() * 1000) - 500) * 100 : prevPrice;
+          // const price = isChange ? prevPrice + (Math.floor(Math.random() * 1000) - 500) * 100 : prevPrice;
+          const price = prevPrice + (Math.floor(Math.random() * 1000) - 500) * 100;
           const info = [];
 
           if (isChange) {
