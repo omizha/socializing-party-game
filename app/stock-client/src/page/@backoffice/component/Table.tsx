@@ -48,14 +48,14 @@ const Table = ({ elapsedTime, pov }: Props) => {
           {Array.from({ length: 10 }, (_, idx) => {
             return (
               <tr key={idx}>
-                <Td>{`${prependZero(idx * 5, 2)}분`}</Td>
+                <Td>{`${prependZero(idx * game.fluctuationsInterval, 2)}분`}</Td>
                 {companyNames.map((key) => {
                   const company = key as stock.CompanyNames;
                   const diff = idx === 0 ? 0 : companies[company][idx].가격 - companies[company][idx - 1].가격;
                   const 등락 = diff > 0 ? `${Math.abs(diff)}▲` : diff < 0 ? `${Math.abs(diff)}▼` : '-';
                   const 정보 = companies[company][idx].정보.join('/');
 
-                  if (elapsedTime.getMinutes() >= idx * 5 || pov === 'host') {
+                  if (elapsedTime.getMinutes() >= idx * game.fluctuationsInterval || pov === 'host') {
                     return (
                       <React.Fragment key={company}>
                         <Td>{commaizeNumber(등락)}</Td>

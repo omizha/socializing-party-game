@@ -28,7 +28,9 @@ export default function Stock() {
   const companies = game?.companies ?? {};
   const companyNames = objectKeys(companies).length > 0 ? objectKeys(companies) : getRandomCompanyNames();
   const startedTime = game?.startedTime ?? new Date();
-  const currentPriceIdx = Math.floor(getDateDistance(startedTime, new Date()).minutes / 5);
+  const currentPriceIdx = Math.floor(
+    getDateDistance(startedTime, new Date()).minutes / (game?.fluctuationsInterval ?? 5),
+  );
 
   const [selectedCompany, setSelectedCompany] = useState<string>(companyNames[0]);
   const [selectedUser, setSelectedUser] = useState<string>(users?.[0]?.nickname ?? '');
@@ -127,6 +129,26 @@ export default function Stock() {
       >
         순위 공개 토글 (현재상태:{game?.isVisibleRank ? 'true' : 'false'})
       </button>
+      <input
+        placeholder={`시세변동주기 (${game?.fluctuationsInterval}분)`}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' && !!+event.currentTarget.value) {
+            mutateUpdateGame({
+              fluctuationsInterval: +event.currentTarget.value,
+            });
+          }
+        }}
+      />
+      <input
+        placeholder={`활동제한주기 (${game?.transactionInterval}초)`}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' && !!+event.currentTarget.value) {
+            mutateUpdateGame({
+              transactionInterval: +event.currentTarget.value,
+            });
+          }
+        }}
+      />
       <button
         onClick={() => {
           setPov(pov === 'host' ? 'player' : 'host');
@@ -152,6 +174,15 @@ export default function Stock() {
         }}
       >
         1분 과거로
+      </button>
+      <button
+        onClick={() => {
+          mutateUpdateGame({
+            startedTime: new Date(startedTime.getTime() + 60 * 1000),
+          });
+        }}
+      >
+        1분 미래로
       </button>
       <button
         onClick={() => {

@@ -29,7 +29,11 @@ export type GameSchema = {
   isVisibleRank: boolean;
   isTransaction: boolean;
   /**
-   * 초 단위
+   * 빠른거래제한, 초 단위
    */
   transactionInterval: number;
+  /**
+   * 주식 시세 변동, 분 단위
+   */
+  fluctuationsInterval: number;
 };
