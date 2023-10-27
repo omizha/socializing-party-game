@@ -105,7 +105,7 @@ const Home = () => {
             title={`${company}`}
             value={`${price >= 0 ? '▲' : '▼'}${commaizeNumber(Math.abs(price))}`}
             valueColor={price >= 0 ? colorUp : colorDown}
-            rightComponent={<>00:{prependZero(timeIdx * 5, 2)}</>}
+            rightComponent={<>{prependZero(timeIdx * game.fluctuationsInterval, 2)}:00</>}
           />
         );
       })}
