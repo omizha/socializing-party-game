@@ -3,7 +3,6 @@ import { useAtomValue } from 'jotai';
 import ProfileSetter from './ProfileSetter';
 import Waiting from './Waiting';
 import { UserStore } from '../../../store';
-import Header from './Header';
 import { Query } from '../../../hook';
 import AccessDenided from './AccessDenided';
 import Stock from './Stock';
@@ -26,15 +25,11 @@ const Phase = () => {
       <SwitchCase
         value={gamePhase}
         caseBy={{
-          CROWDING: isEntry ? (
-            <Waiting HeaderComponent={<Header title={nickname} hasQuitButton />} />
-          ) : (
-            <ProfileSetter />
-          ),
+          CROWDING: isEntry ? <Waiting /> : <ProfileSetter />,
           PLAYING: <Stock />,
-          WAITING: <Waiting HeaderComponent={<Header title={nickname} />} />,
+          WAITING: <Waiting />,
         }}
-        defaultComponent={<Waiting HeaderComponent={<Header title={nickname} />} />}
+        defaultComponent={<Waiting />}
       />
     </>
   );

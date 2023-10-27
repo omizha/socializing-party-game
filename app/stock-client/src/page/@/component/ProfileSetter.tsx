@@ -51,7 +51,7 @@ const NicknameInput = styled.input`
 `;
 
 const ProfileSaveButton = styled.button`
-  width: 100%;
+  width: 200px;
   height: 30px;
 `;
 
