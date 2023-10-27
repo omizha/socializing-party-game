@@ -28,4 +28,8 @@ export type GameSchema = {
   remainingStocks: Record<string, number>;
   isVisibleRank: boolean;
   isTransaction: boolean;
+  /**
+   * 초 단위
+   */
+  transactionInterval: number;
 };

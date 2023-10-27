@@ -160,8 +160,8 @@ export class GameService {
       }
 
       const { minutes, seconds } = getDateDistance(user.lastActivityTime, new Date());
-      if (minutes === 0 && seconds < 10) {
-        throw new HttpException('10초에 한 번만 거래할 수 있습니다', HttpStatus.CONFLICT);
+      if (minutes === 0 && seconds < game.transactionInterval) {
+        throw new HttpException(`${game.transactionInterval}초에 한 번만 거래할 수 있습니다`, HttpStatus.CONFLICT);
       }
 
       const companies = game.companies as unknown as Map<string, CompanyInfo[]>;
@@ -232,8 +232,8 @@ export class GameService {
       }
 
       const { minutes, seconds } = getDateDistance(user.lastActivityTime, new Date());
-      if (minutes === 0 && seconds < 10) {
-        throw new HttpException('10초에 한 번만 거래할 수 있습니다', HttpStatus.CONFLICT);
+      if (minutes === 0 && seconds < game.transactionInterval) {
+        throw new HttpException(`${game.transactionInterval}초에 한 번만 거래할 수 있습니다`, HttpStatus.CONFLICT);
       }
 
       const companies = game.companies as unknown as Map<string, CompanyInfo[]>;

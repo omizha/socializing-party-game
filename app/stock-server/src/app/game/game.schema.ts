@@ -25,6 +25,9 @@ export class Game implements GameSchema {
   @Prop()
   isTransaction: boolean;
 
+  @Prop()
+  transactionInterval: number;
+
   constructor() {
     this.unique = true;
     this.gamePhase = 'CROWDING';
@@ -33,6 +36,7 @@ export class Game implements GameSchema {
     this.companies = {};
     this.isVisibleRank = false;
     this.isTransaction = false;
+    this.transactionInterval = 5;
   }
 }
 
