@@ -25,7 +25,7 @@ const useGame = () => {
 
   data.startedTime = new Date(data.startedTime);
 
-  const timeIdx = Math.floor(getDateDistance(data.startedTime, new Date()).minutes / 5);
+  const timeIdx = Math.floor(getDateDistance(data.startedTime, new Date()).minutes / data.fluctuationsInterval);
   const companiesPrice = objectEntries(data.companies).reduce((source, [company, companyInfos]) => {
     if (timeIdx > 9) {
       source[company] = companyInfos[9].가격;
