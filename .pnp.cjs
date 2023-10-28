@@ -15905,6 +15905,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@nestjs/testing", "virtual:365faac7c4af84a7bebdbfa998cc40b96d0d6cfff2d67e187614912af5305735ea179cd98b68c22e87a37867e4ec820e2f894825b59acf14bc0e784af57ed81d#npm:10.2.6"],\
             ["@nestjs/websockets", "virtual:365faac7c4af84a7bebdbfa998cc40b96d0d6cfff2d67e187614912af5305735ea179cd98b68c22e87a37867e4ec820e2f894825b59acf14bc0e784af57ed81d#npm:10.2.6"],\
             ["@toss/date", "npm:1.1.7"],\
+            ["@toss/utils", "npm:1.4.4"],\
             ["@types/express", "npm:4.17.17"],\
             ["@types/jest", "npm:29.5.0"],\
             ["@types/multer", "npm:1.4.7"],\
