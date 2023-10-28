@@ -4,6 +4,7 @@ import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model, UpdateQuery } from 'mongoose';
 import { stock } from 'shared~config';
 import { getDateDistance } from '@toss/date';
+import { ceilToUnit } from '@toss/utils';
 import { Game, GameDocument } from './game.schema';
 import { UserService } from './user/user.service';
 
@@ -105,7 +106,10 @@ export class GameService {
           const isChange = companyPriceChange[i].some((v) => v === key);
           const prevPrice = newCompanies[company][i - 1].가격;
           // const price = isChange ? prevPrice + (Math.floor(Math.random() * 1000) - 500) * 100 : prevPrice;
-          const price = prevPrice + (Math.floor(Math.random() * 1000) - 500) * 100;
+          // const price = prevPrice + (Math.floor(Math.random() * 1000) - 500) * 100;
+
+          const frunc = Math.floor(Math.random() * prevPrice) - Math.floor(prevPrice / 2);
+          const price = ceilToUnit(prevPrice + (isChange ? Math.min(Math.random() * 50000, frunc) : frunc), 100);
           const info = [];
 
           if (isChange) {
