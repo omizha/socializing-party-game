@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAtomValue } from 'jotai';
 import { commaizeNumber, objectEntries } from '@toss/utils';
 import { getDateDistance } from '@toss/date';
@@ -10,6 +10,7 @@ import prependZero from '../../../../service/prependZero';
 import { down as colorDown, up as colorUp } from '../../../../config/color';
 
 const Home = () => {
+  const [partnerNicknames, setPartnerNicknames] = useState<string[]>([]);
   const nickname = useAtomValue(UserStore.nickname);
 
   const { data: game } = Query.Game.useGame();
@@ -41,8 +42,14 @@ const Home = () => {
     .sort((a, b) => b.profit - a.profit);
 
   const myInfos = objectEntries(game.companies).reduce((reducer, [company, companyInfos]) => {
+    const partners = partnerNicknames;
+
     companyInfos.forEach((companyInfo, idx) => {
       if (companyInfos[idx].정보.some((name) => name === nickname)) {
+        const partner = companyInfos[idx].정보.find((name) => name !== nickname);
+        if (partner && !partners.some((v) => v === partner)) {
+          partners.push(partner);
+        }
         reducer.push({
           company,
           price: companyInfo.가격 - companyInfos[idx - 1].가격,
@@ -97,7 +104,7 @@ const Home = () => {
         }
       />
       <br />
-      <H3>내가 가진 정보</H3>
+      <H3>내가 가진 정보 {partnerNicknames && <>({partnerNicknames.join(',')})</>}</H3>
       {myInfos.map(({ company, price, timeIdx }) => {
         return (
           <Box
