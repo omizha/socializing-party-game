@@ -7,6 +7,8 @@ import { getDateDistance } from '@toss/date';
 import { ceilToUnit } from '@toss/utils';
 import { Game, GameDocument } from './game.schema';
 import { UserService } from './user/user.service';
+import { LogService } from './log/log.service';
+import { Log } from './log/log.schema';
 
 @Injectable()
 export class GameService {
@@ -15,6 +17,7 @@ export class GameService {
     private readonly gameModel: Model<Game>,
     @InjectConnection() private readonly connection: mongoose.Connection,
     private readonly userService: UserService,
+    private readonly logService: LogService,
   ) {}
 
   private async findOneAndUpdate(update: UpdateQuery<Game>): Promise<GameDocument> {
@@ -216,6 +219,16 @@ export class GameService {
       result = await game.save({
         session,
       });
+      this.logService.addLog(
+        new Log({
+          action: 'BUY',
+          company,
+          date: user.lastActivityTime,
+          nickname,
+          price: companyPrice,
+          quantity: amount,
+        }),
+      );
     });
     await session.endSession();
 
@@ -274,6 +287,17 @@ export class GameService {
 
       await user.save({ session });
       result = await game.save({ session });
+
+      this.logService.addLog(
+        new Log({
+          action: 'SELL',
+          company,
+          date: user.lastActivityTime,
+          nickname,
+          price: companyPrice,
+          quantity: amount,
+        }),
+      );
     });
     await session.endSession();
 
