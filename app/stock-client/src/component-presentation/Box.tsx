@@ -43,13 +43,13 @@ const Container = styled.div`
 `;
 
 const ContainerTitle = styled.div`
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   margin-bottom: 8px;
 `;
 
 const ContainerBolder = styled.div`
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bolder;
 `;
 

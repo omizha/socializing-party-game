@@ -3,11 +3,12 @@ import { useAtomValue } from 'jotai';
 import { commaizeNumber, objectEntries } from '@toss/utils';
 import { getDateDistance } from '@toss/date';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { Query } from '../../../../hook';
 import { UserStore } from '../../../../store';
 import Box from '../../../../component-presentation/Box';
 import prependZero from '../../../../service/prependZero';
-import { down as colorDown, up as colorUp } from '../../../../config/color';
+import { colorDown, colorUp } from '../../../../config/color';
 
 const Home = () => {
   const [partnerNicknames, setPartnerNicknames] = useState<string[]>([]);
@@ -112,7 +113,15 @@ const Home = () => {
             title={`${company}`}
             value={`${price >= 0 ? '▲' : '▼'}${commaizeNumber(Math.abs(price))}`}
             valueColor={price >= 0 ? colorUp : colorDown}
-            rightComponent={<>{prependZero(timeIdx * game.fluctuationsInterval, 2)}:00</>}
+            rightComponent={
+              <div
+                css={css`
+                  font-size: 18px;
+                `}
+              >
+                {prependZero(timeIdx * game.fluctuationsInterval, 2)}:00
+              </div>
+            }
           />
         );
       })}
