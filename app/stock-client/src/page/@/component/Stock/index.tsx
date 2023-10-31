@@ -7,8 +7,9 @@ import { css } from '@emotion/react';
 import Home from './Home';
 import Buy from './Buy';
 import Sell from './Sell';
+import History from './History';
 
-const navItem = ['홈', '사기', '팔기'] as const;
+const navItem = ['홈', '사기', '팔기', '역사'] as const;
 type NavName = (typeof navItem)[number];
 
 const items: TabsProps['items'] = [
@@ -27,6 +28,11 @@ const items: TabsProps['items'] = [
     key: '팔기',
     label: '팔기',
   },
+  {
+    children: <></>,
+    key: '역사',
+    label: '역사',
+  },
 ];
 
 const Stock = () => {
@@ -43,6 +49,9 @@ const Stock = () => {
           break;
         case '팔기':
           setSearchParams({ page: '팔기' });
+          break;
+        case '역사':
+          setSearchParams({ page: '역사' });
           break;
         default:
           setSearchParams({ page: '홈' });
@@ -79,6 +88,7 @@ const Stock = () => {
             value={searchParams.get('page') ?? '홈'}
             caseBy={{
               사기: <Buy />,
+              역사: <History />,
               팔기: <Sell />,
               홈: <Home />,
             }}

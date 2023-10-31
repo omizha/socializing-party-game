@@ -10,7 +10,8 @@ export class LogService {
     private readonly logModel: Model<Log>,
   ) {}
 
-  async findByNickname(nickname: string, options: QueryOptions<Log>): Promise<LogDocument[]> {
+  async findByNickname(nickname: string, options?: QueryOptions<Log>): Promise<LogDocument[]> {
+    console.debug('🚀 ~ file: log.service.ts:14 ~ LogService ~ findByNickname ~ nickname:', nickname);
     const logs = this.logModel.find(
       {
         nickname,

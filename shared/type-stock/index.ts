@@ -37,3 +37,12 @@ export type GameSchema = {
    */
   fluctuationsInterval: number;
 };
+
+export type LogSchema = {
+  nickname: string;
+  date: Date;
+  action: 'BUY' | 'SELL';
+  company: string;
+  price: number;
+  quantity: number;
+};

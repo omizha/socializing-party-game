@@ -1,8 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes } from 'mongoose';
+import { LogSchema } from 'shared~type-stock';
 
 @Schema()
-export class Log {
+export class Log implements LogSchema {
   @Prop()
   nickname: string;
 
