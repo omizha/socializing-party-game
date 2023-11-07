@@ -105,7 +105,7 @@ const Home = () => {
         }
       />
       <br />
-      <H3>내가 가진 정보 {partnerNicknames && <>({partnerNicknames.join(',')})</>}</H3>
+      <H3>내가 가진 정보 {partnerNicknames && <>({partnerNicknames.join('/')} 와 공유중)</>}</H3>
       {myInfos.map(({ company, price, timeIdx }) => {
         return (
           <Box

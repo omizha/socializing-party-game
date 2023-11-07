@@ -43,25 +43,29 @@ const Sell = () => {
   return (
     <>
       {contextHolder}
-      {objectEntries(user.inventory).map(([company, count]) => (
-        <Box
-          key={company}
-          title={`${count}주 가지고 있음`}
-          value={company}
-          rightComponent={
-            <Button
-              icon={<DollarOutlined />}
-              disabled={count === 0 || isDisabled}
-              loading={isLoading || isFreezed}
-              onClick={() => {
-                onClickSell(company);
-              }}
-            >
-              팔기
-            </Button>
-          }
-        />
-      ))}
+      {objectEntries(user.inventory).map(([company, count]) =>
+        count ? (
+          <Box
+            key={company}
+            title={`${count}주 가지고 있음`}
+            value={company}
+            rightComponent={
+              <Button
+                icon={<DollarOutlined />}
+                disabled={count === 0 || isDisabled}
+                loading={isLoading || isFreezed}
+                onClick={() => {
+                  onClickSell(company);
+                }}
+              >
+                팔기
+              </Button>
+            }
+          />
+        ) : (
+          <></>
+        ),
+      )}
     </>
   );
 };

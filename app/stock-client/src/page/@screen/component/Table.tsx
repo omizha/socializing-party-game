@@ -22,6 +22,7 @@ const Table = () => {
           return <></>;
         }
 
+        const remainingStock = game.remainingStocks[company];
         const diff = timeIdx === 0 ? 0 : companies[company][timeIdx].가격 - companies[company][timeIdx - 1].가격;
         const 등락 =
           diff > 0 ? `▲${commaizeNumber(Math.abs(diff))}` : diff < 0 ? `▼${commaizeNumber(Math.abs(diff))}` : '';
@@ -32,6 +33,13 @@ const Table = () => {
             <RowItem>{company}</RowItem>
             <RowItem>{commaizeNumber(companies[company][timeIdx].가격)}</RowItem>
             <RowItem color={color}>{등락}</RowItem>
+            <RowItem
+              style={{
+                width: '10px',
+              }}
+            >
+              {remainingStock}
+            </RowItem>
           </Row>
         );
       })}

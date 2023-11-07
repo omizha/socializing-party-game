@@ -47,7 +47,6 @@ const Buy = () => {
         return (
           <Box
             key={company}
-            title={`${count}주 남음`}
             value={company}
             rightComponent={
               <Button

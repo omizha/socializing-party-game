@@ -70,10 +70,11 @@ export class GameService {
           isVisibleRank: false,
           remainingStocks: {},
           startedTime: new Date(),
-          transactionInterval: 5,
+          transactionInterval: 2,
         },
       });
       await this.userService.initializeUsers({ session });
+      await this.logService.deleteAll({ session });
     });
     await session.endSession();
 
@@ -145,9 +146,11 @@ export class GameService {
         isVisibleRank: false,
         remainingStocks,
         startedTime: new Date(),
-        transactionInterval: 5,
+        transactionInterval: 2,
       },
     });
+
+    await this.logService.deleteAll();
     return result;
   }
 
@@ -188,7 +191,10 @@ export class GameService {
       }
 
       // x분 단위로 가격이 변함
-      const idx = Math.floor(getDateDistance(game.startedTime, new Date()).minutes / game.fluctuationsInterval);
+      const idx = Math.min(
+        Math.floor(getDateDistance(game.startedTime, new Date()).minutes / game.fluctuationsInterval),
+        9,
+      );
       const companyPrice = companyInfo[idx].가격;
       const totalPrice = companyPrice * amount;
       if (user.money < totalPrice) {
@@ -271,7 +277,10 @@ export class GameService {
         throw new HttpException('주식을 보유하고 있지 않습니다', HttpStatus.CONFLICT);
       }
 
-      const idx = Math.floor(getDateDistance(game.startedTime, new Date()).minutes / game.fluctuationsInterval);
+      const idx = Math.min(
+        Math.floor(getDateDistance(game.startedTime, new Date()).minutes / game.fluctuationsInterval),
+        9,
+      );
       const companyPrice = companyInfo[idx].가격;
       const totalPrice = companyPrice * amount;
 
@@ -321,7 +330,10 @@ export class GameService {
         const companies = game.companies as unknown as Map<string, CompanyInfo[]>;
         const remainingStocks = game.remainingStocks as unknown as Map<string, number>;
 
-        const idx = Math.floor(getDateDistance(game.startedTime, new Date()).minutes / game.fluctuationsInterval);
+        const idx = Math.min(
+          Math.floor(getDateDistance(game.startedTime, new Date()).minutes / game.fluctuationsInterval),
+          9,
+        );
         inventory.forEach((amount, company) => {
           const companyPrice = companies.get(company)[idx]?.가격;
           const totalPrice = companyPrice * amount;

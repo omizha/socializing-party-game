@@ -19,6 +19,7 @@ const Table = ({ elapsedTime, pov }: Props) => {
     return <></>;
   }
 
+  const sortedUsers = [...users].sort((a, b) => b.money - a.money) || [];
   const { companies, remainingStocks } = game;
   const companyNames = Object.keys(companies) as stock.CompanyNames[];
 
@@ -112,16 +113,26 @@ const Table = ({ elapsedTime, pov }: Props) => {
         <thead>
           <tr>
             <Td>소지금</Td>
-            {users.map((user) => {
-              return <Td key={user.nickname}>{user.nickname}</Td>;
+            {sortedUsers.map((user, i) => {
+              return (
+                <Td key={user.nickname}>
+                  {i + 1}위, {user.nickname}
+                </Td>
+              );
             })}
           </tr>
         </thead>
         <tbody>
           <tr>
             <Td />
-            {users.map((user) => {
+            {sortedUsers.map((user) => {
               return <Td key={user.nickname}>{commaizeNumber(user.money)}</Td>;
+            })}
+          </tr>
+          <tr>
+            <Td />
+            {sortedUsers.map((user) => {
+              return <Td key={user.nickname}>{commaizeNumber(user.money - 1000000)}</Td>;
             })}
           </tr>
         </tbody>

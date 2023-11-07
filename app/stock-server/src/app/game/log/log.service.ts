@@ -11,7 +11,6 @@ export class LogService {
   ) {}
 
   async findByNickname(nickname: string, options?: QueryOptions<Log>): Promise<LogDocument[]> {
-    console.debug('🚀 ~ file: log.service.ts:14 ~ LogService ~ findByNickname ~ nickname:', nickname);
     const logs = this.logModel.find(
       {
         nickname,
@@ -24,5 +23,9 @@ export class LogService {
 
   async addLog(log: Log): Promise<LogDocument> {
     return this.logModel.create(log);
+  }
+
+  async deleteAll(options?: QueryOptions<Log>): Promise<void> {
+    await this.logModel.deleteMany({}, options);
   }
 }

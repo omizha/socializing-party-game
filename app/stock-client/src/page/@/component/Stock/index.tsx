@@ -8,6 +8,7 @@ import Home from './Home';
 import Buy from './Buy';
 import Sell from './Sell';
 import History from './History';
+import Rule from './Rule';
 
 const navItem = ['홈', '사기', '팔기', '역사'] as const;
 type NavName = (typeof navItem)[number];
@@ -30,8 +31,13 @@ const items: TabsProps['items'] = [
   },
   {
     children: <></>,
-    key: '역사',
-    label: '역사',
+    key: '기록',
+    label: '기록',
+  },
+  {
+    children: <></>,
+    key: '룰',
+    label: '룰',
   },
 ];
 
@@ -50,8 +56,11 @@ const Stock = () => {
         case '팔기':
           setSearchParams({ page: '팔기' });
           break;
-        case '역사':
-          setSearchParams({ page: '역사' });
+        case '기록':
+          setSearchParams({ page: '기록' });
+          break;
+        case '룰':
+          setSearchParams({ page: '룰' });
           break;
         default:
           setSearchParams({ page: '홈' });
@@ -87,8 +96,9 @@ const Stock = () => {
           <SwitchCase
             value={searchParams.get('page') ?? '홈'}
             caseBy={{
+              기록: <History />,
+              룰: <Rule />,
               사기: <Buy />,
-              역사: <History />,
               팔기: <Sell />,
               홈: <Home />,
             }}

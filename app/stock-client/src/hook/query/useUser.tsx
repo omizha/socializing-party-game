@@ -11,7 +11,7 @@ const useUser = (nickname: string) => {
   }
 
   const { minutes, seconds } = getDateDistance(user.lastActivityTime, new Date());
-  const isFreezed = minutes === 0 && seconds < (game?.fluctuationsInterval ?? 5);
+  const isFreezed = minutes === 0 && seconds < (game?.transactionInterval ?? 5);
 
   return { isFreezed, user };
 };
