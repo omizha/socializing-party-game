@@ -11704,6 +11704,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["load-script", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/load-script-npm-1.0.0-32a3163a57-8458e3f07b.zip/node_modules/load-script/",\
+          "packageDependencies": [\
+            ["load-script", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["loader-runner", [\
         ["npm:4.3.0", {\
           "packageLocation": "./.yarn/cache/loader-runner-npm-4.3.0-9ca67df372-a90e00dee9.zip/node_modules/loader-runner/",\
@@ -12050,6 +12059,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["memfs", "npm:3.5.1"],\
             ["fs-monkey", "npm:1.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["memoize-one", [\
+        ["npm:5.2.1", {\
+          "packageLocation": "./.yarn/cache/memoize-one-npm-5.2.1-ee0f8be979-a3cba7b824.zip/node_modules/memoize-one/",\
+          "packageDependencies": [\
+            ["memoize-one", "npm:5.2.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -14723,6 +14741,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-fast-compare", [\
+        ["npm:3.2.2", {\
+          "packageLocation": "./.yarn/cache/react-fast-compare-npm-3.2.2-45b585a872-2071415b4f.zip/node_modules/react-fast-compare/",\
+          "packageDependencies": [\
+            ["react-fast-compare", "npm:3.2.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-is", [\
         ["npm:16.13.1", {\
           "packageLocation": "./.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-f7a19ac349.zip/node_modules/react-is/",\
@@ -14744,6 +14771,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/react-merge-refs-npm-1.1.0-26c3215fdd-9088435299.zip/node_modules/react-merge-refs/",\
           "packageDependencies": [\
             ["react-merge-refs", "npm:1.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-player", [\
+        ["npm:2.13.0", {\
+          "packageLocation": "./.yarn/cache/react-player-npm-2.13.0-e0cf5aeb3d-7e0e69e0ac.zip/node_modules/react-player/",\
+          "packageDependencies": [\
+            ["react-player", "npm:2.13.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:ccfab6fa0eb13ad9511d1e3484c797bf2bea39d8df5f1a43e8a7b29b84e72aa3b6600ea95bbc3c583cc276858372f0485263fde29cc0a7586b83270c9c6118f0#npm:2.13.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-player-virtual-58c66ad1a1/0/cache/react-player-npm-2.13.0-e0cf5aeb3d-7e0e69e0ac.zip/node_modules/react-player/",\
+          "packageDependencies": [\
+            ["react-player", "virtual:ccfab6fa0eb13ad9511d1e3484c797bf2bea39d8df5f1a43e8a7b29b84e72aa3b6600ea95bbc3c583cc276858372f0485263fde29cc0a7586b83270c9c6118f0#npm:2.13.0"],\
+            ["@types/react", "npm:18.2.22"],\
+            ["deepmerge", "npm:4.3.1"],\
+            ["load-script", "npm:1.0.0"],\
+            ["memoize-one", "npm:5.2.1"],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:18.2.0"],\
+            ["react-fast-compare", "npm:3.2.2"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -15873,6 +15927,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:18.2.0"],\
             ["react-error-boundary", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.0.11"],\
+            ["react-player", "virtual:ccfab6fa0eb13ad9511d1e3484c797bf2bea39d8df5f1a43e8a7b29b84e72aa3b6600ea95bbc3c583cc276858372f0485263fde29cc0a7586b83270c9c6118f0#npm:2.13.0"],\
             ["react-router-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:6.16.0"],\
             ["shared~config", "workspace:shared/config"],\
             ["shared~type", "workspace:shared/type"],\
