@@ -6,6 +6,7 @@ import { QRCode } from 'antd';
 import Table from './component/Table';
 import { Query } from '../../hook';
 import prependZero from '../../service/prependZero';
+import PlayingWrapper from './component/PlayingWrapper';
 
 // playerLength / 3
 // 29 - 10
@@ -17,6 +18,7 @@ export default function Screen() {
   const gamePhase = game?.gamePhase ?? 'CROWDING';
 
   const { seconds, minutes } = getDateDistance(startedTime, new Date());
+  const time = `${prependZero(minutes, 2)}:${prependZero(seconds, 2)}`;
 
   return (
     <>
@@ -24,16 +26,14 @@ export default function Screen() {
         value={gamePhase}
         caseBy={{
           PLAYING: (
-            <>
-              <TimeBox>
-                {prependZero(minutes, 2)}:{prependZero(seconds, 2)}
-              </TimeBox>
+            <PlayingWrapper>
+              <TimeBox>{time}</TimeBox>
               <Wrapper>
                 <Container>
                   <Table />
                 </Container>
               </Wrapper>
-            </>
+            </PlayingWrapper>
           ),
         }}
         defaultComponent={

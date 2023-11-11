@@ -15,7 +15,7 @@ const useGame = () => {
       return response.json();
     },
     {
-      refetchInterval: 1000,
+      refetchInterval: 500,
     },
   );
 
