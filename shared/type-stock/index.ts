@@ -36,6 +36,12 @@ export type GameSchema = {
    * 주식 시세 변동, 분 단위
    */
   fluctuationsInterval: number;
+  /**
+   * 0라운드 - 연습게일
+   * 1라운드 - 본선게임
+   * 2라운드 - 본선게임
+   */
+  round: number;
 };
 
 export type LogSchema = {
@@ -45,4 +51,10 @@ export type LogSchema = {
   company: string;
   price: number;
   quantity: number;
+};
+
+export type ResultSchema = {
+  nickname: string;
+  round: number;
+  money: number;
 };

@@ -31,6 +31,9 @@ export class Game implements GameSchema {
   @Prop()
   fluctuationsInterval: number;
 
+  @Prop()
+  round: number;
+
   constructor() {
     this.unique = true;
     this.gamePhase = 'CROWDING';
@@ -41,6 +44,7 @@ export class Game implements GameSchema {
     this.isTransaction = false;
     this.transactionInterval = 5;
     this.fluctuationsInterval = 5;
+    this.round = 0;
   }
 }
 

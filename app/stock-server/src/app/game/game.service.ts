@@ -9,6 +9,7 @@ import { Game, GameDocument } from './game.schema';
 import { UserService } from './user/user.service';
 import { LogService } from './log/log.service';
 import { Log } from './log/log.schema';
+import { ResultService } from './result/result.service';
 
 @Injectable()
 export class GameService {
@@ -18,6 +19,7 @@ export class GameService {
     @InjectConnection() private readonly connection: mongoose.Connection,
     private readonly userService: UserService,
     private readonly logService: LogService,
+    private readonly resultService: ResultService,
   ) {}
 
   private async findOneAndUpdate(update: UpdateQuery<Game>): Promise<GameDocument> {
@@ -69,6 +71,7 @@ export class GameService {
           isTransaction: false,
           isVisibleRank: false,
           remainingStocks: {},
+          round: 0,
           startedTime: new Date(),
           transactionInterval: 2,
         },
@@ -343,9 +346,23 @@ export class GameService {
           inventory.set(company, 0);
         });
 
+        await this.resultService.setResult(
+          {
+            money: user.money,
+            nickname: user.nickname,
+            round: game.round,
+          },
+          {
+            session,
+          },
+        );
+
+        user.money = 1000000;
+
         await user.save({ session });
       }
 
+      game.round += 1;
       result = await game.save({ session });
     });
     await session.endSession();

@@ -11,6 +11,7 @@ import Table from './component/Table';
 import { POV } from '../../type';
 import { Query } from '../../hook';
 import UserList from './component/UserList';
+import RoundSetter from './component/RoundSetter';
 
 // playerLength / 3
 // 29 - 10
@@ -129,6 +130,7 @@ export default function Stock() {
       >
         순위 공개 토글 (현재상태:{game?.isVisibleRank ? 'true' : 'false'})
       </button>
+      <RoundSetter />
       <input
         placeholder={`시세변동주기 (${game?.fluctuationsInterval}분)`}
         onKeyDown={(event) => {
