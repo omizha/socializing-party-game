@@ -33,7 +33,11 @@ const PlayingWrapper = ({ children }: { children: React.ReactNode }) => {
     // space키를 누르면 플레이어를 재생한다
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === ' ') {
-        playerRef.current?.getInternalPlayer().playVideo();
+        if (playerRef.current?.getInternalPlayer().getPlayerState() === 1) {
+          playerRef.current?.getInternalPlayer().pauseVideo();
+        } else {
+          playerRef.current?.getInternalPlayer().playVideo();
+        }
       }
     };
 
