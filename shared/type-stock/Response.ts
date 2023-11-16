@@ -1,4 +1,4 @@
-import { GameSchema, LogSchema } from '.';
+import { GameSchema, LogSchema, ResultSchema } from '.';
 
 export type UploadAvatar = {
   // Express 타입을 왜 못찾을까?
@@ -10,3 +10,5 @@ export type UploadAvatar = {
 export type Game = GameSchema;
 
 export type Log = LogSchema;
+
+export type Result = ResultSchema;

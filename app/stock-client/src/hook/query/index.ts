@@ -6,3 +6,4 @@ export { default as useLog } from './useLog';
 
 export * as Game from './game';
 export * as Composite from './composite';
+export * as Result from './result';

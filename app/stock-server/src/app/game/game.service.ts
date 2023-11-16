@@ -10,6 +10,7 @@ import { UserService } from './user/user.service';
 import { LogService } from './log/log.service';
 import { Log } from './log/log.schema';
 import { ResultService } from './result/result.service';
+import { Result } from './result/result.schema';
 
 @Injectable()
 export class GameService {
@@ -346,6 +347,28 @@ export class GameService {
           inventory.set(company, 0);
         });
 
+        await user.save({ session });
+      }
+      result = await game.save({ session });
+    });
+    await session.endSession();
+
+    return result;
+  }
+
+  async saveGameResult(): Promise<Result[]> {
+    let results: Result[];
+
+    const session = await this.connection.startSession();
+    await session.withTransaction(async () => {
+      const game = await this.get(session);
+      const users = await this.userService.getUsers(session);
+
+      if (!users) {
+        throw new Error('users not found');
+      }
+
+      for await (const user of users) {
         await this.resultService.setResult(
           {
             money: user.money,
@@ -356,17 +379,13 @@ export class GameService {
             session,
           },
         );
-
-        user.money = 1000000;
-
-        await user.save({ session });
       }
 
-      game.round += 1;
-      result = await game.save({ session });
+      results = await this.resultService.getResults(undefined, { session });
+      results = results.filter((v) => v.round === game.round);
     });
     await session.endSession();
 
-    return result;
+    return results;
   }
 }

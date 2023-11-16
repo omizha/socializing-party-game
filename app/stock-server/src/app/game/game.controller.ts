@@ -23,6 +23,11 @@ export class GameController {
     return this.gameService.resetGame();
   }
 
+  @Post('/result')
+  saveGameResult(): Promise<Response.Result[]> {
+    return this.gameService.saveGameResult();
+  }
+
   @Post('/stock/init')
   initStock(): Promise<Response.Game> {
     return this.gameService.initStock();

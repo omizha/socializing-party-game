@@ -11,6 +11,7 @@ export type UserSchema = {
 const GamePhase = {
   CROWDING: 'CROWDING',
   PLAYING: 'PLAYING',
+  RESULT: 'RESULT',
   WAITING: 'WAITING',
 } as const;
 export type GamePhase = (typeof GamePhase)[keyof typeof GamePhase];

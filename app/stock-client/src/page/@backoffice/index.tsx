@@ -23,6 +23,7 @@ export default function Stock() {
   const { mutateAsync: mutateBuyStock } = Query.Game.useBuyStock();
   const { mutateAsync: mutateSellStock } = Query.Game.useSellStock();
   const { mutateAsync: mutateFinishStock } = Query.Game.useFinishStock();
+  const { mutateAsync: mutateSetResult } = Query.Result.useSetResult();
   const { data: users } = Query.useUserList();
   const { data: game } = Query.Game.useGame();
 
@@ -83,6 +84,15 @@ export default function Stock() {
       </button>
       <button
         onClick={() => {
+          mutateUpdateGame({
+            gamePhase: 'RESULT',
+          });
+        }}
+      >
+        RESULT
+      </button>
+      <button
+        onClick={() => {
           mutateResetGame();
         }}
       >
@@ -110,7 +120,14 @@ export default function Stock() {
           mutateFinishStock();
         }}
       >
-        주식 종료 및 정상
+        주식 종료 및 정산
+      </button>
+      <button
+        onClick={() => {
+          mutateSetResult();
+        }}
+      >
+        라운드 저장
       </button>
       <button
         onClick={() => {

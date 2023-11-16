@@ -6,6 +6,7 @@ import { UserStore } from '../../../store';
 import { Query } from '../../../hook';
 import AccessDenided from './AccessDenided';
 import Stock from './Stock';
+import Result from './Result';
 
 const Phase = () => {
   const { data: game } = Query.Game.useGame();
@@ -27,6 +28,7 @@ const Phase = () => {
         caseBy={{
           CROWDING: isEntry ? <Waiting /> : <ProfileSetter />,
           PLAYING: <Stock />,
+          RESULT: <Result />,
           WAITING: <Waiting />,
         }}
         defaultComponent={<Waiting />}

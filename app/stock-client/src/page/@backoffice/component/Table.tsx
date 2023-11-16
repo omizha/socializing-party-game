@@ -14,6 +14,7 @@ interface Props {
 const Table = ({ elapsedTime, pov }: Props) => {
   const { data: game } = Query.Game.useGame();
   const { data: users } = Query.useUserList();
+  const { data: results } = Query.Result.useResult();
 
   if (!game?.companies) {
     return <></>;
@@ -133,6 +134,83 @@ const Table = ({ elapsedTime, pov }: Props) => {
             <Td />
             {sortedUsers.map((user) => {
               return <Td key={user.nickname}>{commaizeNumber(user.money - 1000000)}</Td>;
+            })}
+          </tr>
+        </tbody>
+      </TableElement>
+
+      <TableElement>
+        <thead>
+          <tr>
+            <Td>닉네임</Td>
+            {sortedUsers.map((user) => {
+              return <Td key={user.nickname}>{user.nickname}</Td>;
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <Td>0라운드</Td>
+            {sortedUsers.map((user) => {
+              return (
+                <Td key={user.nickname}>
+                  {commaizeNumber(
+                    results?.filter((v) => v.nickname === user.nickname && v.round === 0)[0]?.money ?? '',
+                  )}
+                </Td>
+              );
+            })}
+          </tr>
+          <tr>
+            <Td>1라운드</Td>
+            {sortedUsers.map((user) => {
+              return (
+                <Td key={user.nickname}>
+                  {commaizeNumber(
+                    results?.filter((v) => v.nickname === user.nickname && v.round === 1)[0]?.money ?? '',
+                  )}
+                </Td>
+              );
+            })}
+          </tr>
+          <tr>
+            <Td>2라운드</Td>
+            {sortedUsers.map((user) => {
+              return (
+                <Td key={user.nickname}>
+                  {commaizeNumber(
+                    results?.filter((v) => v.nickname === user.nickname && v.round === 2)[0]?.money ?? '',
+                  )}
+                </Td>
+              );
+            })}
+          </tr>
+          <tr>
+            <Td>1+2라운드 합계</Td>
+            {sortedUsers.map((user) => {
+              return (
+                <Td key={user.nickname}>
+                  {commaizeNumber(
+                    results
+                      ?.filter((v) => v.nickname === user.nickname && v.round > 0)
+                      .reduce((acc, v) => acc + v.money, 0),
+                  )}
+                </Td>
+              );
+            })}
+          </tr>
+          <tr>
+            <Td>1+2라운드 평균</Td>
+            {sortedUsers.map((user) => {
+              return (
+                <Td key={user.nickname}>
+                  {commaizeNumber(
+                    (results
+                      ?.filter((v) => v.nickname === user.nickname && v.round > 0)
+                      .reduce((acc, v) => acc + v.money, 0) ?? 0) / 2,
+                  )}
+                </Td>
+              );
             })}
           </tr>
         </tbody>
