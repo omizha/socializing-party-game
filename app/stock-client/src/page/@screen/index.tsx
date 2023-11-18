@@ -16,6 +16,7 @@ export default function Screen() {
 
   const startedTime = game?.startedTime ?? new Date();
   const gamePhase = game?.gamePhase ?? 'CROWDING';
+  const isTransaction = game?.isTransaction ?? false;
 
   const { seconds, minutes } = getDateDistance(startedTime, new Date());
   const time = `${prependZero(minutes, 2)}:${prependZero(seconds, 2)}`;
@@ -29,9 +30,7 @@ export default function Screen() {
             <PlayingWrapper>
               <TimeBox>{time}</TimeBox>
               <Wrapper>
-                <Container>
-                  <Table />
-                </Container>
+                <Container>{isTransaction && <Table />}</Container>
               </Wrapper>
             </PlayingWrapper>
           ),
