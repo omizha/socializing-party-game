@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Response } from 'shared~type-stock';
+import { useCallback } from 'react';
 import { serverApiUrl } from '../../../config/baseUrl';
 
 const useResult = () => {
@@ -17,11 +18,23 @@ const useResult = () => {
     },
   );
 
-  if (!data) {
-    return { data: [] };
-  }
+  const getRound0Avg = useCallback(
+    (nickname: string) => {
+      return data?.filter((v) => v.nickname === nickname && v.round === 0).reduce((acc, v) => acc + v.money, 0) ?? 0;
+    },
+    [data],
+  );
 
-  return { data };
+  const getRound12Avg = useCallback(
+    (nickname?: string) => {
+      return (
+        (data?.filter((v) => v.nickname === nickname && v.round > 0).reduce((acc, v) => acc + v.money, 0) ?? 0) / 2
+      );
+    },
+    [data],
+  );
+
+  return { data: data ?? [], getRound0Avg, getRound12Avg };
 };
 
 export default useResult;
