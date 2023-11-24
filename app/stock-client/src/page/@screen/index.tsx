@@ -56,7 +56,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 180px;
+  padding: 100px;
   box-sizing: border-box;
 `;
 
@@ -65,7 +65,7 @@ const TimeBox = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 50px;
   font-size: 48px;
   text-shadow: 2px 2px #8461f8;
 `;

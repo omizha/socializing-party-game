@@ -86,6 +86,7 @@ export class GameService {
   }
 
   async initStock(): Promise<Game> {
+    const game = await this.get();
     const players = await this.userService.getUsers();
 
     const newCompanies = {} as Record<stock.CompanyNames, CompanyInfo[]>;
@@ -123,7 +124,7 @@ export class GameService {
           if (isChange) {
             const infoPlayerIdx = randomPlayers.pop();
             if (infoPlayerIdx !== undefined) {
-              const partnerPlayerIdx = infoPlayerIdx === players.length - 1 ? 0 : infoPlayerIdx + 1;
+              const partnerPlayerIdx = (infoPlayerIdx + game.round + 1) % players.length;
               info.push(players[infoPlayerIdx].nickname, players[partnerPlayerIdx].nickname);
             }
           }

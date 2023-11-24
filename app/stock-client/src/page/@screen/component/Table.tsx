@@ -60,12 +60,12 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   width: 50%;
-  font-size: 24px;
+  font-size: 36px;
   justify-content: space-evenly;
 `;
 
 const RowItem = styled.div<{ color?: CSSProperties['color'] }>`
-  width: 100px;
+  width: 160px;
   ${({ color }) => css`
     color: ${color};
   `};
