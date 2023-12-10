@@ -72,7 +72,7 @@ const Result = () => {
 
   return (
     <>
-      <Title>주식게임 2회차 {game.round === 0 && '연습게임'} 결과</Title>
+      <Title>주식게임{game.round === 0 && ' 연습게임'} 결과</Title>
       <Wrapper>
         <Box>
           <Container>
