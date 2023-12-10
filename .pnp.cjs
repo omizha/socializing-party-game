@@ -41,19 +41,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       },\
       {\
         "name": "shared~config",\
-        "reference": "workspace:shared/config"\
+        "reference": "workspace:package/shared/config"\
       },\
       {\
         "name": "shared~type",\
-        "reference": "workspace:shared/type"\
+        "reference": "workspace:package/shared/type"\
       },\
       {\
         "name": "shared~type-koi",\
-        "reference": "workspace:shared/type-koi"\
+        "reference": "workspace:package/shared/type-koi"\
       },\
       {\
         "name": "shared~type-stock",\
-        "reference": "workspace:shared/type-stock"\
+        "reference": "workspace:package/shared/type-stock"\
       }\
     ],\
     "enableTopLevelFallback": true,\
@@ -64,10 +64,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["koi-server", ["workspace:app/koi-server"]],\
       ["nest-next-boilerplate-starter", ["workspace:."]],\
       ["server", ["workspace:app/server"]],\
-      ["shared~config", ["workspace:shared/config"]],\
-      ["shared~type", ["workspace:shared/type"]],\
-      ["shared~type-koi", ["workspace:shared/type-koi"]],\
-      ["shared~type-stock", ["workspace:shared/type-stock"]],\
+      ["shared~config", ["workspace:package/shared/config"]],\
+      ["shared~type", ["workspace:package/shared/type"]],\
+      ["shared~type-koi", ["workspace:package/shared/type-koi"]],\
+      ["shared~type-stock", ["workspace:package/shared/type-stock"]],\
       ["stock-client", ["workspace:app/stock-client"]],\
       ["stock-server", ["workspace:app/stock-server"]]\
     ],\
@@ -7308,8 +7308,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:18.2.0"],\
             ["react-error-boundary", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.0.11"],\
             ["react-router-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:6.16.0"],\
-            ["shared~config", "workspace:shared/config"],\
-            ["shared~type", "workspace:shared/type"],\
+            ["shared~config", "workspace:package/shared/config"],\
+            ["shared~type", "workspace:package/shared/type"],\
             ["socket.io-client", "npm:4.7.2"],\
             ["sort-by", "npm:1.2.0"],\
             ["three", "npm:0.157.0"],\
@@ -11910,9 +11910,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-error-boundary", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.0.11"],\
             ["react-player", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:2.13.0"],\
             ["react-router-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:6.16.0"],\
-            ["shared~config", "workspace:shared/config"],\
-            ["shared~type", "workspace:shared/type"],\
-            ["shared~type-koi", "workspace:shared/type-koi"],\
+            ["shared~config", "workspace:package/shared/config"],\
+            ["shared~type", "workspace:package/shared/type"],\
+            ["shared~type-koi", "workspace:package/shared/type-koi"],\
             ["socket.io-client", "npm:4.7.2"],\
             ["sort-by", "npm:1.2.0"],\
             ["three", "npm:0.157.0"],\
@@ -11969,9 +11969,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.8.8"],\
             ["reflect-metadata", "npm:0.1.13"],\
             ["rxjs", "npm:7.8.1"],\
-            ["shared~config", "workspace:shared/config"],\
-            ["shared~type", "workspace:shared/type"],\
-            ["shared~type-koi", "workspace:shared/type-koi"],\
+            ["shared~config", "workspace:package/shared/config"],\
+            ["shared~type", "workspace:package/shared/type"],\
+            ["shared~type-koi", "workspace:package/shared/type-koi"],\
             ["socket.io", "npm:4.7.2"],\
             ["source-map-support", "npm:0.5.21"],\
             ["supertest", "npm:6.3.3"],\
@@ -15814,8 +15814,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.8.8"],\
             ["reflect-metadata", "npm:0.1.13"],\
             ["rxjs", "npm:7.8.1"],\
-            ["shared~config", "workspace:shared/config"],\
-            ["shared~type", "workspace:shared/type"],\
+            ["shared~config", "workspace:package/shared/config"],\
+            ["shared~type", "workspace:package/shared/type"],\
             ["socket.io", "npm:4.7.2"],\
             ["source-map-support", "npm:0.5.21"],\
             ["supertest", "npm:6.3.3"],\
@@ -15860,10 +15860,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["shared~config", [\
-        ["workspace:shared/config", {\
-          "packageLocation": "./shared/config/",\
+        ["workspace:package/shared/config", {\
+          "packageLocation": "./package/shared/config/",\
           "packageDependencies": [\
-            ["shared~config", "workspace:shared/config"],\
+            ["shared~config", "workspace:package/shared/config"],\
             ["@typescript-eslint/eslint-plugin", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["@typescript-eslint/parser", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["eslint", "npm:8.41.0"],\
@@ -15888,10 +15888,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["shared~type", [\
-        ["workspace:shared/type", {\
-          "packageLocation": "./shared/type/",\
+        ["workspace:package/shared/type", {\
+          "packageLocation": "./package/shared/type/",\
           "packageDependencies": [\
-            ["shared~type", "workspace:shared/type"],\
+            ["shared~type", "workspace:package/shared/type"],\
             ["@typescript-eslint/eslint-plugin", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["@typescript-eslint/parser", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["eslint", "npm:8.41.0"],\
@@ -15917,10 +15917,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["shared~type-koi", [\
-        ["workspace:shared/type-koi", {\
-          "packageLocation": "./shared/type-koi/",\
+        ["workspace:package/shared/type-koi", {\
+          "packageLocation": "./package/shared/type-koi/",\
           "packageDependencies": [\
-            ["shared~type-koi", "workspace:shared/type-koi"],\
+            ["shared~type-koi", "workspace:package/shared/type-koi"],\
             ["@typescript-eslint/eslint-plugin", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["@typescript-eslint/parser", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["eslint", "npm:8.41.0"],\
@@ -15946,10 +15946,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["shared~type-stock", [\
-        ["workspace:shared/type-stock", {\
-          "packageLocation": "./shared/type-stock/",\
+        ["workspace:package/shared/type-stock", {\
+          "packageLocation": "./package/shared/type-stock/",\
           "packageDependencies": [\
-            ["shared~type-stock", "workspace:shared/type-stock"],\
+            ["shared~type-stock", "workspace:package/shared/type-stock"],\
             ["@typescript-eslint/eslint-plugin", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["@typescript-eslint/parser", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["eslint", "npm:8.41.0"],\
@@ -16342,9 +16342,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-error-boundary", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.0.11"],\
             ["react-player", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:2.13.0"],\
             ["react-router-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:6.16.0"],\
-            ["shared~config", "workspace:shared/config"],\
-            ["shared~type", "workspace:shared/type"],\
-            ["shared~type-stock", "workspace:shared/type-stock"],\
+            ["shared~config", "workspace:package/shared/config"],\
+            ["shared~type", "workspace:package/shared/type"],\
+            ["shared~type-stock", "workspace:package/shared/type-stock"],\
             ["socket.io-client", "npm:4.7.2"],\
             ["sort-by", "npm:1.2.0"],\
             ["three", "npm:0.157.0"],\
@@ -16401,9 +16401,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.8.8"],\
             ["reflect-metadata", "npm:0.1.13"],\
             ["rxjs", "npm:7.8.1"],\
-            ["shared~config", "workspace:shared/config"],\
-            ["shared~type", "workspace:shared/type"],\
-            ["shared~type-stock", "workspace:shared/type-stock"],\
+            ["shared~config", "workspace:package/shared/config"],\
+            ["shared~type", "workspace:package/shared/type"],\
+            ["shared~type-stock", "workspace:package/shared/type-stock"],\
             ["socket.io", "npm:4.7.2"],\
             ["source-map-support", "npm:0.5.21"],\
             ["supertest", "npm:6.3.3"],\
