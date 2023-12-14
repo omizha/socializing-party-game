@@ -4386,6 +4386,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@stitches/core", [\
+        ["npm:1.2.8", {\
+          "packageLocation": "./.yarn/cache/@stitches-core-npm-1.2.8-459f395a74-3a76a697b1.zip/node_modules/@stitches/core/",\
+          "packageDependencies": [\
+            ["@stitches/core", "npm:1.2.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@stitches/react", [\
         ["npm:1.2.8", {\
           "packageLocation": "./.yarn/cache/@stitches-react-npm-1.2.8-445a1042b8-029795323c.zip/node_modules/@stitches/react/",\
@@ -4404,6 +4413,133 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [\
             "@types/react",\
             "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/auth-ui-react", [\
+        ["npm:0.4.6", {\
+          "packageLocation": "./.yarn/cache/@supabase-auth-ui-react-npm-0.4.6-c4f3183b6f-c58ec04638.zip/node_modules/@supabase/auth-ui-react/",\
+          "packageDependencies": [\
+            ["@supabase/auth-ui-react", "npm:0.4.6"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:0.4.6", {\
+          "packageLocation": "./.yarn/__virtual__/@supabase-auth-ui-react-virtual-3d923f019f/0/cache/@supabase-auth-ui-react-npm-0.4.6-c4f3183b6f-c58ec04638.zip/node_modules/@supabase/auth-ui-react/",\
+          "packageDependencies": [\
+            ["@supabase/auth-ui-react", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:0.4.6"],\
+            ["@stitches/core", "npm:1.2.8"],\
+            ["@supabase/auth-ui-shared", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:0.1.8"],\
+            ["@supabase/supabase-js", "npm:2.39.0"],\
+            ["@types/supabase__supabase-js", null],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:3d923f019f86d43bbd1888155c8cb6df32894d1c15ccae7ec732ce3fcd2b31ecd75f5ddb03770f2684a5a177e49861dcc9edb22b1a24f7bae52c85a134c78f63#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@supabase/supabase-js",\
+            "@types/supabase__supabase-js"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/auth-ui-shared", [\
+        ["npm:0.1.8", {\
+          "packageLocation": "./.yarn/cache/@supabase-auth-ui-shared-npm-0.1.8-a902c3d2d9-ed64b8da8e.zip/node_modules/@supabase/auth-ui-shared/",\
+          "packageDependencies": [\
+            ["@supabase/auth-ui-shared", "npm:0.1.8"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:0.1.8", {\
+          "packageLocation": "./.yarn/__virtual__/@supabase-auth-ui-shared-virtual-582cde8a84/0/cache/@supabase-auth-ui-shared-npm-0.1.8-a902c3d2d9-ed64b8da8e.zip/node_modules/@supabase/auth-ui-shared/",\
+          "packageDependencies": [\
+            ["@supabase/auth-ui-shared", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:0.1.8"],\
+            ["@supabase/supabase-js", "npm:2.39.0"],\
+            ["@types/supabase__supabase-js", null]\
+          ],\
+          "packagePeers": [\
+            "@supabase/supabase-js",\
+            "@types/supabase__supabase-js"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/functions-js", [\
+        ["npm:2.1.5", {\
+          "packageLocation": "./.yarn/cache/@supabase-functions-js-npm-2.1.5-290ca72a57-f2ab8636af.zip/node_modules/@supabase/functions-js/",\
+          "packageDependencies": [\
+            ["@supabase/functions-js", "npm:2.1.5"],\
+            ["@supabase/node-fetch", "npm:2.6.15"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/gotrue-js", [\
+        ["npm:2.60.1", {\
+          "packageLocation": "./.yarn/cache/@supabase-gotrue-js-npm-2.60.1-ac2f24595b-163da8593a.zip/node_modules/@supabase/gotrue-js/",\
+          "packageDependencies": [\
+            ["@supabase/gotrue-js", "npm:2.60.1"],\
+            ["@supabase/node-fetch", "npm:2.6.15"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/node-fetch", [\
+        ["npm:2.6.15", {\
+          "packageLocation": "./.yarn/cache/@supabase-node-fetch-npm-2.6.15-0ebc2aefaa-9673b49236.zip/node_modules/@supabase/node-fetch/",\
+          "packageDependencies": [\
+            ["@supabase/node-fetch", "npm:2.6.15"],\
+            ["whatwg-url", "npm:5.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/postgrest-js", [\
+        ["npm:1.9.0", {\
+          "packageLocation": "./.yarn/cache/@supabase-postgrest-js-npm-1.9.0-f995d22cf4-bf38139685.zip/node_modules/@supabase/postgrest-js/",\
+          "packageDependencies": [\
+            ["@supabase/postgrest-js", "npm:1.9.0"],\
+            ["@supabase/node-fetch", "npm:2.6.15"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/realtime-js", [\
+        ["npm:2.9.0", {\
+          "packageLocation": "./.yarn/cache/@supabase-realtime-js-npm-2.9.0-a84a408787-ba0c081930.zip/node_modules/@supabase/realtime-js/",\
+          "packageDependencies": [\
+            ["@supabase/realtime-js", "npm:2.9.0"],\
+            ["@supabase/node-fetch", "npm:2.6.15"],\
+            ["@types/phoenix", "npm:1.6.4"],\
+            ["@types/websocket", "npm:1.0.10"],\
+            ["ws", "virtual:a84a4087874979d0b6689a76341f264f902490037965f816fdf9005bdc0fb45c68678c22e6ca23b45c811d7d1d2c61c8dc978cf7772e642b4ea1e07e6684d70c#npm:8.15.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/storage-js", [\
+        ["npm:2.5.5", {\
+          "packageLocation": "./.yarn/cache/@supabase-storage-js-npm-2.5.5-82d2a24e2a-4470499113.zip/node_modules/@supabase/storage-js/",\
+          "packageDependencies": [\
+            ["@supabase/storage-js", "npm:2.5.5"],\
+            ["@supabase/node-fetch", "npm:2.6.15"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/supabase-js", [\
+        ["npm:2.39.0", {\
+          "packageLocation": "./.yarn/cache/@supabase-supabase-js-npm-2.39.0-de5dd478f9-78bc615ddc.zip/node_modules/@supabase/supabase-js/",\
+          "packageDependencies": [\
+            ["@supabase/supabase-js", "npm:2.39.0"],\
+            ["@supabase/functions-js", "npm:2.1.5"],\
+            ["@supabase/gotrue-js", "npm:2.60.1"],\
+            ["@supabase/node-fetch", "npm:2.6.15"],\
+            ["@supabase/postgrest-js", "npm:1.9.0"],\
+            ["@supabase/realtime-js", "npm:2.9.0"],\
+            ["@supabase/storage-js", "npm:2.5.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5049,6 +5185,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/phoenix", [\
+        ["npm:1.6.4", {\
+          "packageLocation": "./.yarn/cache/@types-phoenix-npm-1.6.4-8a74169276-0f13849602.zip/node_modules/@types/phoenix/",\
+          "packageDependencies": [\
+            ["@types/phoenix", "npm:1.6.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/prettier", [\
         ["npm:2.7.2", {\
           "packageLocation": "./.yarn/cache/@types-prettier-npm-2.7.2-6b2e2f518f-b47d76a525.zip/node_modules/@types/prettier/",\
@@ -5239,6 +5384,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-webidl-conversions-npm-7.0.1-64074f496c-6a7e9a8de0.zip/node_modules/@types/webidl-conversions/",\
           "packageDependencies": [\
             ["@types/webidl-conversions", "npm:7.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/websocket", [\
+        ["npm:1.0.10", {\
+          "packageLocation": "./.yarn/cache/@types-websocket-npm-1.0.10-8e4dea2f57-0a4f991097.zip/node_modules/@types/websocket/",\
+          "packageDependencies": [\
+            ["@types/websocket", "npm:1.0.10"],\
+            ["@types/node", "npm:20.2.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -11870,6 +12025,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@react-three/drei", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:9.86.3"],\
             ["@react-three/fiber", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:8.14.4"],\
             ["@react-three/postprocessing", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:2.15.1"],\
+            ["@supabase/auth-ui-react", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:0.4.6"],\
+            ["@supabase/auth-ui-shared", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:0.1.8"],\
+            ["@supabase/supabase-js", "npm:2.39.0"],\
             ["@swc/plugin-emotion", "npm:2.5.86"],\
             ["@tanstack/react-query", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.35.3"],\
             ["@tanstack/react-query-devtools", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.35.3"],\
@@ -15061,6 +15219,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
+        ["virtual:3d923f019f86d43bbd1888155c8cb6df32894d1c15ccae7ec732ce3fcd2b31ecd75f5ddb03770f2684a5a177e49861dcc9edb22b1a24f7bae52c85a134c78f63#npm:18.2.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-dom-virtual-f378662252/0/cache/react-dom-npm-18.2.0-dd675bca1c-7d323310be.zip/node_modules/react-dom/",\
+          "packageDependencies": [\
+            ["react-dom", "virtual:3d923f019f86d43bbd1888155c8cb6df32894d1c15ccae7ec732ce3fcd2b31ecd75f5ddb03770f2684a5a177e49861dcc9edb22b1a24f7bae52c85a134c78f63#npm:18.2.0"],\
+            ["@types/react", null],\
+            ["loose-envify", "npm:1.4.0"],\
+            ["react", "npm:18.2.0"],\
+            ["scheduler", "npm:0.23.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:18.2.0", {\
           "packageLocation": "./.yarn/__virtual__/react-dom-virtual-30b7db9922/0/cache/react-dom-npm-18.2.0-dd675bca1c-7d323310be.zip/node_modules/react-dom/",\
           "packageDependencies": [\
@@ -18010,6 +18183,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ws", "npm:8.11.0"]\
           ],\
           "linkType": "SOFT"\
+        }],\
+        ["npm:8.15.1", {\
+          "packageLocation": "./.yarn/cache/ws-npm-8.15.1-a30b5eeb2f-8c67365f6e.zip/node_modules/ws/",\
+          "packageDependencies": [\
+            ["ws", "npm:8.15.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:a84a4087874979d0b6689a76341f264f902490037965f816fdf9005bdc0fb45c68678c22e6ca23b45c811d7d1d2c61c8dc978cf7772e642b4ea1e07e6684d70c#npm:8.15.1", {\
+          "packageLocation": "./.yarn/__virtual__/ws-virtual-e8263a565b/0/cache/ws-npm-8.15.1-a30b5eeb2f-8c67365f6e.zip/node_modules/ws/",\
+          "packageDependencies": [\
+            ["ws", "virtual:a84a4087874979d0b6689a76341f264f902490037965f816fdf9005bdc0fb45c68678c22e6ca23b45c811d7d1d2c61c8dc978cf7772e642b4ea1e07e6684d70c#npm:8.15.1"],\
+            ["@types/bufferutil", null],\
+            ["@types/utf-8-validate", null],\
+            ["bufferutil", null],\
+            ["utf-8-validate", null]\
+          ],\
+          "packagePeers": [\
+            "@types/bufferutil",\
+            "@types/utf-8-validate",\
+            "bufferutil",\
+            "utf-8-validate"\
+          ],\
+          "linkType": "HARD"\
         }],\
         ["virtual:f0e292c005320c7a5b91633c10e4a4c2b3be0bb53f3461f5d04553324a73f049bf21e2945f1a13dc38ba200af08361d94b21935897c3df98947182cd3b7b6c9a#npm:8.11.0", {\
           "packageLocation": "./.yarn/__virtual__/ws-virtual-b9d8134ca4/0/cache/ws-npm-8.11.0-ab72116a01-316b33aba3.zip/node_modules/ws/",\
