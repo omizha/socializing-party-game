@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import QueryClientProvider from './library/react-query/QueryClientProvider';
+import { QueryClientProvider } from 'lib-react-query';
 import App from './page/@';
 import Stock from './page/@backoffice';
 import Screen from './page/@screen';

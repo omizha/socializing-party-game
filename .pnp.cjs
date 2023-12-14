@@ -40,6 +40,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:app/stock-server"\
       },\
       {\
+        "name": "lib-react-query",\
+        "reference": "workspace:package/library/lib-react-query"\
+      },\
+      {\
         "name": "shared~config",\
         "reference": "workspace:package/shared/config"\
       },\
@@ -62,6 +66,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["client-react", ["workspace:app/client-react"]],\
       ["koi-client", ["workspace:app/koi-client"]],\
       ["koi-server", ["workspace:app/koi-server"]],\
+      ["lib-react-query", ["workspace:package/library/lib-react-query"]],\
       ["nest-next-boilerplate-starter", ["workspace:."]],\
       ["server", ["workspace:app/server"]],\
       ["shared~config", ["workspace:package/shared/config"]],\
@@ -12059,6 +12064,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-unused-imports", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:2.0.0"],\
             ["jotai", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:2.4.2"],\
             ["leva", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:0.9.35"],\
+            ["lib-react-query", "workspace:package/library/lib-react-query"],\
             ["localforage", "npm:1.10.0"],\
             ["match-sorter", "npm:6.3.1"],\
             ["prettier", "npm:2.8.8"],\
@@ -12225,6 +12231,23 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["type-check", "npm:0.4.0"]\
           ],\
           "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lib-react-query", [\
+        ["workspace:package/library/lib-react-query", {\
+          "packageLocation": "./package/library/lib-react-query/",\
+          "packageDependencies": [\
+            ["lib-react-query", "workspace:package/library/lib-react-query"],\
+            ["@tanstack/react-query", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.35.3"],\
+            ["@tanstack/react-query-devtools", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.35.3"],\
+            ["@types/node", "npm:18.16.16"],\
+            ["@types/react", "npm:18.2.22"],\
+            ["@types/react-dom", "npm:18.2.7"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:18.2.0"],\
+            ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"]\
+          ],\
+          "linkType": "SOFT"\
         }]\
       ]],\
       ["lie", [\
