@@ -8,6 +8,9 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.6",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
     "@tanstack/react-query-devtools": "^4.35.3",
     "@types/node": "^18.5.5",
     "@types/react": "^18.2.15",
