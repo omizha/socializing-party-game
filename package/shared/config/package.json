@@ -2,6 +2,7 @@
   "name": "shared~config",
   "main": "./dist/index.js",
   "scripts": {
+    "build": "tsc",
     "build:watch": "tsc -w"
   },
   "devDependencies": {
