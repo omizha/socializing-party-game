@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from '.';
 
 interface Props {
   noSessionComponent?: React.ReactNode;
+  supabaseSession: Session | null;
+  setSupabaseSession: (session: Session | null) => void;
   children: React.ReactNode;
 }
 
-const SupabaseProvider = ({ noSessionComponent, children }: Props) => {
-  const [session, setSession] = useState<Session | null>(null);
-
+const SupabaseProvider = ({ noSessionComponent, supabaseSession, setSupabaseSession, children }: Props) => {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
+      setSupabaseSession(session);
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+      setSupabaseSession(session);
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [setSupabaseSession]);
 
-  if (noSessionComponent && !session) {
+  if (noSessionComponent && !supabaseSession) {
     return <>{noSessionComponent}</>;
   }
 

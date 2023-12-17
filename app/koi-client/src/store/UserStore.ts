@@ -1,6 +1,4 @@
-import { atomWithStorage } from 'jotai/utils';
+import { Session } from '@supabase/supabase-js';
+import { atom } from 'jotai/vanilla';
 
-export const nickname = atomWithStorage<string>('nickname', '');
-
-export const profilePictureUrlDefault = '/default-avatar.png';
-export const profilePictureUrl = atomWithStorage<string>('profilePictureUrl', '/default-avatar.png');
+export const supabaseSession = atom<Session | null>(null);

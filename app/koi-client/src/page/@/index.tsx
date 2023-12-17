@@ -1,29 +1,92 @@
 import styled from '@emotion/styled';
-import { Suspense, useState } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import Waiting from './component/Waiting';
-import Phase from './component/Phase';
+import { useAtomValue } from 'jotai';
+import { useEffect, useState } from 'react';
+import { UserStore } from '../../store';
+import { supabase } from '../../library/supabase';
+import { Query } from '../../hook';
+import AvatarSetter from './component/AvatarSetter';
 
 export default function App() {
-  const [resetKey, setResetKey] = useState(new Date()); // ErrorBoundary를 초기화하기 위한 키
+  const supabaseSession = useAtomValue(UserStore.supabaseSession);
+
+  const { data, isFetching } = Query.useMyProfile({ supabaseSession });
+
+  const [loading, setLoading] = useState(isFetching);
+  const [username, setUsername] = useState<string>(data?.data?.username);
+  const [gender, setGender] = useState<string>(data?.data?.gender);
+
+  useEffect(() => {
+    setLoading(isFetching);
+    setUsername(data?.data?.username);
+    setGender(data?.data?.gender);
+  }, [data?.data?.gender, data?.data?.username, isFetching]);
+
+  const updateProfile: React.FormEventHandler<HTMLFormElement> = async (event) => {
+    event.preventDefault();
+
+    if (!supabaseSession) return;
+
+    setLoading(true);
+
+    const { user } = supabaseSession;
+
+    const updates = {
+      gender,
+      id: user.id,
+      updated_at: new Date(),
+      username,
+    };
+
+    const { error } = await supabase.from('profiles').upsert(updates);
+
+    if (error) {
+      alert(error.message);
+    }
+    setLoading(false);
+  };
+
+  if (!supabaseSession) return <></>;
 
   return (
-    <Container>
-      <ErrorBoundary
-        fallback={
-          <>
-            <div>서버와 통신하는 중 문제가 생겼습니다!</div>
-            <div>호스트에게 이 사실을 알리세요!</div>
-            <button onClick={() => setResetKey(new Date())}>재시도</button>
-          </>
-        }
-        resetKeys={[resetKey]}
-      >
-        <Suspense fallback={<Waiting />}>
-          <Phase />
-        </Suspense>
-      </ErrorBoundary>
-    </Container>
+    <form onSubmit={updateProfile} className="form-widget">
+      <AvatarSetter size={150} />
+      <div>
+        <label htmlFor="email">
+          Email
+          <input id="email" type="text" value={supabaseSession.user.email} disabled />
+        </label>
+      </div>
+      <div>
+        <label htmlFor="username">
+          Username
+          <input
+            id="username"
+            type="text"
+            required
+            value={username || ''}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label htmlFor="gender">
+          Gender
+          <input id="gender" type="text" value={gender || ''} onChange={(e) => setGender(e.target.value)} />
+        </label>
+      </div>
+
+      <div>
+        <button className="button block primary" type="submit" disabled={loading}>
+          {loading ? 'Loading ...' : 'Update'}
+        </button>
+      </div>
+
+      <div>
+        <button className="button block" type="button" onClick={() => supabase.auth.signOut()}>
+          Sign Out
+        </button>
+      </div>
+    </form>
   );
 }
 
