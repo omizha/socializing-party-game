@@ -4,6 +4,7 @@ import { join } from 'path';
 import { MulterModule } from '@nestjs/platform-express';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PollModule } from 'feature-nest-poll';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppGateway } from './app.gateway';
@@ -28,6 +29,7 @@ import { GameModule } from './game/game.module';
     }),
     MulterModule.register(),
     GameModule,
+    PollModule,
   ],
   providers: [AppService, AppGateway],
 })
