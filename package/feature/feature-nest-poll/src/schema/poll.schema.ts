@@ -11,16 +11,19 @@ export class Poll {
   description: string;
 
   @Prop()
+  authorUserId: string;
+
+  @Prop()
   votes: PollVote[];
 
   @Prop()
-  limitAllCount: number;
+  limitAllCount?: number;
 
   @Prop()
-  limitMaleCount: number;
+  limitMaleCount?: number;
 
   @Prop()
-  limitFemaleCount: number;
+  limitFemaleCount?: number;
 
   @Prop()
   isMultipleVote: boolean;
@@ -29,10 +32,10 @@ export class Poll {
   isAnonymous: boolean;
 
   @Prop()
-  isPrivate: boolean;
+  isAllowAddVote: boolean;
 
   @Prop()
-  isAllowAddVote: boolean;
+  isPrivate: boolean;
 
   @Prop()
   availableUserIds: string[];
@@ -44,7 +47,23 @@ export class Poll {
   updatedAt: Date;
 
   @Prop({ type: SchemaTypes.Date })
-  deletedAt: Date;
+  deletedAt?: Date;
+
+  constructor(title: string, pollPartial: Partial<Omit<Poll, 'title'>>) {
+    this.title = title;
+    this.description = pollPartial.description ?? '';
+    this.votes = pollPartial.votes ?? [];
+    this.limitAllCount = pollPartial.limitAllCount;
+    this.limitMaleCount = pollPartial.limitMaleCount;
+    this.limitFemaleCount = pollPartial.limitFemaleCount;
+    this.isMultipleVote = pollPartial.isMultipleVote ?? false;
+    this.isAnonymous = pollPartial.isAnonymous ?? false;
+    this.isAllowAddVote = pollPartial.isAllowAddVote ?? false;
+    this.isPrivate = pollPartial.isPrivate ?? false;
+    this.availableUserIds = pollPartial.availableUserIds ?? [];
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
 }
 
 export type PollDocument = HydratedDocument<Poll>;
