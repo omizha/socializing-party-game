@@ -2,6 +2,9 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes } from 'mongoose';
 import { PollVote } from './vote.schema';
 
+type Required = 'title' | 'authorId';
+type Omited = 'createdAt' | 'updatedAt' | 'deletedAt' | 'isDeployed';
+
 @Schema()
 export class Poll {
   @Prop()
@@ -11,7 +14,7 @@ export class Poll {
   description: string;
 
   @Prop()
-  authorUserId: string;
+  authorId: string;
 
   @Prop()
   votes: PollVote[];
@@ -24,6 +27,9 @@ export class Poll {
 
   @Prop()
   limitFemaleCount?: number;
+
+  @Prop()
+  isDeployed: boolean;
 
   @Prop()
   isMultipleVote: boolean;
@@ -49,20 +55,24 @@ export class Poll {
   @Prop({ type: SchemaTypes.Date })
   deletedAt?: Date;
 
-  constructor(title: string, pollPartial: Partial<Omit<Poll, 'title'>>) {
-    this.title = title;
-    this.description = pollPartial.description ?? '';
-    this.votes = pollPartial.votes ?? [];
-    this.limitAllCount = pollPartial.limitAllCount;
-    this.limitMaleCount = pollPartial.limitMaleCount;
-    this.limitFemaleCount = pollPartial.limitFemaleCount;
-    this.isMultipleVote = pollPartial.isMultipleVote ?? false;
-    this.isAnonymous = pollPartial.isAnonymous ?? false;
-    this.isAllowAddVote = pollPartial.isAllowAddVote ?? false;
-    this.isPrivate = pollPartial.isPrivate ?? false;
-    this.availableUserIds = pollPartial.availableUserIds ?? [];
+  constructor(required: Pick<Poll, Required>, partial: Partial<Omit<Poll, Required | Omited>>) {
+    this.title = required.title;
+    this.authorId = required.authorId;
+
+    this.description = partial.description ?? '';
+    this.votes = partial.votes ?? [];
+    this.limitAllCount = partial.limitAllCount;
+    this.limitMaleCount = partial.limitMaleCount;
+    this.limitFemaleCount = partial.limitFemaleCount;
+    this.isMultipleVote = partial.isMultipleVote ?? false;
+    this.isAnonymous = partial.isAnonymous ?? false;
+    this.isAllowAddVote = partial.isAllowAddVote ?? false;
+    this.isPrivate = partial.isPrivate ?? false;
+    this.availableUserIds = partial.availableUserIds ?? [];
+
     this.createdAt = new Date();
     this.updatedAt = new Date();
+    this.isDeployed = false;
   }
 }
 
