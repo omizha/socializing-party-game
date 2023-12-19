@@ -8,7 +8,6 @@ import { PollModule } from 'feature-nest-poll';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppGateway } from './app.gateway';
-import { GameModule } from './game/game.module';
 
 @Module({
   controllers: [AppController],
@@ -28,7 +27,6 @@ import { GameModule } from './game/game.module';
       rootPath: join(__dirname, '..', '..', 'public'),
     }),
     MulterModule.register(),
-    GameModule,
     PollModule,
   ],
   providers: [AppService, AppGateway],
