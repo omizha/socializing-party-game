@@ -9,8 +9,6 @@
     "isolatedModules": true,
     // # strict
     "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
     "strict": true,
     // # Module Resolution
     "allowSyntheticDefaultImports": true,
