@@ -11,9 +11,12 @@
 /**/*.tsbuildinfo
 .next
 dist
+node_modules
+turbo-build.log
 
 # mac
 .DS_Store
 
 /app/server/public/avatar
+/app/koi-server/dev/main.js
 .env
