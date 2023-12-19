@@ -116,6 +116,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-testing-library", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.11.0"],\
             ["eslint-plugin-unused-imports", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:2.0.0"],\
             ["prettier", "npm:2.8.8"],\
+            ["turbo", "npm:1.11.2"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"]\
           ],\
           "linkType": "SOFT"\
@@ -14559,6 +14560,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-testing-library", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.11.0"],\
             ["eslint-plugin-unused-imports", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:2.0.0"],\
             ["prettier", "npm:2.8.8"],\
+            ["turbo", "npm:1.11.2"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"]\
           ],\
           "linkType": "SOFT"\
@@ -19092,6 +19094,75 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [\
             "@types/typescript",\
             "typescript"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["turbo", [\
+        ["npm:1.11.2", {\
+          "packageLocation": "./.yarn/cache/turbo-npm-1.11.2-962060ebae-427b31807f.zip/node_modules/turbo/",\
+          "packageDependencies": [\
+            ["turbo", "npm:1.11.2"],\
+            ["turbo-darwin-64", "npm:1.11.2"],\
+            ["turbo-darwin-arm64", "npm:1.11.2"],\
+            ["turbo-linux-64", "npm:1.11.2"],\
+            ["turbo-linux-arm64", "npm:1.11.2"],\
+            ["turbo-windows-64", "npm:1.11.2"],\
+            ["turbo-windows-arm64", "npm:1.11.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["turbo-darwin-64", [\
+        ["npm:1.11.2", {\
+          "packageLocation": "./.yarn/unplugged/turbo-darwin-64-npm-1.11.2-af6dfd4b14/node_modules/turbo-darwin-64/",\
+          "packageDependencies": [\
+            ["turbo-darwin-64", "npm:1.11.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["turbo-darwin-arm64", [\
+        ["npm:1.11.2", {\
+          "packageLocation": "./.yarn/unplugged/turbo-darwin-arm64-npm-1.11.2-a90fe1e4eb/node_modules/turbo-darwin-arm64/",\
+          "packageDependencies": [\
+            ["turbo-darwin-arm64", "npm:1.11.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["turbo-linux-64", [\
+        ["npm:1.11.2", {\
+          "packageLocation": "./.yarn/unplugged/turbo-linux-64-npm-1.11.2-a8a25fd34b/node_modules/turbo-linux-64/",\
+          "packageDependencies": [\
+            ["turbo-linux-64", "npm:1.11.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["turbo-linux-arm64", [\
+        ["npm:1.11.2", {\
+          "packageLocation": "./.yarn/unplugged/turbo-linux-arm64-npm-1.11.2-cf5be8d52d/node_modules/turbo-linux-arm64/",\
+          "packageDependencies": [\
+            ["turbo-linux-arm64", "npm:1.11.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["turbo-windows-64", [\
+        ["npm:1.11.2", {\
+          "packageLocation": "./.yarn/unplugged/turbo-windows-64-npm-1.11.2-909d949c22/node_modules/turbo-windows-64/",\
+          "packageDependencies": [\
+            ["turbo-windows-64", "npm:1.11.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["turbo-windows-arm64", [\
+        ["npm:1.11.2", {\
+          "packageLocation": "./.yarn/unplugged/turbo-windows-arm64-npm-1.11.2-e0ef3511a4/node_modules/turbo-windows-arm64/",\
+          "packageDependencies": [\
+            ["turbo-windows-arm64", "npm:1.11.2"]\
           ],\
           "linkType": "HARD"\
         }]\
