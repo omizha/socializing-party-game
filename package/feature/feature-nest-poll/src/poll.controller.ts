@@ -16,6 +16,8 @@ export class PollController {
     return this.pollService.createPoll(poll);
   }
 
-  @Post('vote')
-  vote(): void {}
+  @Post('vote/create')
+  vote(@Body() body: Poll): string {
+    return 'string';
+  }
 }

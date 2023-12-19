@@ -2,7 +2,7 @@ import { Prop, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { PollUser } from './user.schema';
 
-type Required = 'title' | 'description';
+type Required = 'title';
 type Omited = 'users' | 'createdAt' | 'updatedAt' | 'deletedAt';
 
 export class PollVote {
@@ -10,7 +10,7 @@ export class PollVote {
   title: string;
 
   @Prop()
-  description?: string;
+  description: string;
 
   @Prop()
   users: PollUser[];
@@ -35,12 +35,12 @@ export class PollVote {
 
   constructor(required: Pick<PollVote, Required>, partial: Partial<Omit<PollVote, Required | Omited>>) {
     this.title = required.title;
-    this.description = required.description ?? '';
 
     this.users = [];
     this.createdAt = new Date();
     this.updatedAt = new Date();
 
+    this.description = partial.description ?? '';
     this.limitAllCount = partial.limitAllCount;
     this.limitMaleCount = partial.limitMaleCount;
     this.limitFemaleCount = partial.limitFemaleCount;
