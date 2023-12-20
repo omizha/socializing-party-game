@@ -1,7 +1,7 @@
-export type Vote = {
-  userId: string;
+import { PollVoteForm } from '.';
 
+export type PostAddVotes = {
   pollId: string;
 
-  voteId: string;
+  votes: PollVoteForm[];
 };

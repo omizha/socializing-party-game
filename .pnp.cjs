@@ -11126,6 +11126,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.8.8"],\
             ["reflect-metadata", "npm:0.1.13"],\
             ["rxjs", "npm:7.8.1"],\
+            ["shared~type-poll", "workspace:package/shared/type-poll"],\
             ["source-map-support", "npm:0.5.21"],\
             ["supertest", "npm:6.3.3"],\
             ["ts-jest", "virtual:ce395be6b7426ea598ea4e8ed1669116613a7e400e65e428fdb6306685b33da86346a368fe102e4a42279e9137bdf836fdf4043cbb75e24b471a2ccb7a6a329b#npm:29.0.5"],\

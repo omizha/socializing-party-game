@@ -1,17 +1,21 @@
 export type * as Request from './Request';
 export type * as Response from './Response';
 
-export type VoteUserSchema = {
+export type PollUserSchema = {
   userId: string;
   nickname: string;
   gender: string;
   avatarUrl: string;
 };
 
-export type VoteSchema = {
+export type PollVoteRequired = 'title';
+export type PollVoteOmited = 'users' | 'createdAt' | 'updatedAt' | 'deletedAt';
+export type PollVoteForm = Pick<PollVoteSchema, PollVoteRequired> &
+  Partial<Omit<PollVoteSchema, PollVoteRequired | PollVoteOmited>>;
+export type PollVoteSchema = {
   title: string;
   description: string;
-  users: VoteUserSchema[];
+  users: PollUserSchema[];
   limitAllCount?: number;
   limitMaleCount?: number;
   limitFemaleCount?: number;
@@ -24,7 +28,7 @@ export type PollSchema = {
   title: string;
   description: string;
   authorId: string;
-  votes: VoteSchema[];
+  votes: PollVoteSchema[];
   limitAllCount?: number;
   limitMaleCount?: number;
   limitFemaleCount?: number;
