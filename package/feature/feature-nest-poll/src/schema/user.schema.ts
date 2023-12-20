@@ -1,7 +1,9 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { PollUserSchema } from 'shared~type-poll';
 
-export class PollUser {
+@Schema()
+export class PollUser implements PollUserSchema {
   @Prop()
   userId: string;
 
@@ -12,7 +14,7 @@ export class PollUser {
   gender: string;
 
   @Prop()
-  avatarUrl: string;
+  avatarUrl?: string;
 
   constructor(user: PollUser) {
     this.userId = user.userId;

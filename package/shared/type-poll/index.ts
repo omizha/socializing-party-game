@@ -5,7 +5,7 @@ export type PollUserSchema = {
   userId: string;
   nickname: string;
   gender: string;
-  avatarUrl: string;
+  avatarUrl?: string;
 };
 
 export type PollVoteRequired = 'title';

@@ -1,12 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes } from 'mongoose';
+import { PollSchema } from 'shared~type-poll';
 import { PollVote } from './vote.schema';
 
 type Required = 'title' | 'authorId';
 type Omited = 'createdAt' | 'updatedAt' | 'deletedAt' | 'isDeployed';
 
 @Schema()
-export class Poll {
+export class Poll implements PollSchema {
   @Prop()
   title: string;
 

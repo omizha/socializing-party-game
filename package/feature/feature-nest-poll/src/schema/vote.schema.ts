@@ -1,11 +1,10 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { PollVoteOmited, PollVoteRequired, PollVoteSchema } from 'shared~type-poll';
 import { PollUser } from './user.schema';
 
-type Required = 'title';
-type Omited = 'users' | 'createdAt' | 'updatedAt' | 'deletedAt';
-
-export class PollVote {
+@Schema()
+export class PollVote implements PollVoteSchema {
   @Prop()
   title: string;
 
@@ -33,7 +32,10 @@ export class PollVote {
   @Prop()
   deletedAt?: Date;
 
-  constructor(required: Pick<PollVote, Required>, partial: Partial<Omit<PollVote, Required | Omited>>) {
+  constructor(
+    required: Pick<PollVote, PollVoteRequired>,
+    partial: Partial<Omit<PollVote, PollVoteRequired | PollVoteOmited>>,
+  ) {
     this.title = required.title;
 
     this.users = [];
