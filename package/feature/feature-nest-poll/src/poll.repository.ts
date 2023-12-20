@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
@@ -44,16 +45,43 @@ export class PollRepository {
     const session = await this.pollModel.startSession();
     await session.withTransaction(async () => {
       poll = await this.findById(pollId, undefined, { session });
+
       poll.votes.forEach((vote) => {
-        const isJoined = vote.users.some((v) => v.userId === user.userId);
-        if (joinVoteTitles?.some((v) => v === vote.title) && !isJoined) {
-          vote.users.push(user);
+        const isJoinedVote = (): boolean => vote.userIds.some((v) => v === user.userId);
+        if (joinVoteTitles?.some((v) => v === vote.title) && !isJoinedVote()) {
+          vote.userIds.push(user.userId);
         }
-        if (exitVoteTitles?.some((v) => v === vote.title) && isJoined) {
-          vote.users = vote.users.filter((v) => v.userId !== user.userId);
+        if (exitVoteTitles?.some((v) => v === vote.title) && isJoinedVote()) {
+          vote.userIds = vote.userIds.filter((v) => v !== user.userId);
         }
       });
+
+      let isJoinedPoll = false;
+      for (const vote of poll.votes) {
+        const isJoinedVote = vote.userIds.some((v) => v === user.userId);
+        if (isJoinedVote) {
+          isJoinedPoll = true;
+          break;
+        }
+      }
+
+      if (isJoinedPoll) {
+        const pollUser = poll.users.find((v) => v.userId === user.userId);
+        if (!pollUser) {
+          poll.users.push(user);
+        } else if (!isEqual(pollUser, user)) {
+          pollUser.nickname = user.nickname;
+          pollUser.gender = user.gender;
+          pollUser.avatarUrl = user.avatarUrl;
+          pollUser.age = user.age;
+          pollUser.mbti = user.mbti;
+        }
+      } else {
+        poll.users = poll.users.filter((v) => v.userId !== user.userId);
+      }
+
       poll.markModified('votes');
+      poll.markModified('users');
       await poll.save({ session });
     });
     await session.endSession();

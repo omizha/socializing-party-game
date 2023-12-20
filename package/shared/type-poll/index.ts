@@ -3,8 +3,10 @@ export type * as Response from './Response';
 
 export type PollUserSchema = {
   userId: string;
-  nickname: string;
-  gender: string;
+  nickname?: string;
+  gender?: string;
+  age?: number;
+  mbti?: string;
   avatarUrl?: string;
 };
 
@@ -15,7 +17,7 @@ export type PollVoteForm = Pick<PollVoteSchema, PollVoteRequired> &
 export type PollVoteSchema = {
   title: string;
   description: string;
-  users: PollUserSchema[];
+  userIds: string[];
   limitAllCount?: number;
   limitMaleCount?: number;
   limitFemaleCount?: number;
@@ -36,8 +38,9 @@ export type PollSchema = {
   isMultipleVote: boolean;
   isAnonymous: boolean;
   isAllowAddVote: boolean;
-  isPrivate: boolean;
-  availableUserIds: string[];
+  isWhitelist: boolean;
+  whitelistUserIds: string[];
+  users: PollUserSchema[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;

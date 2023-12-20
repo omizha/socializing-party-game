@@ -8,10 +8,16 @@ export class PollUser implements PollUserSchema {
   userId: string;
 
   @Prop()
-  nickname: string;
+  nickname?: string;
 
   @Prop()
-  gender: string;
+  gender?: string;
+
+  @Prop()
+  age?: number;
+
+  @Prop()
+  mbti?: string;
 
   @Prop()
   avatarUrl?: string;
@@ -21,6 +27,8 @@ export class PollUser implements PollUserSchema {
     this.nickname = user.nickname;
     this.gender = user.gender;
     this.avatarUrl = user.avatarUrl;
+    this.age = user.age;
+    this.mbti = user.mbti;
   }
 }
 

@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes } from 'mongoose';
 import { PollSchema } from 'shared~type-poll';
 import { PollVote } from './vote.schema';
+import { PollUser } from './user.schema';
 
 type Required = 'title' | 'authorId';
 type Omited = 'createdAt' | 'updatedAt' | 'deletedAt' | 'isDeployed';
@@ -42,10 +43,13 @@ export class Poll implements PollSchema {
   isAllowAddVote: boolean;
 
   @Prop()
-  isPrivate: boolean;
+  isWhitelist: boolean;
 
   @Prop()
-  availableUserIds: string[];
+  whitelistUserIds: string[];
+
+  @Prop()
+  users: PollUser[];
 
   @Prop({ type: SchemaTypes.Date })
   createdAt: Date;
@@ -68,8 +72,8 @@ export class Poll implements PollSchema {
     this.isMultipleVote = partial.isMultipleVote ?? false;
     this.isAnonymous = partial.isAnonymous ?? false;
     this.isAllowAddVote = partial.isAllowAddVote ?? false;
-    this.isPrivate = partial.isPrivate ?? false;
-    this.availableUserIds = partial.availableUserIds ?? [];
+    this.isWhitelist = partial.isWhitelist ?? false;
+    this.whitelistUserIds = partial.whitelistUserIds ?? [];
 
     this.createdAt = new Date();
     this.updatedAt = new Date();

@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { PollVoteOmited, PollVoteRequired, PollVoteSchema } from 'shared~type-poll';
-import { PollUser } from './user.schema';
 
 @Schema()
 export class PollVote implements PollVoteSchema {
@@ -12,7 +11,7 @@ export class PollVote implements PollVoteSchema {
   description: string;
 
   @Prop()
-  users: PollUser[];
+  userIds: string[];
 
   @Prop()
   limitAllCount?: number;
@@ -38,7 +37,7 @@ export class PollVote implements PollVoteSchema {
   ) {
     this.title = required.title;
 
-    this.users = [];
+    this.userIds = [];
     this.createdAt = new Date();
     this.updatedAt = new Date();
 
