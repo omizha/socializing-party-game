@@ -13564,7 +13564,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["reflect-metadata", "npm:0.1.13"],\
             ["run-script-webpack-plugin", "npm:0.2.0"],\
             ["rxjs", "npm:7.8.1"],\
-            ["shared~config", "workspace:package/shared/config"],\
             ["shared~type", "workspace:package/shared/type"],\
             ["shared~type-koi", "workspace:package/shared/type-koi"],\
             ["shared~type-poll", "workspace:package/shared/type-poll"],\
