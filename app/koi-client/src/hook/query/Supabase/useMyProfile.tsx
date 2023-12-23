@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Session } from '@supabase/supabase-js';
-import { supabase } from '../../library/supabase';
+import { supabase } from '../../../library/supabase';
 
 interface Props {
   supabaseSession: Session | null;

@@ -9,7 +9,7 @@ import AvatarSetter from './component/AvatarSetter';
 export default function App() {
   const supabaseSession = useAtomValue(UserStore.supabaseSession);
 
-  const { data, isFetching } = Query.useMyProfile({ supabaseSession });
+  const { data, isFetching } = Query.Supabase.useMyProfile({ supabaseSession });
 
   const [loading, setLoading] = useState(isFetching);
   const [username, setUsername] = useState<string>(data?.data?.username);

@@ -11,7 +11,7 @@ interface Props {
 export default function AvatarSetter({ size = 150 }: Props) {
   const supabaseSession = useAtomValue(UserStore.supabaseSession);
 
-  const { data, isFetching } = Query.useMyProfile({ supabaseSession });
+  const { data, isFetching } = Query.Supabase.useMyProfile({ supabaseSession });
 
   const [avatarUrl, setAvatarUrl] = useState(data?.data?.avatar_url);
   const [uploading, setUploading] = useState(false);
