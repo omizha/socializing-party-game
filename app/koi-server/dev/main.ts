@@ -6,7 +6,7 @@ import { AppModule } from '../src/app/app.module';
 declare const module: any;
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());
