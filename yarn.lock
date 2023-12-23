@@ -9354,6 +9354,7 @@ __metadata:
     shared~config: "workspace:*"
     shared~type: "workspace:*"
     shared~type-koi: "workspace:*"
+    shared~type-poll: "workspace:*"
     socket.io-client: ^4.7.2
     sort-by: ^1.2.0
     three: ^0.157.0
