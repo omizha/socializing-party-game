@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes } from 'mongoose';
-import { PollSchema } from 'shared~type-poll';
+import { PollSchema, PollStatus } from 'shared~type-poll';
 import { PollVote } from './vote.schema';
 import { PollUser } from './user.schema';
 
@@ -21,6 +21,9 @@ export class Poll implements PollSchema {
   @Prop()
   votes: PollVote[];
 
+  @Prop({ type: String })
+  status: PollStatus;
+
   @Prop()
   limitAllCount?: number;
 
@@ -29,9 +32,6 @@ export class Poll implements PollSchema {
 
   @Prop()
   limitFemaleCount?: number;
-
-  @Prop()
-  isDeployed: boolean;
 
   @Prop()
   isMultipleVote: boolean;
@@ -77,7 +77,7 @@ export class Poll implements PollSchema {
 
     this.createdAt = new Date();
     this.updatedAt = new Date();
-    this.isDeployed = false;
+    this.status = 'DRAFT';
   }
 }
 

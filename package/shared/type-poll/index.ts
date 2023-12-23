@@ -26,15 +26,17 @@ export type PollVoteSchema = {
   deletedAt?: Date;
 };
 
+const PollStatus = ['DRAFT', 'OPEN', 'CLOSE'] as const;
+export type PollStatus = (typeof PollStatus)[number];
 export type PollSchema = {
   title: string;
   description: string;
   authorId: string;
   votes: PollVoteSchema[];
+  status: PollStatus;
   limitAllCount?: number;
   limitMaleCount?: number;
   limitFemaleCount?: number;
-  isDeployed: boolean;
   isMultipleVote: boolean;
   isAnonymous: boolean;
   isAllowAddVote: boolean;

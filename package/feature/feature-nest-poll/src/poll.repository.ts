@@ -46,6 +46,18 @@ export class PollRepository {
     await session.withTransaction(async () => {
       poll = await this.findById(pollId, undefined, { session });
 
+      if (!poll) {
+        throw new Error('poll not found');
+      }
+
+      if (poll.isWhitelist && !poll.whitelistUserIds.some((v) => v === user.userId)) {
+        throw new Error('user is not whitelist');
+      }
+
+      if (poll.status !== 'OPEN') {
+        throw new Error('poll is not open');
+      }
+
       poll.votes.forEach((vote) => {
         const isJoinedVote = (): boolean => vote.userIds.some((v) => v === user.userId);
         if (joinVoteTitles?.some((v) => v === vote.title) && !isJoinedVote()) {
