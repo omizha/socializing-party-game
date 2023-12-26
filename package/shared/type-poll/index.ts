@@ -47,3 +47,4 @@ export type PollSchema = {
   updatedAt: Date;
   deletedAt?: Date;
 };
+export type PollSchemaWithId = PollSchema & { _id: string };
