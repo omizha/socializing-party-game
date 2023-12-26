@@ -18,7 +18,7 @@ type Api = {
   signal?: AbortSignal;
 };
 
-const useMutation = <TVariables extends BodyInit, TData = unknown>({
+const useMutation = <TVariables extends object, TData = unknown>({
   api,
   reactQueryOption,
 }: Props<TData, TVariables>): UseMutationResult<TData, unknown, TVariables, unknown> => {
@@ -26,7 +26,7 @@ const useMutation = <TVariables extends BodyInit, TData = unknown>({
 
   return useMutationBase<TData, unknown, TVariables, unknown>(async (requestData) => {
     const res = await fetch(url, {
-      body: requestData,
+      body: JSON.stringify(requestData),
       headers: api.headers,
       keepalive: true,
       method: api.method,

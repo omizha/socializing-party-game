@@ -11,7 +11,7 @@ type Api = {
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   headers?: HeadersInit;
   signal?: AbortSignal;
-  body?: BodyInit;
+  body?: object;
 };
 
 const useQuery = <TData = unknown>({ api, reactQueryOption }: Props<TData>): UseQueryResult<TData, unknown> => {
@@ -21,7 +21,7 @@ const useQuery = <TData = unknown>({ api, reactQueryOption }: Props<TData>): Use
     [url, api.method, api.body],
     async () => {
       const res = await fetch(url, {
-        body: api.body,
+        body: JSON.stringify(api.body),
         headers: api.headers,
         keepalive: true,
         method: api.method,
