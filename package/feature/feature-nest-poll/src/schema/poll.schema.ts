@@ -1,11 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes } from 'mongoose';
-import { PollSchema, PollStatus } from 'shared~type-poll';
+import { PollOmited, PollRequired, PollSchema, PollStatus } from 'shared~type-poll';
 import { PollVote } from './vote.schema';
 import { PollUser } from './user.schema';
-
-type Required = 'title' | 'authorId';
-type Omited = 'createdAt' | 'updatedAt' | 'deletedAt' | 'isDeployed';
 
 @Schema()
 export class Poll implements PollSchema {
@@ -16,7 +13,7 @@ export class Poll implements PollSchema {
   description: string;
 
   @Prop()
-  authorId: string;
+  authorId?: string;
 
   @Prop()
   votes: PollVote[];
@@ -60,12 +57,11 @@ export class Poll implements PollSchema {
   @Prop({ type: SchemaTypes.Date })
   deletedAt?: Date;
 
-  constructor(required: Pick<Poll, Required>, partial: Partial<Omit<Poll, Required | Omited>>) {
+  constructor(required: Pick<Poll, PollRequired>, partial: Partial<Omit<Poll, PollRequired | PollOmited>>) {
     this.title = required.title;
-    this.authorId = required.authorId;
 
     this.description = partial.description ?? '';
-    this.votes = partial.votes ?? [];
+    this.authorId = partial.authorId;
     this.limitAllCount = partial.limitAllCount;
     this.limitMaleCount = partial.limitMaleCount;
     this.limitFemaleCount = partial.limitFemaleCount;
@@ -74,10 +70,12 @@ export class Poll implements PollSchema {
     this.isAllowAddVote = partial.isAllowAddVote ?? false;
     this.isWhitelist = partial.isWhitelist ?? false;
     this.whitelistUserIds = partial.whitelistUserIds ?? [];
+    this.status = partial.status ?? 'DRAFT';
 
+    this.votes = [];
+    this.users = [];
     this.createdAt = new Date();
     this.updatedAt = new Date();
-    this.status = 'DRAFT';
   }
 }
 

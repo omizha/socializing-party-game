@@ -28,10 +28,13 @@ export type PollVoteSchema = {
 
 const PollStatus = ['DRAFT', 'OPEN', 'CLOSE'] as const;
 export type PollStatus = (typeof PollStatus)[number];
+export type PollRequired = 'title';
+export type PollOmited = 'createdAt' | 'updatedAt' | 'deletedAt' | 'votes' | 'users';
+export type PollForm = Pick<PollSchema, PollRequired> & Partial<Omit<PollSchema, PollRequired | PollOmited>>;
 export type PollSchema = {
   title: string;
   description: string;
-  authorId: string;
+  authorId?: string;
   votes: PollVoteSchema[];
   status: PollStatus;
   limitAllCount?: number;

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
 import type { Request } from 'shared~type-poll';
 import { Poll } from './schema/poll.schema';
 import { PollService } from './poll.service';
@@ -14,13 +14,19 @@ export class PollController {
 
   @Post()
   createPoll(@Body() poll: Poll): Promise<Poll> {
+    console.debug('🚀 ~ file: poll.controller.ts:17 ~ PollController ~ createPoll ~ poll:', poll);
     return this.pollService.createPoll(poll);
   }
 
-  // @Delete()
-  // deletePolls(@Body() body: Request.DeletePolls): Promise<boolean> {
-  //   return this.pollService.deletePolls(body.pollIds);
-  // }
+  @Patch()
+  updatePoll(@Body() body: Request.PatchPoll): Promise<boolean> {
+    return this.pollService.updatePoll(body);
+  }
+
+  @Delete()
+  deletePolls(@Body() body: Request.DeletePolls): Promise<boolean> {
+    return this.pollService.deletePolls(body.pollIds);
+  }
 
   // @Delete('vote')
   // deleteVotes(@Body() body: Request.DeleteVotes) {
@@ -32,7 +38,7 @@ export class PollController {
     return this.pollService.addVotes(body.pollId, body.votes);
   }
 
-  @Patch('vote/toggle')
+  @Post('vote/toggle')
   async toggleVotes(@Body() body: Request.PatchToggleVotes): Promise<Poll> {
     return this.pollService.toggleVotes(body);
   }

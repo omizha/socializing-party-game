@@ -4,15 +4,14 @@ import { ConfigProvider } from 'antd';
 import { QueryClientProvider } from 'lib-react-query';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { css } from '@linaria/core';
 import { useAtom } from 'jotai';
 import App from './page/@';
-import Stock from './page/@backoffice';
-import Screen from './page/@screen';
 import SupabaseProvider from './library/supabase/SupabaseProvider';
 import { supabase } from './library/supabase';
 import authLocalization from './library/supabase/authLocalization';
 import { UserStore } from './store';
+import Backoffice from './page/@backoffice';
+import MobileLayout from './component-presentation/MobileLayout';
 
 const router = createBrowserRouter([
   {
@@ -20,12 +19,8 @@ const router = createBrowserRouter([
     path: '/',
   },
   {
-    element: <Stock />,
+    element: <Backoffice />,
     path: '/backoffice',
-  },
-  {
-    element: <Screen />,
-    path: '/screen',
   },
 ]);
 
@@ -47,43 +42,22 @@ const Global: React.FC = () => {
           },
         }}
       >
-        <div
-          className={css`
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-          `}
+        <SupabaseProvider
+          supabaseSession={supabaseSession}
+          setSupabaseSession={setSupabaseSession}
+          noSessionComponent={
+            <MobileLayout>
+              <Auth
+                supabaseClient={supabase}
+                appearance={{ theme: ThemeSupa }}
+                providers={[]}
+                localization={authLocalization}
+              />
+            </MobileLayout>
+          }
         >
-          <div
-            className={css`
-              width: 100%;
-              max-width: 360px;
-              height: 100%;
-              box-sizing: border-box;
-              padding: 20px;
-              background-color: #bbb;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-            `}
-          >
-            <SupabaseProvider
-              supabaseSession={supabaseSession}
-              setSupabaseSession={setSupabaseSession}
-              noSessionComponent={
-                <Auth
-                  supabaseClient={supabase}
-                  appearance={{ theme: ThemeSupa }}
-                  providers={[]}
-                  localization={authLocalization}
-                />
-              }
-            >
-              <RouterProvider router={router} />
-            </SupabaseProvider>
-          </div>
-        </div>
+          <RouterProvider router={router} />
+        </SupabaseProvider>
       </ConfigProvider>
     </QueryClientProvider>
   );

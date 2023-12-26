@@ -16,9 +16,13 @@ export class PollService {
     return this.pollRepository.createPoll(poll);
   }
 
-  // deletePolls(pollIds: string[]): Promise<boolean> {
-  //   return this.pollRepository.deletePolls(pollIds);
-  // }
+  updatePoll(poll: Request.PatchPoll): Promise<boolean> {
+    return this.pollRepository.updatePoll(poll);
+  }
+
+  deletePolls(pollIds: string[]): Promise<boolean> {
+    return this.pollRepository.deletePolls(pollIds);
+  }
 
   // deleteVotes(pollId: string, voteIds: string[]): Promise<boolean> {
   //   return this.pollRepository.deleteVotes(pollId, voteIds);

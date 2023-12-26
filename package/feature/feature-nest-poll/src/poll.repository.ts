@@ -33,6 +33,17 @@ export class PollRepository {
     return this.pollModel.create(new Poll(poll, poll));
   }
 
+  async updatePoll(poll: Request.PatchPoll): Promise<boolean> {
+    return !!(await this.pollModel.updateOne(
+      {
+        _id: poll._id,
+      },
+      {
+        ...poll,
+      },
+    ));
+  }
+
   async addVotes(pollId: string, pollVotes: PollVoteForm[]): Promise<boolean> {
     const createdVotes = pollVotes.map((v) => new PollVote(v, v));
 
@@ -99,5 +110,9 @@ export class PollRepository {
     await session.endSession();
 
     return poll;
+  }
+
+  async deletePolls(pollIds: string[]): Promise<boolean> {
+    return !!(await this.pollModel.deleteMany({ _id: { $in: pollIds } }));
   }
 }

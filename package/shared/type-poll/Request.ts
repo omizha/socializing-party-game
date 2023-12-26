@@ -1,4 +1,4 @@
-import { PollUserSchema, PollVoteForm } from '.';
+import { PollOmited, PollSchemaWithId, PollUserSchema, PollVoteForm } from '.';
 
 export type PostAddVotes = {
   pollId: string;
@@ -31,3 +31,5 @@ export type DeleteVotes = {
 
   voteIds: string[];
 };
+
+export type PatchPoll = Partial<Omit<PollSchemaWithId, PollOmited>>;
