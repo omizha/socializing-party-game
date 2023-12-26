@@ -27,7 +27,10 @@ const useMutation = <TVariables extends object, TData = unknown>({
   return useMutationBase<TData, unknown, TVariables, unknown>(async (requestData) => {
     const res = await fetch(url, {
       body: JSON.stringify(requestData),
-      headers: api.headers,
+      headers: {
+        'Content-Type': 'application/json',
+        ...api.headers,
+      },
       keepalive: true,
       method: api.method,
       signal: api.signal,
