@@ -3,7 +3,7 @@ import { ColumnDef, createColumnHelper, flexRender, getCoreRowModel, useReactTab
 import { PollSchemaWithId } from 'shared~type-poll';
 import { css } from '@linaria/core';
 import { Query } from '../../hook';
-import PollSubTable from './component/SubTable';
+import PollSubTable from './component/PollSubTable';
 import PollCreateForm from './component/PollCreateForm';
 
 const columnHelper = createColumnHelper<PollSchemaWithId>();
