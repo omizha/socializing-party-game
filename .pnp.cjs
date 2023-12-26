@@ -5815,6 +5815,42 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@tanstack/react-table", [\
+        ["npm:8.11.2", {\
+          "packageLocation": "./.yarn/cache/@tanstack-react-table-npm-8.11.2-6bcc4610d5-783a7bc53a.zip/node_modules/@tanstack/react-table/",\
+          "packageDependencies": [\
+            ["@tanstack/react-table", "npm:8.11.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:8.11.2", {\
+          "packageLocation": "./.yarn/__virtual__/@tanstack-react-table-virtual-46f74220b8/0/cache/@tanstack-react-table-npm-8.11.2-6bcc4610d5-783a7bc53a.zip/node_modules/@tanstack/react-table/",\
+          "packageDependencies": [\
+            ["@tanstack/react-table", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:8.11.2"],\
+            ["@tanstack/table-core", "npm:8.11.2"],\
+            ["@types/react", "npm:18.2.22"],\
+            ["@types/react-dom", "npm:18.2.7"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tanstack/table-core", [\
+        ["npm:8.11.2", {\
+          "packageLocation": "./.yarn/cache/@tanstack-table-core-npm-8.11.2-07118daef4-9b97d30bc8.zip/node_modules/@tanstack/table-core/",\
+          "packageDependencies": [\
+            ["@tanstack/table-core", "npm:8.11.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@tootallnate/once", [\
         ["npm:2.0.0", {\
           "packageLocation": "./.yarn/cache/@tootallnate-once-npm-2.0.0-e36cf4f140-ad87447820.zip/node_modules/@tootallnate/once/",\
@@ -13472,6 +13508,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@swc/plugin-emotion", "npm:2.5.86"],\
             ["@tanstack/react-query", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.35.3"],\
             ["@tanstack/react-query-devtools", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.35.3"],\
+            ["@tanstack/react-table", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:8.11.2"],\
             ["@toss/date", "npm:1.1.7"],\
             ["@toss/react", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:1.5.0"],\
             ["@toss/utils", "npm:1.4.4"],\

@@ -26,6 +26,7 @@
     "@supabase/supabase-js": "^2.39.0",
     "@swc/plugin-emotion": "^2.5.86",
     "@tanstack/react-query": "^4.35.3",
+    "@tanstack/react-table": "^8.11.2",
     "@toss/date": "^1.1.7",
     "@toss/react": "^1.5.0",
     "@toss/utils": "^1.4.4",
