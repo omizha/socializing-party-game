@@ -18,7 +18,7 @@ const useMyProfile = ({ supabaseSession }: Props) => {
 
       return result;
     },
-    queryKey: ['useMyProfile'],
+    queryKey: ['useMyProfile', supabaseSession?.user.id],
   });
 
   return { data, isFetching };

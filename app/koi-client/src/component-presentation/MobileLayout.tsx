@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { css } from '@linaria/core';
 import { useMediaQuery } from 'react-responsive';
-import Header from './Header';
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  HeaderComponent?: React.ReactNode;
+  justifyContent?: CSSProperties['justifyContent'];
 }
 
-const MobileLayout = ({ children }: Props) => {
+const MobileLayout = ({ children, HeaderComponent, justifyContent }: Props) => {
   const isDesktop = useMediaQuery({ query: `(min-width: 800px)` });
 
   return (
@@ -31,7 +32,7 @@ const MobileLayout = ({ children }: Props) => {
           maxWidth: isDesktop ? '400px' : '100%',
         }}
       >
-        <Header />
+        {HeaderComponent}
         <div
           className={css`
             width: 100%;
@@ -41,8 +42,10 @@ const MobileLayout = ({ children }: Props) => {
             background-color: #bbb;
             display: flex;
             flex-direction: column;
-            justify-content: center;
           `}
+          style={{
+            justifyContent: justifyContent || 'center',
+          }}
         >
           {children}
         </div>
