@@ -13,7 +13,7 @@ export default function AvatarSetter() {
   const avatarImageRef = useRef<HTMLSpanElement>(null);
   const isHover = useHover(avatarImageRef);
 
-  const { data: avatarUrl } = Query.Supabase.useQueryAvatarUrl({ supabaseSession });
+  const { data: avatarUrl, refetch } = Query.Supabase.useQueryAvatarUrl({ supabaseSession });
 
   const [uploading, setUploading] = useState(false);
 
@@ -49,6 +49,8 @@ export default function AvatarSetter() {
       if (error) {
         throw error;
       }
+
+      refetch();
     } catch (error) {
       alert(error);
     } finally {

@@ -8,8 +8,7 @@ interface Props {
 }
 
 const useQueryAvatarUrl = ({ supabaseSession }: Props) => {
-  const { data: profile } = Query.Supabase.useMyProfile({ supabaseSession });
-  console.debug('🚀 ~ file: useQueryAvatarUrl.tsx:12 ~ useQueryAvatarUrl ~ profile:', profile);
+  const { data: profile, refetch } = Query.Supabase.useMyProfile({ supabaseSession });
 
   const { data, isFetching } = useQuery({
     enabled: !!profile?.data?.avatar_url,
@@ -21,11 +20,10 @@ const useQueryAvatarUrl = ({ supabaseSession }: Props) => {
 
       return URL.createObjectURL(result.data);
     },
-    queryKey: ['useQueryAvatarUrl', supabaseSession?.user.id],
+    queryKey: ['useQueryAvatarUrl', supabaseSession?.user.id, profile?.data?.avatar_url],
   });
-  console.debug('🚀 ~ file: useQueryAvatarUrl.tsx:26 ~ useQueryAvatarUrl ~ data:', data);
 
-  return { data, isFetching };
+  return { data, isFetching, refetch };
 };
 
 export default useQueryAvatarUrl;

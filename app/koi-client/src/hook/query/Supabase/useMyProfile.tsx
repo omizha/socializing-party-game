@@ -7,7 +7,7 @@ interface Props {
 }
 
 const useMyProfile = ({ supabaseSession }: Props) => {
-  const { data, isFetching } = useQuery({
+  const { data, isFetching, refetch } = useQuery({
     enabled: !!supabaseSession?.user,
     queryFn: async () => {
       const result = await supabase
@@ -21,7 +21,7 @@ const useMyProfile = ({ supabaseSession }: Props) => {
     queryKey: ['useMyProfile', supabaseSession?.user.id],
   });
 
-  return { data, isFetching };
+  return { data, isFetching, refetch };
 };
 
 export default useMyProfile;
