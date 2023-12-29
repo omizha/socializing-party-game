@@ -8,6 +8,7 @@ import { PollModule } from 'feature-nest-poll';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppGateway } from './app.gateway';
+import { PartyModule } from './party/party.module';
 
 @Module({
   controllers: [AppController],
@@ -28,6 +29,7 @@ import { AppGateway } from './app.gateway';
     }),
     MulterModule.register(),
     PollModule,
+    PartyModule,
   ],
   providers: [AppService, AppGateway],
 })
