@@ -68,6 +68,7 @@
     "run-script-webpack-plugin": "^0.2.0",
     "shared~type": "workspace:*",
     "shared~type-koi": "workspace:*",
+    "shared~type-party": "workspace:*",
     "shared~type-poll": "workspace:*",
     "source-map-support": "^0.5.20",
     "supertest": "^6.1.3",

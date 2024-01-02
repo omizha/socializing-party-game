@@ -60,6 +60,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:package/shared/type-koi"\
       },\
       {\
+        "name": "shared~type-party",\
+        "reference": "workspace:package/shared/type-party"\
+      },\
+      {\
         "name": "shared~type-poll",\
         "reference": "workspace:package/shared/type-poll"\
       },\
@@ -81,6 +85,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["shared~config", ["workspace:package/shared/config"]],\
       ["shared~type", ["workspace:package/shared/type"]],\
       ["shared~type-koi", ["workspace:package/shared/type-koi"]],\
+      ["shared~type-party", ["workspace:package/shared/type-party"]],\
       ["shared~type-poll", ["workspace:package/shared/type-poll"]],\
       ["shared~type-stock", ["workspace:package/shared/type-stock"]],\
       ["stock-client", ["workspace:app/stock-client"]],\
@@ -13634,6 +13639,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rxjs", "npm:7.8.1"],\
             ["shared~type", "workspace:package/shared/type"],\
             ["shared~type-koi", "workspace:package/shared/type-koi"],\
+            ["shared~type-party", "workspace:package/shared/type-party"],\
             ["shared~type-poll", "workspace:package/shared/type-poll"],\
             ["socket.io", "npm:4.7.2"],\
             ["source-map-support", "npm:0.5.21"],\
@@ -17940,6 +17946,35 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./package/shared/type-koi/",\
           "packageDependencies": [\
             ["shared~type-koi", "workspace:package/shared/type-koi"],\
+            ["@typescript-eslint/eslint-plugin", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
+            ["@typescript-eslint/parser", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
+            ["eslint", "npm:8.41.0"],\
+            ["eslint-config-airbnb", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:19.0.4"],\
+            ["eslint-config-prettier", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:8.8.0"],\
+            ["eslint-import-resolver-node", "npm:0.3.7"],\
+            ["eslint-import-resolver-typescript", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:3.5.5"],\
+            ["eslint-plugin-import", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:2.27.5"],\
+            ["eslint-plugin-jest", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:26.9.0"],\
+            ["eslint-plugin-json", "npm:3.1.0"],\
+            ["eslint-plugin-jsx-a11y", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:6.7.1"],\
+            ["eslint-plugin-prettier", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:4.2.1"],\
+            ["eslint-plugin-react", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:7.32.2"],\
+            ["eslint-plugin-react-hooks", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:4.6.0"],\
+            ["eslint-plugin-sort-keys-fix", "npm:1.1.2"],\
+            ["eslint-plugin-testing-library", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.11.0"],\
+            ["eslint-plugin-unused-imports", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:2.0.0"],\
+            ["mongoose", "npm:7.5.3"],\
+            ["prettier", "npm:2.8.8"],\
+            ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"]\
+          ],\
+          "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["shared~type-party", [\
+        ["workspace:package/shared/type-party", {\
+          "packageLocation": "./package/shared/type-party/",\
+          "packageDependencies": [\
+            ["shared~type-party", "workspace:package/shared/type-party"],\
             ["@typescript-eslint/eslint-plugin", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["@typescript-eslint/parser", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.59.8"],\
             ["eslint", "npm:8.41.0"],\
