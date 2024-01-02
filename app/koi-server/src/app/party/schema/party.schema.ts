@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes } from 'mongoose';
-import { PollOmited, PollRequired, PollSchema } from 'shared~type-poll';
+import { PartyOmited, PartyRequired, PartySchema } from 'shared~type-party';
 
 @Schema()
-export class Poll implements PollSchema {
+export class Party implements PartySchema {
   @Prop()
   title: string;
 
@@ -12,6 +12,9 @@ export class Poll implements PollSchema {
 
   @Prop()
   authorId?: string;
+
+  @Prop()
+  status: string;
 
   @Prop()
   pendingUserIds: string[];
@@ -32,13 +35,13 @@ export class Poll implements PollSchema {
   limitFemaleCount: number;
 
   @Prop()
-  isPrivate: boolean;
+  publicScope: 'DRAFT' | 'PUBLIC' | 'PRIVATE' | 'CLOSED';
 
   @Prop()
   privatePassword?: string;
 
   @Prop()
-  isExposure: boolean;
+  price: number;
 
   @Prop({ type: SchemaTypes.Date })
   createdAt: Date;
@@ -49,28 +52,25 @@ export class Poll implements PollSchema {
   @Prop({ type: SchemaTypes.Date })
   deletedAt?: Date;
 
-  constructor(required: Pick<Poll, PollRequired>, partial: Partial<Omit<Poll, PollRequired | PollOmited>>) {
+  constructor(required: Pick<Party, PartyRequired>, partial: Partial<Omit<Party, PartyRequired | PartyOmited>>) {
     this.title = required.title;
+    this.limitAllCount = required.limitAllCount;
+    this.limitMaleCount = required.limitMaleCount;
+    this.limitFemaleCount = required.limitFemaleCount;
 
     this.description = partial.description ?? '';
     this.authorId = partial.authorId;
-    this.limitAllCount = partial.limitAllCount;
-    this.limitMaleCount = partial.limitMaleCount;
-    this.limitFemaleCount = partial.limitFemaleCount;
-    this.isMultipleVote = partial.isMultipleVote ?? false;
-    this.isAnonymous = partial.isAnonymous ?? false;
-    this.isAllowAddVote = partial.isAllowAddVote ?? false;
-    this.isWhitelist = partial.isWhitelist ?? false;
-    this.whitelistUserIds = partial.whitelistUserIds ?? [];
-    this.status = partial.status ?? 'DRAFT';
+    this.price = partial.price;
 
-    this.votes = [];
-    this.users = [];
+    this.publicScope = 'DRAFT';
+    this.joinedUserIds = [];
+    this.likedUserIds = [];
+    this.pendingUserIds = [];
     this.createdAt = new Date();
     this.updatedAt = new Date();
   }
 }
 
-export type PollDocument = HydratedDocument<Poll>;
+export type PartyDocument = HydratedDocument<Party>;
 
-export const pollSchema = SchemaFactory.createForClass(Poll);
+export const partySchema = SchemaFactory.createForClass(Party);

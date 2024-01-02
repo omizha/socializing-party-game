@@ -1,7 +1,7 @@
 export type * as Request from './Request';
 export type * as Response from './Response';
 
-export type PartyRequired = 'title';
+export type PartyRequired = 'title' | 'limitAllCount' | 'limitMaleCount' | 'limitFemaleCount';
 export type PartyOmited = 'createdAt' | 'updatedAt' | 'deletedAt';
 export type PartyForm = Pick<PartySchema, PartyRequired> & Partial<Omit<PartySchema, PartyRequired | PartyOmited>>;
 export type PartySchema = {
