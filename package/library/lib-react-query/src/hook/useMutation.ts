@@ -35,7 +35,14 @@ const useMutation = <TVariables extends object, TData = unknown>({
       method: api.method,
       signal: api.signal,
     });
-    return res.json();
+
+    const json = await res.json();
+
+    if (!res.ok) {
+      throw Error(`${json.message ?? '알 수 없는 오류가 발생하였습니다.'}`);
+    }
+
+    return json;
   }, reactQueryOption);
 };
 
