@@ -13576,6 +13576,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["shared~config", "workspace:package/shared/config"],\
             ["shared~type", "workspace:package/shared/type"],\
             ["shared~type-koi", "workspace:package/shared/type-koi"],\
+            ["shared~type-party", "workspace:package/shared/type-party"],\
             ["shared~type-poll", "workspace:package/shared/type-poll"],\
             ["socket.io-client", "npm:4.7.2"],\
             ["sort-by", "npm:1.2.0"],\
