@@ -11,7 +11,7 @@ export type PollUserSchema = {
 };
 
 export type PollVoteRequired = 'title';
-export type PollVoteOmited = 'users' | 'createdAt' | 'updatedAt' | 'deletedAt';
+export type PollVoteOmited = 'userIds' | 'createdAt' | 'updatedAt' | 'deletedAt';
 export type PollVoteForm = Pick<PollVoteSchema, PollVoteRequired> &
   Partial<Omit<PollVoteSchema, PollVoteRequired | PollVoteOmited>>;
 export type PollVoteSchema = {
