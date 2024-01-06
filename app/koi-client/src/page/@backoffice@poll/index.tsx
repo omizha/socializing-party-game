@@ -36,6 +36,15 @@ const columns = [
     cell: (v) => v.getValue().length,
     header: () => '참가자 수',
   }),
+  columnHelper.accessor('limitAllCount', {
+    cell: (v) => v.getValue(),
+  }),
+  columnHelper.accessor('limitMaleCount', {
+    cell: (v) => v.getValue(),
+  }),
+  columnHelper.accessor('limitFemaleCount', {
+    cell: (v) => v.getValue(),
+  }),
   columnHelper.accessor('createdAt', {
     cell: (v) => v.getValue(),
   }),

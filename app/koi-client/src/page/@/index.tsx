@@ -1,25 +1,39 @@
-import { useAtomValue } from 'jotai';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UserStore } from '../../store';
-import { Query } from '../../hook';
+import { Card } from 'antd';
+import { Link } from 'react-router-dom';
+import { styled } from '@linaria/react';
 import MobileLayout from '../../component-presentation/MobileLayout';
+import { Query } from '../../hook';
 import MainHeader from './component/MainHeader';
 
 export default function Main() {
-  const supabaseSession = useAtomValue(UserStore.supabaseSession);
-  const navigate = useNavigate();
+  const { data: partyList } = Query.Party.useQueryPartyList();
 
-  const { data, isFetching } = Query.Supabase.useMyProfile({ supabaseSession });
-  const username = data?.data?.username;
+  if (!partyList) {
+    return <></>;
+  }
 
-  useEffect(() => {
-    if (!isFetching && !username) {
-      navigate('/profile');
-    }
-  }, [isFetching, navigate, username]);
-
-  if (!supabaseSession) return <></>;
-
-  return <MobileLayout HeaderComponent={<MainHeader />} />;
+  return (
+    <MobileLayout HeaderComponent={<MainHeader />}>
+      <Wrapper>
+        {partyList.map((party) => {
+          return (
+            <Card key={party._id} title={party.title}>
+              <Link to={`/party/${party._id}`}>참가</Link>
+            </Card>
+          );
+        })}
+      </Wrapper>
+    </MobileLayout>
+  );
 }
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 8px;
+`;

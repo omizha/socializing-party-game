@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Query } from '../../../hook';
 import { UserStore } from '../../../store';
 import Header from '../../../component-presentation/Header';
+import ProfileValidator from '../../../component/ProfileValidator';
 
 const MainHeader = () => {
   const navigate = useNavigate();
@@ -14,15 +15,17 @@ const MainHeader = () => {
   const isVisibleAvatar = !!data;
 
   return (
-    <Header
-      avatar={{
-        isVisible: isVisibleAvatar,
-        onClick: () => {
-          navigate('/profile');
-        },
-        src: data,
-      }}
-    />
+    <ProfileValidator>
+      <Header
+        avatar={{
+          isVisible: isVisibleAvatar,
+          onClick: () => {
+            navigate('/profile');
+          },
+          src: data,
+        }}
+      />
+    </ProfileValidator>
   );
 };
 

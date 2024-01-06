@@ -1,12 +1,14 @@
 import { useAtomValue } from 'jotai';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserStore } from '../../store';
-import { Query } from '../../hook';
-import MobileLayout from '../../component-presentation/MobileLayout';
-import MainHeader from './component/MainHeader';
+import { UserStore } from '../store';
+import { Query } from '../hook';
 
-export default function Party() {
+interface Props {
+  children: React.ReactNode;
+}
+
+const ProfileValidator = ({ children }: Props) => {
   const supabaseSession = useAtomValue(UserStore.supabaseSession);
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ export default function Party() {
     }
   }, [isFetching, navigate, username]);
 
-  if (!supabaseSession) return <></>;
+  return <>{children}</>;
+};
 
-  return <MobileLayout HeaderComponent={<MainHeader />} />;
-}
+export default ProfileValidator;

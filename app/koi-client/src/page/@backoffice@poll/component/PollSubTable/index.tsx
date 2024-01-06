@@ -4,8 +4,9 @@ import { PollSchemaWithId } from 'shared~type-poll';
 import { useQueryClient } from '@tanstack/react-query';
 import { getQueryKey } from 'lib-react-query';
 import { Button, Form, Radio } from 'antd';
-import { Query } from '../../../hook';
-import { serverApiUrl } from '../../../config/baseUrl';
+import { Query } from '../../../../hook';
+import { serverApiUrl } from '../../../../config/baseUrl';
+import VoteCreateForm from './VoteCreateForm';
 
 const PollSubTable = ({ row, className }: { row: Row<PollSchemaWithId>; className?: string }) => {
   const queryClient = useQueryClient();
@@ -20,10 +21,8 @@ const PollSubTable = ({ row, className }: { row: Row<PollSchemaWithId>; classNam
 
   const { mutateAsync: deletePollList } = Query.Poll.useDeletePollList();
   const { mutateAsync: updatePoll } = Query.Poll.useUpdatePoll();
-  const { mutateAsync: AddVotes } = Query.Poll.useAddVotes();
 
   const [pollTitle, setPollTitle] = React.useState(row.original.title);
-  const [newVoteTitle, setNewVoteTitle] = React.useState('');
   const [status, setStatus] = React.useState(row.original.status);
 
   return (
@@ -49,26 +48,16 @@ const PollSubTable = ({ row, className }: { row: Row<PollSchemaWithId>; classNam
               })
               .join(', ')}
             )
+            <ul>
+              {vote.limitAllCount !== undefined && <li>모든제한: {vote.limitAllCount}명</li>}
+              {vote.limitMaleCount !== undefined && <li>남자제한: {vote.limitMaleCount}명</li>}
+              {vote.limitFemaleCount !== undefined && <li>여자제한: {vote.limitFemaleCount}명</li>}
+            </ul>
           </li>
         ))}
       </ul>
       <h2>새 투표 생성</h2>
-      <input type="text" value={newVoteTitle} onChange={(e) => setNewVoteTitle(e.target.value)} />
-      <button
-        onClick={async () => {
-          await AddVotes({
-            pollId: row.original._id,
-            votes: [
-              {
-                title: newVoteTitle,
-              },
-            ],
-          });
-          invalidatePollList();
-        }}
-      >
-        새 투표 생성
-      </button>
+      <VoteCreateForm pollId={row.original._id} />
       <h2>투표 관리</h2>
       <Form>
         <Form.Item label="투표 제목">

@@ -13,7 +13,7 @@ import { UserStore } from './store';
 import BackofficePoll from './page/@backoffice@poll';
 import MobileLayout from './component-presentation/MobileLayout';
 import Profile from './page/@profile';
-import Party from './page/@party';
+import Party from './page/@party@:partyId';
 import Backoffice from './page/@backoffice';
 import BackofficeParty from './page/@backoffice@party';
 
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     element: <Party />,
-    path: '/party',
+    path: '/party/:partyId',
   },
   {
     element: <Profile />,
