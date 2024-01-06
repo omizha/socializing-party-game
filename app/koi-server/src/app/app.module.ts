@@ -1,7 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
-import { MulterModule } from '@nestjs/platform-express';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PollModule } from 'feature-nest-poll';
@@ -24,10 +21,10 @@ import { PartyModule } from './party/party.module';
         };
       },
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', 'public'),
-    }),
-    MulterModule.register(),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '..', '..', 'public'),
+    // }),
+    // MulterModule.register(),
     PollModule,
     PartyModule,
   ],

@@ -11,6 +11,12 @@ export class Party implements PartySchema {
   description: string;
 
   @Prop()
+  activityId: string;
+
+  @Prop()
+  activityName: string;
+
+  @Prop()
   authorId?: string;
 
   @Prop()
@@ -55,12 +61,14 @@ export class Party implements PartySchema {
   constructor(required: Pick<Party, PartyRequired>, partial: Partial<Omit<Party, PartyRequired | PartyOmited>>) {
     this.title = required.title;
     this.limitAllCount = required.limitAllCount;
-    this.limitMaleCount = required.limitMaleCount;
-    this.limitFemaleCount = required.limitFemaleCount;
 
     this.description = partial.description ?? '';
     this.authorId = partial.authorId;
-    this.price = partial.price;
+    this.price = partial.price ?? 0;
+    this.limitMaleCount = partial.limitMaleCount ?? required.limitAllCount;
+    this.limitFemaleCount = partial.limitFemaleCount ?? required.limitAllCount;
+    this.activityId = partial.activityId ?? 'INITIAL';
+    this.activityName = partial.activityName ?? 'INITIAL';
 
     this.publicScope = 'DRAFT';
     this.joinedUserIds = [];
