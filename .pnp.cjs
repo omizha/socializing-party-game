@@ -5883,6 +5883,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
+        ["npm:1.6.1", {\
+          "packageLocation": "./.yarn/cache/@toss-react-npm-1.6.1-5056247031-870cd5f43d.zip/node_modules/@toss/react/",\
+          "packageDependencies": [\
+            ["@toss/react", "npm:1.6.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:1.6.1", {\
+          "packageLocation": "./.yarn/__virtual__/@toss-react-virtual-a429a88a92/0/cache/@toss-react-npm-1.6.1-5056247031-870cd5f43d.zip/node_modules/@toss/react/",\
+          "packageDependencies": [\
+            ["@toss/react", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:1.6.1"],\
+            ["@babel/runtime", "npm:7.23.1"],\
+            ["@toss/storage", "npm:1.3.1"],\
+            ["@toss/utils", "npm:1.4.6"],\
+            ["@types/react", "npm:18.2.22"],\
+            ["classnames", "npm:2.3.2"],\
+            ["lodash.debounce", "npm:4.0.8"],\
+            ["lodash.throttle", "npm:4.1.1"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:1.5.0", {\
           "packageLocation": "./.yarn/__virtual__/@toss-react-virtual-fe41d524ca/0/cache/@toss-react-npm-1.5.0-4b626bb937-487e69032a.zip/node_modules/@toss/react/",\
           "packageDependencies": [\
@@ -5911,6 +5937,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/runtime", "npm:7.23.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:1.3.1", {\
+          "packageLocation": "./.yarn/cache/@toss-storage-npm-1.3.1-37159b8547-267be4e1de.zip/node_modules/@toss/storage/",\
+          "packageDependencies": [\
+            ["@toss/storage", "npm:1.3.1"],\
+            ["@babel/runtime", "npm:7.23.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@toss/utils", [\
@@ -5918,6 +5952,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@toss-utils-npm-1.4.4-4da0dd0dcb-7013b5eb19.zip/node_modules/@toss/utils/",\
           "packageDependencies": [\
             ["@toss/utils", "npm:1.4.4"],\
+            ["@babel/runtime", "npm:7.23.1"],\
+            ["date-fns", "npm:2.30.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:1.4.6", {\
+          "packageLocation": "./.yarn/cache/@toss-utils-npm-1.4.6-47e804d0a9-69ec8b76bc.zip/node_modules/@toss/utils/",\
+          "packageDependencies": [\
+            ["@toss/utils", "npm:1.4.6"],\
             ["@babel/runtime", "npm:7.23.1"],\
             ["date-fns", "npm:2.30.0"]\
           ],\
@@ -13533,7 +13576,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query-devtools", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:4.35.3"],\
             ["@tanstack/react-table", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:8.11.2"],\
             ["@toss/date", "npm:1.1.7"],\
-            ["@toss/react", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:1.5.0"],\
+            ["@toss/react", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:1.6.1"],\
             ["@toss/utils", "npm:1.4.4"],\
             ["@types/node", "npm:18.16.16"],\
             ["@types/react", "npm:18.2.22"],\

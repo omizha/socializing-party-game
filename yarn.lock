@@ -3415,12 +3415,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@toss/react@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "@toss/react@npm:1.6.1"
+  dependencies:
+    "@babel/runtime": ^7.14.8
+    "@toss/storage": ^1.3.1
+    "@toss/utils": ^1.4.6
+    classnames: ^2.3.1
+    lodash.debounce: ^4.0.8
+    lodash.throttle: ^4.1.1
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18
+  checksum: 870cd5f43d917f7b15da6a3ad56ffac06895d203236f4c6050e90c8086cfd4aa1bc4375d506d0768f79f03767103e066d7777a277f9c7826447384c60f004fcc
+  languageName: node
+  linkType: hard
+
 "@toss/storage@npm:^1.3.0":
   version: 1.3.0
   resolution: "@toss/storage@npm:1.3.0"
   dependencies:
     "@babel/runtime": ^7.19.0
   checksum: bc82d32df7fc307a2376d88f0a8a153e242493d0736262d05c5e4eb49303e006e7f993988c18e03c18e42435845162fbcff58dfc4a5bbcca055db3e116a517f0
+  languageName: node
+  linkType: hard
+
+"@toss/storage@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "@toss/storage@npm:1.3.1"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+  checksum: 267be4e1de2a6ebd9f8a745b1b2d9df184fcee9f9aeaa40f368d0dbaac34421fc0e44378e28bec772e5cb1d651cbfb22c20a6376a0e7f0474ded0b3f78b92dd3
   languageName: node
   linkType: hard
 
@@ -3431,6 +3456,16 @@ __metadata:
     "@babel/runtime": ^7.14.8
     date-fns: ^2.25.0
   checksum: 7013b5eb191ebdae3e53844383390a79fbb6751281528165d3730ecd4a9914d09d934fd487c5d79d231a1afa990551cfc7626a89da91dad66a33e8b3fd6e5325
+  languageName: node
+  linkType: hard
+
+"@toss/utils@npm:^1.4.6":
+  version: 1.4.6
+  resolution: "@toss/utils@npm:1.4.6"
+  dependencies:
+    "@babel/runtime": ^7.14.8
+    date-fns: ^2.25.0
+  checksum: 69ec8b76bc6cee1d96956cbef62d2b448008d733031aa6469ccdcf1c0e743c20cd930cf947a821e7d553c73f7149ee07c5796ab67a233a0a1e13312ef7a73126
   languageName: node
   linkType: hard
 
@@ -9346,7 +9381,7 @@ __metadata:
     "@tanstack/react-query-devtools": ^4.35.3
     "@tanstack/react-table": ^8.11.2
     "@toss/date": ^1.1.7
-    "@toss/react": ^1.5.0
+    "@toss/react": ^1.6.1
     "@toss/utils": ^1.4.4
     "@types/node": ^18.5.5
     "@types/react": ^18.2.15
