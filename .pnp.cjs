@@ -13577,7 +13577,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-table", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:8.11.2"],\
             ["@toss/date", "npm:1.1.7"],\
             ["@toss/react", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:1.6.1"],\
-            ["@toss/utils", "npm:1.4.4"],\
+            ["@toss/utils", "npm:1.4.6"],\
             ["@types/node", "npm:18.16.16"],\
             ["@types/react", "npm:18.2.22"],\
             ["@types/react-dom", "npm:18.2.7"],\

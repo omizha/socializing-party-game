@@ -9382,7 +9382,7 @@ __metadata:
     "@tanstack/react-table": ^8.11.2
     "@toss/date": ^1.1.7
     "@toss/react": ^1.6.1
-    "@toss/utils": ^1.4.4
+    "@toss/utils": ^1.4.6
     "@types/node": ^18.5.5
     "@types/react": ^18.2.15
     "@types/react-dom": ^18.2.7
