@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import type { Request } from 'shared~type-poll';
 import { Poll } from './schema/poll.schema';
 import { PollService } from './poll.service';
@@ -8,8 +8,13 @@ export class PollController {
   constructor(private readonly pollService: PollService) {}
 
   @Get()
-  getPolls(): Promise<Poll[]> {
-    return this.pollService.getPolls();
+  queryPolls(): Promise<Poll[]> {
+    return this.pollService.queryPolls();
+  }
+
+  @Get('/:pollId')
+  queryPoll(@Param('pollId') pollId: string): Promise<Poll> {
+    return this.pollService.queryPoll(pollId);
   }
 
   @Post()

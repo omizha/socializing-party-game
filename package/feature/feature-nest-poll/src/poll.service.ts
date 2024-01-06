@@ -7,7 +7,11 @@ import { Poll, PollDocument } from './schema/poll.schema';
 export class PollService {
   constructor(private readonly pollRepository: PollRepository) {}
 
-  getPolls(): Promise<PollDocument[]> {
+  queryPoll(pollId: string): Promise<PollDocument> {
+    return this.pollRepository.findById(pollId);
+  }
+
+  queryPolls(): Promise<PollDocument[]> {
     return this.pollRepository.find(undefined);
   }
 
