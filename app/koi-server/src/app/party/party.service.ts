@@ -7,7 +7,11 @@ import { Party, PartyDocument } from './schema/party.schema';
 export class PartyService {
   constructor(private readonly partyRepository: PartyRepository) {}
 
-  getParties(): Promise<PartyDocument[]> {
+  queryParty(partyId: string): Promise<PartyDocument> {
+    return this.partyRepository.findById(partyId);
+  }
+
+  queryParties(): Promise<PartyDocument[]> {
     return this.partyRepository.find(undefined);
   }
 

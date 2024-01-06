@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { Request } from 'shared~type-party';
 import { PartyService } from './party.service';
 import { Party } from './schema/party.schema';
@@ -8,8 +8,13 @@ export class PartyController {
   constructor(private readonly partyService: PartyService) {}
 
   @Get()
-  getParties(): Promise<Party[]> {
-    return this.partyService.getParties();
+  queryParties(): Promise<Party[]> {
+    return this.partyService.queryParties();
+  }
+
+  @Get('/:partyId')
+  queryParty(@Param('partyId') partyId: string): Promise<Party> {
+    return this.partyService.queryParty(partyId);
   }
 
   @Post()
