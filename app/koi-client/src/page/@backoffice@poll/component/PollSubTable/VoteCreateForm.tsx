@@ -48,9 +48,9 @@ const VoteCreateForm = ({ pollId }: Props) => {
               pollId,
               votes: [
                 {
-                  limitAllCount: +limitAllCount,
-                  limitFemaleCount: +limitFemaleCount,
-                  limitMaleCount: +limitMaleCount,
+                  limitAllCount: limitAllCount === '' ? undefined : +limitAllCount,
+                  limitFemaleCount: limitFemaleCount === '' ? undefined : +limitFemaleCount,
+                  limitMaleCount: limitMaleCount === '' ? undefined : +limitMaleCount,
                   title: newVoteTitle,
                 },
               ],

@@ -34,9 +34,9 @@ const PollCreateForm = () => {
         <Button
           onClick={async () => {
             await mutateAsync({
-              limitAllCount: +limitAllCount,
-              limitFemaleCount: +limitFemaleCount,
-              limitMaleCount: +limitMaleCount,
+              limitAllCount: limitAllCount === '' ? undefined : +limitAllCount,
+              limitFemaleCount: limitFemaleCount === '' ? undefined : +limitFemaleCount,
+              limitMaleCount: limitMaleCount === '' ? undefined : +limitMaleCount,
               title,
             });
             queryClient.invalidateQueries(
