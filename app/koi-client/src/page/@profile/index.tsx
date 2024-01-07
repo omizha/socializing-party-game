@@ -6,7 +6,7 @@ import { UserStore } from '../../store';
 import { Query } from '../../hook';
 import AvatarSetter from './component/AvatarSetter';
 import MobileLayout from '../../component-presentation/MobileLayout';
-import MainHeader from './component/MainHeader';
+import ProfileHeader from './component/ProfileHeader';
 import { supabase } from '../../library/supabase';
 
 export default function Profile() {
@@ -16,7 +16,7 @@ export default function Profile() {
 
   const { data, isFetching } = Query.Supabase.useMyProfile({ supabaseSession });
 
-  const [loading, setLoading] = useState(isFetching);
+  const [isLoading, setLoading] = useState(isFetching);
   const [username, setUsername] = useState<string>(data?.data?.username);
   const [gender, setGender] = useState<string>(data?.data?.gender);
 
@@ -54,8 +54,10 @@ export default function Profile() {
     navigate(-1);
   };
 
+  const isDisabledSubmit = !username || !gender;
+
   return (
-    <MobileLayout justifyContent="flex-start" HeaderComponent={<MainHeader />}>
+    <MobileLayout justifyContent="flex-start" HeaderComponent={<ProfileHeader />}>
       <Form layout="vertical">
         <Form.Item>
           <AvatarSetter />
@@ -65,7 +67,7 @@ export default function Profile() {
           <Input type="text" required value={username} onChange={(e) => setUsername(e.target.value)} />
         </Form.Item>
 
-        <Form.Item label="성별">
+        <Form.Item required label="성별">
           <Radio.Group value={gender} onChange={(e) => setGender(e.target.value)}>
             <Radio value="M">남성</Radio>
             <Radio value="F">여성</Radio>
@@ -73,8 +75,14 @@ export default function Profile() {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" disabled={loading} onClick={updateProfile}>
-            {loading ? 'Loading ...' : '저장'}
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={isDisabledSubmit}
+            loading={isLoading}
+            onClick={updateProfile}
+          >
+            저장
           </Button>
         </Form.Item>
 

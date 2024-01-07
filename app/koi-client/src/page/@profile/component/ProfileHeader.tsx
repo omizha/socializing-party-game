@@ -4,7 +4,7 @@ import { css } from '@linaria/core';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../component-presentation/Header';
 
-const MainHeader = () => {
+const ProfileHeader = () => {
   const navigate = useNavigate();
 
   return (
@@ -27,4 +27,4 @@ const MainHeader = () => {
   );
 };
 
-export default MainHeader;
+export default ProfileHeader;
