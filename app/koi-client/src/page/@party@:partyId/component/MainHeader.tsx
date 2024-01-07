@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button, Dropdown, MenuProps, message } from 'antd';
-import { EllipsisOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { useAtomValue } from 'jotai';
+import { css } from '@linaria/core';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../../component-presentation/Header';
 import ProfileValidator from '../../../component/ProfileValidator';
 import { Query } from '../../../hook';
@@ -12,12 +14,14 @@ interface Props {
 }
 
 const PartyHeader = ({ title }: Props) => {
-  const supabaseSession = useAtomValue(UserStore.supabaseSession);
-  const { data: profile } = Query.Supabase.useMyProfile({ supabaseSession });
+  const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
 
+  const supabaseSession = useAtomValue(UserStore.supabaseSession);
+
+  const { data: profile } = Query.Supabase.useMyProfile({ supabaseSession });
   const { mutateAsync } = Query.useSendLog(`${profile?.data?.username}님의 호스트 띵똥`);
 
-  const [messageApi, contextHolder] = message.useMessage();
   const items: MenuProps['items'] = [
     {
       key: '호스트 띵똥',
@@ -46,6 +50,19 @@ const PartyHeader = ({ title }: Props) => {
     <ProfileValidator>
       <Header
         title={title}
+        LeftComponent={
+          <ArrowLeftOutlined
+            size={60}
+            onClick={() => {
+              navigate(-1);
+            }}
+            className={css`
+              &:hover {
+                cursor: pointer;
+              }
+            `}
+          />
+        }
         RightComponent={
           <Dropdown menu={{ items }} trigger={['click']} placement="bottomRight">
             <Button shape="circle" icon={<EllipsisOutlined />} />
