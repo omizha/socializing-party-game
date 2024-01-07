@@ -21,10 +21,13 @@ const PartySubTable = ({ row, className }: { row: Row<PartySchemaWithId>; classN
     );
 
   const { mutateAsync: updateParty, isLoading: isLoadingUpdateParty } = Query.Party.useUpdateParty();
+  const { mutateAsync: deleteParty, isLoading: isLoadingDeleteParty } = Query.Party.useDeleteParty(row.original._id);
 
   const [title, setTitle] = React.useState(row.original.title);
   const [activityId, setActivityId] = React.useState(row.original.activityId);
   const [activityName, setActivityName] = React.useState(row.original.activityName);
+
+  const isLoading = isLoadingUpdateParty || isLoadingDeleteParty;
 
   return (
     <>
@@ -73,20 +76,19 @@ const PartySubTable = ({ row, className }: { row: Row<PartySchemaWithId>; classN
               });
               invalidatePartyList();
             }}
-            loading={isLoadingUpdateParty}
+            loading={isLoading}
           >
             적용
           </Button>
-          {/* <Button
+          <Button
             onClick={async () => {
-              await deletePollList({
-                pollIds: [row.original._id],
-              });
+              await deleteParty({});
               invalidatePartyList();
             }}
+            loading={isLoading}
           >
             삭제
-          </Button> */}
+          </Button>
         </Form.Item>
       </Form>
     </>
