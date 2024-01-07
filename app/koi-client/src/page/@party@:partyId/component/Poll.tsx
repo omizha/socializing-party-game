@@ -1,9 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Checkbox, List, Progress, Radio, message } from 'antd';
+import { Button, Checkbox, Dropdown, List, MenuProps, Progress, Radio, message } from 'antd';
 import { useAtomValue } from 'jotai';
 import { useQueryClient } from '@tanstack/react-query';
 import { getQueryKey } from 'lib-react-query';
+import { CaretDownFilled } from '@ant-design/icons';
 import { Query } from '../../../hook';
 import { UserStore } from '../../../store';
 import { serverApiUrl } from '../../../config/baseUrl';
@@ -57,6 +58,7 @@ const Poll = () => {
           const isLimitedPoll = isLimitedGenderPoll || isLimitedAllPoll;
 
           const userProfiles = vote.userIds.map((userId) => poll.users.find((user) => user.userId === userId));
+          const countAll = userProfiles.length;
           const [countMale, countFemale, countUnknown] = userProfiles.reduce(
             ([male, female, unknown], user) => {
               if (!user) {
@@ -94,8 +96,27 @@ const Poll = () => {
               : (countMale + countFemale + countUnknown) / (poll.limitAllCount ?? 1)
             : userProfiles.length / poll.users.length;
 
+          const items: MenuProps['items'] = userProfiles.map((user) => ({
+            key: `${user?.userId}`,
+            label: `(${user?.gender === 'M' ? '남' : user?.gender === 'F' ? '여' : '?'}) ${user?.nickname}`,
+          }));
+
           return (
-            <List.Item>
+            <List.Item
+              actions={[
+                <Dropdown
+                  menu={{ items }}
+                  trigger={['click']}
+                  placement="bottomRight"
+                  disabled={countAll === 0}
+                  key={vote.title}
+                >
+                  <span>
+                    {countAll}명 <CaretDownFilled />
+                  </span>
+                </Dropdown>,
+              ]}
+            >
               <List.Item.Meta
                 avatar={
                   poll.isMultipleVote ? (
