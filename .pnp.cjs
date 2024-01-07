@@ -14321,6 +14321,8 @@ const RAW_RUNTIME_STATE =
           ["@babel/core", "npm:7.23.6"],\
           ["@babel/preset-react", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:7.23.3"],\
           ["@babel/preset-typescript", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:7.23.3"],\
+          ["@emotion/react", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:11.11.1"],\
+          ["@emotion/styled", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:11.11.0"],\
           ["@headlessui/react", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:1.7.17"],\
           ["@linaria/core", "npm:6.0.0"],\
           ["@linaria/react", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:6.0.0"],\

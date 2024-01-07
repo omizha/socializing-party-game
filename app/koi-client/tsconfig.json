@@ -2,5 +2,6 @@
   "extends": "../../__config__/tsconfig.common.react.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "jsxImportSource": "@emotion/react"
   }
 }

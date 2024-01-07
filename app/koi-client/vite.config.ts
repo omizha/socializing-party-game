@@ -14,7 +14,9 @@ export default defineConfig({
       },
       include: ['**/*.{ts,tsx}'],
     }),
-    react(),
+    react({
+      jsxImportSource: '@emotion/react',
+    }),
   ],
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],

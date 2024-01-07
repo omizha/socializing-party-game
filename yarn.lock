@@ -9645,6 +9645,8 @@ __metadata:
     "@babel/core": "npm:^7.23.6"
     "@babel/preset-react": "npm:^7.23.3"
     "@babel/preset-typescript": "npm:^7.23.3"
+    "@emotion/react": "npm:^11.11.1"
+    "@emotion/styled": "npm:^11.11.0"
     "@headlessui/react": "npm:^1.7.17"
     "@linaria/core": "npm:^6.0.0"
     "@linaria/react": "npm:^6.0.0"
