@@ -4,6 +4,7 @@ import { PartySchemaWithId } from 'shared~type-party';
 import { css } from '@linaria/core';
 import { Query } from '../../hook';
 import PartySubTable from './component/PartySubTable';
+import PartyCreate from './component/PartyCreate';
 
 const columnHelper = createColumnHelper<PartySchemaWithId>();
 const columns = [
@@ -114,6 +115,8 @@ const BackofficeParty = () => {
           ))}
         </tbody>
       </table>
+      <h2>파티 생성</h2>
+      <PartyCreate />
     </>
   );
 };
