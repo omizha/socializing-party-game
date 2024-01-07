@@ -53,7 +53,7 @@ const Header = ({ title, avatar = { isVisible: false }, LeftComponent, RightComp
       </AvatarWrapper>
       <div
         className={css`
-          flex: 1;
+          flex: 1 0 auto;
           display: flex;
           justify-content: center;
         `}
