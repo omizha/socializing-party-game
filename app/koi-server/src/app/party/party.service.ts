@@ -16,11 +16,14 @@ export class PartyService {
   }
 
   createParty(party: Party): Promise<PartyDocument> {
-    console.debug('🚀 ~ file: party.service.ts:14 ~ PartyService ~ createParty ~ party:', party);
     return this.partyRepository.create(party);
   }
 
   updateParty(party: Request.PatchParty): Promise<boolean> {
     return this.partyRepository.updateOne(party);
+  }
+
+  deleteParty(partyId: string): Promise<boolean> {
+    return this.partyRepository.deleteOne(partyId);
   }
 }

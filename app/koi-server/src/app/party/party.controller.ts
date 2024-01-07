@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { Request } from 'shared~type-party';
 import { PartyService } from './party.service';
 import { Party } from './schema/party.schema';
@@ -25,5 +25,10 @@ export class PartyController {
   @Patch()
   updateParty(@Body() body: Request.PatchParty): Promise<boolean> {
     return this.partyService.updateParty(body);
+  }
+
+  @Delete('/:partyId')
+  deleteParty(@Param('partyId') partyId: string): Promise<boolean> {
+    return this.partyService.deleteParty(partyId);
   }
 }

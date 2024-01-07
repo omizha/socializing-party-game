@@ -41,4 +41,10 @@ export class PartyRepository {
       },
     ));
   }
+
+  async deleteOne(partyId: string): Promise<boolean> {
+    return !!(await this.partyModel.deleteOne({
+      _id: partyId,
+    }));
+  }
 }
