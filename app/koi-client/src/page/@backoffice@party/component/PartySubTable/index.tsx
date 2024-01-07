@@ -69,6 +69,7 @@ const PartySubTable = ({ row, className }: { row: Row<PartySchemaWithId>; classN
                 _id: row.original._id,
                 activityId,
                 activityName,
+                title,
               });
               invalidatePartyList();
             }}
