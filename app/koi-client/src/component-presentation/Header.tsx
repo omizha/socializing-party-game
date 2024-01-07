@@ -33,7 +33,7 @@ const Header = ({ title, avatar = { isVisible: false }, LeftComponent, RightComp
         position: relative;
         min-height: 64px;
         max-height: 64px;
-        background-color: #ccc;
+        background-color: #fefefe;
         padding: 12px;
         box-sizing: border-box;
         display: flex;

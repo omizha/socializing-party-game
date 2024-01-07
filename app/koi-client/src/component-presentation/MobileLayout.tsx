@@ -39,7 +39,7 @@ const MobileLayout = ({ children, HeaderComponent, justifyContent }: Props) => {
             height: 100%;
             box-sizing: border-box;
             padding: 20px;
-            background-color: #bbb;
+            background-color: #f1f1f1;
             display: flex;
             flex-direction: column;
           `}
