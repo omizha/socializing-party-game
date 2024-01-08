@@ -1,5 +1,5 @@
 {
-  "name": "feature-nest-socket",
+  "name": "lib-nest-socket",
   "main": "./dist/index.js",
   "sideEffects": false,
   "scripts": {
