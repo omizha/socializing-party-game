@@ -20,7 +20,7 @@ export class PollService {
     return this.pollRepository.createPoll(poll);
   }
 
-  updatePoll(poll: Request.PatchPoll): Promise<boolean> {
+  updatePoll(poll: Request.PatchPoll): Promise<Poll> {
     return this.pollRepository.updatePoll(poll);
   }
 
@@ -32,7 +32,7 @@ export class PollService {
   //   return this.pollRepository.deleteVotes(pollId, voteIds);
   // }
 
-  addVotes(pollId: string, pollVotes: PollVoteForm[]): Promise<boolean> {
+  addVotes(pollId: string, pollVotes: PollVoteForm[]): Promise<Poll> {
     return this.pollRepository.addVotes(pollId, pollVotes);
   }
 

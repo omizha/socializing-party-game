@@ -33,21 +33,28 @@ export class PollRepository {
     return this.pollModel.create(new Poll(poll, poll));
   }
 
-  async updatePoll(poll: Request.PatchPoll): Promise<boolean> {
-    return !!(await this.pollModel.updateOne(
+  async updatePoll(poll: Request.PatchPoll): Promise<PollDocument> {
+    return this.pollModel.findOneAndUpdate(
       {
         _id: poll._id,
       },
       {
         ...poll,
       },
-    ));
+      {
+        returnDocument: 'after',
+      },
+    );
   }
 
-  async addVotes(pollId: string, pollVotes: PollVoteForm[]): Promise<boolean> {
+  addVotes(pollId: string, pollVotes: PollVoteForm[]): Promise<PollDocument> {
     const createdVotes = pollVotes.map((v) => new PollVote(v, v));
 
-    return !!(await this.pollModel.updateOne({ _id: pollId }, { $addToSet: { votes: { $each: createdVotes } } }));
+    return this.pollModel.findOneAndUpdate(
+      { _id: pollId },
+      { $addToSet: { votes: { $each: createdVotes } } },
+      { returnDocument: 'after' },
+    );
   }
 
   async toggleVotes({ pollId, user, joinVoteTitles, exitVoteTitles }: Request.PatchToggleVotes): Promise<PollDocument> {
