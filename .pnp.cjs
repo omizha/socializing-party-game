@@ -3240,7 +3240,7 @@ const RAW_RUNTIME_STATE =
     ]],\
     ["@nestjs/core", [\
       ["npm:10.2.6", {\
-        "packageLocation": "./.yarn/unplugged/@nestjs-core-virtual-5b1dcd6fb0/node_modules/@nestjs/core/",\
+        "packageLocation": "./.yarn/unplugged/@nestjs-core-virtual-da1877bd2b/node_modules/@nestjs/core/",\
         "packageDependencies": [\
           ["@nestjs/core", "npm:10.2.6"]\
         ],\
@@ -13963,6 +13963,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-unused-imports", "virtual:ce395be6b7426ea598ea4e8ed1669116613a7e400e65e428fdb6306685b33da86346a368fe102e4a42279e9137bdf836fdf4043cbb75e24b471a2ccb7a6a329b#npm:2.0.0"],\
           ["express", "npm:4.18.2"],\
           ["feature-nest-poll", "workspace:package/feature/feature-nest-poll"],\
+          ["feature-nest-socket", "workspace:package/feature/feature-nest-socket"],\
           ["jest", "virtual:ce395be6b7426ea598ea4e8ed1669116613a7e400e65e428fdb6306685b33da86346a368fe102e4a42279e9137bdf836fdf4043cbb75e24b471a2ccb7a6a329b#npm:29.5.0"],\
           ["mongoose", "npm:7.6.2"],\
           ["pg", "virtual:388b94cf46ab0fd1abeedc52857c6b636b2520425311e9ea09ccdd112f8cc7b8d6857d1733810bb85d10742c5e6d13263ad6caaa91dfc75d846f0bcc8621a479#npm:8.11.3"],\
