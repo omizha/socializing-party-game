@@ -26,7 +26,7 @@ export class PollController {
   @Patch()
   async updatePoll(@Body() body: Request.PatchPoll): Promise<Poll> {
     const updatedPoll = await this.pollService.updatePoll(body);
-    this.socketGateway.server.emit(`/poll/${body._id}`, body);
+    this.socketGateway.server.emit(`/poll/${body._id}`, updatedPoll);
 
     return updatedPoll;
   }
@@ -44,7 +44,7 @@ export class PollController {
   @Post('vote/add')
   async addVotes(@Body() body: Request.PostAddVotes): Promise<Poll> {
     const updatedPoll = await this.pollService.addVotes(body.pollId, body.votes);
-    this.socketGateway.server.emit(`/poll/${body.pollId}`, body);
+    this.socketGateway.server.emit(`/poll/${body.pollId}`, updatedPoll);
 
     return updatedPoll;
   }
@@ -52,7 +52,7 @@ export class PollController {
   @Post('vote/toggle')
   async toggleVotes(@Body() body: Request.PatchToggleVotes): Promise<Poll> {
     const updatedPoll = await this.pollService.toggleVotes(body);
-    this.socketGateway.server.emit(`/poll/${body.pollId}`, body);
+    this.socketGateway.server.emit(`/poll/${body.pollId}`, updatedPoll);
 
     return updatedPoll;
   }
