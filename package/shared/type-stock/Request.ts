@@ -1,16 +1,16 @@
-import type { GameSchema } from '.';
+import type { StockSchema } from '.';
 
-export type UpdateGame = Partial<Omit<GameSchema, 'unique'>>;
+export type UpdateStock = Partial<Omit<StockSchema, 'unique'>>;
 
 export type BuyStock = {
-  nickname: string;
+  userId: string;
   company: string;
   amount: number;
   unitPrice: number;
 };
 
 export type SellStock = {
-  nickname: string;
+  userId: string;
   company: string;
   amount: number;
   unitPrice: number;

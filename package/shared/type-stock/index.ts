@@ -1,29 +1,33 @@
 export type * as Request from './Request';
 export type * as Response from './Response';
 
+export type UserRequired = 'stockId' | 'userId';
+export type UserOmitted = 'lastActivityTime';
+export type UserForm = Pick<UserSchema, UserRequired> & Partial<Omit<UserSchema, UserRequired | UserOmitted>>;
 export type UserSchema = {
-  nickname: string;
+  stockId: string;
+  userId: string;
   money: number;
   inventory: Record<string, number>;
   lastActivityTime: Date;
 };
 
-const GamePhase = {
+const StockPhase = {
   CROWDING: 'CROWDING',
   PLAYING: 'PLAYING',
   RESULT: 'RESULT',
   WAITING: 'WAITING',
 } as const;
-export type GamePhase = (typeof GamePhase)[keyof typeof GamePhase];
+export type StockPhase = (typeof StockPhase)[keyof typeof StockPhase];
 
 export type CompanyInfo = {
   가격: number;
   정보: string[];
 };
 
-export type GameSchema = {
+export type StockSchema = {
   unique: boolean;
-  gamePhase: GamePhase;
+  stockPhase: StockPhase;
   startedTime: Date;
   companies: Record<string, CompanyInfo[]>;
   remainingStocks: Record<string, number>;
@@ -45,10 +49,12 @@ export type GameSchema = {
   round: number;
 };
 
-export type LogSchema = {
-  nickname: string;
+export type StockLogAction = 'BUY' | 'SELL';
+export type StockLogSchema = {
+  stockId: string;
+  userId: string;
   date: Date;
-  action: 'BUY' | 'SELL';
+  action: StockLogAction;
   company: string;
   price: number;
   quantity: number;

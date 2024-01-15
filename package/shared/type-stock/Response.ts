@@ -1,4 +1,4 @@
-import { GameSchema, LogSchema, ResultSchema } from '.';
+import { StockSchema, StockLogSchema, ResultSchema } from '.';
 
 export type UploadAvatar = {
   // Express 타입을 왜 못찾을까?
@@ -7,8 +7,8 @@ export type UploadAvatar = {
   file: Express.Multer.File;
 };
 
-export type Game = GameSchema;
+export type Stock = StockSchema;
 
-export type Log = LogSchema;
+export type Log = StockLogSchema;
 
 export type Result = ResultSchema;
