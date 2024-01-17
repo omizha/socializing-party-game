@@ -14383,6 +14383,7 @@ const RAW_RUNTIME_STATE =
           ["shared~type-koi", "workspace:package/shared/type-koi"],\
           ["shared~type-party", "workspace:package/shared/type-party"],\
           ["shared~type-poll", "workspace:package/shared/type-poll"],\
+          ["shared~type-stock", "workspace:package/shared/type-stock"],\
           ["socket.io-client", "npm:4.7.2"],\
           ["sort-by", "npm:1.2.0"],\
           ["three", "npm:0.157.0"],\

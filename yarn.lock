@@ -9707,6 +9707,7 @@ __metadata:
     shared~type-koi: "workspace:*"
     shared~type-party: "workspace:*"
     shared~type-poll: "workspace:*"
+    shared~type-stock: "workspace:*"
     socket.io-client: "npm:^4.7.2"
     sort-by: "npm:^1.2.0"
     three: "npm:^0.157.0"
