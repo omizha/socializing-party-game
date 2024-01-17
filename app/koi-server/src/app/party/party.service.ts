@@ -26,4 +26,12 @@ export class PartyService {
   deleteParty(partyId: string): Promise<boolean> {
     return this.partyRepository.deleteOne(partyId);
   }
+
+  joinParty(partyId: string, userId: string): Promise<Party> {
+    return this.partyRepository.joinParty(partyId, userId);
+  }
+
+  leaveParty(partyId: string, userId: string): Promise<Party> {
+    return this.partyRepository.leaveParty(partyId, userId);
+  }
 }

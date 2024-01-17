@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
 import { Request } from 'shared~type-party';
 import { PartyService } from './party.service';
 import { Party } from './schema/party.schema';
@@ -12,8 +12,8 @@ export class PartyController {
     return this.partyService.queryParties();
   }
 
-  @Get('/:partyId')
-  queryParty(@Param('partyId') partyId: string): Promise<Party> {
+  @Get()
+  queryParty(@Query('partyId') partyId: string): Promise<Party> {
     return this.partyService.queryParty(partyId);
   }
 
@@ -22,13 +22,23 @@ export class PartyController {
     return this.partyService.createParty(party);
   }
 
+  @Post('/join')
+  joinParty(@Body() body: Request.PostJoinParty): Promise<Party> {
+    return this.partyService.joinParty(body.partyId, body.userId);
+  }
+
+  @Post('/leave')
+  leaveParty(@Body() body: Request.PostLeaveParty): Promise<Party> {
+    return this.partyService.leaveParty(body.partyId, body.userId);
+  }
+
   @Patch()
   updateParty(@Body() body: Request.PatchParty): Promise<boolean> {
     return this.partyService.updateParty(body);
   }
 
-  @Delete('/:partyId')
-  deleteParty(@Param('partyId') partyId: string): Promise<boolean> {
+  @Delete()
+  deleteParty(@Query('partyId') partyId: string): Promise<boolean> {
     return this.partyService.deleteParty(partyId);
   }
 }

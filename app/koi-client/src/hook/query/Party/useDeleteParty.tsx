@@ -6,7 +6,7 @@ const useDeleteParty = (partyId: string | undefined) => {
     api: {
       hostname: serverApiUrl,
       method: 'DELETE',
-      pathname: `/party/${partyId}`,
+      pathname: `/party?partyId=${partyId}`,
     },
   });
 };

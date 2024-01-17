@@ -47,4 +47,36 @@ export class PartyRepository {
       _id: partyId,
     }));
   }
+
+  async joinParty(partyId: string, userId: string): Promise<PartyDocument> {
+    return this.partyModel.findOneAndUpdate(
+      {
+        _id: partyId,
+      },
+      {
+        $addToSet: {
+          joinedUserIds: userId,
+        },
+      },
+      {
+        returnDocument: 'after',
+      },
+    );
+  }
+
+  async leaveParty(partyId: string, userId: string): Promise<PartyDocument> {
+    return this.partyModel.findOneAndUpdate(
+      {
+        _id: partyId,
+      },
+      {
+        $pull: {
+          joinedUserIds: userId,
+        },
+      },
+      {
+        returnDocument: 'after',
+      },
+    );
+  }
 }
