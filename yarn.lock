@@ -1084,6 +1084,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@codegenie/serverless-express@npm:^4.13.0":
+  version: 4.13.0
+  resolution: "@codegenie/serverless-express@npm:4.13.0"
+  checksum: c857287b6b8e5e975547632edcced7b149efe5520453c857c779f82924aa5cc14741a3277a724f6a01a21b2cdcd4c4ba4e0eeb30e7f6f10a870cc997eb1f2886
+  languageName: node
+  linkType: hard
+
 "@colors/colors@npm:1.5.0":
   version: 1.5.0
   resolution: "@colors/colors@npm:1.5.0"
@@ -9556,6 +9563,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "koi-server@workspace:app/koi-server"
   dependencies:
+    "@codegenie/serverless-express": "npm:^4.13.0"
     "@nestjs/bull": "npm:^10.0.1"
     "@nestjs/cli": "npm:^9.0.0"
     "@nestjs/common": "npm:^10.2.6"

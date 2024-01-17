@@ -1828,6 +1828,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@codegenie/serverless-express", [\
+      ["npm:4.13.0", {\
+        "packageLocation": "./.yarn/cache/@codegenie-serverless-express-npm-4.13.0-04009af70c-c857287b6b.zip/node_modules/@codegenie/serverless-express/",\
+        "packageDependencies": [\
+          ["@codegenie/serverless-express", "npm:4.13.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@colors/colors", [\
       ["npm:1.5.0", {\
         "packageLocation": "./.yarn/cache/@colors-colors-npm-1.5.0-875af3a8b4-9d226461c1.zip/node_modules/@colors/colors/",\
@@ -14230,6 +14239,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./app/koi-server/",\
         "packageDependencies": [\
           ["koi-server", "workspace:app/koi-server"],\
+          ["@codegenie/serverless-express", "npm:4.13.0"],\
           ["@nestjs/bull", "virtual:388b94cf46ab0fd1abeedc52857c6b636b2520425311e9ea09ccdd112f8cc7b8d6857d1733810bb85d10742c5e6d13263ad6caaa91dfc75d846f0bcc8621a479#npm:10.0.1"],\
           ["@nestjs/cli", "npm:9.5.0"],\
           ["@nestjs/common", "virtual:ef911e99e751f6eb15acb82bb02e437240c4a171d17ac7123cfdd33420f6779e4226696aad8376f6906f32de2565d849a5a1e38caa759182f2f475712f73607d#npm:10.2.6"],\

@@ -18,6 +18,7 @@
     "turbo:dev": "turbo run dev"
   },
   "dependencies": {
+    "@codegenie/serverless-express": "^4.13.0",
     "@nestjs/bull": "^10.0.1",
     "@nestjs/common": "^10.2.6",
     "@nestjs/config": "^3.1.1",
