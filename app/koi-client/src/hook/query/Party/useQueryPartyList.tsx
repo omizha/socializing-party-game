@@ -7,7 +7,7 @@ const useQueryPartyList = () => {
     api: {
       hostname: serverApiUrl,
       method: 'GET',
-      pathname: '/party',
+      pathname: '/party/query',
     },
   });
 

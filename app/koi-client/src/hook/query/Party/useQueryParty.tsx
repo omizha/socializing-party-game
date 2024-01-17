@@ -7,7 +7,7 @@ const useQueryParty = (partyId: string | undefined) => {
     api: {
       hostname: serverApiUrl,
       method: 'GET',
-      pathname: `/party?partyId=${partyId}`,
+      pathname: `/party/query/${partyId}`,
     },
     reactQueryOption: {
       enabled: !!partyId,
