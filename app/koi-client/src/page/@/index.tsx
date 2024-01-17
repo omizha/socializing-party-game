@@ -1,14 +1,20 @@
-import { Card } from 'antd';
-import { Link } from 'react-router-dom';
+import { Button, Card } from 'antd';
 import { styled } from '@linaria/react';
+import { useAtomValue } from 'jotai';
+import { useNavigate } from 'react-router-dom';
 import MobileLayout from '../../component-presentation/MobileLayout';
 import { Query } from '../../hook';
 import MainHeader from './component/MainHeader';
+import { UserStore } from '../../store';
 
 export default function Main() {
-  const { data: partyList } = Query.Party.useQueryPartyList();
+  const navigate = useNavigate();
+  const supabaseSession = useAtomValue(UserStore.supabaseSession);
 
-  if (!partyList) {
+  const { data: partyList } = Query.Party.useQueryPartyList();
+  const { mutateAsync: joinParty } = Query.Party.useJoinParty();
+
+  if (!partyList || !supabaseSession) {
     return <></>;
   }
 
@@ -18,7 +24,17 @@ export default function Main() {
         {partyList.map((party) => {
           return (
             <Card key={party._id} title={party.title}>
-              <Link to={`/party/${party._id}`}>참가</Link>
+              <Button
+                type="primary"
+                onClick={() => {
+                  joinParty({ partyId: party._id, userId: supabaseSession?.user.id }).then(() => {
+                    navigate(`/party/${party._id}`);
+                  });
+                }}
+                // disabled={party.publicScope !== 'PUBLIC'}
+              >
+                참가
+              </Button>
             </Card>
           );
         })}
