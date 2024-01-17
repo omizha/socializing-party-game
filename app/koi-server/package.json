@@ -2,7 +2,8 @@
   "name": "koi-server",
   "main": "./src/main.ts",
   "scripts": {
-    "build": "nest build",
+    "build": "nest build --config nest-cli.production.json",
+    "build:analyzer": "cross-env IS_ANALYZER=true nest build --config nest-cli.production.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "dev": "nest build --config nest-cli.development.json --watch",
     "start": "nest start",
