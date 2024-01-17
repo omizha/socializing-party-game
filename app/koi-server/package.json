@@ -80,6 +80,7 @@
     "turbo": "^1.11.2",
     "typescript": "^5.1.3",
     "webpack": "^5.89.0",
+    "webpack-bundle-analyzer": "^4.8.0",
     "webpack-pnp-externals": "^1.1.0"
   },
   "jest": {
