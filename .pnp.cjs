@@ -6500,6 +6500,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/aws-lambda", [\
+      ["npm:8.10.131", {\
+        "packageLocation": "./.yarn/cache/@types-aws-lambda-npm-8.10.131-c47a5fe387-e61b7f98d2.zip/node_modules/@types/aws-lambda/",\
+        "packageDependencies": [\
+          ["@types/aws-lambda", "npm:8.10.131"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/babel__core", [\
       ["npm:7.20.1", {\
         "packageLocation": "./.yarn/cache/@types-babel__core-npm-7.20.1-f44761b6b6-e63e5e71be.zip/node_modules/@types/babel__core/",\
@@ -14403,6 +14412,7 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/websockets", "virtual:388b94cf46ab0fd1abeedc52857c6b636b2520425311e9ea09ccdd112f8cc7b8d6857d1733810bb85d10742c5e6d13263ad6caaa91dfc75d846f0bcc8621a479#npm:10.2.6"],\
           ["@toss/date", "npm:1.1.7"],\
           ["@toss/utils", "npm:1.4.4"],\
+          ["@types/aws-lambda", "npm:8.10.131"],\
           ["@types/express", "npm:4.17.17"],\
           ["@types/jest", "npm:29.5.0"],\
           ["@types/multer", "npm:1.4.7"],\

@@ -3518,6 +3518,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/aws-lambda@npm:^8.10.119":
+  version: 8.10.131
+  resolution: "@types/aws-lambda@npm:8.10.131"
+  checksum: e61b7f98d2e52d172909afed563b29c1fd8ae21d97bd31914dc8cb4b67ed97a320fc78398092bfdf3b5434df04c0144e7f2fcd3a8de72f52b73d968f8422084b
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.1.14":
   version: 7.20.1
   resolution: "@types/babel__core@npm:7.20.1"
@@ -9727,6 +9734,7 @@ __metadata:
     "@nestjs/websockets": "npm:^10.2.6"
     "@toss/date": "npm:^1.1.7"
     "@toss/utils": "npm:^1.4.4"
+    "@types/aws-lambda": "npm:^8.10.119"
     "@types/express": "npm:^4.17.13"
     "@types/jest": "npm:29.5.0"
     "@types/multer": "npm:^1.4.7"
