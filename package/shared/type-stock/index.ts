@@ -48,6 +48,7 @@ export type StockSchema = {
    */
   round: number;
 };
+export type StockSchemaWithId = StockSchema & { _id: string };
 
 export type StockLogAction = 'BUY' | 'SELL';
 export type StockLogSchema = {

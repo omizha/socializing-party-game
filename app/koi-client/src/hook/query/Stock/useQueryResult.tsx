@@ -3,12 +3,12 @@ import { useCallback } from 'react';
 import { useQuery } from 'lib-react-query';
 import { serverApiUrl } from '../../../config/baseUrl';
 
-const useQueryResult = () => {
+const useQueryResult = (stockId: string | undefined) => {
   const { data } = useQuery<Response.Result[]>({
     api: {
       hostname: serverApiUrl,
       method: 'GET',
-      pathname: '/stock/result',
+      pathname: `/stock/result?stockId=${stockId}`,
     },
     reactQueryOption: {
       refetchInterval: 500,

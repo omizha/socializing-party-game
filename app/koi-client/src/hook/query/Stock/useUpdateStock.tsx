@@ -3,7 +3,7 @@ import { useMutation } from 'lib-react-query';
 import { serverApiUrl } from '../../../config/baseUrl';
 
 const useUpdateStock = () => {
-  return useMutation<Request.UpdateStock, Response.Stock>({
+  return useMutation<Request.PatchUpdateStock, Response.Stock>({
     api: {
       hostname: serverApiUrl,
       method: 'PATCH',

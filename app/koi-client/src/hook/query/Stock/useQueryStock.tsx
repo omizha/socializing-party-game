@@ -4,14 +4,15 @@ import { Response } from 'shared~type-stock';
 import { useQuery } from 'lib-react-query';
 import { serverApiUrl } from '../../../config/baseUrl';
 
-const useQueryStock = () => {
+const useQueryStock = (stockId: string | undefined) => {
   const { data } = useQuery<Response.Stock>({
     api: {
       hostname: serverApiUrl,
       method: 'GET',
-      pathname: '/stock',
+      pathname: `/stock?stockId=${stockId}`,
     },
     reactQueryOption: {
+      enabled: !!stockId,
       refetchInterval: 1000,
     },
   });

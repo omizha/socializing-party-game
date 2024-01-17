@@ -33,12 +33,8 @@ export class StockService {
     return this.stockRepository.findOneById(stockId, projection, options);
   }
 
-  async findOneByIdAndUpdate(
-    stockId: string,
-    stock: Request.UpdateStock,
-    options?: QueryOptions<Stock>,
-  ): Promise<Stock> {
-    return this.stockRepository.findOneByIdAndUpdate(stockId, stock, options);
+  async findOneByIdAndUpdate(stock: Request.PatchUpdateStock, options?: QueryOptions<Stock>): Promise<Stock> {
+    return this.stockRepository.findOneByIdAndUpdate(stock._id, stock, options);
   }
 
   async resetStock(stockId: string): Promise<Stock> {
@@ -145,7 +141,7 @@ export class StockService {
     return result;
   }
 
-  async buyStock(stockId: string, body: Request.BuyStock): Promise<Stock> {
+  async buyStock(stockId: string, body: Request.PostBuyStock): Promise<Stock> {
     const { userId, company, amount, unitPrice } = body;
     console.debug('buyStock', { amount, company, unitPrice, userId });
     let result: Stock;
@@ -232,7 +228,7 @@ export class StockService {
     return result;
   }
 
-  async sellStock(stockId: string, body: Request.SellStock): Promise<Stock> {
+  async sellStock(stockId: string, body: Request.PostSellStock): Promise<Stock> {
     const { userId, company, amount, unitPrice } = body;
     let result: Stock;
 

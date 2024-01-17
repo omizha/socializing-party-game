@@ -1,15 +1,17 @@
 import type { StockSchema } from '.';
 
-export type UpdateStock = Partial<Omit<StockSchema, 'unique'>>;
+export type PatchUpdateStock = Partial<StockSchema> & { _id: string };
 
-export type BuyStock = {
+export type PostBuyStock = {
+  stockId: string;
   userId: string;
   company: string;
   amount: number;
   unitPrice: number;
 };
 
-export type SellStock = {
+export type PostSellStock = {
+  stockId: string;
   userId: string;
   company: string;
   amount: number;
