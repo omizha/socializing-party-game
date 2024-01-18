@@ -12,7 +12,6 @@
     "@nestjs/core": "^10.3.0",
     "@nestjs/mongoose": "^10.0.2",
     "@nestjs/platform-express": "^10.3.0",
-    "@nestjs/typeorm": "^10.0.1",
     "@toss/date": "^1.1.7",
     "@toss/utils": "^1.4.4",
     "class-transformer": "^0.5.1",
@@ -21,8 +20,7 @@
     "mongoose": "^8.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "shared~config": "workspace:*",
-    "typeorm": "^0.3.17"
+    "shared~config": "workspace:*"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.1.18",
