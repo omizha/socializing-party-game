@@ -1,12 +1,13 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import type { Request } from 'shared~type-poll';
-import { SocketGateway } from 'lib-nest-socket';
 import { Poll } from './schema/poll.schema';
 import { PollService } from './poll.service';
 
 @Controller('poll')
 export class PollController {
-  constructor(private readonly pollService: PollService, private readonly socketGateway: SocketGateway) {}
+  constructor(
+    private readonly pollService: PollService, // private readonly socketGateway: SocketGateway
+  ) {}
 
   @Get()
   queryPolls(): Promise<Poll[]> {
@@ -26,7 +27,7 @@ export class PollController {
   @Patch()
   async updatePoll(@Body() body: Request.PatchPoll): Promise<Poll> {
     const updatedPoll = await this.pollService.updatePoll(body);
-    this.socketGateway.server.emit(`/poll/${body._id}`, updatedPoll);
+    // this.socketGateway.server.emit(`/poll/${body._id}`, updatedPoll);
 
     return updatedPoll;
   }
@@ -44,7 +45,7 @@ export class PollController {
   @Post('vote/add')
   async addVotes(@Body() body: Request.PostAddVotes): Promise<Poll> {
     const updatedPoll = await this.pollService.addVotes(body.pollId, body.votes);
-    this.socketGateway.server.emit(`/poll/${body.pollId}`, updatedPoll);
+    // this.socketGateway.server.emit(`/poll/${body.pollId}`, updatedPoll);
 
     return updatedPoll;
   }
@@ -52,7 +53,7 @@ export class PollController {
   @Post('vote/toggle')
   async toggleVotes(@Body() body: Request.PatchToggleVotes): Promise<Poll> {
     const updatedPoll = await this.pollService.toggleVotes(body);
-    this.socketGateway.server.emit(`/poll/${body.pollId}`, updatedPoll);
+    // this.socketGateway.server.emit(`/poll/${body.pollId}`, updatedPoll);
 
     return updatedPoll;
   }

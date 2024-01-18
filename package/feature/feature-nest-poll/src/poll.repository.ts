@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash';
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
 import { PollVoteForm, Request } from 'shared~type-poll';
@@ -65,20 +65,24 @@ export class PollRepository {
       poll = await this.findById(pollId, undefined, { session });
 
       if (!poll) {
-        throw new Error('poll not found');
+        throw new HttpException('poll not found', HttpStatus.NOT_FOUND);
       }
 
       if (poll.isWhitelist && !poll.whitelistUserIds.some((v) => v === user.userId)) {
-        throw new Error('user is not whitelist');
+        throw new HttpException('user is not whitelist', HttpStatus.FORBIDDEN);
       }
 
       if (poll.status !== 'OPEN') {
-        throw new Error('poll is not open');
+        throw new HttpException('poll is not open', HttpStatus.FORBIDDEN);
       }
 
       poll.votes.forEach((vote) => {
         const isJoinedVote = (): boolean => vote.userIds.some((v) => v === user.userId);
         if (joinVoteTitles?.some((v) => v === vote.title) && !isJoinedVote()) {
+          // TODO: 성별 별로 투표 제한
+          if (vote.limitAllCount && vote.limitAllCount <= vote.userIds.length) {
+            throw new HttpException('poll is full', HttpStatus.FORBIDDEN);
+          }
           vote.userIds.push(user.userId);
         }
         if (exitVoteTitles?.some((v) => v === vote.title) && isJoinedVote()) {
