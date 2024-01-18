@@ -21,8 +21,6 @@
     "@nestjs/core": "^10.3.0",
     "@nestjs/mongoose": "^10.0.1",
     "@nestjs/platform-express": "^10.3.0",
-    "@nestjs/platform-socket.io": "^10.2.6",
-    "@nestjs/websockets": "^10.2.6",
     "@toss/date": "^1.1.7",
     "@toss/utils": "^1.4.4",
     "bull": "^4.11.3",
@@ -32,8 +30,7 @@
     "mongoose": "^7.6.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "shared~config": "workspace:*",
-    "socket.io": "^4.7.2"
+    "shared~config": "workspace:*"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.1.18",
