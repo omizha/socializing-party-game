@@ -11,6 +11,7 @@ const useQueryParty = (partyId: string | undefined) => {
     },
     reactQueryOption: {
       enabled: !!partyId,
+      refetchInterval: 500,
     },
   });
 

@@ -9,6 +9,9 @@ const useQueryPartyList = () => {
       method: 'GET',
       pathname: '/party/query',
     },
+    reactQueryOption: {
+      refetchInterval: 2000,
+    },
   });
 
   return { data };

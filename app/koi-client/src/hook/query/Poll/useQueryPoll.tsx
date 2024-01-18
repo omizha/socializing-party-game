@@ -1,9 +1,7 @@
-import { getQueryKey, useQuery } from 'lib-react-query';
+import { useQuery } from 'lib-react-query';
 import { PollSchemaWithId } from 'shared~type-poll';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import { serverApiUrl } from '../../../config/baseUrl';
-import { socket } from '../../../library/socket-io';
 
 const useQueryPoll = (pollId: string | undefined) => {
   const queryClient = useQueryClient();
@@ -15,28 +13,28 @@ const useQueryPoll = (pollId: string | undefined) => {
     },
     reactQueryOption: {
       enabled: !!pollId,
-      refetchOnWindowFocus: false,
+      refetchInterval: 500,
     },
   });
 
-  useEffect(() => {
-    socket.on(`/poll/${pollId}`, (data: PollSchemaWithId) => {
-      queryClient.setQueryData<PollSchemaWithId>(
-        getQueryKey({
-          hostname: serverApiUrl,
-          method: 'GET',
-          pathname: `/poll/${pollId}`,
-        }),
-        () => {
-          console.debug('🚀 ~ file: useQueryPoll.tsx:32 ~ socket.on ~ data:', data);
-          return { ...data };
-        },
-      );
-    });
-    return () => {
-      socket.off(`/poll/${pollId}`);
-    };
-  }, [pollId, queryClient]);
+  // useEffect(() => {
+  //   socket.on(`/poll/${pollId}`, (data: PollSchemaWithId) => {
+  //     queryClient.setQueryData<PollSchemaWithId>(
+  //       getQueryKey({
+  //         hostname: serverApiUrl,
+  //         method: 'GET',
+  //         pathname: `/poll/${pollId}`,
+  //       }),
+  //       () => {
+  //         console.debug('🚀 ~ file: useQueryPoll.tsx:32 ~ socket.on ~ data:', data);
+  //         return { ...data };
+  //       },
+  //     );
+  //   });
+  //   return () => {
+  //     socket.off(`/poll/${pollId}`);
+  //   };
+  // }, [pollId, queryClient]);
 
   return { data };
 };
