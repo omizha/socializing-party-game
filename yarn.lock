@@ -2171,9 +2171,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/testing@npm:^10.2.6":
-  version: 10.2.6
-  resolution: "@nestjs/testing@npm:10.2.6"
+"@nestjs/testing@npm:^10.3.0":
+  version: 10.3.0
+  resolution: "@nestjs/testing@npm:10.3.0"
   dependencies:
     tslib: "npm:2.6.2"
   peerDependencies:
@@ -2186,7 +2186,7 @@ __metadata:
       optional: true
     "@nestjs/platform-express":
       optional: true
-  checksum: 4416bf01b26b52f6ca361cc58f7696c8a37fa06aa77707eab68acd3e7e608558493986b77adfcff1b9d745f65affd90756652717b856ef72664790c3348b3380
+  checksum: a6d107b4b11411ac347a6ea89a512d57c1e7cab66108f1cda061e1262c9ba96a90c982f6fe4462aed026772bf27ea3c50b1a2c69dba083bf9bc6f37e197b640d
   languageName: node
   linkType: hard
 
@@ -7275,7 +7275,7 @@ __metadata:
     "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/schematics": "npm:^10.0.2"
-    "@nestjs/testing": "npm:^10.2.6"
+    "@nestjs/testing": "npm:^10.3.0"
     "@types/express": "npm:^4.17.13"
     "@types/jest": "npm:29.5.0"
     "@types/lodash": "npm:^4.14.202"
@@ -7326,7 +7326,7 @@ __metadata:
     "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/schematics": "npm:^10.0.2"
-    "@nestjs/testing": "npm:^10.2.6"
+    "@nestjs/testing": "npm:^10.3.0"
     "@toss/date": "npm:^1.1.7"
     "@toss/utils": "npm:^1.4.4"
     "@types/express": "npm:^4.17.13"
@@ -9496,7 +9496,7 @@ __metadata:
     "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/schematics": "npm:^10.0.2"
-    "@nestjs/testing": "npm:^10.2.6"
+    "@nestjs/testing": "npm:^10.3.0"
     "@toss/date": "npm:^1.1.7"
     "@toss/utils": "npm:^1.4.4"
     "@types/aws-lambda": "npm:^8.10.119"
@@ -9622,7 +9622,7 @@ __metadata:
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/platform-socket.io": "npm:^10.2.6"
     "@nestjs/schematics": "npm:^10.0.2"
-    "@nestjs/testing": "npm:^10.2.6"
+    "@nestjs/testing": "npm:^10.3.0"
     "@nestjs/websockets": "npm:^10.2.6"
     "@types/express": "npm:^4.17.13"
     "@types/jest": "npm:29.5.0"
@@ -12485,7 +12485,7 @@ __metadata:
     "@nestjs/platform-socket.io": "npm:^10.2.6"
     "@nestjs/schematics": "npm:^10.0.2"
     "@nestjs/serve-static": "npm:^4.0.0"
-    "@nestjs/testing": "npm:^10.2.6"
+    "@nestjs/testing": "npm:^10.3.0"
     "@nestjs/websockets": "npm:^10.2.6"
     "@types/express": "npm:^4.17.13"
     "@types/jest": "npm:29.5.0"
@@ -13092,7 +13092,7 @@ __metadata:
     "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/schematics": "npm:^10.0.2"
-    "@nestjs/testing": "npm:^10.2.6"
+    "@nestjs/testing": "npm:^10.3.0"
     "@toss/date": "npm:^1.1.7"
     "@toss/utils": "npm:^1.4.4"
     "@types/express": "npm:^4.17.13"
