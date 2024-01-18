@@ -31,7 +31,6 @@
     "shared~config": "workspace:*"
   },
   "devDependencies": {
-    "@nestjs/cli": "^10.1.18",
     "@nestjs/schematics": "^10.0.2",
     "@nestjs/testing": "^10.3.0",
     "@types/express": "^4.17.13",
