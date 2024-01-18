@@ -2077,16 +2077,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/mongoose@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "@nestjs/mongoose@npm:10.0.1"
+"@nestjs/mongoose@npm:^10.0.2":
+  version: 10.0.2
+  resolution: "@nestjs/mongoose@npm:10.0.2"
   peerDependencies:
     "@nestjs/common": ^8.0.0 || ^9.0.0 || ^10.0.0
     "@nestjs/core": ^8.0.0 || ^9.0.0 || ^10.0.0
-    mongoose: ^6.0.2 || ^7.0.0
+    mongoose: ^6.0.2 || ^7.0.0 || ^8.0.0
     reflect-metadata: ^0.1.12
     rxjs: ^7.0.0
-  checksum: 86a3829a10ec92359057f82987cf805a288aa89238fdc7f93aff7222c3902b5ac5abd69a9c5dbff23b338a74f763ba7b544afca1b06abdf09f1796cf3b416b51
+  checksum: 803440ff881b3c9a269055d506bb64f227e173e42a71c31b8121ceecdf0f75ae166a26774abf805f16d5443bdf057769ddae1db46e51779c708bef5ac14c1f2f
   languageName: node
   linkType: hard
 
@@ -3914,13 +3914,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/whatwg-url@npm:^8.2.1":
-  version: 8.2.2
-  resolution: "@types/whatwg-url@npm:8.2.2"
+"@types/whatwg-url@npm:^11.0.2":
+  version: 11.0.4
+  resolution: "@types/whatwg-url@npm:11.0.4"
   dependencies:
-    "@types/node": "npm:*"
     "@types/webidl-conversions": "npm:*"
-  checksum: 5dc5afe078dfa1a8a266745586fa3db9baa8ce7cc904789211d1dca1d34d7f3dd17d0b7423c36bc9beab9d98aa99338f1fc60798c0af6cbb8356f20e20d9f243
+  checksum: 5acd60dbd49df34b9131ea75dc5e24b03e084cc4ed5a273ddd801fdaf21c896abbbb846bb3ba71ffd5c715120bac0454debe569f39b9177887fb7636d65cdae4
   languageName: node
   linkType: hard
 
@@ -5255,10 +5254,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^5.5.0":
-  version: 5.5.0
-  resolution: "bson@npm:5.5.0"
-  checksum: 626cae944d4bbbca41fc765179ad9d34222d8b549d6fa6545d92820386426e1aa16bc56b883748b45ae2aa20fde720bebccd2e65256b3a264ac2e2ad43c5ae03
+"bson@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "bson@npm:6.2.0"
+  checksum: 6e079d1cafabda340a34ed2f496e20770abdee96e076ff23de810b36531dc75ac41fbe9a7d4644a9fbeae3dfd32bf2973465058fcdbe8601c7783b4b42c5ba61
   languageName: node
   linkType: hard
 
@@ -7353,7 +7352,7 @@ __metadata:
     "@nestjs/common": "npm:^10.3.0"
     "@nestjs/config": "npm:^3.1.1"
     "@nestjs/core": "npm:^10.3.0"
-    "@nestjs/mongoose": "npm:^10.0.1"
+    "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/schematics": "npm:^10.0.2"
     "@nestjs/testing": "npm:^10.2.6"
@@ -7382,7 +7381,7 @@ __metadata:
     jest: "npm:29.5.0"
     lib-nest-socket: "workspace:*"
     lodash: "npm:^4.17.21"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     reflect-metadata: "npm:^0.1.13"
     rxjs: "npm:^7.2.0"
@@ -7406,7 +7405,7 @@ __metadata:
     "@nestjs/common": "npm:^10.3.0"
     "@nestjs/config": "npm:^3.1.1"
     "@nestjs/core": "npm:^10.3.0"
-    "@nestjs/mongoose": "npm:^10.0.1"
+    "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/schematics": "npm:^10.0.2"
     "@nestjs/testing": "npm:^10.2.6"
@@ -7436,7 +7435,7 @@ __metadata:
     eslint-plugin-unused-imports: "npm:^2.0.0"
     jest: "npm:29.5.0"
     lodash: "npm:^4.17.21"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     reflect-metadata: "npm:^0.1.13"
     rxjs: "npm:^7.2.0"
@@ -9585,7 +9584,7 @@ __metadata:
     "@nestjs/common": "npm:^10.3.0"
     "@nestjs/config": "npm:^3.1.1"
     "@nestjs/core": "npm:^10.3.0"
-    "@nestjs/mongoose": "npm:^10.0.1"
+    "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/schematics": "npm:^10.0.2"
     "@nestjs/testing": "npm:^10.2.6"
@@ -9618,7 +9617,7 @@ __metadata:
     express: "npm:^4.18.2"
     feature-nest-poll: "workspace:*"
     jest: "npm:29.5.0"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     pg: "npm:^8.11.3"
     prettier: "npm:^2.6.1"
     reflect-metadata: "npm:^0.1.13"
@@ -9713,7 +9712,7 @@ __metadata:
     "@nestjs/common": "npm:^10.3.0"
     "@nestjs/config": "npm:^3.1.1"
     "@nestjs/core": "npm:^10.3.0"
-    "@nestjs/mongoose": "npm:^10.0.1"
+    "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/platform-socket.io": "npm:^10.2.6"
     "@nestjs/schematics": "npm:^10.0.2"
@@ -9743,7 +9742,7 @@ __metadata:
     eslint-plugin-unused-imports: "npm:^2.0.0"
     jest: "npm:29.5.0"
     lodash: "npm:^4.17.21"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     reflect-metadata: "npm:^0.1.13"
     rxjs: "npm:^7.2.0"
@@ -10390,37 +10389,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb-connection-string-url@npm:^2.6.0":
-  version: 2.6.0
-  resolution: "mongodb-connection-string-url@npm:2.6.0"
+"mongodb-connection-string-url@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "mongodb-connection-string-url@npm:3.0.0"
   dependencies:
-    "@types/whatwg-url": "npm:^8.2.1"
-    whatwg-url: "npm:^11.0.0"
-  checksum: d0903b98240e3a32a96091fd78d59de0616070c5e39881b598ff1c3cc9cd3335473c43d30e8b33c679ad0ab6133ff1112a7465f8c2f81b0d13b1b3f2174c9fe7
+    "@types/whatwg-url": "npm:^11.0.2"
+    whatwg-url: "npm:^13.0.0"
+  checksum: 85a8b51c0c2814bdf3a13709e8c2bacbaefae73f9c38fb20709cb64138948682c17d12eb88168085519535dbb6faede6125eb8061aa1d74e95a0d8883241938d
   languageName: node
   linkType: hard
 
-"mongodb@npm:5.9.0":
-  version: 5.9.0
-  resolution: "mongodb@npm:5.9.0"
+"mongodb@npm:6.3.0":
+  version: 6.3.0
+  resolution: "mongodb@npm:6.3.0"
   dependencies:
     "@mongodb-js/saslprep": "npm:^1.1.0"
-    bson: "npm:^5.5.0"
-    mongodb-connection-string-url: "npm:^2.6.0"
-    socks: "npm:^2.7.1"
+    bson: "npm:^6.2.0"
+    mongodb-connection-string-url: "npm:^3.0.0"
   peerDependencies:
     "@aws-sdk/credential-providers": ^3.188.0
-    "@mongodb-js/zstd": ^1.0.0
-    kerberos: ^1.0.0 || ^2.0.0
-    mongodb-client-encryption: ">=2.3.0 <3"
+    "@mongodb-js/zstd": ^1.1.0
+    gcp-metadata: ^5.2.0
+    kerberos: ^2.0.1
+    mongodb-client-encryption: ">=6.0.0 <7"
     snappy: ^7.2.2
-  dependenciesMeta:
-    "@mongodb-js/saslprep":
-      optional: true
+    socks: ^2.7.1
   peerDependenciesMeta:
     "@aws-sdk/credential-providers":
       optional: true
     "@mongodb-js/zstd":
+      optional: true
+    gcp-metadata:
       optional: true
     kerberos:
       optional: true
@@ -10428,22 +10427,24 @@ __metadata:
       optional: true
     snappy:
       optional: true
-  checksum: 675f99b6e2da1d5d9f1338971d5c9f1de9fd4f37b11391159461cd4fb89ae4c0666c64b3f998ce71b5269e8a177bb64bf165be66eb3208343146a27e9fa9a181
+    socks:
+      optional: true
+  checksum: 3b52734e6439c87098976d10a4ca342b60b66dd295877dce47355114efa88ea7322b853a398ef529be3693b37b73acda29886b2428d69649823128ab3fb995ab
   languageName: node
   linkType: hard
 
-"mongoose@npm:^7.6.2":
-  version: 7.6.2
-  resolution: "mongoose@npm:7.6.2"
+"mongoose@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "mongoose@npm:8.1.0"
   dependencies:
-    bson: "npm:^5.5.0"
+    bson: "npm:^6.2.0"
     kareem: "npm:2.5.1"
-    mongodb: "npm:5.9.0"
+    mongodb: "npm:6.3.0"
     mpath: "npm:0.9.0"
     mquery: "npm:5.0.0"
     ms: "npm:2.1.3"
     sift: "npm:16.0.1"
-  checksum: bfc214de49cbfde872877199f2f6e014f777db088ff93b6e4bad462c7366005bb6f37c0762ad1eccf5d37a67510836926de86e361aa48d4554a7fb3aff8ea4bf
+  checksum: efb79dd81605a1bb60f71041c89350a6b5dc8a18358a2437a27695a9c800d1a9ebca8af2102b9bf6c3bdc27ec8a682dd6aba7f1fdd0bce1666369caee2622db3
   languageName: node
   linkType: hard
 
@@ -11404,10 +11405,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"punycode@npm:^2.1.0, punycode@npm:^2.1.1":
+"punycode@npm:^2.1.0":
   version: 2.3.0
   resolution: "punycode@npm:2.3.0"
   checksum: d4e7fbb96f570c57d64b09a35a1182c879ac32833de7c6926a2c10619632c1377865af3dab5479f59d51da18bcd5035a20a5ef6ceb74020082a3e78025d9a9ca
+  languageName: node
+  linkType: hard
+
+"punycode@npm:^2.3.0":
+  version: 2.3.1
+  resolution: "punycode@npm:2.3.1"
+  checksum: febdc4362bead22f9e2608ff0171713230b57aff9dddc1c273aa2a651fbd366f94b7d6a71d78342a7c0819906750351ca7f2edd26ea41b626d87d6a13d1bd059
   languageName: node
   linkType: hard
 
@@ -12730,7 +12738,7 @@ __metadata:
     "@nestjs/common": "npm:^10.3.0"
     "@nestjs/config": "npm:^3.1.1"
     "@nestjs/core": "npm:^10.3.0"
-    "@nestjs/mongoose": "npm:^10.0.1"
+    "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/platform-socket.io": "npm:^10.2.6"
     "@nestjs/schematics": "npm:^10.0.2"
@@ -12758,7 +12766,7 @@ __metadata:
     eslint-plugin-unused-imports: "npm:^2.0.0"
     express: "npm:^4.18.2"
     jest: "npm:29.5.0"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     reflect-metadata: "npm:^0.1.13"
     rxjs: "npm:^7.2.0"
@@ -12884,7 +12892,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: "npm:^1.1.2"
     eslint-plugin-testing-library: "npm:^5.1.0"
     eslint-plugin-unused-imports: "npm:^2.0.0"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     typescript: "npm:^5.1.3"
   languageName: unknown
@@ -12911,7 +12919,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: "npm:^1.1.2"
     eslint-plugin-testing-library: "npm:^5.1.0"
     eslint-plugin-unused-imports: "npm:^2.0.0"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     typescript: "npm:^5.1.3"
   languageName: unknown
@@ -12938,7 +12946,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: "npm:^1.1.2"
     eslint-plugin-testing-library: "npm:^5.1.0"
     eslint-plugin-unused-imports: "npm:^2.0.0"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     typescript: "npm:^5.1.3"
   languageName: unknown
@@ -12965,7 +12973,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: "npm:^1.1.2"
     eslint-plugin-testing-library: "npm:^5.1.0"
     eslint-plugin-unused-imports: "npm:^2.0.0"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     typescript: "npm:^5.1.3"
   languageName: unknown
@@ -12992,7 +13000,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: "npm:^1.1.2"
     eslint-plugin-testing-library: "npm:^5.1.0"
     eslint-plugin-unused-imports: "npm:^2.0.0"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     typescript: "npm:^5.1.3"
   languageName: unknown
@@ -13148,7 +13156,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"socks@npm:^2.6.2, socks@npm:^2.7.1":
+"socks@npm:^2.6.2":
   version: 2.7.1
   resolution: "socks@npm:2.7.1"
   dependencies:
@@ -13358,7 +13366,7 @@ __metadata:
     "@nestjs/common": "npm:^10.3.0"
     "@nestjs/config": "npm:^3.1.1"
     "@nestjs/core": "npm:^10.3.0"
-    "@nestjs/mongoose": "npm:^10.0.1"
+    "@nestjs/mongoose": "npm:^10.0.2"
     "@nestjs/platform-express": "npm:^10.3.0"
     "@nestjs/schematics": "npm:^10.0.2"
     "@nestjs/testing": "npm:^10.2.6"
@@ -13386,7 +13394,7 @@ __metadata:
     eslint-plugin-unused-imports: "npm:^2.0.0"
     express: "npm:^4.18.2"
     jest: "npm:29.5.0"
-    mongoose: "npm:^7.6.2"
+    mongoose: "npm:^8.1.0"
     prettier: "npm:^2.6.1"
     reflect-metadata: "npm:^0.1.13"
     rxjs: "npm:^7.2.0"
@@ -13872,12 +13880,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tr46@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "tr46@npm:3.0.0"
+"tr46@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "tr46@npm:4.1.1"
   dependencies:
-    punycode: "npm:^2.1.1"
-  checksum: b09a15886cbfaee419a3469081223489051ce9dca3374dd9500d2378adedbee84a3c73f83bfdd6bb13d53657753fc0d4e20a46bfcd3f1b9057ef528426ad7ce4
+    punycode: "npm:^2.3.0"
+  checksum: ca811409c46de84618e4e7f90469184b50d16618b2f027a5ebeccb0d83ee7f51eca229e71f5b15cdec008ca247ad2ccabfdd3daf861604fcc7e341d0c35c30ca
   languageName: node
   linkType: hard
 
@@ -14918,13 +14926,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"whatwg-url@npm:^11.0.0":
-  version: 11.0.0
-  resolution: "whatwg-url@npm:11.0.0"
+"whatwg-url@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "whatwg-url@npm:13.0.0"
   dependencies:
-    tr46: "npm:^3.0.0"
+    tr46: "npm:^4.1.1"
     webidl-conversions: "npm:^7.0.0"
-  checksum: dfcd51c6f4bfb54685528fb10927f3fd3d7c809b5671beef4a8cdd7b1408a7abf3343a35bc71dab83a1424f1c1e92cc2700d7930d95d231df0fac361de0c7648
+  checksum: 1675f5b786bbc2809de8bde5e0c99790cd50c36227942c851b1c2445cc1860a26fd15a4d6eca2cd996882bfde93b66fbc88864cd9b84f2c725427afd81e0f024
   languageName: node
   linkType: hard
 
