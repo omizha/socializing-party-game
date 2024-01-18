@@ -1,9 +1,12 @@
-const path = require('path');
+const { EnvironmentPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const IS_ANALYZER = process.env.IS_ANALYZER === 'true';
 
 module.exports = function (options, webpack) {
+  require('dotenv').config({ encoding: 'utf8', path: '.env' });
+
   return {
     ...options,
     entry: [options.entry],
@@ -20,10 +23,24 @@ module.exports = function (options, webpack) {
         callback();
       },
     ],
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            keep_classnames: true,
+          },
+        }),
+      ],
+    },
     output: {
       ...options.output,
       libraryTarget: 'commonjs2',
     },
-    plugins: [...options.plugins, IS_ANALYZER && new BundleAnalyzerPlugin()].filter(Boolean),
+    plugins: [
+      ...options.plugins,
+      IS_ANALYZER && new BundleAnalyzerPlugin(),
+      new EnvironmentPlugin(Object.keys(process.env)),
+    ].filter(Boolean),
   };
 };

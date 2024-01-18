@@ -5,6 +5,8 @@ const { RunScriptWebpackPlugin } = require('run-script-webpack-plugin');
  * @link https://docs.nestjs.com/recipes/hot-reload
  */
 module.exports = function (options, webpack) {
+  require('dotenv').config({ encoding: 'utf8', path: '.env' });
+
   return {
     ...options,
     entry: ['webpack/hot/poll?100', options.entry],
@@ -15,6 +17,7 @@ module.exports = function (options, webpack) {
     ],
     plugins: [
       ...options.plugins,
+      new webpack.EnvironmentPlugin(Object.keys(process.env)),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.WatchIgnorePlugin({
         paths: [/\.js$/, /\.d\.ts$/],
