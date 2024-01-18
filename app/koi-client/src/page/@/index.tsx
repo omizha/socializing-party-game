@@ -1,43 +1,21 @@
-import { Button, Card } from 'antd';
 import { styled } from '@linaria/react';
-import { useAtomValue } from 'jotai';
-import { useNavigate } from 'react-router-dom';
+import { Suspense } from 'react';
 import MobileLayout from '../../component-presentation/MobileLayout';
-import { Query } from '../../hook';
 import MainHeader from './component/MainHeader';
-import { UserStore } from '../../store';
+import Header from '../../component-presentation/Header';
+import PartyList from './component/PartyList';
 
 export default function Main() {
-  const navigate = useNavigate();
-  const supabaseSession = useAtomValue(UserStore.supabaseSession);
-
-  const { data: partyList } = Query.Party.useQueryPartyList();
-  const { mutateAsync: joinParty } = Query.Party.useJoinParty();
-
-  if (!partyList || !supabaseSession) {
-    return <></>;
-  }
-
   return (
-    <MobileLayout HeaderComponent={<MainHeader />}>
+    <MobileLayout
+      HeaderComponent={
+        <Suspense fallback={<Header />}>
+          <MainHeader />
+        </Suspense>
+      }
+    >
       <Wrapper>
-        {partyList.map((party) => {
-          return (
-            <Card key={party._id} title={party.title}>
-              <Button
-                type="primary"
-                onClick={() => {
-                  joinParty({ partyId: party._id, userId: supabaseSession?.user.id }).then(() => {
-                    navigate(`/party/${party._id}`);
-                  });
-                }}
-                // disabled={party.publicScope !== 'PUBLIC'}
-              >
-                참가
-              </Button>
-            </Card>
-          );
-        })}
+        <PartyList />
       </Wrapper>
     </MobileLayout>
   );
