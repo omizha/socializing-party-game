@@ -1,30 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import serverlessExpress from '@codegenie/serverless-express';
 import type { Callback, Context, Handler } from 'aws-lambda';
-import { type INestApplication, VersioningType } from '@nestjs/common';
+import { type INestApplication } from '@nestjs/common';
 import { AppModule } from './app/app.module';
 
 let server: Handler;
 
-export function commonConfig(app: INestApplication): void {
-  app.enableVersioning({
-    defaultVersion: '1',
-    type: VersioningType.URI,
-  });
-  app.enableCors({
-    credentials: true,
-    origin: [
-      'http://local.parete.me',
-      'https://local.parete.me',
-      'http://local.parete.me:5173',
-      'https://local.parete.me:5173',
-    ],
-  });
-}
+export function commonConfig(app: INestApplication): void {}
 
 async function bootstrap(): Promise<Handler> {
   const app = await NestFactory.create(AppModule);
   commonConfig(app);
+  app.enableCors({
+    credentials: true,
+    origin: /^([\w:/]+)?([\w]+\.)?(palete\.me)(:\d{1,5})?$/,
+  });
   await app.init();
 
   const expressApp = app.getHttpAdapter().getInstance();
