@@ -51,6 +51,8 @@ const PartySubTable = ({ row, className }: { row: Row<PartySchemaWithId>; classN
           >
             <Radio value="INITIAL">INITIAL</Radio>
             <Radio value="POLL">POLL</Radio>
+            <Radio value="STOCK">STOCK</Radio>
+            <Radio value="FEED">FEED</Radio>
             <Radio value="CLOSE">CLOSE</Radio>
           </Radio.Group>
         </Form.Item>

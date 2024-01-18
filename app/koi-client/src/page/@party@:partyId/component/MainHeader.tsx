@@ -3,17 +3,16 @@ import { Button, Dropdown, MenuProps, message } from 'antd';
 import { ArrowLeftOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { useAtomValue } from 'jotai';
 import { css } from '@linaria/core';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../../../component-presentation/Header';
 import ProfileValidator from '../../../component/ProfileValidator';
 import { Query } from '../../../hook';
 import { UserStore } from '../../../store';
 
-interface Props {
-  title: string;
-}
+const PartyHeader = () => {
+  const { partyId } = useParams();
+  const { data: party } = Query.Party.useQueryParty(partyId ?? '');
 
-const PartyHeader = ({ title }: Props) => {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -49,7 +48,7 @@ const PartyHeader = ({ title }: Props) => {
   return (
     <ProfileValidator>
       <Header
-        title={title}
+        title={party?.title}
         LeftComponent={
           <ArrowLeftOutlined
             size={60}

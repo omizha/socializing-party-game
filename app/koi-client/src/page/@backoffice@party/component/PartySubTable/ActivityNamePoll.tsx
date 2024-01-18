@@ -3,7 +3,7 @@ import { Radio } from 'antd';
 import { Query } from '../../../../hook';
 
 interface Props {
-  activityName: string;
+  activityName?: string;
   setActivityName: (activityName: string) => void;
 }
 

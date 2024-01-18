@@ -2,15 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Checkbox, Dropdown, List, MenuProps, Progress, Radio, message } from 'antd';
 import { useAtomValue } from 'jotai';
-import { useQueryClient } from '@tanstack/react-query';
-import { getQueryKey } from 'lib-react-query';
 import { CaretDownFilled } from '@ant-design/icons';
 import { Query } from '../../../hook';
 import { UserStore } from '../../../store';
-import { serverApiUrl } from '../../../config/baseUrl';
 
 const Poll = () => {
-  const queryClient = useQueryClient();
   const { partyId } = useParams();
   const [messageApi, contextHolder] = message.useMessage();
   const supabaseSession = useAtomValue(UserStore.supabaseSession);
@@ -28,7 +24,6 @@ const Poll = () => {
   );
 
   const isDisabledToggle = poll?.status !== 'OPEN' || isLoadingSubmit;
-  const isDisabledSubmit = selectedVoteList.filter((v) => v.isSelected).length === 0;
   const myGender = profile?.data?.gender;
 
   if (!supabaseSession) {
@@ -144,6 +139,8 @@ const Poll = () => {
                             return prev;
                           }
 
+                          // const prevSelectedVote = selectedVote.isSelected;
+
                           prev.forEach((v) => {
                             v.isSelected = false;
                           });
@@ -163,7 +160,6 @@ const Poll = () => {
         }}
       />
       <Button
-        disabled={isDisabledSubmit}
         loading={isLoadingSubmit}
         onClick={() => {
           toggleVote({
@@ -178,13 +174,6 @@ const Poll = () => {
             },
           })
             .then(() => {
-              queryClient.invalidateQueries(
-                getQueryKey({
-                  hostname: serverApiUrl,
-                  method: 'GET',
-                  pathname: `/poll/${poll._id}`,
-                }),
-              );
               messageApi.open({
                 content: `투표가 완료되었습니다.`,
                 duration: 2,
