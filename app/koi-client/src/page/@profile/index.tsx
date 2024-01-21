@@ -89,6 +89,8 @@ export default function Profile() {
         <Form.Item>
           <Button
             type="primary"
+            ghost
+            size="small"
             htmlType="button"
             onClick={async () => {
               await supabase.auth.signOut();
