@@ -6,9 +6,17 @@ interface Props {
   children?: React.ReactNode;
   HeaderComponent?: React.ReactNode;
   justifyContent?: CSSProperties['justifyContent'];
+  padding?: CSSProperties['padding'];
+  backgroundColor?: CSSProperties['backgroundColor'];
 }
 
-const MobileLayout = ({ children, HeaderComponent, justifyContent }: Props) => {
+const MobileLayout = ({
+  children,
+  HeaderComponent,
+  justifyContent = 'center',
+  padding = '20px',
+  backgroundColor = '#f1f1f1',
+}: Props) => {
   const isDesktop = useMediaQuery({ query: `(min-width: 800px)` });
 
   return (
@@ -38,13 +46,13 @@ const MobileLayout = ({ children, HeaderComponent, justifyContent }: Props) => {
             width: 100%;
             height: 100%;
             box-sizing: border-box;
-            padding: 20px;
-            background-color: #f1f1f1;
             display: flex;
             flex-direction: column;
           `}
           style={{
-            justifyContent: justifyContent || 'center',
+            backgroundColor,
+            justifyContent,
+            padding,
           }}
         >
           {children}

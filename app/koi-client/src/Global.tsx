@@ -2,20 +2,16 @@ import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import { QueryClientProvider } from 'lib-react-query';
-import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useAtom } from 'jotai';
 import Main from './page/@';
 import SupabaseProvider from './library/supabase/SupabaseProvider';
-import { supabase } from './library/supabase';
-import authLocalization from './library/supabase/authLocalization';
 import { UserStore } from './store';
 import BackofficePoll from './page/@backoffice@poll';
-import MobileLayout from './component-presentation/MobileLayout';
 import Profile from './page/@profile';
 import Party from './page/@party@:partyId';
 import Backoffice from './page/@backoffice';
 import BackofficeParty from './page/@backoffice@party';
+import NoSession from './component/NoSession';
 
 const router = createBrowserRouter([
   {
@@ -65,16 +61,7 @@ const Global: React.FC = () => {
         <SupabaseProvider
           supabaseSession={supabaseSession}
           setSupabaseSession={setSupabaseSession}
-          noSessionComponent={
-            <MobileLayout>
-              <Auth
-                supabaseClient={supabase}
-                appearance={{ theme: ThemeSupa }}
-                providers={['google']}
-                localization={authLocalization}
-              />
-            </MobileLayout>
-          }
+          noSessionComponent={<NoSession />}
         >
           <RouterProvider router={router} />
         </SupabaseProvider>
