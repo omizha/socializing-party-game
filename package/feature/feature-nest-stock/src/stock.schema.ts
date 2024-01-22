@@ -5,9 +5,6 @@ import { CompanyInfo, StockPhase, StockSchema } from 'shared~type-stock';
 @Schema()
 export class Stock implements StockSchema {
   @Prop()
-  partyId: string;
-
-  @Prop()
   stockPhase: StockPhase;
 
   @Prop({ type: SchemaTypes.Date })
@@ -34,9 +31,7 @@ export class Stock implements StockSchema {
   @Prop()
   round: number;
 
-  constructor(partyId: string) {
-    this.partyId = partyId;
-
+  constructor() {
     this.stockPhase = 'CROWDING';
     this.startedTime = new Date();
     this.remainingStocks = {};

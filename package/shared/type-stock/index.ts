@@ -26,7 +26,6 @@ export type CompanyInfo = {
 };
 
 export type StockSchema = {
-  partyId: string;
   stockPhase: StockPhase;
   startedTime: Date;
   companies: Record<string, CompanyInfo[]>;
