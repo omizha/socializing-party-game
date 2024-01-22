@@ -3055,7 +3055,7 @@ const RAW_RUNTIME_STATE =
     ]],\
     ["@nestjs/core", [\
       ["npm:10.3.0", {\
-        "packageLocation": "./.yarn/unplugged/@nestjs-core-virtual-d1e65b32b5/node_modules/@nestjs/core/",\
+        "packageLocation": "./.yarn/unplugged/@nestjs-core-virtual-d3505a0914/node_modules/@nestjs/core/",\
         "packageDependencies": [\
           ["@nestjs/core", "npm:10.3.0"]\
         ],\
@@ -11088,6 +11088,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-unused-imports", "virtual:ef911e99e751f6eb15acb82bb02e437240c4a171d17ac7123cfdd33420f6779e4226696aad8376f6906f32de2565d849a5a1e38caa759182f2f475712f73607d#npm:2.0.0"],\
           ["jest", "virtual:ef911e99e751f6eb15acb82bb02e437240c4a171d17ac7123cfdd33420f6779e4226696aad8376f6906f32de2565d849a5a1e38caa759182f2f475712f73607d#npm:29.5.0"],\
           ["lodash", "npm:4.17.21"],\
+          ["mongodb", "virtual:39c4fc9ae1549bc48a71ddefde7541201b8fcad41292f3f5350d41410811afb5c87fd6d12cb9821178f88a4260f24b394dd2ba5da21bc7f2ce426d86eae3664a#npm:6.3.0"],\
           ["mongoose", "npm:8.1.0"],\
           ["prettier", "npm:2.8.8"],\
           ["reflect-metadata", "npm:0.1.13"],\
@@ -13572,6 +13573,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-unused-imports", "virtual:ef911e99e751f6eb15acb82bb02e437240c4a171d17ac7123cfdd33420f6779e4226696aad8376f6906f32de2565d849a5a1e38caa759182f2f475712f73607d#npm:2.0.0"],\
           ["express", "npm:4.18.2"],\
           ["feature-nest-poll", "workspace:package/feature/feature-nest-poll"],\
+          ["feature-nest-stock", "workspace:package/feature/feature-nest-stock"],\
           ["jest", "virtual:ef911e99e751f6eb15acb82bb02e437240c4a171d17ac7123cfdd33420f6779e4226696aad8376f6906f32de2565d849a5a1e38caa759182f2f475712f73607d#npm:29.5.0"],\
           ["mongoose", "npm:8.1.0"],\
           ["prettier", "npm:2.8.8"],\

@@ -31,6 +31,7 @@
     "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "feature-nest-poll": "workspace:*",
+    "feature-nest-stock": "workspace:*",
     "mongoose": "^8.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
