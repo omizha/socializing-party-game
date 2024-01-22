@@ -1,3 +1,4 @@
+import type { QueryOptions } from 'mongoose';
 import type { StockSchema } from '.';
 
 export type PatchUpdateStock = Partial<StockSchema> & { _id: string };
@@ -17,3 +18,5 @@ export type PostSellStock = {
   amount: number;
   unitPrice: number;
 };
+
+export type GetStockList = QueryOptions<StockSchema>;

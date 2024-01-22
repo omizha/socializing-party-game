@@ -7,6 +7,12 @@ import { StockService } from './stock.service';
 export class StockController {
   constructor(private readonly stockService: StockService) {}
 
+  @Get('/list')
+  async getStockList(@Body() body: Request.GetStockList): Promise<Stock[]> {
+    const stockList = await this.stockService.find(body);
+    return stockList;
+  }
+
   @Get()
   async getStock(@Query('stockId') stockId: string): Promise<Stock> {
     const stock = await this.stockService.findOneById(stockId);

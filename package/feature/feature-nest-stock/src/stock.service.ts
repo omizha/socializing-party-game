@@ -25,6 +25,10 @@ export class StockService {
     private readonly resultService: ResultService,
   ) {}
 
+  async find(options?: mongoose.QueryOptions<Stock>): Promise<Stock[]> {
+    return this.stockRepository.find(undefined, undefined, options);
+  }
+
   async findOneById(
     stockId: string,
     projection?: ProjectionType<Stock>,

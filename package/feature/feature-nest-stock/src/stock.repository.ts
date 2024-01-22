@@ -10,7 +10,7 @@ export class StockRepository {
     private readonly stockModel: Model<Stock>,
   ) {}
 
-  query(
+  find(
     filter?: FilterQuery<Stock>,
     projection?: ProjectionType<Stock>,
     options?: QueryOptions<Stock>,
