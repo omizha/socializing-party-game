@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { FilterQuery, Model, ProjectionType, QueryOptions } from 'mongoose';
+import type { DeleteOptions } from 'mongodb';
+import { FilterQuery, Model, MongooseQueryOptions, ProjectionType, QueryOptions } from 'mongoose';
 import { StockLog, StockLogDocument } from './log.schema';
 
 @Injectable()
@@ -22,7 +23,10 @@ export class LogRepository {
     return this.stockLogModel.create(log);
   }
 
-  async deleteMany(filter: FilterQuery<StockLog>, options: QueryOptions<StockLog>): Promise<boolean> {
+  async deleteMany(
+    filter: FilterQuery<StockLog>,
+    options?: DeleteOptions & Omit<MongooseQueryOptions<StockLog>, 'lean' | 'timestamps'>,
+  ): Promise<boolean> {
     return !!(await this.stockLogModel.deleteMany(filter, options));
   }
 }

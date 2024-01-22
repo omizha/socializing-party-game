@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PollModule } from 'feature-nest-poll';
+import { StockModule } from 'feature-nest-stock';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PartyModule } from './party/party.module';
@@ -13,6 +14,7 @@ import { PartyModule } from './party/party.module';
       maxIdleTimeMS: 60000,
     }),
     PollModule,
+    StockModule,
     PartyModule,
   ],
   providers: [AppService],

@@ -6,6 +6,7 @@ import { StockController } from './stock.controller';
 import { UserModule } from './user/user.module';
 import { LogModule } from './log/log.module';
 import { ResultModule } from './result/result.module';
+import { StockRepository } from './stock.repository';
 
 @Module({
   controllers: [StockController],
@@ -15,6 +16,6 @@ import { ResultModule } from './result/result.module';
     LogModule,
     ResultModule,
   ],
-  providers: [StockService],
+  providers: [StockService, StockRepository],
 })
 export class StockModule {}

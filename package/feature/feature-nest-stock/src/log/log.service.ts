@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { QueryOptions } from 'mongoose';
+import { MongooseQueryOptions, QueryOptions } from 'mongoose';
+import { DeleteOptions } from 'mongodb';
 import { StockLog, StockLogDocument } from './log.schema';
 import { LogRepository } from './log.repository';
 
@@ -23,7 +24,10 @@ export class LogService {
     return this.stockLogRepository.create(log);
   }
 
-  async deleteAllByStock(stockId: string, options?: QueryOptions<StockLog>): Promise<void> {
+  async deleteAllByStock(
+    stockId: string,
+    options?: DeleteOptions & Omit<MongooseQueryOptions<StockLog>, 'lean' | 'timestamps'>,
+  ): Promise<void> {
     await this.stockLogRepository.deleteMany({ stockId }, options);
   }
 }

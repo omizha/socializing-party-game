@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import mongoose from 'mongoose';
+import mongoose, { MongooseQueryOptions } from 'mongoose';
+import { UpdateOptions } from 'mongodb';
 import { User } from './user.schema';
 import { UserRepository } from './user.repository';
 
@@ -35,7 +36,10 @@ export class UserService {
     }
   }
 
-  async initializeUsers(stockId: string, options?: mongoose.QueryOptions<User>): Promise<boolean> {
+  async initializeUsers(
+    stockId: string,
+    options?: UpdateOptions & Omit<MongooseQueryOptions<User>, 'lean'>,
+  ): Promise<boolean> {
     console.debug('initializeUsers');
     try {
       return this.userRepository.initializeUsers(stockId, options);
