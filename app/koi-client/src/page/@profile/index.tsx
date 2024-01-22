@@ -86,11 +86,19 @@ export default function Profile() {
           </Button>
         </Form.Item>
 
-        {/* <Form.Item>
-          <Button type="primary" htmlType="button" disabled={loading}>
+        <Form.Item>
+          <Button
+            type="primary"
+            ghost
+            size="small"
+            htmlType="button"
+            onClick={async () => {
+              await supabase.auth.signOut();
+            }}
+          >
             로그아웃
           </Button>
-        </Form.Item> */}
+        </Form.Item>
       </Form>
     </MobileLayout>
   );

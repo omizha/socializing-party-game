@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import { css } from '@linaria/core';
+import { styled } from '@linaria/react';
 
 interface BoxProps {
   title?: string;
@@ -15,7 +15,7 @@ const Box: React.FC<BoxProps> = ({ title, value, valueColor, rightComponent }) =
       <div>
         {title && <ContainerTitle>{title}</ContainerTitle>}
         <ContainerBolder
-          css={css`
+          className={css`
             color: ${valueColor};
           `}
         >

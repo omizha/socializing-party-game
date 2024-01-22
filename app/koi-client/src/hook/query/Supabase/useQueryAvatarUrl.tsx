@@ -9,21 +9,27 @@ interface Props {
 
 const useQueryAvatarUrl = ({ supabaseSession }: Props) => {
   const { data: profile, refetch } = Query.Supabase.useMyProfile({ supabaseSession });
+  const avatarUrl = profile?.data?.avatar_url;
 
-  const { data, isFetching } = useQuery({
+  const { data, isFetching, isError } = useQuery({
     enabled: !!profile?.data?.avatar_url,
     queryFn: async () => {
-      const result = await supabase.storage.from('avatars').download(profile?.data?.avatar_url);
+      if (avatarUrl.startsWith('http')) {
+        return avatarUrl;
+      }
+
+      const result = await supabase.storage.from('avatars').download(avatarUrl);
       if (result.error) {
         throw result.error;
       }
 
       return URL.createObjectURL(result.data);
     },
-    queryKey: ['useQueryAvatarUrl', supabaseSession?.user.id, profile?.data?.avatar_url],
+    queryKey: ['useQueryAvatarUrl', supabaseSession?.user.id, avatarUrl],
+    useErrorBoundary: false,
   });
 
-  return { data, isFetching, refetch };
+  return { data, isError, isFetching, refetch };
 };
 
 export default useQueryAvatarUrl;

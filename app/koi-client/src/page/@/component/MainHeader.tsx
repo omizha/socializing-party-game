@@ -10,9 +10,9 @@ const MainHeader = () => {
   const navigate = useNavigate();
   const supabaseSession = useAtomValue(UserStore.supabaseSession);
 
-  const { data } = Query.Supabase.useQueryAvatarUrl({ supabaseSession });
+  const { data, isError } = Query.Supabase.useQueryAvatarUrl({ supabaseSession });
 
-  const isVisibleAvatar = !!data;
+  const isVisibleAvatar = !!data && !isError;
 
   return (
     <ProfileValidator>
