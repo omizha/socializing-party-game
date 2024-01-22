@@ -52,4 +52,8 @@ export class StockRepository {
       },
     );
   }
+
+  create(): Promise<StockDocument> {
+    return this.stockModel.create(new Stock());
+  }
 }

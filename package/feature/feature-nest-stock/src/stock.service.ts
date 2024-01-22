@@ -41,6 +41,10 @@ export class StockService {
     return this.stockRepository.findOneByIdAndUpdate(stock._id, stock, options);
   }
 
+  async createStock(): Promise<Stock> {
+    return this.stockRepository.create();
+  }
+
   async resetStock(stockId: string): Promise<Stock> {
     let stock: Stock;
 

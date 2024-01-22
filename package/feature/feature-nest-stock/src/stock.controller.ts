@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
-import { Request, Response } from 'shared~type-stock';
+import { Request, Response, StockSchema } from 'shared~type-stock';
 import { Stock } from './stock.schema';
 import { StockService } from './stock.service';
 
@@ -17,6 +17,11 @@ export class StockController {
   async getStock(@Query('stockId') stockId: string): Promise<Stock> {
     const stock = await this.stockService.findOneById(stockId);
     return stock;
+  }
+
+  @Post()
+  createStock(): Promise<StockSchema> {
+    return this.stockService.createStock();
   }
 
   @Patch()
