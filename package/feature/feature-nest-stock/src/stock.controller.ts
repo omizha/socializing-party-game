@@ -19,7 +19,7 @@ export class StockController {
     return stock;
   }
 
-  @Post()
+  @Post('/create')
   createStock(): Promise<StockSchema> {
     return this.stockService.createStock();
   }
