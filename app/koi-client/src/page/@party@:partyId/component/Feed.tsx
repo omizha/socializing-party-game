@@ -1,12 +1,23 @@
 import { Button } from 'antd';
-import React from 'react';
+import { useSetAtom } from 'jotai';
+import React, { useEffect } from 'react';
 import { PartySchemaWithId } from 'shared~type-party';
+import { UiStore } from '../../../store';
 
 interface Props {
   party: PartySchemaWithId;
 }
 
 const Feed = ({ party }: Props) => {
+  const setIsScrollView = useSetAtom(UiStore.isScrollView);
+
+  useEffect(() => {
+    setIsScrollView(false);
+    return () => {
+      setIsScrollView(true);
+    };
+  }, [setIsScrollView]);
+
   return (
     <center>
       <p>호스트의 지시를 따라</p>

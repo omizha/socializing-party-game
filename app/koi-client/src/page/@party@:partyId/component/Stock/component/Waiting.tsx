@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { useAtomValue } from 'jotai';
-import { UserStore } from '../../../../../store';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { useEffect } from 'react';
+import { UiStore, UserStore } from '../../../../../store';
 import { Query } from '../../../../../hook';
 
 interface Props {
@@ -8,6 +9,15 @@ interface Props {
 }
 
 const Waiting = ({ HeaderComponent = <></> }: Props) => {
+  const setIsScrollView = useSetAtom(UiStore.isScrollView);
+
+  useEffect(() => {
+    setIsScrollView(false);
+    return () => {
+      setIsScrollView(true);
+    };
+  }, [setIsScrollView]);
+
   const supabaseSession = useAtomValue(UserStore.supabaseSession);
   const { data } = Query.Supabase.useMyProfile({ supabaseSession });
 
