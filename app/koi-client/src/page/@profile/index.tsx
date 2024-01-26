@@ -18,6 +18,7 @@ export default function Profile() {
 
   const [isLoading, setLoading] = useState(isFetching);
   const [username, setUsername] = useState<string>(data?.data?.username);
+  const [isDuplicatedUsername, setIsDuplicatedUsername] = useState(false);
   const [gender, setGender] = useState<string>(data?.data?.gender);
 
   useEffect(() => {
@@ -47,11 +48,17 @@ export default function Profile() {
     const { error } = await supabase.from('profiles').upsert(updates);
 
     if (error) {
-      alert(error.message);
+      if (error.code === '23505' && error.message.includes('profiles_username_key')) {
+        setIsDuplicatedUsername(true);
+      } else {
+        alert(error.message);
+      }
     }
     setLoading(false);
 
-    navigate(-1);
+    if (!error) {
+      navigate(-1);
+    }
   };
 
   const isDisabledSubmit = !username || !gender;
@@ -63,7 +70,13 @@ export default function Profile() {
           <AvatarSetter />
         </Form.Item>
 
-        <Form.Item required label="닉네임">
+        <Form.Item
+          required
+          hasFeedback={isDuplicatedUsername}
+          validateStatus={isDuplicatedUsername ? 'error' : undefined}
+          help={isDuplicatedUsername ? '이미 사용중인 닉네임입니다' : undefined}
+          label="닉네임"
+        >
           <Input type="text" required value={username} onChange={(e) => setUsername(e.target.value)} />
         </Form.Item>
 
