@@ -9757,6 +9757,7 @@ __metadata:
     "@babel/core": "npm:^7.23.6"
     "@babel/preset-react": "npm:^7.23.3"
     "@babel/preset-typescript": "npm:^7.23.3"
+    "@emotion/react": "npm:^11.11.1"
     "@tanstack/react-query": "npm:^4.35.3"
     "@tanstack/react-query-devtools": "npm:^4.35.3"
     "@types/node": "npm:^18.5.5"
