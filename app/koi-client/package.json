@@ -17,6 +17,7 @@
     "@headlessui/react": "^1.7.17",
     "@linaria/core": "^6.0.0",
     "@linaria/react": "^6.0.0",
+    "@radix-ui/react-scroll-area": "^1.0.4",
     "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.86.3",
     "@react-three/fiber": "^8.14.4",

@@ -2,13 +2,15 @@ import React from 'react';
 import { Query } from '../../../hook';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface UserListProps {}
+interface UserListProps {
+  stockId: string;
+}
 
-const UserList: React.FC<UserListProps> = ({}) => {
-  const { data: users } = Query.useUserList();
+const UserList: React.FC<UserListProps> = ({ stockId }) => {
+  const { data: users } = Query.Stock.useUserList(stockId);
 
-  const { mutateAsync: mutateRemoveUser } = Query.useRemoveUser();
-  const { mutateAsync: mutateSetUser } = Query.useSetUser();
+  const { mutateAsync: mutateRemoveUser } = Query.Stock.useRemoveUser();
+  const { mutateAsync: mutateSetUser } = Query.Stock.useSetUser();
 
   return (
     <>

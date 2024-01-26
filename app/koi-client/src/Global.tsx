@@ -12,6 +12,7 @@ import Party from './page/@party@:partyId';
 import Backoffice from './page/@backoffice';
 import BackofficeParty from './page/@backoffice@party';
 import NoSession from './component/NoSession';
+import BackofficeStock from './page/@backoffice@stock';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     element: <BackofficeParty />,
     path: '/backoffice/party',
+  },
+  {
+    element: <BackofficeStock />,
+    path: '/backoffice/stock',
   },
 ]);
 

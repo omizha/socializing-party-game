@@ -1,294 +1,142 @@
-import styled from '@emotion/styled';
-import React, { useState } from 'react';
-import { useInterval } from '@toss/react';
-import { RadioGroup } from '@headlessui/react';
-import { css } from '@emotion/react';
-import { objectKeys } from '@toss/utils';
-import { getDateDistance } from '@toss/date';
-import { getRandomCompanyNames } from 'shared~config/dist/stock';
-import prependZero from '../../service/prependZero';
-import Table from './component/Table';
-import { POV } from '../../type';
+import React, { useEffect } from 'react';
+import { ColumnDef, createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { css } from '@linaria/core';
+import { StockSchemaWithId } from 'shared~type-stock';
 import { Query } from '../../hook';
-import UserList from './component/UserList';
-import RoundSetter from './component/RoundSetter';
+import StockCreateForm from './component/StockCreate';
+import StockDetail from './component/StockDetail';
 
-// playerLength / 3
-// 29 - 10
-// 30 - 10
-export default function Stock() {
-  const { mutateAsync: mutateUpdateGame } = Query.Stock.useUpdateStock();
-  const { mutateAsync: mutateInitStock } = Query.Stock.useInitStock();
-  const { mutateAsync: mutateResetGame } = Query.Stock.useResetStock();
-  const { mutateAsync: mutateBuyStock } = Query.Stock.useBuyStock();
-  const { mutateAsync: mutateSellStock } = Query.Stock.useSellStock();
-  const { mutateAsync: mutateFinishStock } = Query.Stock.useFinishStock();
-  const { mutateAsync: mutateSetResult } = Query.Stock.useSetResult();
-  const { data: users } = Query.useUserList();
-  const { data: game } = Query.Stock.useQueryStock();
-
-  const companies = game?.companies ?? {};
-  const companyNames = objectKeys(companies).length > 0 ? objectKeys(companies) : getRandomCompanyNames();
-  const startedTime = game?.startedTime ?? new Date();
-  const currentPriceIdx = Math.floor(
-    getDateDistance(startedTime, new Date()).minutes / (game?.fluctuationsInterval ?? 5),
-  );
-
-  const [selectedCompany, setSelectedCompany] = useState<string>(companyNames[0]);
-  const [selectedUser, setSelectedUser] = useState<string>(users?.[0]?.nickname ?? '');
-  const [pov, setPov] = useState<POV>('player');
-
-  // 경과된 시간
-  const [elapsedTime, setElapsedTime] = useState<Date>(new Date(new Date().getTime() - startedTime.getTime()));
-
-  useInterval(
-    () => {
-      setElapsedTime(new Date(new Date().getTime() - startedTime.getTime()));
+const columnHelper = createColumnHelper<StockSchemaWithId>();
+const columns = [
+  {
+    cell: ({ row }) => {
+      return row.getCanExpand() ? (
+        <button
+          {...{
+            onClick: row.getToggleExpandedHandler(),
+            style: { cursor: 'pointer' },
+          }}
+        >
+          {row.getIsExpanded() ? '👇' : '👉'}
+        </button>
+      ) : (
+        '🔵'
+      );
     },
-    {
-      delay: 1000,
-    },
-  );
+    header: () => null,
+    id: 'expander',
+  },
+  columnHelper.accessor('_id', {
+    cell: (v) => v.getValue(),
+  }),
+  columnHelper.accessor('stockPhase', {
+    cell: (v) => v.getValue(),
+  }),
+  columnHelper.accessor('round', {
+    cell: (v) => v.getValue(),
+  }),
+  columnHelper.accessor('isVisibleRank', {
+    cell: (v) => v.getValue(),
+  }),
+  columnHelper.accessor('isTransaction', {
+    cell: (v) => v.getValue(),
+  }),
+  columnHelper.accessor('transactionInterval', {
+    cell: (v) => v.getValue(),
+  }),
+  columnHelper.accessor('fluctuationsInterval', {
+    cell: (v) => v.getValue(),
+  }),
+] as ColumnDef<StockSchemaWithId>[];
+
+const BackofficeStock = () => {
+  const { data } = Query.Stock.useQueryStockList();
+
+  const table = useReactTable({
+    columns,
+    data,
+    getCoreRowModel: getCoreRowModel(),
+    getRowCanExpand: () => true,
+  });
+
+  useEffect(() => {
+    table.resetExpanded();
+  }, [data, table]);
+
+  if (!data) return <></>;
 
   return (
-    <Container>
-      <UserList />
-      <Table elapsedTime={elapsedTime} pov={pov} />
-      <hr />
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            gamePhase: 'CROWDING',
-          });
+    <>
+      <StockCreateForm />
+      <table
+        className={cssTable}
+        style={{
+          width: table.getCenterTotalSize(),
         }}
       >
-        CRAWDING
-      </button>
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            gamePhase: 'WAITING',
-          });
-        }}
-      >
-        WAITING
-      </button>
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            gamePhase: 'PLAYING',
-          });
-        }}
-      >
-        PLAYING
-      </button>
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            gamePhase: 'RESULT',
-          });
-        }}
-      >
-        RESULT
-      </button>
-      <button
-        onClick={() => {
-          mutateResetGame();
-        }}
-      >
-        게임 초기화
-      </button>
-      <button
-        onClick={() => {
-          mutateInitStock();
-        }}
-      >
-        주식 초기화
-      </button>
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            isTransaction: true,
-            startedTime: new Date(),
-          });
-        }}
-      >
-        주식 거래 활성화
-      </button>
-      <button
-        onClick={() => {
-          mutateFinishStock();
-        }}
-      >
-        주식 종료 및 정산
-      </button>
-      <button
-        onClick={() => {
-          mutateSetResult();
-        }}
-      >
-        라운드 저장
-      </button>
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            isTransaction: !game?.isTransaction,
-          });
-        }}
-      >
-        주식 토글 (현재상태:{game?.isTransaction ? 'true' : 'false'})
-      </button>
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            isVisibleRank: !game?.isVisibleRank,
-          });
-        }}
-      >
-        순위 공개 토글 (현재상태:{game?.isVisibleRank ? 'true' : 'false'})
-      </button>
-      <RoundSetter />
-      <input
-        placeholder={`시세변동주기 (${game?.fluctuationsInterval}분)`}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' && !!+event.currentTarget.value) {
-            mutateUpdateGame({
-              fluctuationsInterval: +event.currentTarget.value,
-            });
-          }
-        }}
-      />
-      <input
-        placeholder={`활동제한주기 (${game?.transactionInterval}초)`}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' && !!+event.currentTarget.value) {
-            mutateUpdateGame({
-              transactionInterval: +event.currentTarget.value,
-            });
-          }
-        }}
-      />
-      <button
-        onClick={() => {
-          setPov(pov === 'host' ? 'player' : 'host');
-        }}
-      >
-        {pov === 'host' ? '참가자' : '호스트'} 시점
-      </button>
-      <div>
-        시작된 시간 :{' '}
-        {startedTime.toLocaleString('ko-KR', {
-          hour12: false,
-          timeZone: 'Asia/Seoul',
-        })}
-      </div>
-      <div>
-        경과된 시간 : {`${prependZero(elapsedTime.getMinutes(), 2)}:${prependZero(elapsedTime.getSeconds(), 2)}`}
-      </div>
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            startedTime: new Date(startedTime.getTime() - 60 * 1000),
-          });
-        }}
-      >
-        1분 과거로
-      </button>
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            startedTime: new Date(startedTime.getTime() + 60 * 1000),
-          });
-        }}
-      >
-        1분 미래로
-      </button>
-      <button
-        onClick={() => {
-          mutateUpdateGame({
-            startedTime: new Date(startedTime.getTime() - 10 * 1000),
-          });
-        }}
-      >
-        10초 과거로
-      </button>
-      <hr />
-      <RadioGroup
-        value={selectedUser}
-        onChange={(value) => {
-          setSelectedUser(value);
-        }}
-      >
-        <RadioGroup.Label>유저 선택</RadioGroup.Label>
-        <div
-          css={css`
-            display: flex;
-            gap: 8px;
-          `}
-        >
-          {users.map((user) => (
-            <RadioGroup.Option key={user.nickname} value={user.nickname}>
-              {({ checked }) => <span style={{ color: checked ? 'red' : 'black' }}>{user.nickname}</span>}
-            </RadioGroup.Option>
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th
+                  className={cssTh}
+                  key={header.id}
+                  colSpan={header.colSpan}
+                  style={{ width: header.getSize() }}
+                  data-f="FT-a81d"
+                >
+                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
           ))}
-        </div>
-      </RadioGroup>
-      <RadioGroup
-        value={selectedCompany}
-        onChange={(value) => {
-          setSelectedCompany(value);
-        }}
-      >
-        <RadioGroup.Label>회사 선택</RadioGroup.Label>
-        <div
-          css={css`
-            display: flex;
-            gap: 8px;
-          `}
-        >
-          {companyNames.map((company) => (
-            <RadioGroup.Option key={company} value={company}>
-              {({ checked }) => <span style={{ color: checked ? 'red' : 'black' }}>{company}</span>}
-            </RadioGroup.Option>
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <React.Fragment key={row.id}>
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} style={{ width: cell.column.getSize() }} data-f="FT-fb92">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+              {row.getIsExpanded() && (
+                <tr>
+                  <td colSpan={row.getVisibleCells().length}>
+                    <StockDetail stockId={row.original._id} />
+                  </td>
+                </tr>
+              )}
+            </React.Fragment>
           ))}
-        </div>
-      </RadioGroup>
-      <button
-        onClick={() => {
-          mutateBuyStock({
-            amount: 1,
-            company: selectedCompany,
-            nickname: selectedUser,
-            unitPrice: game?.companies[selectedCompany][currentPriceIdx].가격 ?? -1,
-          });
-        }}
-      >
-        매수
-      </button>
-      <button
-        onClick={() => {
-          mutateSellStock({
-            amount: 1,
-            company: selectedCompany,
-            nickname: selectedUser,
-            unitPrice: game?.companies[selectedCompany][currentPriceIdx].가격 ?? -1,
-          });
-        }}
-      >
-        매도
-      </button>
-    </Container>
+        </tbody>
+      </table>
+    </>
   );
-}
+};
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-
-  box-sizing: border-box;
-  // padding: 20px;
+const cssTable = css`
+  & th {
+    text-align: left;
+  }
+  & th,
+  & td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: fit-content;
 `;
+
+const cssTh = css`
+  padding: 2px 4px;
+  position: relative;
+  font-weight: bold;
+  text-align: center;
+  height: 30px;
+`;
+
+export default BackofficeStock;

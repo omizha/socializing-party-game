@@ -1,9 +1,13 @@
 import React from 'react';
 import { Query } from '../../../hook';
 
-const RoundSetter = () => {
-  const { data: game } = Query.Game.useGame();
-  const { mutateAsync: mutateUpdateGame } = Query.Game.useUpdateGame();
+interface Props {
+  stockId: string;
+}
+
+const RoundSetter = ({ stockId }: Props) => {
+  const { data: game } = Query.Stock.useQueryStock(stockId);
+  const { mutateAsync: mutateUpdateGame } = Query.Stock.useUpdateStock();
 
   if (!game) return <></>;
 
@@ -13,6 +17,7 @@ const RoundSetter = () => {
       <button
         onClick={() => {
           mutateUpdateGame({
+            _id: stockId,
             round: game.round - 1,
           });
         }}
@@ -23,6 +28,7 @@ const RoundSetter = () => {
       <button
         onClick={() => {
           mutateUpdateGame({
+            _id: stockId,
             round: game.round + 1,
           });
         }}
