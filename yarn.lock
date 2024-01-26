@@ -7445,6 +7445,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"file-saver@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "file-saver@npm:2.0.5"
+  checksum: fbba443d9b682fec0be6676c048a7ac688b9bd33b105c02e8e1a1cb3e354ed441198dc1f15dcbc137fa044bea73f8a7549f2617e3a952fa7d96390356d54a7c3
+  languageName: node
+  linkType: hard
+
 "file-selector@npm:^0.5.0":
   version: 0.5.0
   resolution: "file-selector@npm:0.5.0"
@@ -9524,6 +9531,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: "npm:^1.1.2"
     eslint-plugin-testing-library: "npm:^5.1.0"
     eslint-plugin-unused-imports: "npm:^2.0.0"
+    file-saver: "npm:^2.0.5"
     html2canvas: "npm:^1.4.1"
     jotai: "npm:^2.4.2"
     leva: "npm:^0.9.35"

@@ -11233,6 +11233,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["file-saver", [\
+      ["npm:2.0.5", {\
+        "packageLocation": "./.yarn/cache/file-saver-npm-2.0.5-2c3bc40d53-fbba443d9b.zip/node_modules/file-saver/",\
+        "packageDependencies": [\
+          ["file-saver", "npm:2.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["file-selector", [\
       ["npm:0.5.0", {\
         "packageLocation": "./.yarn/cache/file-selector-npm-0.5.0-c731a8ed22-bbbfc5d9d1.zip/node_modules/file-selector/",\
@@ -13603,6 +13612,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-sort-keys-fix", "npm:1.1.2"],\
           ["eslint-plugin-testing-library", "virtual:a230069f1b63441ad4ac9b82cf3a8410c17975f33b91d518c5a7ad318d3f970fd9268ecda99b66676bade9a7069f1c945b04bf44a32ad386cfc7cde034cd34cb#npm:5.11.0"],\
           ["eslint-plugin-unused-imports", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:2.0.0"],\
+          ["file-saver", "npm:2.0.5"],\
           ["html2canvas", "npm:1.4.1"],\
           ["jotai", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:2.4.2"],\
           ["leva", "virtual:7348f45abe63e04c75153c15e7b32163113b858b55e121c1e27350ccc03724bb74f18bfef72259d0e0841a4276663f17486c9f968fca8c9dc6239e7bd8e5dc62#npm:0.9.35"],\
