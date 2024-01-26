@@ -9,7 +9,7 @@ export class LogService {
   constructor(private readonly stockLogRepository: LogRepository) {}
 
   async find(stockId: string, userId: string, options?: QueryOptions<StockLog>): Promise<StockLogDocument[]> {
-    const logs = this.stockLogRepository.find(
+    const logs = await this.stockLogRepository.find(
       {
         stockId,
         userId,

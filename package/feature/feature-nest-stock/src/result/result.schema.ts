@@ -5,7 +5,10 @@ import { HydratedDocument } from 'mongoose';
 @Schema()
 export class Result implements ResultSchema {
   @Prop()
-  nickname: string;
+  stockId: string;
+
+  @Prop()
+  userId: string;
 
   @Prop()
   round: number;
@@ -13,8 +16,8 @@ export class Result implements ResultSchema {
   @Prop()
   money: number;
 
-  constructor({ nickname, round, money }: ResultSchema) {
-    this.nickname = nickname;
+  constructor({ userId: nickname, round, money }: ResultSchema) {
+    this.userId = nickname;
     this.money = money;
     this.round = round;
   }

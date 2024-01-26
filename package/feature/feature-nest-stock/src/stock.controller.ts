@@ -25,12 +25,12 @@ export class StockController {
   }
 
   @Patch()
-  updateStock(@Body() body: Request.PatchUpdateStock): Promise<Response.Stock> {
+  updateStock(@Body() body: Request.PatchUpdateStock): Promise<StockSchema> {
     return this.stockService.findOneByIdAndUpdate(body);
   }
 
   @Post('/reset')
-  resetStock(@Query('stockId') stockId: string): Promise<Response.Stock> {
+  resetStock(@Query('stockId') stockId: string): Promise<StockSchema> {
     return this.stockService.resetStock(stockId);
   }
 
@@ -40,22 +40,22 @@ export class StockController {
   }
 
   @Post('/init')
-  initStock(@Query('stockId') stockId: string): Promise<Response.Stock> {
+  initStock(@Query('stockId') stockId: string): Promise<StockSchema> {
     return this.stockService.initStock(stockId);
   }
 
   @Post('/buy')
-  buyStock(@Body() body: Request.PostBuyStock): Promise<Stock> {
+  buyStock(@Body() body: Request.PostBuyStock): Promise<StockSchema> {
     return this.stockService.buyStock(body.stockId, body);
   }
 
   @Post('/sell')
-  sellStock(@Body() body: Request.PostSellStock): Promise<Stock> {
+  sellStock(@Body() body: Request.PostSellStock): Promise<StockSchema> {
     return this.stockService.sellStock(body.stockId, body);
   }
 
   @Post('/finish')
-  async stockFinish(@Query('stockId') stockId: string): Promise<Stock> {
+  async stockFinish(@Query('stockId') stockId: string): Promise<StockSchema> {
     await this.stockService.findOneByIdAndUpdate({ _id: stockId, isTransaction: false });
     return this.stockService.allUserSellStock(stockId);
   }

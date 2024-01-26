@@ -2,22 +2,54 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useAtomValue } from 'jotai';
 import { commaizeNumber } from '@toss/utils';
-import { Query } from '../../../hook';
-import { UserStore } from '../../../store';
+import { Button } from 'antd';
+import html2canvas from 'html2canvas';
+import saveAs from 'file-saver';
+import { css } from '@linaria/core';
+import { UserStore } from '../../../../../store';
+import { Query } from '../../../../../hook';
 
-const Result = () => {
-  const nickname = useAtomValue(UserStore.nickname);
+interface Props {
+  stockId: string;
+}
 
-  const { data: game } = Query.Game.useGame();
-  const { data: users } = Query.useUserList();
-  const { data: results, getRound0Avg, getRound12Avg } = Query.Result.useResult();
+const Result = ({ stockId }: Props) => {
+  const supabaseSession = useAtomValue(UserStore.supabaseSession);
 
-  if (!game) {
+  const { data: stock } = Query.Stock.useQueryStock(stockId);
+  const { data: users } = Query.Stock.useUserList(stockId);
+  const { getRound0Avg, getRound12Avg } = Query.Stock.useQueryResult(stockId);
+
+  const captureAreaRef = React.useRef<HTMLDivElement>(null);
+
+  const handleDownload = async () => {
+    if (!captureAreaRef.current) return;
+
+    try {
+      const div = captureAreaRef.current;
+      div.style.backgroundImage = 'url(/background.jpg)';
+      const canvas = await html2canvas(div);
+      canvas.toBlob((blob) => {
+        if (blob !== null) {
+          saveAs(blob, 'result.png');
+        }
+      });
+    } catch (error) {
+      console.error('Error converting div to image:', error);
+    } finally {
+      if (captureAreaRef.current) {
+        captureAreaRef.current.style.backgroundImage = '';
+      }
+    }
+  };
+
+  if (!stock || !supabaseSession) {
     return <></>;
   }
 
-  const getRoundAvg = game.round === 0 ? getRound0Avg : getRound12Avg;
-  const roundAvg = getRoundAvg(nickname);
+  const userId = supabaseSession.user.id;
+  const getRoundAvg = stock.round === 0 ? getRound0Avg : getRound12Avg;
+  const roundAvg = getRoundAvg(userId);
   const fluctuation = roundAvg - 1000000;
   const percentage = fluctuation / 10000;
 
@@ -66,33 +98,55 @@ const Result = () => {
       ? '전략적으로 주식 리더들을 통솔하여 주식 시장을 이끌어 나갑니다. 카리스마가 넘칩니다.'
       : '전설적인 주식 투자의 신입니다. 부와 권력으로 시장을 휩쓸고 다니며 인품이 훌륭합니다.';
 
-  const sortedUser = [...users].sort((a, b) => getRoundAvg(b.nickname) - getRoundAvg(a.nickname));
-  const rank = sortedUser.findIndex((v) => v.nickname === nickname) + 1;
+  const sortedUser = [...users].sort((a, b) => getRoundAvg(b.userId) - getRoundAvg(a.userId));
+  const rank = sortedUser.findIndex((v) => v.userId === userId) + 1;
   const rankPercentage = Math.floor(Math.max(((rank - 1) / users.length) * 100, 1));
 
   return (
-    <>
-      <Title>주식게임{game.round === 0 && ' 연습게임'} 결과</Title>
-      <Wrapper>
-        <Box>
-          <Container>
-            <TitleContainer>
-              <Name>{animalResult}</Name>
-            </TitleContainer>
-            <AnimalImg src={`/animal/${animal}.jpg`} />
-            <Text>{animalDescription}</Text>
-            <Text>
-              순수익 : {commaizeNumber(fluctuation)}원 ({percentage.toFixed(2)}%)
-            </Text>
-            <Text>
-              랭킹 : {rank}위 (상위 {rankPercentage}%)
-            </Text>
-          </Container>
-        </Box>
-      </Wrapper>
-    </>
+    <Container data-f="FE-5472">
+      <CaptureArea ref={captureAreaRef}>
+        <Title>주식게임{stock.round === 0 && ' 연습게임'} 결과</Title>
+        <Wrapper>
+          <Box>
+            <BoxContainer>
+              <TitleContainer>
+                <Name>{animalResult}</Name>
+              </TitleContainer>
+              <AnimalImg src={`/animal/${animal}.jpg`} />
+              <Text>{animalDescription}</Text>
+              <Text>
+                순수익 : {commaizeNumber(fluctuation)}원 ({percentage.toFixed(2)}%)
+              </Text>
+              <Text>
+                랭킹 : {rank}위 (상위 {rankPercentage}%)
+              </Text>
+            </BoxContainer>
+          </Box>
+        </Wrapper>
+      </CaptureArea>
+      <Button
+        className={css`
+          margin-bottom: 35px;
+        `}
+        onClick={() => handleDownload()}
+      >
+        이미지 저장
+      </Button>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CaptureArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -116,7 +170,7 @@ const Box = styled.div`
   background-color: #000084;
 `;
 
-const Container = styled.div`
+const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -144,6 +198,8 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.div`
+  margin-top: 35px;
+
   font-size: larger;
   text-shadow: 2px 2px #8461f8;
 `;

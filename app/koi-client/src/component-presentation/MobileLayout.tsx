@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { css } from '@linaria/core';
 import { useMediaQuery } from 'react-responsive';
+import { ScrollView } from './ScrollView';
 
 interface Props {
   children?: React.ReactNode;
@@ -8,6 +9,8 @@ interface Props {
   justifyContent?: CSSProperties['justifyContent'];
   padding?: CSSProperties['padding'];
   backgroundColor?: CSSProperties['backgroundColor'];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ScrollViewComponent?: React.ComponentType<any>;
 }
 
 const MobileLayout = ({
@@ -16,6 +19,7 @@ const MobileLayout = ({
   justifyContent = 'center',
   padding = '20px',
   backgroundColor = '#f1f1f1',
+  ScrollViewComponent = ScrollView,
 }: Props) => {
   const isDesktop = useMediaQuery({ query: `(min-width: 800px)` });
 
@@ -43,11 +47,11 @@ const MobileLayout = ({
         {HeaderComponent}
         <div
           className={css`
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
             display: flex;
             flex-direction: column;
+            flex: 1 1 auto;
+            /* 이걸 넣어야 내부 스크롤 가능 */
+            min-height: 0;
           `}
           style={{
             backgroundColor,
@@ -55,7 +59,7 @@ const MobileLayout = ({
             padding,
           }}
         >
-          {children}
+          <ScrollViewComponent>{children}</ScrollViewComponent>
         </div>
       </div>
     </div>

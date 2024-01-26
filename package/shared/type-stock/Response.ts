@@ -1,4 +1,4 @@
-import { StockSchema, StockLogSchema, ResultSchema } from '.';
+import { StockLogSchema, ResultSchema, StockSchema } from '.';
 
 export type UploadAvatar = {
   // Express 타입을 왜 못찾을까?

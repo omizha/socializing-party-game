@@ -19,4 +19,9 @@ export type PostSellStock = {
   unitPrice: number;
 };
 
+export type RemoveStockUser = {
+  stockId: string;
+  userId: string;
+};
+
 export type GetStockList = QueryOptions<StockSchema>;

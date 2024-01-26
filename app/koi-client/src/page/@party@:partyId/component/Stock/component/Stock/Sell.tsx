@@ -3,25 +3,30 @@ import { objectEntries } from '@toss/utils';
 import { useAtomValue } from 'jotai';
 import { Button, message } from 'antd';
 import { DollarOutlined } from '@ant-design/icons';
-import Box from '../../../../component-presentation/Box';
-import { UserStore } from '../../../../store';
-import { Query } from '../../../../hook';
+import { UserStore } from '../../../../../../store';
+import { Query } from '../../../../../../hook';
+import Box from '../../../../../../component-presentation/Box';
 
-const Sell = () => {
-  const nickname = useAtomValue(UserStore.nickname);
+interface Props {
+  stockId: string;
+}
 
-  const { data: game, companiesPrice, timeIdx } = Query.Game.useGame();
-  const { user, isFreezed } = Query.useUser(nickname);
-  const { mutateAsync: sellStock, isLoading } = Query.Game.useSellStock();
+const Sell = ({ stockId }: Props) => {
+  const supabaseSession = useAtomValue(UserStore.supabaseSession);
+  const userId = supabaseSession?.user.id;
+
+  const { data: stock, companiesPrice, timeIdx } = Query.Stock.useQueryStock(stockId);
+  const { user, isFreezed } = Query.Stock.useUser({ stockId, userId });
+  const { mutateAsync: sellStock, isLoading } = Query.Stock.useSellStock();
 
   const [messageApi, contextHolder] = message.useMessage();
 
-  if (!user || !game) {
+  if (!user || !stock || !userId) {
     return <div>불러오는 중.</div>;
   }
 
   const onClickSell = (company: string) => {
-    sellStock({ amount: 1, company, nickname, unitPrice: companiesPrice[company] })
+    sellStock({ amount: 1, company, stockId, unitPrice: companiesPrice[company], userId })
       .then(() => {
         messageApi.open({
           content: '주식을 팔았습니다.',
@@ -38,7 +43,7 @@ const Sell = () => {
       });
   };
 
-  const isDisabled = timeIdx === undefined || timeIdx >= 9 || !game.isTransaction;
+  const isDisabled = timeIdx === undefined || timeIdx >= 9 || !stock.isTransaction;
 
   return (
     <>

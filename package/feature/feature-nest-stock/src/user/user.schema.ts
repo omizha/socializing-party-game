@@ -1,9 +1,9 @@
-import { UserForm, UserRequired, UserSchema } from 'shared~type-stock';
+import { StockUserForm, StockUserRequired, StockUserSchema } from 'shared~type-stock';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes } from 'mongoose';
 
 @Schema()
-export class User implements UserSchema {
+export class StockUser implements StockUserSchema {
   @Prop()
   stockId: string;
 
@@ -19,7 +19,7 @@ export class User implements UserSchema {
   @Prop({ type: SchemaTypes.Date })
   lastActivityTime: Date;
 
-  constructor(required: Pick<UserSchema, UserRequired>, partial: UserForm) {
+  constructor(required: Pick<StockUserSchema, StockUserRequired>, partial: StockUserForm) {
     this.userId = required.userId;
     this.stockId = required.stockId;
 
@@ -29,6 +29,6 @@ export class User implements UserSchema {
   }
 }
 
-export type UserDocument = HydratedDocument<User>;
+export type UserDocument = HydratedDocument<StockUser>;
 
-export const userSchema = SchemaFactory.createForClass(User);
+export const userSchema = SchemaFactory.createForClass(StockUser);

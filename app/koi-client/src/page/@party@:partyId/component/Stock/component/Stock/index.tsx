@@ -7,7 +7,6 @@ import { css } from '@emotion/react';
 import Home from './Home';
 import Buy from './Buy';
 import Sell from './Sell';
-import History from './History';
 import Rule from './Rule';
 
 const navItem = ['홈', '사기', '팔기', '역사'] as const;
@@ -29,11 +28,11 @@ const items: TabsProps['items'] = [
     key: '팔기',
     label: '팔기',
   },
-  {
-    children: <></>,
-    key: '기록',
-    label: '기록',
-  },
+  // {
+  //   children: <></>,
+  //   key: '기록',
+  //   label: '기록',
+  // },
   {
     children: <></>,
     key: '룰',
@@ -41,29 +40,33 @@ const items: TabsProps['items'] = [
   },
 ];
 
-const Stock = () => {
+interface Props {
+  stockId: string;
+}
+
+const Stock = ({ stockId }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const onClickTab = useCallback(
     (key: string) => {
       switch (key) {
         case '홈':
-          setSearchParams({ page: '홈' });
+          setSearchParams({ page: '홈' }, { replace: true });
           break;
         case '사기':
-          setSearchParams({ page: '사기' });
+          setSearchParams({ page: '사기' }, { replace: true });
           break;
         case '팔기':
-          setSearchParams({ page: '팔기' });
+          setSearchParams({ page: '팔기' }, { replace: true });
           break;
-        case '기록':
-          setSearchParams({ page: '기록' });
-          break;
+        // case '기록':
+        //   setSearchParams({ page: '기록' }, { replace: true });
+        //   break;
         case '룰':
-          setSearchParams({ page: '룰' });
+          setSearchParams({ page: '룰' }, { replace: true });
           break;
         default:
-          setSearchParams({ page: '홈' });
+          setSearchParams({ page: '홈' }, { replace: true });
           break;
       }
     },
@@ -96,13 +99,13 @@ const Stock = () => {
           <SwitchCase
             value={searchParams.get('page') ?? '홈'}
             caseBy={{
-              기록: <History />,
-              룰: <Rule />,
-              사기: <Buy />,
-              팔기: <Sell />,
-              홈: <Home />,
+              // 기록: <History stockId={stockId} />,
+              룰: <Rule stockId={stockId} />,
+              사기: <Buy stockId={stockId} />,
+              팔기: <Sell stockId={stockId} />,
+              홈: <Home stockId={stockId} />,
             }}
-            defaultComponent={<Home />}
+            defaultComponent={<Home stockId={stockId} />}
           />
         </ContentContainer>
       </Container>
@@ -116,6 +119,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  color: white;
 `;
 
 const ContentContainer = styled.section`

@@ -4,6 +4,7 @@ import { SwitchCase } from '@toss/react';
 import { Query } from '../../../hook';
 import Poll from './Poll';
 import Feed from './Feed';
+import Stock from './Stock';
 
 const Selector = () => {
   const { partyId } = useParams();
@@ -19,6 +20,7 @@ const Selector = () => {
       caseBy={{
         FEED: <Feed party={party} />,
         POLL: <Poll />,
+        STOCK: <Stock party={party} />,
       }}
       defaultComponent={<center>환영합니다! 호스트의 지시를 따라주세요!</center>}
     />

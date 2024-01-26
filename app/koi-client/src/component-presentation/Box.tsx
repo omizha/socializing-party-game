@@ -1,5 +1,4 @@
 import React, { CSSProperties } from 'react';
-import { css } from '@linaria/core';
 import { styled } from '@linaria/react';
 
 interface BoxProps {
@@ -15,9 +14,9 @@ const Box: React.FC<BoxProps> = ({ title, value, valueColor, rightComponent }) =
       <div>
         {title && <ContainerTitle>{title}</ContainerTitle>}
         <ContainerBolder
-          className={css`
-            color: ${valueColor};
-          `}
+          style={{
+            color: valueColor,
+          }}
         >
           {value}
         </ContainerBolder>

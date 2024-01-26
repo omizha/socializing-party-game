@@ -2,26 +2,31 @@ import { objectEntries } from '@toss/utils';
 import { useAtomValue } from 'jotai';
 import { Button, message } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import Box from '../../../../component-presentation/Box';
-import { Query } from '../../../../hook';
-import { UserStore } from '../../../../store';
+import { UserStore } from '../../../../../../store';
+import { Query } from '../../../../../../hook';
+import Box from '../../../../../../component-presentation/Box';
 
-const Buy = () => {
-  const nickname = useAtomValue(UserStore.nickname);
+interface Props {
+  stockId: string;
+}
 
-  const { data: game, companiesPrice, timeIdx } = Query.Game.useGame();
-  const { isFreezed } = Query.useUser(nickname);
+const Buy = ({ stockId }: Props) => {
+  const supabaseSession = useAtomValue(UserStore.supabaseSession);
+  const userId = supabaseSession?.user.id;
 
-  const { mutateAsync: buyStock, isLoading } = Query.Game.useBuyStock();
+  const { data: stock, companiesPrice, timeIdx } = Query.Stock.useQueryStock(stockId);
+  const { isFreezed } = Query.Stock.useUser({ stockId, userId });
+
+  const { mutateAsync: buyStock, isLoading } = Query.Stock.useBuyStock();
 
   const [messageApi, contextHolder] = message.useMessage();
 
-  if (!game) {
+  if (!stock || !userId) {
     return <>불러오는 중</>;
   }
 
   const onClickBuy = (company: string) => {
-    buyStock({ amount: 1, company, nickname, unitPrice: companiesPrice[company] })
+    buyStock({ amount: 1, company, stockId, unitPrice: companiesPrice[company], userId })
       .then(() => {
         messageApi.open({
           content: '주식을 구매하였습니다.',
@@ -38,12 +43,12 @@ const Buy = () => {
       });
   };
 
-  const isDisabled = timeIdx === undefined || timeIdx >= 9 || !game.isTransaction;
+  const isDisabled = timeIdx === undefined || timeIdx >= 9 || !stock.isTransaction;
 
   return (
     <>
       {contextHolder}
-      {objectEntries(game.remainingStocks).map(([company, count]) => {
+      {objectEntries(stock.remainingStocks).map(([company, count]) => {
         return (
           <Box
             key={company}

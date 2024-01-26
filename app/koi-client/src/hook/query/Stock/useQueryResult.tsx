@@ -16,17 +16,15 @@ const useQueryResult = (stockId: string | undefined) => {
   });
 
   const getRound0Avg = useCallback(
-    (nickname: string) => {
-      return data?.filter((v) => v.nickname === nickname && v.round === 0).reduce((acc, v) => acc + v.money, 0) ?? 0;
+    (userId: string) => {
+      return data?.filter((v) => v.userId === userId && v.round === 0).reduce((acc, v) => acc + v.money, 0) ?? 0;
     },
     [data],
   );
 
   const getRound12Avg = useCallback(
-    (nickname?: string) => {
-      return (
-        (data?.filter((v) => v.nickname === nickname && v.round > 0).reduce((acc, v) => acc + v.money, 0) ?? 0) / 2
-      );
+    (userId?: string) => {
+      return (data?.filter((v) => v.userId === userId && v.round > 0).reduce((acc, v) => acc + v.money, 0) ?? 0) / 2;
     },
     [data],
   );

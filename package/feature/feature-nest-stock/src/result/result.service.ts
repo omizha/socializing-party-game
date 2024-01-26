@@ -17,8 +17,8 @@ export class ResultService {
   async setResult(result: Result, options: QueryOptions<Result> = {}): Promise<Result> {
     return this.resultModel.findOneAndReplace(
       {
-        nickname: result.nickname,
         round: result.round,
+        userId: result.userId,
       },
       result,
       {

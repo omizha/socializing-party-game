@@ -10,6 +10,8 @@ import prependZero from '../../../service/prependZero';
 import { POV } from '../../../type';
 import { Query } from '../../../hook';
 import RoundSetter from './RoundSetter';
+import UserList from './UserList';
+import Table from './Table';
 
 interface Props {
   stockId: string;
@@ -26,8 +28,10 @@ export default function StockDetail({ stockId }: Props) {
   const { mutateAsync: mutateSellStock } = Query.Stock.useSellStock();
   const { mutateAsync: mutateFinishStock } = Query.Stock.useFinishStock(stockId);
   const { mutateAsync: mutateSetResult } = Query.Stock.useSetResult(stockId);
+
   const { data: users } = Query.Stock.useUserList(stockId);
   const { data: stock } = Query.Stock.useQueryStock(stockId);
+  const { data: profiles } = Query.Supabase.useQueryProfileById(users.map((v) => v.userId));
 
   const companies = stock?.companies ?? {};
   const companyNames = objectKeys(companies).length > 0 ? objectKeys(companies) : getRandomCompanyNames();
@@ -54,8 +58,8 @@ export default function StockDetail({ stockId }: Props) {
 
   return (
     <Container>
-      {/* <UserList /> */}
-      {/* <Table elapsedTime={elapsedTime} pov={pov} /> */}
+      <UserList stockId={stockId} />
+      <Table stockId={stockId} elapsedTime={elapsedTime} pov={pov} />
       <hr />
       <button
         onClick={() => {
@@ -242,7 +246,11 @@ export default function StockDetail({ stockId }: Props) {
         >
           {users.map((user) => (
             <RadioGroup.Option key={user.userId} value={user.userId}>
-              {({ checked }) => <span style={{ color: checked ? 'red' : 'black' }}>{user.userId}</span>}
+              {({ checked }) => (
+                <span style={{ color: checked ? 'red' : 'black' }}>
+                  {profiles?.data?.find((v) => v.id === user.userId)?.username}
+                </span>
+              )}
             </RadioGroup.Option>
           ))}
         </div>

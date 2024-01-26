@@ -1,9 +1,9 @@
 import { useQuery } from 'lib-react-query';
-import { UserSchema } from 'shared~type-stock';
+import { StockUserSchema } from 'shared~type-stock';
 import { serverApiUrl } from '../../../config/baseUrl';
 
 const useUserList = (stockId: string) => {
-  const { data } = useQuery<UserSchema[]>({
+  const { data } = useQuery<StockUserSchema[]>({
     api: {
       hostname: serverApiUrl,
       method: 'GET',

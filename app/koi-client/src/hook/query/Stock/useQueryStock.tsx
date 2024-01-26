@@ -1,11 +1,11 @@
 import { getDateDistance } from '@toss/date';
 import { objectEntries } from '@toss/utils';
-import { Response } from 'shared~type-stock';
+import { StockSchemaWithId } from 'shared~type-stock';
 import { useQuery } from 'lib-react-query';
 import { serverApiUrl } from '../../../config/baseUrl';
 
 const useQueryStock = (stockId: string | undefined) => {
-  const { data } = useQuery<Response.Stock>({
+  const { data } = useQuery<StockSchemaWithId>({
     api: {
       hostname: serverApiUrl,
       method: 'GET',

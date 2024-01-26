@@ -8,6 +8,7 @@ interface UserListProps {
 
 const UserList: React.FC<UserListProps> = ({ stockId }) => {
   const { data: users } = Query.Stock.useUserList(stockId);
+  const { data: profiles } = Query.Supabase.useQueryProfileById(users.map((v) => v.userId));
 
   const { mutateAsync: mutateRemoveUser } = Query.Stock.useRemoveUser();
   const { mutateAsync: mutateSetUser } = Query.Stock.useSetUser();
@@ -15,14 +16,15 @@ const UserList: React.FC<UserListProps> = ({ stockId }) => {
   return (
     <>
       <input
-        placeholder="초기화할 유저 닉네임"
+        placeholder="초기화할 유저 Id"
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
             mutateSetUser({
               inventory: {},
               lastActivityTime: new Date(),
               money: 1000000,
-              nickname: event.currentTarget.value,
+              stockId,
+              userId: event.currentTarget.value,
             });
           }
         }}
@@ -34,13 +36,13 @@ const UserList: React.FC<UserListProps> = ({ stockId }) => {
               <div>참가자 {users?.length}명</div>
             </td>
             {users?.map((user) => (
-              <td key={user.nickname}>
+              <td key={user.userId}>
                 <button
                   onClick={() => {
-                    mutateRemoveUser(user.nickname);
+                    mutateRemoveUser({ stockId, userId: user.userId });
                   }}
                 >
-                  {user.nickname}
+                  {profiles?.data?.find((v) => v.id === user.userId)?.username}
                 </button>
               </td>
             ))}

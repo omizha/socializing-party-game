@@ -1,19 +1,21 @@
 import styled from '@emotion/styled';
 import { useAtomValue } from 'jotai';
-import { UserStore } from '../../../store';
+import { UserStore } from '../../../../../store';
+import { Query } from '../../../../../hook';
 
 interface Props {
   HeaderComponent?: JSX.Element;
 }
 
 const Waiting = ({ HeaderComponent = <></> }: Props) => {
-  const nickname = useAtomValue(UserStore.nickname);
+  const supabaseSession = useAtomValue(UserStore.supabaseSession);
+  const { data } = Query.Supabase.useMyProfile({ supabaseSession });
 
   return (
     <Container>
       {HeaderComponent}
       <BodyContainer>
-        <div>반갑습니다 {nickname}님,</div>
+        <div>반갑습니다 {data?.data?.username}님,</div>
         <br />
         <div>호스트의 지시를 따라주세요</div>
         <span />

@@ -1,10 +1,11 @@
 export type * as Request from './Request';
 export type * as Response from './Response';
 
-export type UserRequired = 'stockId' | 'userId';
-export type UserOmitted = 'lastActivityTime';
-export type UserForm = Pick<UserSchema, UserRequired> & Partial<Omit<UserSchema, UserRequired | UserOmitted>>;
-export type UserSchema = {
+export type StockUserRequired = 'stockId' | 'userId';
+export type StockUserOmitted = 'lastActivityTime';
+export type StockUserForm = Pick<StockUserSchema, StockUserRequired> &
+  Partial<Omit<StockUserSchema, StockUserRequired | StockUserOmitted>>;
+export type StockUserSchema = {
   stockId: string;
   userId: string;
   money: number;
@@ -61,7 +62,8 @@ export type StockLogSchema = {
 };
 
 export type ResultSchema = {
-  nickname: string;
+  stockId: string;
+  userId: string;
   round: number;
   money: number;
 };

@@ -9,12 +9,14 @@ import { Query } from '../../../hook';
 interface Props {
   elapsedTime: Date;
   pov: POV;
+  stockId: string;
 }
 
-const Table = ({ elapsedTime, pov }: Props) => {
-  const { data: game } = Query.Game.useGame();
-  const { data: users } = Query.useUserList();
-  const { data: results } = Query.Result.useResult();
+const Table = ({ elapsedTime, pov, stockId }: Props) => {
+  const { data: game } = Query.Stock.useQueryStock(stockId);
+  const { data: users } = Query.Stock.useUserList(stockId);
+  const { data: profiles } = Query.Supabase.useQueryProfileById(users.map((v) => v.userId));
+  const { data: results } = Query.Stock.useQueryResult(stockId);
 
   if (!game?.companies) {
     return <></>;
@@ -99,8 +101,8 @@ const Table = ({ elapsedTime, pov }: Props) => {
           </tr>
           {users.map((user) => {
             return (
-              <tr key={user.nickname}>
-                <Td>{user.nickname}</Td>
+              <tr key={user.userId}>
+                <Td>{profiles?.data?.find((v) => v.id === user.userId)?.username}</Td>
                 {companyNames.map((company) => {
                   return <Td key={company}>{user.inventory[company] || ''}</Td>;
                 })}
@@ -116,8 +118,8 @@ const Table = ({ elapsedTime, pov }: Props) => {
             <Td>소지금</Td>
             {sortedUsers.map((user, i) => {
               return (
-                <Td key={user.nickname}>
-                  {i + 1}위, {user.nickname}
+                <Td key={user.userId}>
+                  {i + 1}위, {profiles?.data?.find((v) => v.id === user.userId)?.username}
                 </Td>
               );
             })}
@@ -127,13 +129,13 @@ const Table = ({ elapsedTime, pov }: Props) => {
           <tr>
             <Td />
             {sortedUsers.map((user) => {
-              return <Td key={user.nickname}>{commaizeNumber(user.money)}</Td>;
+              return <Td key={user.userId}>{commaizeNumber(user.money)}</Td>;
             })}
           </tr>
           <tr>
             <Td />
             {sortedUsers.map((user) => {
-              return <Td key={user.nickname}>{commaizeNumber(user.money - 1000000)}</Td>;
+              return <Td key={user.userId}>{commaizeNumber(user.money - 1000000)}</Td>;
             })}
           </tr>
         </tbody>
@@ -144,7 +146,7 @@ const Table = ({ elapsedTime, pov }: Props) => {
           <tr>
             <Td>닉네임</Td>
             {sortedUsers.map((user) => {
-              return <Td key={user.nickname}>{user.nickname}</Td>;
+              return <Td key={user.userId}>{profiles?.data?.find((v) => v.id === user.userId)?.username}</Td>;
             })}
           </tr>
         </thead>
@@ -153,10 +155,8 @@ const Table = ({ elapsedTime, pov }: Props) => {
             <Td>0라운드</Td>
             {sortedUsers.map((user) => {
               return (
-                <Td key={user.nickname}>
-                  {commaizeNumber(
-                    results?.filter((v) => v.nickname === user.nickname && v.round === 0)[0]?.money ?? '',
-                  )}
+                <Td key={user.userId}>
+                  {commaizeNumber(results?.filter((v) => v.userId === user.userId && v.round === 0)[0]?.money ?? '')}
                 </Td>
               );
             })}
@@ -165,10 +165,8 @@ const Table = ({ elapsedTime, pov }: Props) => {
             <Td>1라운드</Td>
             {sortedUsers.map((user) => {
               return (
-                <Td key={user.nickname}>
-                  {commaizeNumber(
-                    results?.filter((v) => v.nickname === user.nickname && v.round === 1)[0]?.money ?? '',
-                  )}
+                <Td key={user.userId}>
+                  {commaizeNumber(results?.filter((v) => v.userId === user.userId && v.round === 1)[0]?.money ?? '')}
                 </Td>
               );
             })}
@@ -177,10 +175,8 @@ const Table = ({ elapsedTime, pov }: Props) => {
             <Td>2라운드</Td>
             {sortedUsers.map((user) => {
               return (
-                <Td key={user.nickname}>
-                  {commaizeNumber(
-                    results?.filter((v) => v.nickname === user.nickname && v.round === 2)[0]?.money ?? '',
-                  )}
+                <Td key={user.userId}>
+                  {commaizeNumber(results?.filter((v) => v.userId === user.userId && v.round === 2)[0]?.money ?? '')}
                 </Td>
               );
             })}
@@ -189,10 +185,10 @@ const Table = ({ elapsedTime, pov }: Props) => {
             <Td>1+2라운드 합계</Td>
             {sortedUsers.map((user) => {
               return (
-                <Td key={user.nickname}>
+                <Td key={user.userId}>
                   {commaizeNumber(
                     results
-                      ?.filter((v) => v.nickname === user.nickname && v.round > 0)
+                      ?.filter((v) => v.userId === user.userId && v.round > 0)
                       .reduce((acc, v) => acc + v.money, 0),
                   )}
                 </Td>
@@ -203,10 +199,10 @@ const Table = ({ elapsedTime, pov }: Props) => {
             <Td>1+2라운드 평균</Td>
             {sortedUsers.map((user) => {
               return (
-                <Td key={user.nickname}>
+                <Td key={user.userId}>
                   {commaizeNumber(
                     (results
-                      ?.filter((v) => v.nickname === user.nickname && v.round > 0)
+                      ?.filter((v) => v.userId === user.userId && v.round > 0)
                       .reduce((acc, v) => acc + v.money, 0) ?? 0) / 2,
                   )}
                 </Td>
@@ -261,7 +257,7 @@ const Table = ({ elapsedTime, pov }: Props) => {
 
 const Wrapper = styled.div`
   margin: 20px;
-  width: 80%;
+  width: 1200px;
   overflow-x: scroll;
   gap: 20px;
 

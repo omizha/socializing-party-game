@@ -12,7 +12,7 @@ const useMyProfile = ({ supabaseSession }: Props) => {
     queryFn: async () => {
       const result = await supabase
         .from('profiles')
-        .select(`username, gender, avatar_url`)
+        .select(`id, username, gender, avatar_url`)
         .eq('id', supabaseSession?.user.id)
         .single();
 

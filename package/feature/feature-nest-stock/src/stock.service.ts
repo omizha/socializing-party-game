@@ -151,12 +151,12 @@ export class StockService {
 
   async buyStock(stockId: string, body: Request.PostBuyStock): Promise<Stock> {
     const { userId, company, amount, unitPrice } = body;
-    console.debug('buyStock', { amount, company, unitPrice, userId });
+    console.debug('buyStock', { amount, company, stockId, unitPrice, userId });
     let result: Stock;
 
     const session = await this.connection.startSession();
     await session.withTransaction(async () => {
-      const stock = await this.stockRepository.findOneById(stockId, { session });
+      const stock = await this.stockRepository.findOneById(stockId, undefined, { session });
       const user = await this.userRepository.findOne({ stockId, userId }, undefined, { session });
       const players = await this.userService.getUserList(stockId, { session });
 
@@ -227,6 +227,7 @@ export class StockService {
           date: user.lastActivityTime,
           price: companyPrice,
           quantity: amount,
+          stockId,
           userId,
         }),
       );
@@ -242,7 +243,7 @@ export class StockService {
 
     const session = await this.connection.startSession();
     await session.withTransaction(async () => {
-      const stock = await this.stockRepository.findOneById(stockId, { session });
+      const stock = await this.stockRepository.findOneById(stockId, undefined, { session });
       const user = await this.userRepository.findOne({ stockId, userId }, undefined, { session });
 
       if (!user) {
@@ -299,6 +300,7 @@ export class StockService {
           date: user.lastActivityTime,
           price: companyPrice,
           quantity: amount,
+          stockId,
           userId,
         }),
       );
@@ -363,8 +365,9 @@ export class StockService {
         await this.resultService.setResult(
           {
             money: user.money,
-            nickname: user.userId,
             round: stock.round,
+            stockId,
+            userId: user.userId,
           },
           {
             session,

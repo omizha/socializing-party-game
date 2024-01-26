@@ -36,10 +36,10 @@ const columns = [
     cell: (v) => v.getValue(),
   }),
   columnHelper.accessor('isVisibleRank', {
-    cell: (v) => v.getValue(),
+    cell: (v) => `${v.getValue()}`,
   }),
   columnHelper.accessor('isTransaction', {
-    cell: (v) => v.getValue(),
+    cell: (v) => `${v.getValue()}`,
   }),
   columnHelper.accessor('transactionInterval', {
     cell: (v) => v.getValue(),
