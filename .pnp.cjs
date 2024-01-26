@@ -6007,6 +6007,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/file-saver", [\
+      ["npm:2.0.7", {\
+        "packageLocation": "./.yarn/cache/@types-file-saver-npm-2.0.7-39f33a4b39-c3d1cd80ea.zip/node_modules/@types/file-saver/",\
+        "packageDependencies": [\
+          ["@types/file-saver", "npm:2.0.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/graceful-fs", [\
       ["npm:4.1.6", {\
         "packageLocation": "./.yarn/cache/@types-graceful-fs-npm-4.1.6-1eadcf742d-c3070ccdc9.zip/node_modules/@types/graceful-fs/",\
@@ -13587,6 +13596,7 @@ const RAW_RUNTIME_STATE =
           ["@toss/date", "npm:1.1.7"],\
           ["@toss/react", "virtual:3781e4e4653b304d27938f77fea1ab9b6773bbd3d16c365c26414696786c5b1cc2fb193f577d466767d7df01d7ff1a4418f0d78f32cd3cf5e383212925d5a89b#npm:1.6.1"],\
           ["@toss/utils", "npm:1.4.6"],\
+          ["@types/file-saver", "npm:2.0.7"],\
           ["@types/node", "npm:18.16.16"],\
           ["@types/react", "npm:18.2.22"],\
           ["@types/react-dom", "npm:18.2.7"],\
