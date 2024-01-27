@@ -18,7 +18,7 @@ export class ResultService {
     return this.resultModel.findOneAndReplace(
       {
         round: result.round,
-        stockID: result.stockId,
+        stockId: result.stockId,
         userId: result.userId,
       },
       result,
