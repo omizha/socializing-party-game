@@ -129,7 +129,7 @@ export class StockService {
 
     const remainingStocks = {};
     Object.keys(newCompanies).forEach((company) => {
-      remainingStocks[company] = players.length * 2 - 1;
+      remainingStocks[company] = players.length * 3;
     });
 
     const result = this.stockRepository.findOneAndUpdate(stockId, {
