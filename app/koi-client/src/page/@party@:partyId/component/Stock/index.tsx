@@ -41,7 +41,13 @@ export default function Stock({ party }: Props) {
         }
         resetKeys={[resetKey]}
       >
-        <Suspense fallback={<Waiting />}>
+        <Suspense
+          fallback={
+            <Suspense fallback={<></>}>
+              <Waiting />
+            </Suspense>
+          }
+        >
           <Phase stockId={party.activityName} />
         </Suspense>
       </ErrorBoundary>

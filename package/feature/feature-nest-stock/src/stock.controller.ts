@@ -19,6 +19,12 @@ export class StockController {
     return stock;
   }
 
+  @Get('/phase')
+  async getStockPhase(@Query('stockId') stockId: string): Promise<Response.GetStockPhase> {
+    const stock = await this.stockService.findOneById(stockId, { stockPhase: true });
+    return { stockPhase: stock.stockPhase };
+  }
+
   @Post('/create')
   createStock(): Promise<StockSchema> {
     return this.stockService.createStock();

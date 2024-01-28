@@ -1,5 +1,10 @@
-import type { QueryOptions } from 'mongoose';
-import type { StockSchema } from '.';
+import type { ProjectionType, QueryOptions } from 'mongoose';
+import type { StockSchema, StockSchemaWithId } from '.';
+
+export type GetStock = {
+  stockId: string;
+  projection?: ProjectionType<StockSchemaWithId>;
+};
 
 export type PatchUpdateStock = Partial<StockSchema> & { _id: string };
 

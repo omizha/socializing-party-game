@@ -7,6 +7,10 @@ export type UploadAvatar = {
   file: Express.Multer.File;
 };
 
+export type GetStockPhase = {
+  stockPhase: StockSchema['stockPhase'];
+};
+
 export type Stock = StockSchema;
 
 export type Log = StockLogSchema;

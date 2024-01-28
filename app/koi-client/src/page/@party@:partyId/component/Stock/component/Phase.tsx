@@ -13,14 +13,13 @@ interface Props {
 }
 
 const Phase = ({ stockId }: Props) => {
-  const { data: stock } = Query.Stock.useQueryStock(stockId);
+  const { stockPhase } = Query.Stock.useQueryStockPhase(stockId);
   const { data: users } = Query.Stock.useUserList(stockId);
-  const stockPhase = stock?.stockPhase ?? 'WAITING';
 
   const supabaseSession = useAtomValue(UserStore.supabaseSession);
   const isEntry = users?.some((user) => user.userId === supabaseSession?.user.id);
 
-  if (!supabaseSession || !stockId) {
+  if (!supabaseSession || !stockPhase) {
     return <></>;
   }
 

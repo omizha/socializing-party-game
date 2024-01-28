@@ -15,3 +15,4 @@ export { default as useSetUser } from './useSetUser';
 export { default as useRemoveUser } from './useRemoveUser';
 export { default as useQueryLog } from './useQueryLog';
 export { default as useAllSellPrice } from './useAllSellPrice';
+export { default as useQueryStockPhase } from './useQueryStockPhase';
