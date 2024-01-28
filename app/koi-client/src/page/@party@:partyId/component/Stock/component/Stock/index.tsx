@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { Suspense, useCallback } from 'react';
 import styled from '@emotion/styled';
 import { useSearchParams } from 'react-router-dom';
 import { SwitchCase } from '@toss/react';
@@ -96,17 +96,19 @@ const Stock = ({ stockId }: Props) => {
           />
         </div>
         <ContentContainer>
-          <SwitchCase
-            value={searchParams.get('page') ?? '홈'}
-            caseBy={{
-              // 기록: <History stockId={stockId} />,
-              룰: <Rule stockId={stockId} />,
-              사기: <Buy stockId={stockId} />,
-              팔기: <Sell stockId={stockId} />,
-              홈: <Home stockId={stockId} />,
-            }}
-            defaultComponent={<Home stockId={stockId} />}
-          />
+          <Suspense fallback={<></>}>
+            <SwitchCase
+              value={searchParams.get('page') ?? '홈'}
+              caseBy={{
+                // 기록: <History stockId={stockId} />,
+                룰: <Rule stockId={stockId} />,
+                사기: <Buy stockId={stockId} />,
+                팔기: <Sell stockId={stockId} />,
+                홈: <Home stockId={stockId} />,
+              }}
+              defaultComponent={<Home stockId={stockId} />}
+            />
+          </Suspense>
         </ContentContainer>
       </Container>
       {/* <BottomNav /> */}
