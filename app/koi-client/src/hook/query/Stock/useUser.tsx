@@ -1,4 +1,5 @@
 import { getDateDistance } from '@toss/date';
+import { useMemo } from 'react';
 import { Query } from '../..';
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 const useUser = ({ stockId, userId }: Props) => {
   const { data: stock } = Query.Stock.useQueryStock(stockId);
   const { data } = Query.Stock.useUserList(stockId);
-  const user = data?.find((user) => user.userId === userId);
+  const user = useMemo(() => data?.find((user) => user.userId === userId), [data, userId]);
 
   if (!user) {
     return { user: undefined };

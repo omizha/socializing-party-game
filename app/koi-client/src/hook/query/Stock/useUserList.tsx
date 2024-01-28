@@ -14,13 +14,11 @@ const useUserList = (stockId: string) => {
     },
   });
 
-  if (!data) {
-    return { data: [] };
+  if (data) {
+    data.forEach((v) => {
+      v.lastActivityTime = new Date(v.lastActivityTime);
+    });
   }
-
-  data.forEach((v) => {
-    v.lastActivityTime = new Date(v.lastActivityTime);
-  });
 
   return { data: data ?? [] };
 };
