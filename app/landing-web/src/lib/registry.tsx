@@ -20,5 +20,8 @@ export default function StyledComponentsRegistry({ children }: { children: React
 
   if (typeof window !== 'undefined') return <>{children}</>;
 
+  // children에 왜 에러가 발생할까
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>{children}</StyleSheetManager>;
 }
