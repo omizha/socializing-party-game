@@ -9918,9 +9918,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"landing@workspace:app/landing":
+"landing-web@workspace:app/landing-web":
   version: 0.0.0-use.local
-  resolution: "landing@workspace:app/landing"
+  resolution: "landing-web@workspace:app/landing-web"
   dependencies:
     "@react-spring/web": "npm:^9.7.3"
     "@toss/react": "npm:^1.3.8"
