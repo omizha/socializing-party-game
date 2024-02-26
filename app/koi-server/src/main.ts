@@ -1,8 +1,13 @@
+import 'dayjs/locale/ko';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { NestFactory } from '@nestjs/core';
 import serverlessExpress from '@codegenie/serverless-express';
 import type { Callback, Context, Handler } from 'aws-lambda';
 import { type INestApplication } from '@nestjs/common';
 import { AppModule } from './app/app.module';
+
+dayjs.extend(utc);
 
 let server: Handler;
 

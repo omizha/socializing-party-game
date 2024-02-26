@@ -14,9 +14,9 @@ export class StockController {
   }
 
   @Get()
-  async getStock(@Query('stockId') stockId: string): Promise<Stock> {
+  async getStock(@Query('stockId') stockId: string): Promise<Response.GetStock> {
     const stock = await this.stockService.findOneById(stockId);
-    return stock;
+    return this.stockService.transStockToDto(stock);
   }
 
   @Get('/phase')

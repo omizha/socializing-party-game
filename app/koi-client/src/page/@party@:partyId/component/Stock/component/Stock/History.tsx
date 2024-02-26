@@ -2,6 +2,7 @@ import { useAtomValue } from 'jotai';
 import { getDateDistance } from '@toss/date';
 import { commaizeNumber } from '@toss/utils';
 import { css } from '@emotion/react';
+import dayjs from 'dayjs';
 import { UserStore } from '../../../../../../store';
 import { Query } from '../../../../../../hook';
 import prependZero from '../../../../../../service/prependZero';
@@ -26,7 +27,7 @@ const History = ({ stockId }: Props) => {
   return (
     <>
       {logList.map((log) => {
-        const { minutes, seconds } = getDateDistance(game.startedTime, log.date);
+        const { minutes, seconds } = getDateDistance(dayjs(game.startedTime).toDate(), log.date);
         const date = `${prependZero(minutes, 2)}:${prependZero(seconds, 2)}`;
         return (
           <Box

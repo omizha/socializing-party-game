@@ -4,6 +4,7 @@ import { commaizeNumber, objectEntries } from '@toss/utils';
 import { getDateDistance } from '@toss/date';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import dayjs from 'dayjs';
 import { UserStore } from '../../../../../../store';
 import { Query } from '../../../../../../hook';
 import Box from '../../../../../../component-presentation/Box';
@@ -84,8 +85,8 @@ const Home = ({ stockId }: Props) => {
       <H3>홈</H3>
       <Box
         title="진행 시간"
-        value={`${prependZero(getDateDistance(stock.startedTime, new Date()).minutes, 2)}:${prependZero(
-          getDateDistance(stock.startedTime, new Date()).seconds,
+        value={`${prependZero(getDateDistance(dayjs(stock.startedTime).toDate(), new Date()).minutes, 2)}:${prependZero(
+          getDateDistance(dayjs(stock.startedTime).toDate(), new Date()).seconds,
           2,
         )}`}
       />

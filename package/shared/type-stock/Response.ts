@@ -7,6 +7,11 @@ export type UploadAvatar = {
   file: Express.Multer.File;
 };
 
+export type GetStock = Omit<StockSchema, 'startedTime'> & {
+  _id?: string;
+  startedTime: string;
+};
+
 export type GetStockPhase = {
   stockPhase: StockSchema['stockPhase'];
 };

@@ -1,10 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CompanyInfo, Request } from 'shared~type-stock';
+import { CompanyInfo, Request, Response } from 'shared~type-stock';
 import { Config, stock } from 'shared~config';
 import { getDateDistance } from '@toss/date';
 import { ceilToUnit } from '@toss/utils';
 import mongoose, { ProjectionType, QueryOptions } from 'mongoose';
 import { InjectConnection } from '@nestjs/mongoose';
+import dayjs from 'dayjs';
 import { Stock } from './stock.schema';
 import { UserService } from './user/user.service';
 import { LogService } from './log/log.service';
@@ -24,6 +25,10 @@ export class StockService {
     private readonly logService: LogService,
     private readonly resultService: ResultService,
   ) {}
+
+  transStockToDto(stock: Stock): Response.GetStock {
+    return { ...stock, startedTime: dayjs(stock.startedTime).utcOffset('9').format('YYYY-MM-DDTHH:mm:ssZ') };
+  }
 
   async find(options?: mongoose.QueryOptions<Stock>): Promise<Stock[]> {
     return this.stockRepository.find(undefined, undefined, options);

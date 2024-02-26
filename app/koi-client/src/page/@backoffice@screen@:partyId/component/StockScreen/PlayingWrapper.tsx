@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import styled from '@emotion/styled';
 import { getDateDistance } from '@toss/date';
+import dayjs from 'dayjs';
 import { Query } from '../../../../hook';
 
 interface Props {
@@ -17,7 +18,7 @@ const PlayingWrapper = ({ children, stockId }: Props) => {
   const [onReadyPlayer, setOnReadyPlayer] = React.useState(false);
   const [isHidePlayer, setIsHidePlayer] = React.useState(true);
 
-  const startedTime = game?.startedTime ?? new Date();
+  const startedTime = dayjs(game?.startedTime).toDate();
   const { seconds, minutes } = getDateDistance(startedTime, new Date());
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import { getDateDistance } from '@toss/date';
 import { SwitchCase } from '@toss/react';
 import { QRCode } from 'antd';
 import { PartySchemaWithId } from 'shared~type-party';
+import dayjs from 'dayjs';
 import { Query } from '../../../../hook';
 import prependZero from '../../../../service/prependZero';
 import PlayingWrapper from './PlayingWrapper';
@@ -19,13 +20,13 @@ interface Props {
 export default function StockScreen({ party }: Props) {
   const { data: stock } = Query.Stock.useQueryStock(party.activityName);
 
-  const startedTime = stock?.startedTime ?? new Date();
+  const startedTime = dayjs(stock?.startedTime).toDate();
   const isTransaction = stock?.isTransaction ?? false;
 
   const { seconds, minutes } = getDateDistance(startedTime, new Date());
   const time = `${prependZero(minutes, 2)}:${prependZero(seconds, 2)}`;
 
-  if (!stock) {
+  if (!stock?._id) {
     return <></>;
   }
 
