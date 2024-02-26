@@ -29,6 +29,7 @@
     "aws-lambda": "^1.0.7",
     "class-transformer": "^0.5.1",
     "cross-env": "^7.0.3",
+    "dayjs": "^1.11.10",
     "express": "^4.18.2",
     "feature-nest-poll": "workspace:*",
     "feature-nest-stock": "workspace:*",

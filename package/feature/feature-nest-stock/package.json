@@ -16,6 +16,7 @@
     "@toss/utils": "^1.4.4",
     "class-transformer": "^0.5.1",
     "cross-env": "^7.0.3",
+    "dayjs": "^1.11.10",
     "lodash": "^4.17.21",
     "mongoose": "^8.1.0",
     "reflect-metadata": "^0.1.13",
