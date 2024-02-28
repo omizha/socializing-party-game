@@ -9,9 +9,9 @@ const useInitQueryClient = ({ queryClient }: { queryClient?: QueryClient }): Que
         defaultOptions: {
           queries: {
             cacheTime: 1000 * 60 * 5,
-            keepPreviousData: false,
+            keepPreviousData: true,
             refetchInterval: false,
-            refetchIntervalInBackground: false,
+            refetchIntervalInBackground: true,
             refetchOnMount: 'always',
             refetchOnReconnect: 'always',
             refetchOnWindowFocus: 'always',
