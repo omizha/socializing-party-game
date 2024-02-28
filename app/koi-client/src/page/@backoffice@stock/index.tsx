@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ColumnDef, createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { css } from '@linaria/core';
 import { StockSchemaWithId } from 'shared~type-stock';
@@ -58,10 +58,6 @@ const BackofficeStock = () => {
     getCoreRowModel: getCoreRowModel(),
     getRowCanExpand: () => true,
   });
-
-  useEffect(() => {
-    table.resetExpanded();
-  }, [data, table]);
 
   if (!data) return <></>;
 
