@@ -1,9 +1,9 @@
 import { useQuery } from 'lib-react-query';
-import { StockUserSchema } from 'shared~type-stock';
+import { Response } from 'shared~type-stock';
 import { serverApiUrl } from '../../../config/baseUrl';
 
 const useUserList = (stockId: string) => {
-  const { data } = useQuery<StockUserSchema[]>({
+  const { data } = useQuery<Response.GetStockUser[]>({
     api: {
       hostname: serverApiUrl,
       method: 'GET',
@@ -13,12 +13,6 @@ const useUserList = (stockId: string) => {
       refetchInterval: 1000,
     },
   });
-
-  if (data) {
-    data.forEach((v) => {
-      v.lastActivityTime = new Date(v.lastActivityTime);
-    });
-  }
 
   return { data: data ?? [] };
 };

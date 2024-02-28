@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
-import { Request } from 'shared~type-stock';
+import { Request, Response } from 'shared~type-stock';
 import { UserService } from './user.service';
 import { StockUser } from './user.schema';
 
@@ -8,9 +8,9 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  async getUsers(@Query('stockId') stockId: string): Promise<StockUser[]> {
+  async getUsers(@Query('stockId') stockId: string): Promise<Response.GetStockUser[]> {
     const users = await this.userService.getUserList(stockId);
-    return users;
+    return users.map((user) => this.userService.transStockUserToDto(user));
   }
 
   @Post()

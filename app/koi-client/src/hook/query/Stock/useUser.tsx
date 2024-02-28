@@ -1,5 +1,6 @@
 import { getDateDistance } from '@toss/date';
 import { useMemo } from 'react';
+import dayjs from 'dayjs';
 import { Query } from '../..';
 
 interface Props {
@@ -19,7 +20,7 @@ const useUser = ({ stockId, userId }: Props) => {
     return { user: undefined };
   }
 
-  const { minutes, seconds } = getDateDistance(user.lastActivityTime, new Date());
+  const { minutes, seconds } = getDateDistance(dayjs(user.lastActivityTime).toDate(), new Date());
   const isFreezed = minutes === 0 && seconds < (stock?.transactionInterval ?? 5);
 
   return { isFreezed, user };

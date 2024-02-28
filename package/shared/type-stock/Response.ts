@@ -1,4 +1,4 @@
-import { StockLogSchema, ResultSchema, StockSchema } from '.';
+import { StockLogSchema, ResultSchema, StockSchema, StockUserSchema } from '.';
 
 export type UploadAvatar = {
   // Express 타입을 왜 못찾을까?
@@ -14,6 +14,10 @@ export type GetStock = Omit<StockSchema, 'startedTime'> & {
 
 export type GetStockPhase = {
   stockPhase: StockSchema['stockPhase'];
+};
+
+export type GetStockUser = Omit<StockUserSchema, 'lastActivityTime'> & {
+  lastActivityTime: string;
 };
 
 export type Stock = StockSchema;

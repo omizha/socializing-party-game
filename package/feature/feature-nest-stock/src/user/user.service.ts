@@ -1,12 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import mongoose, { MongooseQueryOptions } from 'mongoose';
 import { UpdateOptions } from 'mongodb';
+import { Response } from 'shared~type-stock';
+import dayjs from 'dayjs';
 import { StockUser } from './user.schema';
 import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
+
+  transStockUserToDto(stockUser: StockUser): Response.GetStockUser {
+    return {
+      ...stockUser,
+      lastActivityTime: dayjs(stockUser.lastActivityTime).utcOffset('9').format('YYYY-MM-DDTHH:mm:ssZ'),
+    };
+  }
 
   getUserList(stockId: string, options?: mongoose.QueryOptions<StockUser>): Promise<StockUser[]> {
     return this.userRepository.find({ stockId }, undefined, options);
