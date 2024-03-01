@@ -12,7 +12,7 @@ export class UserService {
 
   transStockUserToDto(stockUser: UserDocument): Response.GetStockUser {
     return {
-      ...stockUser.toObject({ versionKey: false }),
+      ...stockUser.toJSON({ versionKey: false }),
       lastActivityTime: dayjs(stockUser.lastActivityTime).utcOffset('9').format('YYYY-MM-DDTHH:mm:ssZ'),
     };
   }

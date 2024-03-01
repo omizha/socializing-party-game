@@ -28,7 +28,7 @@ export class StockService {
 
   transStockToDto(stock: StockDocument): Response.GetStock {
     return {
-      ...stock.toObject({ versionKey: false }),
+      ...stock.toJSON({ versionKey: false }),
       startedTime: dayjs(stock.startedTime).utcOffset('9').format('YYYY-MM-DDTHH:mm:ssZ'),
     };
   }
@@ -115,8 +115,11 @@ export class StockService {
           // const price = isChange ? prevPrice + (Math.floor(Math.random() * 1000) - 500) * 100 : prevPrice;
           // const price = prevPrice + (Math.floor(Math.random() * 1000) - 500) * 100;
 
-          const frunc = Math.floor(Math.random() * prevPrice) - Math.floor(prevPrice / 2);
-          const price = ceilToUnit(prevPrice + (isChange ? Math.min(Math.random() * 50000, frunc) : frunc), 100);
+          const calc1 = Math.floor(Math.random() * prevPrice - prevPrice / 2);
+          const calc2 = Math.floor(Math.random() * 100000 - 50000);
+
+          const frunc = Math.abs(calc1) >= Math.abs(calc2) ? calc1 : prevPrice + calc2 <= 0 ? calc1 : calc2;
+          const price = ceilToUnit(prevPrice + frunc, 100);
           const info = [];
 
           if (isChange) {
@@ -247,6 +250,7 @@ export class StockService {
 
   async sellStock(stockId: string, body: Request.PostSellStock): Promise<Stock> {
     const { userId, company, amount, unitPrice } = body;
+    console.debug('🚀 ~ StockService ~ sellStock ~ body:', body);
     let result: Stock;
 
     const session = await this.connection.startSession();
