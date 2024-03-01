@@ -6,7 +6,7 @@ import { ceilToUnit } from '@toss/utils';
 import mongoose, { ProjectionType, QueryOptions } from 'mongoose';
 import { InjectConnection } from '@nestjs/mongoose';
 import dayjs from 'dayjs';
-import { Stock } from './stock.schema';
+import { Stock, StockDocument } from './stock.schema';
 import { UserService } from './user/user.service';
 import { LogService } from './log/log.service';
 import { StockLog } from './log/log.schema';
@@ -26,8 +26,11 @@ export class StockService {
     private readonly resultService: ResultService,
   ) {}
 
-  transStockToDto(stock: Stock): Response.GetStock {
-    return { ...stock, startedTime: dayjs(stock.startedTime).utcOffset('9').format('YYYY-MM-DDTHH:mm:ssZ') };
+  transStockToDto(stock: StockDocument): Response.GetStock {
+    return {
+      ...stock.toObject({ versionKey: false }),
+      startedTime: dayjs(stock.startedTime).utcOffset('9').format('YYYY-MM-DDTHH:mm:ssZ'),
+    };
   }
 
   async find(options?: mongoose.QueryOptions<Stock>): Promise<Stock[]> {
@@ -38,7 +41,7 @@ export class StockService {
     stockId: string,
     projection?: ProjectionType<Stock>,
     options?: QueryOptions<Stock>,
-  ): Promise<Stock> {
+  ): Promise<StockDocument> {
     return this.stockRepository.findOneById(stockId, projection, options);
   }
 

@@ -3,21 +3,21 @@ import mongoose, { MongooseQueryOptions } from 'mongoose';
 import { UpdateOptions } from 'mongodb';
 import { Response } from 'shared~type-stock';
 import dayjs from 'dayjs';
-import { StockUser } from './user.schema';
+import { StockUser, UserDocument } from './user.schema';
 import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  transStockUserToDto(stockUser: StockUser): Response.GetStockUser {
+  transStockUserToDto(stockUser: UserDocument): Response.GetStockUser {
     return {
-      ...stockUser,
+      ...stockUser.toObject({ versionKey: false }),
       lastActivityTime: dayjs(stockUser.lastActivityTime).utcOffset('9').format('YYYY-MM-DDTHH:mm:ssZ'),
     };
   }
 
-  getUserList(stockId: string, options?: mongoose.QueryOptions<StockUser>): Promise<StockUser[]> {
+  getUserList(stockId: string, options?: mongoose.QueryOptions<StockUser>): Promise<UserDocument[]> {
     return this.userRepository.find({ stockId }, undefined, options);
   }
 
