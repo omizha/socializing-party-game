@@ -24,7 +24,7 @@ const useQueryResult = (stockId: string | undefined) => {
 
   const getRound12Avg = useCallback(
     (userId?: string) => {
-      return (data?.filter((v) => v.userId === userId && v.round > 0).reduce((acc, v) => acc + v.money, 0) ?? 0) / 2;
+      return data ? Math.max(...data.filter((v) => v.userId === userId && v.round > 0).map((v) => v.money)) : 0;
     },
     [data],
   );
