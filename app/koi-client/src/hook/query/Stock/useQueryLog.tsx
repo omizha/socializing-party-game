@@ -16,7 +16,7 @@ const useQueryLog = ({ stockId, userId }: Props) => {
     },
     reactQueryOption: {
       enabled: !!stockId && !!userId,
-      refetchInterval: 1000,
+      refetchInterval: 1500,
     },
   });
 

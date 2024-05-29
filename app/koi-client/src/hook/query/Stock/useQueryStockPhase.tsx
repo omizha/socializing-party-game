@@ -11,7 +11,7 @@ const useQueryStockPhase = (stockId: string | undefined) => {
     },
     reactQueryOption: {
       enabled: !!stockId,
-      refetchInterval: 1000,
+      refetchInterval: 1500,
     },
   });
 

@@ -18,7 +18,10 @@ interface Props {
 // 29 - 10
 // 30 - 10
 export default function StockScreen({ party }: Props) {
-  const { data: stock } = Query.Stock.useQueryStock(party.activityName);
+  const { data: stock } = Query.Stock.useQueryStock(party.activityName, {
+    keepPreviousData: false,
+    refetchInterval: 500,
+  });
 
   const startedTime = dayjs(stock?.startedTime).toDate();
   const isTransaction = stock?.isTransaction ?? false;

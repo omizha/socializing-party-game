@@ -11,7 +11,7 @@ const useQueryStockList = (options?: Request.GetStockList) => {
       pathname: `/stock/list`,
     },
     reactQueryOption: {
-      refetchInterval: 1000,
+      refetchInterval: 1500,
     },
   });
 

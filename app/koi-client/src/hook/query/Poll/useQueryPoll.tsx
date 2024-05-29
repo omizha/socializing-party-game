@@ -13,7 +13,7 @@ const useQueryPoll = (pollId: string | undefined) => {
     },
     reactQueryOption: {
       enabled: !!pollId,
-      refetchInterval: 500,
+      refetchInterval: 1000,
     },
   });
 

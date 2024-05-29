@@ -10,7 +10,7 @@ const useUserList = (stockId: string) => {
       pathname: `/stock/user?stockId=${stockId}`,
     },
     reactQueryOption: {
-      refetchInterval: 1000,
+      refetchInterval: 1500,
     },
   });
 

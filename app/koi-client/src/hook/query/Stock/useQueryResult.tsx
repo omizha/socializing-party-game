@@ -11,7 +11,7 @@ const useQueryResult = (stockId: string | undefined) => {
       pathname: `/stock/result?stockId=${stockId}`,
     },
     reactQueryOption: {
-      refetchInterval: 500,
+      refetchInterval: 1500,
     },
   });
 

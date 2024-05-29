@@ -53,17 +53,17 @@ const PlayingWrapper = ({ children, stockId }: Props) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (playerRef.current && onReadyPlayer) {
-      playerRef.current.getInternalPlayer().loadPlaylist({
-        list: 'PLp1Kre441jUDUyAof7yA4ul9-Wits0jL1',
-        listType: 'playlist',
-      });
-      playerRef.current.getInternalPlayer().setLoop(true);
-      playerRef.current.getInternalPlayer().setVolume(100);
-      playerRef.current.getInternalPlayer().playVideo();
-    }
-  }, [onReadyPlayer]);
+  // useEffect(() => {
+  //   if (playerRef.current && onReadyPlayer) {
+  //     playerRef.current.getInternalPlayer().loadPlaylist({
+  //       list: 'PLp1Kre441jUDUyAof7yA4ul9-Wits0jL1',
+  //       listType: 'playlist',
+  //     });
+  //     playerRef.current.getInternalPlayer().setLoop(true);
+  //     playerRef.current.getInternalPlayer().setVolume(100);
+  //     playerRef.current.getInternalPlayer().playVideo();
+  //   }
+  // }, [onReadyPlayer]);
 
   useEffect(() => {
     const fluctuationsInterval = game?.fluctuationsInterval ?? 5;

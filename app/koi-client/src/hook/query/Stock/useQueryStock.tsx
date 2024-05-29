@@ -6,7 +6,12 @@ import { useMemo } from 'react';
 import dayjs from 'dayjs';
 import { serverApiUrl } from '../../../config/baseUrl';
 
-const useQueryStock = (stockId: string | undefined) => {
+interface Options {
+  keepPreviousData?: boolean;
+  refetchInterval?: number;
+}
+
+const useQueryStock = (stockId: string | undefined, options?: Options) => {
   const { data } = useQuery<Response.GetStock>({
     api: {
       hostname: serverApiUrl,
@@ -15,7 +20,8 @@ const useQueryStock = (stockId: string | undefined) => {
     },
     reactQueryOption: {
       enabled: !!stockId,
-      refetchInterval: 1000,
+      refetchInterval: 1500,
+      ...options,
     },
   });
 
