@@ -1,0 +1,33 @@
+{
+  "name": "madi-landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "rm -rf .next && next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@sanity/image-url": "1",
+    "@sanity/vision": "3",
+    "next": "14.2.3",
+    "next-sanity": "^9.3.10",
+    "react": "^18",
+    "react-dom": "^18",
+    "sanity": "3",
+    "styled-components": "6"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^0.40.0",
+    "@sanity/ui": "^2.1.14",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "react-is": "^18.3.1",
+    "typescript": "^5"
+  }
+}
