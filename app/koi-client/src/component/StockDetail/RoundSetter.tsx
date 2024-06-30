@@ -1,5 +1,5 @@
 import React from 'react';
-import { Query } from '../../../hook';
+import { Query } from '../../hook';
 
 interface Props {
   stockId: string;

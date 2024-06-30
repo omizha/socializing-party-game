@@ -1,5 +1,5 @@
 import React from 'react';
-import { Query } from '../../../hook';
+import { Query } from '../../hook';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface UserListProps {

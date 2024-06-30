@@ -2,9 +2,9 @@ import { stock } from 'shared~config';
 import React from 'react';
 import styled from '@emotion/styled';
 import { commaizeNumber } from '@toss/utils';
-import prependZero from '../../../service/prependZero';
-import { POV } from '../../../type';
-import { Query } from '../../../hook';
+import { Query } from '../../hook';
+import { POV } from '../../type';
+import prependZero from '../../service/prependZero';
 
 interface Props {
   elapsedTime: Date;

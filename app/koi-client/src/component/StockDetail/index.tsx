@@ -7,12 +7,12 @@ import { objectKeys } from '@toss/utils';
 import { getDateDistance } from '@toss/date';
 import { getRandomCompanyNames } from 'shared~config/dist/stock';
 import dayjs from 'dayjs';
-import prependZero from '../../../service/prependZero';
-import { POV } from '../../../type';
-import { Query } from '../../../hook';
-import RoundSetter from './RoundSetter';
+import { Query } from '../../hook';
+import { POV } from '../../type';
 import UserList from './UserList';
 import Table from './Table';
+import RoundSetter from './RoundSetter';
+import prependZero from '../../service/prependZero';
 
 interface Props {
   stockId: string;

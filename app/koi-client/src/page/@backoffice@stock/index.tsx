@@ -4,7 +4,7 @@ import { css } from '@linaria/core';
 import { StockSchemaWithId } from 'shared~type-stock';
 import { Query } from '../../hook';
 import StockCreateForm from './component/StockCreate';
-import StockDetail from './component/StockDetail';
+import StockDetail from '../../component/StockDetail';
 
 const columnHelper = createColumnHelper<StockSchemaWithId>();
 const columns = [
