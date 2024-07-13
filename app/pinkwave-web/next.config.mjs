@@ -12,11 +12,12 @@ const nextConfig = {
       },
     ],
   },
+  transpilePackages: ['frames.js', 'frames.js/next', 'next/server', 'next/server.js'],
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
     // your project has type errors.
-    ignoreBuildErrors: true,
+    // ignoreBuildErrors: true,
   },
   // ...other config settings
 };
