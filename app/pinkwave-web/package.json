@@ -15,6 +15,8 @@
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
+    "satori": "^0.10.14",
+    "sharp": "^0.33.4",
     "styled-components": "6"
   },
   "devDependencies": {
