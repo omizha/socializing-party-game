@@ -86,11 +86,13 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
 
   return new NextResponse(
     getFrameHtmlResponse({
-      // buttons: [
-      //   {
-      //     label: `🌲 TEST 🌲`,
-      //   },
-      // ],
+      buttons: [
+        {
+          action: 'link',
+          label: '🎀 What is PinkWave 🎀',
+          target: 'https://maemesoft.notion.site/PinkWave-Project-2222780bdf6c4af6b0d24945dc04de1c',
+        },
+      ],
       image: {
         aspectRatio: '1:1',
         src: `${dataImage}`,
