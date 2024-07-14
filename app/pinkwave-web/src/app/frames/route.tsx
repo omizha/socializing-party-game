@@ -1,19 +1,27 @@
-import { createFrames, Button } from 'frames.js/next';
+import { Metadata } from 'next';
+import { ImageResponse } from 'next/og';
 
-const frames = createFrames({
-  basePath: '/frames',
-});
-const handleRequest = frames(async () => {
-  return {
-    buttons: [
-      // eslint-disable-next-line react/jsx-key
-      <Button action="link" target="https://maemesoft.notion.site/PinkWave-Project-2222780bdf6c4af6b0d24945dc04de1c">
-        Preview
-      </Button>,
-    ],
-    image: 'https://static.palete.me/pinkwave/teaser.png',
-  };
-});
+export const runtime = 'edge';
+
+export const metadata: Metadata = {
+  openGraph: {
+    images: 'https://static.palete.me/pinkwave/teaser.png',
+  },
+  other: {
+    description: 'This is a frames.js starter template',
+  },
+  title: 'About',
+};
+
+const handleRequest = (request: Request) => {
+  return new ImageResponse(
+    <img src="https://static.palete.me/pinkwave/teaser.png" width="100%" height="100%" alt="img" />,
+    {
+      height: 1200,
+      width: 1200,
+    },
+  );
+};
 
 export const GET = handleRequest;
 export const POST = handleRequest;

@@ -1,7 +1,7 @@
 import { createFrames, Button } from 'frames.js/next';
 
 const frames = createFrames({
-  basePath: '/frames',
+  basePath: '/pinkwave',
 });
 const handleRequest = frames(async () => {
   return {
